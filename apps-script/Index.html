@@ -122,7 +122,7 @@ p{margin:0 0 .8em;text-wrap:pretty}
 .uhead p{color:var(--muted);margin:0}
 
 /* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border-radius:12px;border:1px solid transparent;font-weight:600;font-size:15.5px;background:var(--green);color:#fff;width:100%}
+.btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border-radius:12px;border:1px solid transparent;font-weight:600;font-size:15.5px;background:var(--green);color:#fff;width:100%}
 .btn:active{transform:translateY(1px)}
 .btn.ghost{background:var(--card);color:var(--ink);border-color:var(--line)}
 .btn.gold{background:var(--gold);color:#2b1d03}
@@ -296,6 +296,92 @@ details.plan summary::-webkit-details-marker{display:none}
   .view{padding:8px 20px 0}
 }
 
+/* ── v2: exam prep & speaking ── */
+.feature{display:flex;align-items:center;gap:14px;width:100%;text-align:left;border:0;border-radius:20px;padding:18px;background:var(--ink);color:#f3efe4;box-shadow:var(--shadow)}
+.feature .ft-tx{flex:1}.feature b{display:block;font-family:var(--f-head);font-size:19px;margin:2px 0 3px;color:#fff}
+.feature .ft-tx>span:last-child{font-size:13.5px;opacity:.85}
+.ft-mic{width:56px;height:56px;border-radius:50%;background:var(--gold);color:#2b1d03;display:grid;place-items:center;flex:none}
+.ft-mic svg{width:28px;height:28px}
+.xgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.xcard{text-align:left;border:1px solid var(--line);background:var(--card);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)}
+.xcard .xn{font-family:var(--f-head);font-weight:700;font-size:22px;color:var(--green)}
+.xcard .xs{font-size:13px;color:var(--muted);margin-bottom:10px}
+.xcard .pbar{height:6px;border-radius:99px;background:var(--line);overflow:hidden;margin-bottom:6px}
+.xcard .pbar i{display:block;height:100%;background:var(--gold)}
+.b2chip{display:inline-block;vertical-align:middle;font-size:13px;font-family:var(--f-body);font-weight:600;padding:3px 10px;border-radius:99px;background:var(--gold-soft);color:#8a5a0c;margin-left:6px}
+.say.sm{width:34px;height:34px;margin-right:8px;vertical-align:middle}
+.say.sm svg{width:16px;height:16px}
+.q .qt{display:flex;align-items:center;flex-wrap:wrap}
+.opt:not(:has(.k)){padding-left:16px}
+input.gap{margin-top:2px}
+input.gap.right,.cz-in.right{border-color:var(--green-2);background:var(--green-soft)}
+input.gap.wrong,.cz-in.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.cloze{line-height:2.3}
+.cz{white-space:nowrap}
+.cz-in{font:inherit;font-size:16px;padding:0 3px;height:30px;border:0;border-bottom:2px solid var(--green-2);background:var(--green-soft);border-radius:4px 4px 0 0;color:var(--ink);letter-spacing:.05em}
+.cz-in:focus{outline:2px solid var(--gold)}
+.fix{color:var(--green);font-weight:700;font-size:12px;margin-left:2px}
+.bd .bubble{display:flex;align-items:center;gap:10px;font-family:var(--f-read);font-size:16px;background:var(--paper);border-radius:14px 14px 14px 4px;padding:8px 12px;margin-bottom:10px}
+.bd .bubble .say{width:34px;height:34px}.bd .bubble .say svg{width:16px;height:16px}
+.slot{min-height:52px;border:1.5px dashed var(--line);border-radius:12px;padding:6px;display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;align-content:flex-start}
+.bank{display:flex;flex-wrap:wrap;gap:6px}
+.tok{font-family:var(--f-read);font-size:15.5px;min-height:40px}
+.slot .tok{background:var(--ink);color:#fff;border-color:var(--ink)}
+.bd.ok .slot{border-color:var(--green-2);background:var(--green-soft)}
+.bd.no .slot{border-color:var(--bad);background:var(--bad-soft)}
+.chart{margin-top:14px;background:var(--paper);border-radius:12px;padding:10px}
+.chart svg{width:100%;height:auto;display:block}
+.posts{display:grid;gap:8px;margin-top:12px}
+.post{background:var(--paper);border-radius:12px;padding:10px 12px;font-size:14.5px}
+.post p{margin:4px 0 0;font-family:var(--f-read)}
+.post.prof{background:var(--green-soft)}
+.phr{display:flex;flex-wrap:wrap;gap:6px}
+.phr .chip{font-size:13px;min-height:32px;white-space:normal;text-align:left}
+.lvchip{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--gold-soft);color:#8a5a0c}
+.lvl-big{font-family:var(--f-head);font-weight:700;font-size:72px;line-height:1;color:var(--green);margin-bottom:6px}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:14.5px}
+.kv span{color:var(--muted)}.kv b{text-align:right}
+.switch{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:14.5px;min-height:44px}
+.switch input{width:22px;height:22px;accent-color:var(--green)}
+.warnbox{background:var(--gold-soft);border:1px solid #ecd3a1;color:#5b4210}
+.warnbox a{color:var(--green);font-weight:600;word-break:break-all}
+.cue{background:var(--card);border:1px solid var(--line);border-left:0;border-radius:16px;padding:16px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.cue::before{content:"";position:absolute;inset:0 auto 0 0;width:6px;background:var(--gold)}
+.cue h2{font-family:var(--f-read);font-weight:500;font-size:20px;margin-top:4px}
+.cue ul{margin:4px 0 0;padding-left:20px;font-family:var(--f-read);font-size:15.5px}
+.notes-ro{white-space:pre-wrap;font-size:14px;background:var(--paper);border-radius:10px;padding:8px 12px;margin-top:10px;color:var(--muted)}
+.stagebox{display:grid;place-items:center;padding:18px 0 6px}
+.tring{width:180px;height:180px;position:relative}
+.tring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.tring .arc{stroke:var(--green-2);transition:stroke-dashoffset .2s linear}
+.tring.rec .arc{stroke:var(--bad)}
+.tring.warn .arc{stroke:var(--gold)}
+.tring .tv{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.tring .tv b{font-family:var(--f-head);font-size:40px;line-height:1;display:block;font-variant-numeric:tabular-nums}
+.tring .tv span{font-size:13px;color:var(--muted)}
+.recbar{display:flex;align-items:center;gap:10px;margin-top:12px;padding:10px 14px;border-radius:12px;background:var(--bad-soft);color:var(--bad);font-weight:600;font-size:14px}
+.recbar.off{background:var(--paper);color:var(--muted);font-weight:500}
+.rdot{width:10px;height:10px;border-radius:50%;background:var(--bad);animation:pulse 1.2s infinite}
+@keyframes pulse{50%{opacity:.25}}
+.meter{flex:1;height:6px;background:rgba(184,69,44,.15);border-radius:99px;overflow:hidden}
+.meter i{display:block;height:100%;width:100%;background:var(--bad);transform-origin:left;transform:scaleX(.03);transition:transform .08s}
+.examiner{display:flex;gap:12px;align-items:flex-start;margin-top:12px}
+.examiner .av{width:44px;height:44px;flex:none;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center}
+.examiner .av svg{width:22px;height:22px}
+.examiner .qtext{flex:1;background:var(--card);border:1px solid var(--line);border-radius:4px 16px 16px 16px;padding:12px 14px;font-family:var(--f-read);font-size:18px;line-height:1.5;box-shadow:var(--shadow);min-height:52px}
+.qprog{display:flex;gap:6px;margin:8px 0 2px}
+.qprog i{flex:1;height:5px;border-radius:99px;background:var(--line)}
+.qprog i.d{background:var(--green-2)}.qprog i.c{background:var(--gold)}
+.checks .ck{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed var(--line);cursor:pointer}
+.checks .ck:last-of-type{border-bottom:0}
+.checks input{width:22px;height:22px;margin-top:2px;accent-color:var(--green);flex:none}
+.phr-grid{display:grid;gap:12px;margin-top:10px}
+.phr-grid .ph{font-family:var(--f-read);font-size:15px;padding:3px 0}
+.recitem .ri-h{display:flex;gap:8px;align-items:flex-start;justify-content:space-between}
+.recitem b{display:block;font-family:var(--f-read);font-weight:500;line-height:1.35;margin:2px 0}
+.del{color:var(--muted)}.del.armed{color:#fff;background:var(--bad)}
+.nav-in{grid-template-columns:repeat(5,1fr)}
+
 </style>
 </head>
 <body>
@@ -307,7 +393,7 @@ details.plan summary::-webkit-details-marker{display:none}
   <button data-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg>หน้าหลัก</button>
   <button data-tab="units"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H20v15H5.5A1.5 1.5 0 0 0 4 19.5z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20"/><path d="M8 7h8M8 11h6"/></svg>บทเรียน</button>
   <button data-tab="practice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="15" rx="2"/><path d="M8 3h11a2 2 0 0 1 2 2v13"/></svg>คำศัพท์</button>
-  <button data-tab="mock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="m8 9 1.5 1.5L12 8M8 15l1.5 1.5L12 14M14.5 9.5H17M14.5 15.5H17"/></svg>สอบจำลอง</button>
+  <button data-tab="prep"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="m8 9 1.5 1.5L12 8M8 15l1.5 1.5L12 14M14.5 9.5H17M14.5 15.5H17"/></svg>เตรียมสอบ</button>
   <button data-tab="info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>เกณฑ์ ก.ค.ศ.</button>
 </div></nav>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -991,8 +1077,566 @@ B: That's a difficult decision. Maybe you could ask if a shorter programme is av
   ]
 };
 
-</script>
-<script>
+;
+/* Exam-specific practice: TOEIC · IELTS · TOEFL iBT (2026 format) · EF SET
+   kinds: mcq (optional passage/script; q flags: say, hideQ, blind, fixed, nolab, type:'gap'),
+          write, cloze, build, adaptive
+   Unless `fixed` is set, o[a] is the answer and options are shuffled at runtime. */
+window.EXAMS = {
+  /* ═══════════════════════════ TOEIC ═══════════════════════════ */
+  toeic: {
+    name: 'TOEIC Listening & Reading', short: 'TOEIC', b2: '785 – 940',
+    about: 'ข้อสอบภาษาอังกฤษในบริบทการทำงาน/ธุรกิจ ข้อสอบปรนัยทั้งหมด 200 ข้อ ใช้เวลา 2 ชั่วโมง ไม่มีสอบพูด-เขียน (ใน L&R)',
+    format: [
+      ['Listening', 'Part 1–4', '100 ข้อ · ~45 นาที'],
+      ['Reading', 'Part 5–7', '100 ข้อ · 75 นาที']
+    ],
+    tips: [
+      'Part 2: ระวังคำตอบที่มีคำเสียงเหมือนในคำถาม (เช่น ถาม meeting ตอบ meat) มักเป็นตัวหลอก',
+      'Part 3–4: อ่านคำถามล่วงหน้าก่อนเสียงเริ่ม จะรู้ว่าต้องฟังหาอะไร',
+      'Part 5: ดูตำแหน่งในประโยคก่อน — ต้องการ noun / verb / adj / adv แล้วตัดตัวเลือกได้เร็ว',
+      'Part 7: บริหารเวลา ~1 นาทีต่อข้อ ข้อ double/triple passage มักต้องเชื่อมข้อมูล 2 บทความ',
+      'Part 1 (บรรยายภาพ) ฝึกจากข้อสอบเก่าของ ETS เพิ่มเติม เพราะต้องใช้รูปภาพจริง'
+    ],
+    vocab: [
+      { w: 'invoice', p: 'n.', t: 'ใบแจ้งหนี้', ex: 'Please send the invoice to our accounts department.' },
+      { w: 'agenda', p: 'n.', t: 'วาระการประชุม', ex: 'The budget is the first item on the agenda.' },
+      { w: 'reimburse', p: 'v.', t: 'จ่ายเงินคืน (ค่าใช้จ่ายที่สำรองไป)', ex: 'The company will reimburse your travel expenses.' },
+      { w: 'postpone', p: 'v.', t: 'เลื่อนออกไป', ex: 'The meeting has been postponed until Friday.' },
+      { w: 'venue', p: 'n.', t: 'สถานที่จัดงาน', ex: 'The venue for the conference has changed.' },
+      { w: 'quarterly', p: 'adj.', t: 'รายไตรมาส', ex: 'The quarterly report is due next week.' },
+      { w: 'merchandise', p: 'n.', t: 'สินค้า', ex: 'All merchandise can be returned within 30 days.' },
+      { w: 'shipment', p: 'n.', t: 'การจัดส่ง / สินค้าที่จัดส่ง', ex: 'The shipment arrived two days late.' },
+      { w: 'warranty', p: 'n.', t: 'การรับประกันสินค้า', ex: 'The printer comes with a two-year warranty.' },
+      { w: 'applicant', p: 'n.', t: 'ผู้สมัคร', ex: 'We received over fifty applicants for the position.' },
+      { w: 'supervisor', p: 'n.', t: 'หัวหน้างาน', ex: 'Ask your supervisor to approve the request.' },
+      { w: 'revenue', p: 'n.', t: 'รายได้', ex: 'Revenue increased by 12% this year.' },
+      { w: 'budget', p: 'n.', t: 'งบประมาณ', ex: 'The project is already over budget.' },
+      { w: 'proposal', p: 'n.', t: 'ข้อเสนอ', ex: 'The board accepted her proposal.' },
+      { w: 'refund', p: 'n./v.', t: 'เงินคืน / คืนเงิน', ex: 'You can request a full refund.' },
+      { w: 'inventory', p: 'n.', t: 'สินค้าคงคลัง / การตรวจนับสต็อก', ex: 'The store is closed today for inventory.' },
+      { w: 'brochure', p: 'n.', t: 'แผ่นพับ / โบรชัวร์', ex: 'Please take a brochure at the front desk.' },
+      { w: 'estimate', p: 'n./v.', t: 'ประมาณการ / ใบเสนอราคา', ex: 'Can you give us an estimate for the repairs?' },
+      { w: 'negotiate', p: 'v.', t: 'เจรจาต่อรอง', ex: 'We negotiated a lower price with the supplier.' },
+      { w: 'branch', p: 'n.', t: 'สาขา', ex: 'The bank is opening a new branch downtown.' },
+      { w: 'itinerary', p: 'n.', t: 'กำหนดการเดินทาง', ex: 'I have emailed you the itinerary for the trip.' },
+      { w: 'attendee', p: 'n.', t: 'ผู้เข้าร่วม (งาน/ประชุม)', ex: 'Each attendee will receive a name badge.' },
+      { w: 'confirm', p: 'v.', t: 'ยืนยัน', ex: 'Please confirm your attendance by Monday.' },
+      { w: 'available', p: 'adj.', t: 'ว่าง / มีให้ใช้ได้', ex: 'Is the meeting room available this afternoon?' }
+    ],
+    sets: [
+      {
+        id: 'toeic-p2', title: 'Part 2 · Question–Response', th: 'ฟังคำถามแล้วเลือกคำตอบที่เหมาะสม (ไม่มีตัวเลือกให้อ่าน)', kind: 'mcq',
+        intro: 'เหมือนสอบจริง: คำถามและตัวเลือก (A)(B)(C) จะเป็นเสียงเท่านั้น กดฟังแล้วเลือกคำตอบ หลังตรวจคำตอบจะเห็นข้อความทั้งหมด',
+        qs: [
+          { say: 1, hideQ: 1, blind: 1, fixed: 1, q: 'Where will the training session be held?', o: ['In the main conference room.', 'At about three o\'clock.', 'Yes, it was very useful.'], a: 0, e: 'ถาม Where → ตอบสถานที่' },
+          { say: 1, hideQ: 1, blind: 1, fixed: 1, q: 'Who\'s responsible for ordering office supplies?', o: ['Some paper and pens.', 'Ms Tanaka in the admin office.', 'I ordered it yesterday.'], a: 1, e: 'ถาม Who → ตอบบุคคล (B) · (C) หลอกด้วยคำว่า order' },
+          { say: 1, hideQ: 1, blind: 1, fixed: 1, q: 'Why was the staff meeting postponed?', o: ['In the meeting room.', 'Until next Tuesday.', 'The director is away on business.'], a: 2, e: 'ถาม Why → ตอบเหตุผล · (B) เป็นตัวหลอกที่ตอบ When' },
+          { say: 1, hideQ: 1, blind: 1, fixed: 1, q: 'Would you like me to send you the report by email?', o: ['Yes, that would be great.', 'It was reported last week.', 'He sent it to the wrong department.'], a: 0, e: 'ข้อเสนอ Would you like me to…? → ตอบรับ/ปฏิเสธ' },
+          { say: 1, hideQ: 1, blind: 1, fixed: 1, q: 'Haven\'t you finished the budget proposal yet?', o: ['The budget is too high.', 'I\'m still waiting for the final figures.', 'No, I don\'t propose it.'], a: 1, e: 'คำตอบโดยอ้อม (indirect answer) พบบ่อยมากใน Part 2' },
+          { say: 1, hideQ: 1, blind: 1, fixed: 1, q: 'Should we take a taxi or the train to the airport?', o: ['The flight leaves at noon.', 'Yes, we should.', 'The train is faster at this time of day.'], a: 2, e: 'คำถามแบบ A or B → ห้ามตอบ Yes/No' },
+          { say: 1, hideQ: 1, blind: 1, fixed: 1, q: 'How long have you worked in the marketing department?', o: ['About five years now.', 'It\'s a long way from here.', 'Yes, I work there.'], a: 0, e: 'How long → ระยะเวลา' },
+          { say: 1, hideQ: 1, blind: 1, fixed: 1, q: 'When does the new manager start?', o: ['In the head office.', 'On the first of next month.', 'He managed it very well.'], a: 1, e: 'When → เวลา · (C) หลอกด้วยเสียง manager/managed' }
+        ]
+      },
+      {
+        id: 'toeic-p3', title: 'Part 3 · Conversation', th: 'ฟังบทสนทนาในที่ทำงาน แล้วตอบ 3 ข้อ', kind: 'mcq',
+        script: `A: Hi, Daniel. Have you had a chance to look at the new schedule for the sales conference?
+B: I have, and I noticed that my presentation is now on Friday afternoon. I was hoping to present on Thursday, because I'm flying to Singapore on Friday morning.
+A: Oh, I didn't realise that. Let me check with the event coordinator. She might be able to swap your session with someone else's.
+B: That would be great. Could you let me know by the end of the day? I need to confirm my flight.`,
+        qs: [
+          { q: 'What are the speakers mainly discussing?', o: ['A change to a conference schedule', 'A problem with a flight booking', 'The cost of a sales trip', 'A new marketing strategy'], a: 0, e: 'ทั้งบทพูดถึงตารางการประชุมใหม่' },
+          { q: 'Why is the man concerned?', o: ['He will be travelling on Friday', 'His presentation is not ready', 'He has not received the schedule', 'The venue has changed'], a: 0, e: '"I\'m flying to Singapore on Friday morning"' },
+          { q: 'What does the woman offer to do?', o: ['Contact the event coordinator', 'Give the presentation herself', 'Change his flight', 'Cancel the session'], a: 0, e: '"Let me check with the event coordinator."' }
+        ]
+      },
+      {
+        id: 'toeic-p4', title: 'Part 4 · Talk (Voicemail)', th: 'ฟังข้อความเสียง แล้วตอบ 3 ข้อ', kind: 'mcq',
+        script: `Hello, this is Karen Lee from Green Valley Office Supplies, returning your call about the order for your school. Unfortunately, the printer paper you requested is temporarily out of stock. We expect a new delivery next Wednesday. If you'd prefer, we can send a similar product from another brand today, at the same price. Please call me back before five o'clock to let me know which option you prefer.`,
+        qs: [
+          { q: 'Why is the speaker calling?', o: ['To explain a problem with an order', 'To advertise a new product', 'To request a payment', 'To change a delivery address'], a: 0, e: 'สินค้าที่สั่งหมดชั่วคราว' },
+          { q: 'When will new stock arrive?', o: ['Next Wednesday', 'Today', 'Tomorrow at five', 'Next month'], a: 0, e: '"We expect a new delivery next Wednesday."' },
+          { q: 'What is the listener asked to do?', o: ['Call back with a decision', 'Visit the store', 'Pay a higher price', 'Send a new order form'], a: 0, e: '"Please call me back… to let me know which option you prefer."' }
+        ]
+      },
+      {
+        id: 'toeic-p5', title: 'Part 5 · Incomplete Sentences', th: 'เติมคำในประโยคบริบทธุรกิจ 12 ข้อ', kind: 'mcq',
+        intro: 'เทคนิค: ดูช่องว่างก่อนว่าต้องการคำชนิดไหน (noun / verb / adjective / adverb) ทำข้อละไม่เกิน 30 วินาที',
+        qs: [
+          { q: 'All employees must submit their expense reports ___ the end of the month.', o: ['by', 'until', 'since', 'during'], a: 0, e: 'by = ภายใน (เส้นตาย) · until = ต่อเนื่องจนถึง' },
+          { q: 'The new software is ___ easier to use than the old version.', o: ['considerably', 'considerable', 'consider', 'consideration'], a: 0, e: 'ขยาย adjective ขั้นกว่า (easier) → adverb' },
+          { q: 'Ms Park will be ___ for the training programme while the manager is away.', o: ['responsible', 'responsibility', 'responsibly', 'responsive'], a: 0, e: 'be responsible for = รับผิดชอบ' },
+          { q: 'Please ___ the attached document and return it with your signature.', o: ['review', 'reviewing', 'reviewed', 'to review'], a: 0, e: 'ประโยคคำสั่ง Please + V1' },
+          { q: 'The company has decided to ___ its opening hours during the holiday season.', o: ['extend', 'extent', 'extensive', 'extension'], a: 0, e: 'to + V1 → extend' },
+          { q: '___ the weather was bad, the outdoor event went ahead as planned.', o: ['Although', 'Despite', 'Because', 'However'], a: 0, e: 'ตามด้วยประโยค + ความขัดแย้ง → Although' },
+          { q: 'Applications ___ after 30 June will not be considered.', o: ['received', 'receiving', 'receive', 'receives'], a: 0, e: 'ใบสมัคร "ที่ถูกรับ" → V3 (reduced passive)' },
+          { q: 'Mr Somchai is the employee ___ proposal was selected for the award.', o: ['whose', 'who', 'which', 'whom'], a: 0, e: 'proposal ของพนักงาน → whose' },
+          { q: 'The marketing team worked ___ to meet the deadline.', o: ['diligently', 'diligent', 'diligence', 'more diligent'], a: 0, e: 'ขยายกริยา worked → adverb' },
+          { q: 'Customers may ___ a full refund within 30 days of purchase.', o: ['request', 'respond', 'reply', 'attend'], a: 0, e: 'request a refund = ขอเงินคืน' },
+          { q: 'Neither the manager ___ his assistant was available for comment.', o: ['nor', 'or', 'and', 'but'], a: 0, e: 'neither … nor' },
+          { q: 'The conference room has been ___ for the board meeting on Monday.', o: ['reserved', 'reserving', 'reserve', 'reservation'], a: 0, e: 'has been + V3 (passive)' }
+        ]
+      },
+      {
+        id: 'toeic-p6', title: 'Part 6 · Text Completion', th: 'อ่านอีเมลแล้วเติมคำ/ประโยค 4 ช่อง', kind: 'mcq',
+        passage: `To: All staff
+From: Facilities Department
+Subject: Elevator maintenance
+
+Please be aware that the main elevator will be out of service from Monday to Wednesday next week. ___(1)___ this period, staff are asked to use the stairs or the service elevator at the back of the building. We apologise for any ___(2)___ this may cause.
+
+___(3)___ If you have mobility needs and require assistance, please contact the front desk, and a member of our team will be happy to ___(4)___ you.`,
+        qs: [
+          { q: 'Blank (1)', o: ['During', 'While', 'Since', 'Until'], a: 0, e: 'During + คำนาม (this period)' },
+          { q: 'Blank (2)', o: ['inconvenience', 'inconvenient', 'inconveniently', 'inconvenienced'], a: 0, e: 'any + noun' },
+          { q: 'Blank (3) — choose the best sentence', o: ['The work is necessary to meet new safety regulations.', 'The elevator was installed last week.', 'Please take the elevator to the fifth floor.', 'Our staff party will be held on Friday.'], a: 0, e: 'ประโยคแทรกต้องอธิบายเหตุผลของการซ่อมบำรุงให้ต่อเนื่องกับเนื้อหา' },
+          { q: 'Blank (4)', o: ['assist', 'assistance', 'assistant', 'assisting'], a: 0, e: 'happy to + V1' }
+        ]
+      },
+      {
+        id: 'toeic-p7', title: 'Part 7 · Double Passage', th: 'อ่านประกาศ + อีเมล แล้วเชื่อมข้อมูล', kind: 'mcq',
+        passage: `NOTICE — Northern Educators' Conference 2026, Chiang Mai
+
+Early registration (until 15 March): 2,500 baht per person
+Standard registration (16 March – 30 April): 3,200 baht per person
+Group discount: schools registering five or more teachers receive 10% off the total fee.
+All fees include lunch on both days and access to all workshops. Certificates of attendance will be emailed within two weeks of the event.
+
+────────────
+
+From: Wanida Chaiyo
+To: Registration Team
+Subject: Invoice for group registration
+
+I am writing about the registration of six teachers from our school. We completed the online form on 20 March. However, the invoice we received shows the full fee for each person, without any discount. Could you please check this and send us a corrected invoice?
+
+Also, one of our teachers is vegetarian. I would be grateful if you could arrange a suitable lunch for her.`,
+        qs: [
+          { q: 'What is included in the registration fee?', o: ['Lunch and workshops', 'Accommodation', 'Transport to the venue', 'A printed certificate on the day'], a: 0, e: '"All fees include lunch on both days and access to all workshops."' },
+          { q: 'Before any discount, how much does each of Ms Wanida\'s teachers have to pay?', o: ['3,200 baht', '2,500 baht', '2,250 baht', '2,880 baht'], a: 0, e: 'ลงทะเบียน 20 มี.ค. = ช่วง Standard → 3,200 บาท (ต้องเชื่อมข้อมูล 2 บทความ)' },
+          { q: 'Why is Ms Wanida writing?', o: ['The invoice did not include the group discount', 'She wants to cancel the registration', 'She missed the early registration date', 'Her certificate has not arrived'], a: 0, e: 'ลงทะเบียน 6 คน ≥ 5 → ควรได้ส่วนลด 10%' },
+          { q: 'In the email, the word "arrange" is closest in meaning to', o: ['organise', 'order', 'repair', 'decorate'], a: 0, e: 'arrange a lunch = จัดเตรียม' }
+        ]
+      }
+    ]
+  },
+
+  /* ═══════════════════════════ IELTS ═══════════════════════════ */
+  ielts: {
+    name: 'IELTS Academic / General Training', short: 'IELTS', b2: '5.5 – 6.0',
+    about: 'สอบครบ 4 ทักษะ คะแนน band 0–9 ส่วน Speaking สอบตัวต่อตัวกับผู้คุมสอบ ~11–14 นาที',
+    format: [
+      ['Listening', '4 parts · 40 ข้อ', '~30 นาที'],
+      ['Reading', '3 passages · 40 ข้อ', '60 นาที'],
+      ['Writing', 'Task 1 + Task 2', '60 นาที'],
+      ['Speaking', 'Part 1–3', '11–14 นาที']
+    ],
+    tips: [
+      'True / False / Not Given: FALSE = บทความบอกตรงข้าม · NOT GIVEN = บทความไม่ได้พูดถึงเลย',
+      'Listening: สะกดผิด = ผิด และต้องดูจำนวนคำที่กำหนด (NO MORE THAN TWO WORDS)',
+      'Writing Task 2 มีคะแนนมากกว่า Task 1 สองเท่า — ใช้เวลา ~40 นาที',
+      'Speaking Part 2: ใช้เวลาเตรียม 1 นาทีเขียนคีย์เวิร์ด อย่าเขียนเป็นประโยค',
+      'Band 6 ต้องการ: ตอบตรงประเด็น ขยายความได้ ใช้ศัพท์หลากหลาย แม้มีข้อผิดพลาดบ้าง'
+    ],
+    sets: [
+      {
+        id: 'ielts-tfng', title: 'Reading · True / False / Not Given', th: 'ข้อสอบรูปแบบที่คนไทยพลาดมากที่สุด', kind: 'mcq',
+        passage: `The Four-Day School Week
+
+In recent years, a growing number of school districts in the United States have moved to a four-day school week. Most of these districts are in rural areas, where schools often struggle to recruit and keep teachers. By offering a three-day weekend, districts hope to make teaching jobs more attractive. In some cases, the change has also been used to reduce transport and heating costs, although the savings are usually smaller than expected.
+
+To compensate for the lost day, schools typically lengthen the remaining four days by an hour or more. Research on student achievement has produced mixed results. Some studies have found small declines in test scores, particularly in mathematics, while others have found no significant difference. Parents' opinions are also divided. Many families appreciate the extra time together, but working parents often need to find childcare on the fifth day, which can be expensive.
+
+Supporters argue that teachers return to work on Monday feeling more rested and motivated. Critics, however, believe that younger children find longer school days tiring, and that the policy may widen the gap between students whose families can provide learning activities on the day off and those whose families cannot.`,
+        intro: 'เลือก TRUE ถ้าตรงกับบทความ · FALSE ถ้าขัดแย้งกับบทความ · NOT GIVEN ถ้าบทความไม่ได้ให้ข้อมูล',
+        qs: [
+          { fixed: 1, q: 'Most schools with a four-day week are located in cities.', o: ['TRUE', 'FALSE', 'NOT GIVEN'], a: 1, e: 'บทความบอก "Most of these districts are in rural areas" → ขัดแย้ง' },
+          { fixed: 1, q: 'One aim of the four-day week is to make teaching jobs more attractive.', o: ['TRUE', 'FALSE', 'NOT GIVEN'], a: 0, e: '"districts hope to make teaching jobs more attractive"' },
+          { fixed: 1, q: 'The money saved is usually greater than districts expect.', o: ['TRUE', 'FALSE', 'NOT GIVEN'], a: 1, e: '"the savings are usually smaller than expected" → ตรงข้าม' },
+          { fixed: 1, q: 'Students at four-day schools receive more homework.', o: ['TRUE', 'FALSE', 'NOT GIVEN'], a: 2, e: 'ไม่มีข้อมูลเรื่องการบ้านเลย' },
+          { fixed: 1, q: 'Some working parents have to pay for childcare on the extra day off.', o: ['TRUE', 'FALSE', 'NOT GIVEN'], a: 0, e: '"working parents often need to find childcare… which can be expensive"' },
+          { fixed: 1, q: 'Most districts are planning to return to a five-day week.', o: ['TRUE', 'FALSE', 'NOT GIVEN'], a: 2, e: 'บทความไม่ได้กล่าวถึงแผนในอนาคต' }
+        ]
+      },
+      {
+        id: 'ielts-head', title: 'Reading · Matching Headings', th: 'จับคู่หัวข้อกับย่อหน้า', kind: 'mcq',
+        passage: `Learning a Language as an Adult
+
+A  Many adults believe they are too old to learn a new language. It is true that children usually develop a more native-like accent, but research suggests that adults often make faster progress in the early stages, because they can understand grammar rules and use learning strategies more effectively.
+
+B  One of the biggest challenges for adult learners is finding time. Work and family responsibilities leave little space for study, so experts recommend short daily sessions instead of occasional long ones. Even fifteen minutes a day, if done consistently, can lead to significant improvement over several months.
+
+C  Motivation also plays a key role. Learners who have a clear, personal reason for studying, such as a job promotion or communicating with relatives, tend to continue for longer than those who study simply because they feel they should.
+
+D  Finally, technology has changed the way adults learn. Mobile apps, online tutors and podcasts allow learners to practise anywhere, at any time. However, specialists warn that apps alone rarely lead to fluency; learners still need real conversations to develop their speaking skills.`,
+        intro: 'เลือกหัวข้อ (i–vi) ที่ตรงกับแต่ละย่อหน้า มีหัวข้อเกิน 2 ข้อที่ไม่ได้ใช้ · เทคนิค: อ่านประโยคแรกและประโยคสุดท้ายของย่อหน้าก่อน',
+        qs: [
+          { fixed: 1, nolab: 1, q: 'Paragraph A', o: ['i. Age is not the barrier many people think', 'ii. Little and often works best', 'iii. Why having a goal matters', 'iv. Digital tools: useful but not enough', 'v. The importance of a good accent', 'vi. Learning languages in childhood'], a: 0, e: 'ใจความ: ผู้ใหญ่เรียนได้เร็วในช่วงแรก (v. เป็นตัวหลอกเพราะมีคำว่า accent)' },
+          { fixed: 1, nolab: 1, q: 'Paragraph B', o: ['i. Age is not the barrier many people think', 'ii. Little and often works best', 'iii. Why having a goal matters', 'iv. Digital tools: useful but not enough', 'v. The importance of a good accent', 'vi. Learning languages in childhood'], a: 1, e: 'short daily sessions = little and often' },
+          { fixed: 1, nolab: 1, q: 'Paragraph C', o: ['i. Age is not the barrier many people think', 'ii. Little and often works best', 'iii. Why having a goal matters', 'iv. Digital tools: useful but not enough', 'v. The importance of a good accent', 'vi. Learning languages in childhood'], a: 2, e: 'clear, personal reason = goal' },
+          { fixed: 1, nolab: 1, q: 'Paragraph D', o: ['i. Age is not the barrier many people think', 'ii. Little and often works best', 'iii. Why having a goal matters', 'iv. Digital tools: useful but not enough', 'v. The importance of a good accent', 'vi. Learning languages in childhood'], a: 3, e: 'apps มีประโยชน์ แต่ "alone rarely lead to fluency"' }
+        ]
+      },
+      {
+        id: 'ielts-form', title: 'Listening · Form Completion', th: 'ฟังแล้วพิมพ์คำตอบลงแบบฟอร์ม', kind: 'mcq',
+        script: `A: Good morning, Riverside Teacher Training Centre. How can I help you?
+B: Hi. I'd like to enrol on one of your weekend courses.
+A: Of course. Which course are you interested in?
+B: The one on classroom management.
+A: Classroom management, great. Can I have your full name, please?
+B: It's Anchalee Wong. That's W, O, N, G.
+A: Thank you. And which school do you work at?
+B: Sunrise Secondary School.
+A: Lovely. The course runs on Saturdays for six weeks, starting on the fourteenth of May. The fee is four thousand eight hundred baht, which includes all materials.
+B: Great. Is there parking available?
+A: Yes, there's free parking behind the building.`,
+        intro: 'เขียนคำตอบไม่เกิน ONE WORD AND/OR A NUMBER ต่อช่อง · ฟังได้สูงสุด 2 ครั้งเพื่อความสมจริง',
+        qs: [
+          { type: 'gap', q: 'Course: ________ management', ans: ['classroom'], e: '"The one on classroom management."' },
+          { type: 'gap', q: 'Name: Anchalee ________', ans: ['wong'], e: 'ผู้พูดสะกด W-O-N-G' },
+          { type: 'gap', q: 'School: ________ Secondary School', ans: ['sunrise'], e: '"Sunrise Secondary School"' },
+          { type: 'gap', q: 'Course length: ________ weeks', ans: ['6', 'six'], e: '"for six weeks"' },
+          { type: 'gap', q: 'Start date: ________ May', ans: ['14', '14th', 'fourteenth', 'the 14th'], e: '"the fourteenth of May"' },
+          { type: 'gap', q: 'Fee: ________ baht (materials included)', ans: ['4800', '4,800'], e: '"four thousand eight hundred baht"' },
+          { type: 'gap', q: 'Parking: free, ________ the building', ans: ['behind'], e: '"free parking behind the building"' }
+        ]
+      },
+      {
+        id: 'ielts-w1', title: 'Writing Task 1 · Bar Chart', th: 'บรรยายกราฟอย่างน้อย 150 คำ (20 นาที)', kind: 'write',
+        prompt: 'The chart below shows the percentage of students at Riverside School who used different devices for homework in 2015 and 2025. Summarise the information by selecting and reporting the main features, and make comparisons where relevant. Write at least 150 words.',
+        chart: { title: 'Main device used for homework (% of students)', unit: '%', series: ['2015', '2025'], cats: ['Desktop PC', 'Laptop', 'Smartphone', 'Tablet', 'None'], data: [[45, 20, 10, 15, 10], [5, 35, 38, 20, 2]] },
+        min: 150, minutes: 20,
+        tips: ['ย่อหน้า 1 Introduction: paraphrase โจทย์ (ห้ามลอกคำต่อคำ)', 'ย่อหน้า 2 Overview: แนวโน้มหลัก 2 ข้อ — ส่วนที่สำคัญที่สุดของ Task 1', 'ย่อหน้า 3–4: รายละเอียดพร้อมตัวเลข และเปรียบเทียบ', 'ห้ามใส่ความคิดเห็นส่วนตัว'],
+        phrases: ['The bar chart compares…', 'Overall, it is clear that…', 'rose sharply from … to …', 'fell dramatically to just …', 'by contrast, / whereas', 'the most popular device was…', 'remained relatively stable'],
+        model: `The bar chart compares the proportion of students at Riverside School who used five different types of device for their homework in 2015 and 2025.
+
+Overall, there was a clear shift from desktop computers towards mobile devices over the ten-year period. While desktop PCs were the most common choice in 2015, smartphones and laptops had become the most popular devices by 2025.
+
+In 2015, 45% of students relied mainly on a desktop PC, more than twice the figure for laptops (20%). However, this proportion fell dramatically to just 5% in 2025. By contrast, the use of smartphones rose sharply from 10% to 38%, making them the most widely used device. Laptops also became more popular, with the percentage of users increasing from 20% to 35%.
+
+Tablet use grew more modestly, from 15% to 20%. Finally, the proportion of students who did not use any device for homework fell from 10% to only 2%, suggesting that almost all students had access to technology by 2025.`
+      },
+      {
+        id: 'ielts-w2', title: 'Writing Task 2 · Opinion Essay', th: 'เรียงความแสดงความคิดเห็นอย่างน้อย 250 คำ (40 นาที)', kind: 'write',
+        prompt: 'Some people believe that teachers should be evaluated mainly on their students\' exam results. To what extent do you agree or disagree? Give reasons for your answer and include any relevant examples from your own knowledge or experience. Write at least 250 words.',
+        min: 250, minutes: 40,
+        tips: ['Introduction: paraphrase + บอกจุดยืนชัดเจน (thesis)', 'Body 1–2: แต่ละย่อหน้ามี topic sentence → อธิบาย → ตัวอย่าง', 'ยอมรับอีกฝ่ายบ้าง (Admittedly, … However, …) จะได้คะแนน Task Response', 'Conclusion: สรุปจุดยืนอีกครั้ง ไม่เพิ่มประเด็นใหม่'],
+        phrases: ['I partly agree with this view because…', 'Admittedly, … However, …', 'A key reason is that…', 'For instance, / To illustrate,', 'This suggests that…', 'In conclusion, while …, I believe that…'],
+        model: `In many countries, schools are under pressure to show measurable results, and some people argue that the fairest way to judge teachers is by looking at their students' exam scores. While I accept that results provide useful information, I disagree that they should be the main basis for evaluating teachers.
+
+Admittedly, exam results are objective and easy to compare. If a teacher's students consistently perform poorly, this may indicate that the teaching methods need to change. Results can also help school leaders identify which teachers might benefit from extra training or support.
+
+However, relying mainly on exam scores ignores the many factors outside a teacher's control. Students from disadvantaged backgrounds often start the year far behind their peers, so a teacher who helps them make great progress may still have lower results than a colleague teaching high achievers. For example, in many rural Thai schools, students may lack internet access or support at home, yet their teachers work extremely hard.
+
+Furthermore, good teaching involves much more than exam preparation. Teachers develop students' confidence, creativity and social skills, and they often support students' wellbeing. If teachers are judged only on test scores, they may "teach to the test" and neglect these important areas.
+
+In conclusion, although exam results should be one part of teacher evaluation, I believe a fairer system would combine them with classroom observations, evidence of student progress and feedback from colleagues and students.`
+      }
+    ]
+  },
+
+  /* ═══════════════════════════ TOEFL ═══════════════════════════ */
+  toefl: {
+    name: 'TOEFL iBT (รูปแบบใหม่ ม.ค. 2026)', short: 'TOEFL', b2: '72 – 94 (สเกลเดิม)',
+    about: 'ETS ปรับรูปแบบ TOEFL iBT ตั้งแต่ 21 ม.ค. 2026 ข้อสอบสั้นลง มีงานแบบใหม่ เช่น Complete the Words, Build a Sentence, Listen & Repeat และ Take an Interview (ตรวจรายละเอียดล่าสุดที่ ets.org)',
+    format: [
+      ['Reading', 'Complete the Words · Daily Life · Academic', ''],
+      ['Listening', 'Choose a Response · Conversation · Academic Talk', ''],
+      ['Writing', 'Build a Sentence · Email · Academic Discussion', ''],
+      ['Speaking', 'Listen & Repeat · Take an Interview', '~8 นาที']
+    ],
+    tips: [
+      'Complete the Words: เติมตัวอักษรที่หายไปครึ่งหลังของคำ — ฝึกสะกดคำศัพท์ที่ใช้บ่อย',
+      'Speaking ไม่มีเวลาเตรียม: เริ่มตอบทันทีด้วยประโยคหลัก แล้วให้เหตุผล + ตัวอย่าง',
+      'Listen & Repeat: ฟังเป็นกลุ่มคำ (chunk) ไม่ใช่ทีละคำ จะจำประโยคยาวได้ดีขึ้น',
+      'Academic Discussion: อ้างถึงความเห็นของเพื่อนในกระทู้ แล้วเพิ่มมุมมองใหม่ของตัวเอง'
+    ],
+    sets: [
+      {
+        id: 'toefl-ctw', title: 'Reading · Complete the Words', th: 'เติมตัวอักษรที่หายไปให้เป็นคำที่ถูกต้อง', kind: 'cloze',
+        intro: 'พิมพ์ตัวอักษรที่หายไปเท่านั้น (จำนวนขีด = จำนวนตัวอักษร)',
+        text: 'Teachers play an important role in every society. They not only share know[ledge] but al[so] help stu[dents] develop soc[ial] skills. Ma[ny] researchers bel[ieve] that a go[od] teacher ca[n] change a chi[ld]\'s future. Fo[r] this rea[son], governments sho[uld] invest more in tea[cher] training.'
+      },
+      {
+        id: 'toefl-daily', title: 'Reading · Read in Daily Life', th: 'อ่านประกาศ/ข้อความในชีวิตประจำวัน', kind: 'mcq',
+        passage: `NOTICE TO ALL STUDENTS
+
+The university library will close early, at 6 p.m., this Friday because of electrical maintenance. Online resources will remain available as usual.
+
+Books due on Friday may be returned on Monday without a late fee. Study rooms booked for Friday evening have been automatically cancelled; please rebook through the library website.`,
+        qs: [
+          { q: 'Why will the library close early?', o: ['Because of maintenance work', 'Because of a holiday', 'Because of a staff meeting', 'Because of an exam'], a: 0, e: '"because of electrical maintenance"' },
+          { q: 'What can students do with books due on Friday?', o: ['Return them on Monday without a penalty', 'Return them online', 'Keep them for another month', 'Pay a reduced late fee'], a: 0, e: '"may be returned on Monday without a late fee"' },
+          { q: 'What should students with a Friday evening room booking do?', o: ['Make a new booking online', 'Go to the library on Friday', 'Call the librarian', 'Nothing — the booking is unchanged'], a: 0, e: '"please rebook through the library website"' }
+        ]
+      },
+      {
+        id: 'toefl-acad', title: 'Reading · Academic Passage', th: 'บทความวิชาการ 4 ข้อ', kind: 'mcq',
+        passage: `The Testing Effect
+
+Many students prepare for exams by rereading their notes. However, cognitive scientists have found that a different strategy is often far more effective: testing yourself. This finding, known as the testing effect or retrieval practice, shows that the act of recalling information strengthens memory more than simply reviewing it.
+
+In one well-known type of experiment, students read a short text and were then divided into two groups. One group reread the text several times, while the other group read it once and then tried to write down everything they could remember. When tested a week later, the second group remembered significantly more, even though they had spent less time looking at the material.
+
+Researchers believe that retrieval works because it forces the brain to reconstruct knowledge, making it easier to access in the future. Retrieval practice can also reveal gaps in understanding, allowing learners to focus their efforts. For teachers, the implication is clear: frequent low-stakes quizzes may be one of the simplest ways to improve long-term learning.`,
+        qs: [
+          { q: 'What is the main idea of the passage?', o: ['Testing yourself improves memory more than rereading', 'Rereading notes is the best way to prepare', 'Exams cause stress for most students', 'Short texts are easier to remember'], a: 0, e: 'ย่อหน้าแรก: testing yourself is far more effective' },
+          { q: 'In the experiment, what did the second group do?', o: ['Read the text once and then recalled it', 'Reread the text several times', 'Took notes while reading', 'Studied for a longer time'], a: 0, e: '"read it once and then tried to write down everything they could remember"' },
+          { q: 'The word "reconstruct" in the passage is closest in meaning to', o: ['rebuild', 'remove', 'repeat', 'reduce'], a: 0, e: 're + construct = สร้างขึ้นใหม่' },
+          { q: 'What does the author suggest teachers should do?', o: ['Give frequent low-stakes quizzes', 'Give fewer tests', 'Ask students to reread more', 'Make exams more difficult'], a: 0, e: '"frequent low-stakes quizzes may be one of the simplest ways…"' }
+        ]
+      },
+      {
+        id: 'toefl-resp', title: 'Listening · Choose a Response', th: 'ฟังประโยคแล้วเลือกคำตอบที่เหมาะสม', kind: 'mcq',
+        qs: [
+          { say: 1, hideQ: 1, q: 'Do you know if the professor has posted the grades yet?', o: ['I checked this morning, but they\'re not up yet.', 'She teaches biology.', 'Yes, I posted the letter.', 'The grade was very high last year.'], a: 0, e: 'ตอบเรื่องเกรดที่ยังไม่ประกาศ' },
+          { say: 1, hideQ: 1, q: 'Would you mind if I borrowed your notes from Tuesday\'s lecture?', o: ['Sure, I\'ll bring them tomorrow.', 'I didn\'t mind the lecture.', 'Tuesday is fine for the exam.', 'It was a very long lecture.'], a: 0, e: 'ตอบรับคำขอ' },
+          { say: 1, hideQ: 1, q: 'Why didn\'t you come to the study group last night?', o: ['I had to work an extra shift.', 'We study in the library.', 'Yes, it was last night.', 'The group has six members.'], a: 0, e: 'Why → เหตุผล' },
+          { say: 1, hideQ: 1, q: 'Which dormitory are you living in this semester?', o: ['I\'m in West Hall again.', 'It\'s a long semester.', 'Living costs are high.', 'I\'ll see you there.'], a: 0, e: 'Which dormitory → ชื่อหอพัก' },
+          { say: 1, hideQ: 1, q: 'The bookstore is closed for inventory today.', o: ['Oh no, I needed to buy a textbook.', 'I\'ll close the door.', 'Yes, the book was good.', 'It sells many stores.'], a: 0, e: 'ประโยคบอกเล่า → ตอบสนองอย่างเป็นธรรมชาติ' }
+        ]
+      },
+      {
+        id: 'toefl-talk', title: 'Listening · Academic Talk', th: 'ฟังบรรยายสั้นแล้วตอบ 3 ข้อ', kind: 'mcq',
+        script: `Today I want to talk about why some animals migrate. Migration is a seasonal movement from one region to another, usually to find food or better conditions for raising young. Take the Arctic tern, for example. This small seabird travels from the Arctic to the Antarctic and back every year. That's a round trip of around seventy thousand kilometres, the longest known migration of any animal. So why such a long journey? Well, by following the summer in both hemispheres, the tern enjoys more daylight than almost any other creature, which gives it more time to hunt for food. Of course, migration is also risky. Birds can be blown off course by storms, and many young birds don't survive their first journey.`,
+        qs: [
+          { q: 'What is the talk mainly about?', o: ['Reasons for animal migration, using one example', 'The weather in the Arctic', 'How seabirds build nests', 'Why animals sleep in winter'], a: 0, e: '"I want to talk about why some animals migrate… Take the Arctic tern, for example."' },
+          { q: 'According to the speaker, why does the Arctic tern travel so far?', o: ['To have more daylight for finding food', 'To escape from predators', 'To find a partner', 'To avoid storms'], a: 0, e: '"enjoys more daylight… more time to hunt for food"' },
+          { q: 'What risk of migration does the speaker mention?', o: ['Birds can be blown off course by storms', 'Birds forget the route', 'Food is too expensive', 'The journey is too short'], a: 0, e: '"Birds can be blown off course by storms"' }
+        ]
+      },
+      {
+        id: 'toefl-build', title: 'Writing · Build a Sentence', th: 'เรียงกลุ่มคำให้เป็นประโยคตอบกลับที่ถูกต้อง', kind: 'build',
+        items: [
+          { ctx: 'Did you finish the assignment?', parts: ['I', 'still need to', 'check', 'the references.'] },
+          { ctx: 'Where did you study last night?', parts: ['I studied', 'in the library', 'until', 'it closed.'] },
+          { ctx: 'What did the professor say about the exam?', parts: ['She said', 'it would', 'cover', 'the first five chapters.'] },
+          { ctx: 'Can you help me with my presentation?', parts: ['I would be', 'happy', 'to help you', 'after class.'] },
+          { ctx: 'Why were you late this morning?', parts: ['The bus', 'was delayed', 'because of', 'the heavy rain.'] },
+          { ctx: 'Have you decided which course to take?', parts: ['I am', 'thinking of', 'taking', 'the history course.'] }
+        ]
+      },
+      {
+        id: 'toefl-email', title: 'Writing · Write an Email', th: 'เขียนอีเมลตามสถานการณ์ (7 นาที)', kind: 'write',
+        prompt: 'You recently attended a one-day workshop on using technology in the classroom. Write an email to the organiser, Dr Lee. In your email: thank her for the workshop, explain which part was most useful for you and why, and ask a question about a follow-up session.',
+        min: 100, minutes: 7,
+        tips: ['ทำครบทั้ง 3 ประเด็นที่โจทย์สั่ง', 'ระดับภาษาสุภาพ เหมาะกับการเขียนถึงผู้จัดงาน', 'ยาว ~100–150 คำ'],
+        phrases: ['I am writing to thank you for…', 'The part I found most useful was…', 'I was wondering whether…', 'I look forward to hearing from you.'],
+        model: `Dear Dr Lee,
+
+I am writing to thank you for the excellent workshop on classroom technology last Saturday. It was well organised, and I learned a great deal.
+
+The part I found most useful was the session on creating interactive quizzes. My students often lose concentration during revision lessons, and I think quizzes like the ones you demonstrated will make practice much more engaging. In fact, I tried one with my Grade 9 class on Monday, and they loved it.
+
+I was wondering whether you are planning a follow-up session later this year. If so, would it be possible to include more ideas for assessing students' speaking skills online?
+
+Thank you again for a very inspiring day. I look forward to hearing from you.
+
+Best regards,
+Suda Rattanakul`
+      },
+      {
+        id: 'toefl-disc', title: 'Writing · Academic Discussion', th: 'เขียนตอบกระทู้วิชาการ ≥ 100 คำ (10 นาที)', kind: 'write',
+        prompt: 'Your professor is teaching a class on education. Write a post responding to the professor\'s question. In your response, express and support your opinion and make a contribution to the discussion.',
+        posts: [
+          { who: 'Professor Adams', t: 'This week we are discussing technology in education. Some people think that online courses will eventually replace traditional classrooms. Others believe that face-to-face teaching will always be necessary. What is your opinion, and why?' },
+          { who: 'Kenji', t: 'I think online courses are the future. They are cheaper, and students can learn at their own pace. Universities could reach far more people this way.' },
+          { who: 'Maria', t: 'I disagree. Students need teachers to motivate them, and many skills, like teamwork and communication, are very hard to learn online.' }
+        ],
+        min: 100, minutes: 10,
+        tips: ['ประโยคแรกบอกจุดยืน และอ้างถึงเพื่อน (I agree with Maria that…)', 'เพิ่มเหตุผลใหม่ที่เพื่อนยังไม่ได้พูด', 'ยกตัวอย่างสั้น ๆ จากประสบการณ์'],
+        phrases: ['I can see Kenji\'s point, but…', 'I agree with Maria that…', 'Another important factor is…', 'From my own experience,…'],
+        model: `I can see Kenji's point that online courses are cheaper and more flexible, but I agree with Maria that they are unlikely to replace traditional classrooms completely. In my view, the best solution is a combination of both.
+
+One factor that has not been mentioned yet is equality. Not every student has a quiet place to study or a reliable internet connection at home. For these learners, a school building provides much more than lessons; it offers a safe and supportive environment.
+
+From my own experience as a teacher, online lessons worked well for delivering information, but students lost motivation after a few weeks without face-to-face contact. Therefore, I believe universities should use online tools to support, rather than replace, classroom teaching.`
+      }
+    ]
+  },
+
+  /* ═══════════════════════════ EF SET ═══════════════════════════ */
+  efset: {
+    name: 'EF SET (English Test)', short: 'EF SET', b2: '51 – 60',
+    about: 'ข้อสอบออนไลน์ฟรี วัดการอ่านและการฟังแบบ adaptive (ข้อสอบปรับความยากตามคำตอบ) คะแนน 0–100 เทียบ CEFR — ก่อนใช้ยื่น ก.ค.ศ. ต้องตรวจว่าหน่วยงานยอมรับหรือไม่',
+    format: [
+      ['Reading', 'Adaptive', ''],
+      ['Listening', 'Adaptive', ''],
+      ['รวม', 'EF SET 50', '~50 นาที']
+    ],
+    tips: [
+      'ข้อสอบ adaptive: ถ้าข้อถัดไปยากขึ้น แปลว่าข้อก่อนหน้าคุณตอบถูก — อย่าตกใจ',
+      'ไม่มีการหักคะแนน ตอบให้ครบทุกข้อ',
+      'ใช้หูฟังและอยู่ในที่เงียบสำหรับ Listening',
+      'ฝึกด้วยข้อสอบจำลองหลักของคอร์ส (อ่าน+ฟัง) ควบคู่กับ Adaptive Challenge ด้านล่าง'
+    ],
+    sets: [
+      {
+        id: 'efset-adapt', title: 'Adaptive Challenge', th: '12 ข้อ ความยากปรับตามคำตอบ (B1 → C1)', kind: 'adaptive', n: 12,
+        bank: {
+          B1: [
+            { q: 'She ___ to the gym three times a week.', o: ['goes', 'go', 'going', 'is go'], a: 0, e: 'Present Simple, ประธานเอกพจน์ → goes' },
+            { q: 'I\'m looking forward ___ you soon.', o: ['to seeing', 'to see', 'seeing', 'see'], a: 0, e: 'look forward to + V-ing' },
+            { q: 'If it rains tomorrow, we ___ the picnic.', o: ['will cancel', 'cancel', 'would cancel', 'cancelled'], a: 0, e: 'First conditional' },
+            { q: 'He has lived here ___ ten years.', o: ['for', 'since', 'during', 'from'], a: 0, e: 'for + ช่วงเวลา' },
+            { q: 'This is the ___ book I have ever read.', o: ['most interesting', 'more interesting', 'interestingest', 'most interested'], a: 0, e: 'ขั้นสูงสุด the most + adj.' },
+            { q: 'Could you tell me where the station ___?', o: ['is', 'is it', 'does', 'be'], a: 0, e: 'Indirect question ไม่กลับประธาน' },
+            { q: 'We were tired, ___ we kept walking.', o: ['but', 'so', 'because', 'or'], a: 0, e: 'ความขัดแย้ง → but' },
+            { q: 'The meeting was ___ because the manager was ill.', o: ['cancelled', 'cancelling', 'cancel', 'to cancel'], a: 0, e: 'Passive: was + V3' }
+          ],
+          B2: [
+            { q: 'By next June, I ___ here for ten years.', o: ['will have worked', 'will work', 'am working', 'have worked'], a: 0, e: 'Future Perfect: by + เวลาในอนาคต' },
+            { q: 'I\'d rather you ___ smoke in here.', o: ['didn\'t', 'don\'t', 'not', 'won\'t'], a: 0, e: 'would rather + ประธาน + V2' },
+            { q: 'It\'s high time we ___ a decision.', o: ['made', 'make', 'will make', 'have made'], a: 0, e: 'It\'s high time + ประธาน + V2' },
+            { q: 'She denied ___ the money.', o: ['taking', 'to take', 'take', 'taken'], a: 0, e: 'deny + V-ing' },
+            { q: 'Hardly had we arrived ___ it started to rain.', o: ['when', 'than', 'then', 'that'], a: 0, e: 'Hardly … when' },
+            { q: 'The project, ___ was completed last month, received an award.', o: ['which', 'that', 'what', 'who'], a: 0, e: 'Non-defining → which' },
+            { q: 'You\'d better ___ your teacher before you leave.', o: ['tell', 'to tell', 'telling', 'told'], a: 0, e: 'had better + V1' },
+            { q: 'He must ___ the train; he isn\'t here yet.', o: ['have missed', 'missed', 'to miss', 'be missed'], a: 0, e: 'must have V3 = คาดเดาอดีต' }
+          ],
+          C1: [
+            { q: 'Not until the results were published ___ how serious the problem was.', o: ['did we realise', 'we realised', 'we did realise', 'realised we'], a: 0, e: 'Not until … → inversion' },
+            { q: 'Had I known about the traffic, I ___ earlier.', o: ['would have left', 'will leave', 'would leave', 'had left'], a: 0, e: 'Inverted third conditional' },
+            { q: 'The new policy is ___ to cause controversy among staff.', o: ['bound', 'tend', 'doubtful', 'reluctant'], a: 0, e: 'be bound to = แน่นอนว่าจะ' },
+            { q: 'She is widely ___ as one of the best teachers in the region.', o: ['regarded', 'thought', 'believed', 'supposed'], a: 0, e: 'be regarded as' },
+            { q: '___ his lack of experience, he was offered the position.', o: ['Notwithstanding', 'Nevertheless', 'Although', 'Whereas'], a: 0, e: 'Notwithstanding + noun = despite' },
+            { q: 'The success of the project ___ on the support of local parents.', o: ['hinges', 'leans', 'weighs', 'bases'], a: 0, e: 'hinge on = ขึ้นอยู่กับ' },
+            { q: 'Little ___ that the inspection would take place the following day.', o: ['did they know', 'they knew', 'knew they', 'they did know'], a: 0, e: 'Little + inversion' },
+            { q: 'The report highlights the need for ___ investment in teacher training.', o: ['sustained', 'sustaining', 'sustain', 'sustains'], a: 0, e: 'sustained investment = การลงทุนต่อเนื่อง' }
+          ]
+        }
+      }
+    ]
+  }
+};
+
+;
+/* Speaking simulator content */
+window.SPEAK = {
+  formats: [
+    { id: 'ielts1', exam: 'IELTS', name: 'Part 1 · Interview', th: 'ตอบคำถามเรื่องทั่วไป 4 ข้อ', prep: 0, perQ: 30, desc: 'ผู้คุมสอบถามคำถามสั้น ๆ เกี่ยวกับตัวคุณ ตอบข้อละ 20–30 วินาที ขยายความ 2–3 ประโยค' },
+    { id: 'ielts2', exam: 'IELTS', name: 'Part 2 · Cue Card', th: 'เตรียม 1 นาที พูดต่อเนื่อง 2 นาที', prep: 60, talk: 120, desc: 'สุ่มบัตรหัวข้อ มีเวลาเตรียม 1 นาที (จดโน้ตได้) แล้วพูดต่อเนื่อง 1–2 นาที' },
+    { id: 'ielts3', exam: 'IELTS', name: 'Part 3 · Discussion', th: 'อภิปรายเชิงลึก 3 ข้อ', prep: 0, perQ: 45, desc: 'คำถามเชิงความคิดเห็นที่ต่อยอดจาก Part 2 ตอบข้อละ ~45 วินาที ให้เหตุผลและตัวอย่าง' },
+    { id: 'toefl_rep', exam: 'TOEFL', name: 'Listen and Repeat', th: 'ฟังแล้วพูดตาม 7 ประโยค', prep: 0, desc: 'ได้ยินประโยค 1 ครั้ง (ไม่แสดงข้อความ) แล้วพูดตามให้ถูกต้องที่สุด ประโยคจะยาวขึ้นเรื่อย ๆ' },
+    { id: 'toefl_int', exam: 'TOEFL', name: 'Take an Interview', th: 'สัมภาษณ์ 4 คำถาม ข้อละ 45 วินาที', prep: 0, perQ: 45, desc: 'ไม่มีเวลาเตรียม ได้ยินคำถามแล้วตอบทันที คำถามจะเริ่มจากเรื่องตัวเองไปสู่ความคิดเห็น' },
+    { id: 'cefr', exam: 'CEFR', name: 'Opinion Talk', th: 'เตรียม 30 วินาที พูด 1 นาที', prep: 30, talk: 60, desc: 'รูปแบบคล้ายข้อสอบ CEFR 4 ทักษะ: สุ่มหัวข้อความคิดเห็น แสดงจุดยืน ให้เหตุผล และยกตัวอย่าง' }
+  ],
+
+  part1: [
+    { topic: 'Your job', qs: ['What subject do you teach?', 'Why did you decide to become a teacher?', 'What do you enjoy most about your job?', 'Is there anything you would like to change about your job?'] },
+    { topic: 'Hometown', qs: ['Where is your hometown?', 'What do you like most about it?', 'Has your hometown changed much in recent years?', 'Would you like to live there in the future?'] },
+    { topic: 'Free time', qs: ['What do you usually do in your free time?', 'Do you prefer spending free time alone or with other people?', 'Has the way you spend your free time changed since you were a child?', 'Is there a new hobby you would like to try?'] },
+    { topic: 'Technology', qs: ['How often do you use your smartphone?', 'Which apps do you use most?', 'Do you think people spend too much time online?', 'Did you use much technology when you were at school?'] },
+    { topic: 'Food', qs: ['What kind of food do you like?', 'Do you often cook at home?', 'Is there any food you didn\'t like as a child but enjoy now?', 'Do you prefer eating at home or eating out?'] },
+    { topic: 'Reading', qs: ['Do you enjoy reading?', 'What kind of books do you read?', 'Do you prefer printed books or e-books?', 'Did your parents read to you when you were young?'] },
+    { topic: 'Travel', qs: ['Do you like travelling?', 'Where did you go on your last holiday?', 'Do you prefer travelling alone or with others?', 'Where would you like to travel in the future?'] },
+    { topic: 'Weather', qs: ['What\'s the weather usually like where you live?', 'What is your favourite season?', 'Does the weather affect your mood?', 'How do you keep cool on very hot days?'] },
+    { topic: 'Music', qs: ['What kind of music do you like?', 'Can you play a musical instrument?', 'Do you listen to music while you work?', 'Is music important in Thai culture?'] },
+    { topic: 'Sport and exercise', qs: ['Do you do any exercise?', 'What sports are popular in Thailand?', 'Did you play any sports at school?', 'Should schools give more time to sport?'] }
+  ],
+
+  cards: [
+    { topic: 'Describe a teacher who has influenced you.', points: ['who this teacher was', 'when and where they taught you', 'what they were like', 'and explain how they influenced you'],
+      p3: ['What qualities make a good teacher?', 'Is teaching more difficult today than in the past? Why?', 'Should teachers be paid more than other professionals?'],
+      model: `I'd like to talk about my high school English teacher, Mrs Sunee. She taught me when I was in Grade 10 at a provincial school in Lampang. To be honest, before her class, English was my least favourite subject, because I found grammar really boring. But Mrs Sunee was different. She was patient, funny, and she always brought English songs and short stories into class. What I remember most is that she never laughed at our mistakes; instead, she encouraged us to keep trying. She influenced me in two ways. First, she made me fall in love with English, which is why I chose to study it at university. Second, she showed me what kind of teacher I wanted to be. Even now, when a student is struggling in my class, I ask myself, "What would Mrs Sunee do?"` },
+    { topic: 'Describe a skill you would like to learn.', points: ['what the skill is', 'how you would learn it', 'how long it would take', 'and explain why you want to learn it'],
+      p3: ['What skills are most important for young people today?', 'Is it better to learn skills from a teacher or online?', 'Do adults find it harder to learn new skills than children?'],
+      model: `A skill I would really like to learn is video editing. These days, many of my students learn from short videos, and I think if I could make my own lesson videos, my teaching would be much more engaging. I'd probably start by taking an online course, because there are lots of free tutorials, and then I'd practise by making short clips for my classes. I think it would take me around three months to become fairly confident, as long as I practised a little every day. The main reason I want to learn it is to connect better with my students, but I also think it would be a lot of fun. I could even use it to make videos of family trips, which my parents would definitely appreciate.` },
+    { topic: 'Describe a time when you helped someone.', points: ['who you helped', 'what the situation was', 'how you helped them', 'and explain how you felt about it'],
+      p3: ['Why do some people enjoy helping others?', 'Should schools teach children to volunteer?', 'Do people help each other less in big cities?'],
+      model: `I'd like to describe a time when I helped a new colleague at my school. Last year, a young teacher called Pim joined our English department. It was her first teaching job, and she was struggling with a very noisy Grade 8 class. She told me she felt like giving up. So, I invited her to observe some of my lessons, and we met every Friday afternoon to plan together. I shared some simple routines that had worked for me, such as starting every lesson with a short task on the board. After about a month, her classes became much calmer, and she started to really enjoy teaching. I felt incredibly proud, maybe even prouder than when my own students do well, because I remembered how difficult my own first year was.` },
+    { topic: 'Describe a memorable lesson you taught or attended.', points: ['what the lesson was about', 'who was there', 'what happened', 'and explain why it was memorable'],
+      p3: ['What makes a lesson interesting for students?', 'Should students be allowed to choose what they learn?', 'How will classrooms change in the future?'],
+      model: `The lesson I want to talk about is one I taught about two years ago to a Grade 11 class. The topic was "giving directions", which is usually quite boring. So, instead of using the textbook, I took the students outside and gave each group a map of the school with a secret "treasure" hidden somewhere. They had to give each other directions in English to find it. At first, they were shy, but within ten minutes everyone was shouting directions and laughing. It was memorable for me because even the quietest students joined in. A few weeks later, one of them told me it was the first time she had ever enjoyed speaking English. That lesson taught me that students learn best when they're active and having fun.` },
+    { topic: 'Describe a book that you enjoyed reading.', points: ['what the book was', 'when you read it', 'what it was about', 'and explain why you enjoyed it'],
+      p3: ['Do young people read less than in the past?', 'What are the benefits of reading for children?', 'Will printed books disappear in the future?'],
+      model: `A book I really enjoyed is "Wonder" by R. J. Palacio. I read it about three years ago, after a colleague recommended it for our school reading programme. It's about a boy called Auggie who was born with a facial difference and goes to a regular school for the first time. The story is told from the point of view of several characters, including Auggie, his sister and his classmates. I enjoyed it for two reasons. First, the language is simple, so it's perfect for English learners, but the message is deep. Second, it made me think about kindness and how students treat each other. After reading it, I actually used some chapters in my class, and it led to some really meaningful discussions about bullying.` },
+    { topic: 'Describe a place in your country that you would recommend to visitors.', points: ['where it is', 'how you know about it', 'what visitors can do there', 'and explain why you would recommend it'],
+      p3: ['How does tourism affect local communities?', 'Should famous places limit the number of tourists?', 'Why do people enjoy travelling to other countries?'],
+      model: `I'd recommend Nan, a province in the north of Thailand. I first went there with my family about five years ago, and I've been back twice since then. It's much quieter than Chiang Mai, but it has beautiful mountains, old temples and a really relaxed atmosphere. Visitors can see the famous mural paintings at Wat Phumin, cycle around the old town, and visit Doi Samer Dao to watch the sunset. I'd recommend it because it gives you a real sense of traditional northern Thai life without the crowds. The local people are very friendly, and the food, especially khao soi, is amazing. If someone wants to experience a more authentic side of Thailand, Nan is definitely the place to go.` },
+    { topic: 'Describe a piece of technology that you find useful.', points: ['what it is', 'how often you use it', 'what you use it for', 'and explain why it is useful to you'],
+      p3: ['Has technology made people\'s lives better or worse?', 'Should young children be allowed to use smartphones?', 'What technology will be important in the next twenty years?'],
+      model: `The piece of technology I find most useful is actually my laptop. I use it almost every day, both at school and at home. At work, I use it to prepare slides, create worksheets and record my students' scores. In the evenings, I sometimes use it to take online courses or to video call my family who live in another province. It's useful to me mainly because it saves me so much time. For example, in the past I had to write every test by hand, but now I can reuse and edit materials in minutes. It also helps me keep improving as a teacher, because I can access training and ideas from all over the world without leaving my house.` },
+    { topic: 'Describe a time when you had to make an important decision.', points: ['what the decision was', 'when you made it', 'what options you had', 'and explain how you felt about the decision'],
+      p3: ['Do young people make decisions differently from older people?', 'Should parents make important decisions for their children?', 'Is it better to make decisions quickly or slowly?'],
+      model: `One important decision I made was whether to move to a school in Bangkok or stay at my school in the countryside. This was about four years ago, when I was offered a position at a large school in the city. The Bangkok job had a higher salary and more opportunities for training, but staying meant I could live near my parents and continue working with students I really cared about. I spent about two weeks thinking about it and talking to my family. In the end, I decided to stay. At first I wondered if I had made a mistake, but now I feel it was the right choice, because I've been able to start an English club that has made a real difference to the students here.` },
+    { topic: 'Describe an event that you helped to organise.', points: ['what the event was', 'who attended it', 'what you did to organise it', 'and explain how successful it was'],
+      p3: ['Why are school events important?', 'What skills do people need to organise events?', 'Are large public events a waste of money?'],
+      model: `I'd like to talk about an English Day that I helped organise at my school last year. It was a one-day event for around three hundred students from Grades 7 to 12, and parents were invited too. My job was to coordinate the activities, so I worked with five other teachers to plan games, a spelling competition and a short drama show. We also had to arrange prizes, decorations and a timetable for the whole day. It was a lot of work, and on the day itself, the sound system broke down. But overall, it was really successful. The students were excited, and several parents told us they hoped we'd do it again. It also improved teamwork among the teachers, which was an unexpected benefit.` },
+    { topic: 'Describe a goal you hope to achieve in the future.', points: ['what the goal is', 'when you hope to achieve it', 'what you are doing to achieve it', 'and explain why this goal is important to you'],
+      p3: ['Is it important for young people to set goals?', 'Do people today have more opportunities to achieve their goals?', 'What can stop people from achieving their goals?'],
+      model: `One goal I hope to achieve is to reach B2 level in English and use the result to apply for a higher academic standing. I'm hoping to achieve this within the next year. To prepare, I've been studying every day for about twenty minutes, mostly focusing on listening and speaking, which are my weakest skills. I also practise mock tests at the weekend to get used to the format. This goal is important to me for two reasons. Professionally, it would allow me to apply for promotion a year earlier. But personally, it's also about confidence. As an English teacher, I want to be a good role model, and I think my students will be more motivated if they see me working hard to improve too.` },
+    { topic: 'Describe a person you admire who helps the community.', points: ['who this person is', 'what they do', 'how you know them', 'and explain why you admire them'],
+      p3: ['Who should be responsible for helping people in a community?', 'Do people volunteer less than in the past?', 'How can schools encourage community service?'],
+      model: `The person I'd like to talk about is a local nurse in my village called Khun Prapai. She's in her fifties, and as well as her full-time job at the district hospital, she spends her weekends visiting elderly people who live alone. She checks their blood pressure, helps them with their medicine and sometimes just sits and chats with them. I know her because she's a friend of my mother's, and she also comes to our school once a year to teach first aid. I admire her because she does all of this without expecting anything in return. She shows that you don't need to be rich or famous to make a big difference in people's lives, and I often tell my students about her as an example of real kindness.` },
+    { topic: 'Describe a time when you received good news.', points: ['what the news was', 'when and how you received it', 'who you shared it with', 'and explain how you felt'],
+      p3: ['How do people usually share good news nowadays?', 'Do newspapers and TV focus too much on bad news?', 'Why do some people find it hard to celebrate success?'],
+      model: `I'd like to talk about the day I found out I had passed the teacher recruitment exam. It was about eight years ago. I remember I was at home helping my mother cook dinner, and my friend suddenly called me and told me to check the results online. My hands were shaking as I typed my ID number, and when I saw my name on the list, I actually screamed. The first person I told was my mother, who started crying, and then we called my father, who was working in another province. I felt a mixture of relief and excitement, because I had failed the exam the year before. That news completely changed my life, and it reminded me that persistence really does pay off.` }
+  ],
+
+  interviews: [
+    { theme: 'Study habits', qs: ['Tell me about where you usually study or prepare your work.', 'What do you do when you find it hard to concentrate?', 'Some people think students learn more in groups than alone. What is your opinion?', 'Should schools give students less homework? Why or why not?'] },
+    { theme: 'Technology and learning', qs: ['How do you use technology in your daily life?', 'Describe a website or app that has helped you learn something.', 'Do you think artificial intelligence will help or harm education? Explain.', 'Should young children learn to code at school? Why or why not?'] },
+    { theme: 'Community', qs: ['Tell me about the neighbourhood where you live.', 'What is one thing you would improve in your community?', 'Some people say that young people today care less about their community. Do you agree?', 'Should volunteering be required for high school students? Explain your view.'] },
+    { theme: 'Work and careers', qs: ['What did you want to be when you were a child?', 'What is the most important skill you use in your job?', 'Is it better to stay with one employer for a long time or to change jobs often?', 'Should the government do more to help people develop new skills during their careers?'] },
+    { theme: 'Environment', qs: ['What do you do in your daily life to protect the environment?', 'Tell me about an environmental problem in your area.', 'Do you think individuals or governments should be mainly responsible for protecting the environment?', 'Should schools spend more time teaching about climate change? Why?'] },
+    { theme: 'Culture and travel', qs: ['Tell me about a festival that is important to you.', 'What would you show a foreign visitor in your hometown?', 'Do you think travelling abroad is necessary to understand other cultures?', 'Is it important for countries to protect their traditional culture? Explain.'] }
+  ],
+
+  repeat: [
+    { t: 'The library opens at eight.', n: 1 },
+    { t: 'Please sign in at the front desk.', n: 1 },
+    { t: 'Our first class starts after lunch.', n: 1 },
+    { t: 'The science building is next to the gym.', n: 1 },
+    { t: 'You can borrow up to five books at a time.', n: 2 },
+    { t: 'Students should bring their ID cards to every exam.', n: 2 },
+    { t: 'The cafeteria serves breakfast from seven until nine thirty.', n: 2 },
+    { t: 'If you need help with your schedule, please ask an adviser.', n: 2 },
+    { t: 'The computer lab will be closed on Friday for maintenance.', n: 2 },
+    { t: 'All first-year students are required to attend the welcome meeting in the main hall.', n: 3 },
+    { t: 'Assignments submitted after the deadline will lose ten percent of the total mark.', n: 3 },
+    { t: 'The tour will finish at the student centre, where you can register for clubs and activities.', n: 3 },
+    { t: 'Before you leave the laboratory, make sure that all of the equipment has been cleaned and returned.', n: 3 }
+  ],
+
+  opinions: [
+    'Should students wear school uniforms? Give your opinion and reasons.',
+    'Is it better to study in the morning or in the evening? Why?',
+    'Should mobile phones be banned in schools?',
+    'What is the best way to learn a foreign language?',
+    'Should homework be given at weekends?',
+    'Is online learning as effective as classroom learning?',
+    'Should all students learn a second foreign language, such as Chinese?',
+    'Are exams the best way to measure what students have learned?',
+    'Should schools teach students how to manage money?',
+    'Is it better to live in a big city or a small town?',
+    'Should teachers use social media to communicate with students?',
+    'What are the advantages and disadvantages of working from home?',
+    'Should sports be a compulsory subject at school?',
+    'Do you think people read enough books nowadays?',
+    'Should children start learning English in kindergarten?',
+    'Is it important for teachers to keep studying after they start working?'
+  ],
+
+  phrases: {
+    start: ['Well, that\'s an interesting question.', 'To be honest, …', 'I\'d say that…', 'I\'d like to talk about…'],
+    reason: ['The main reason is that…', 'This is mainly because…', 'Another point is that…', 'On top of that, …'],
+    example: ['For example, …', 'For instance, in my school…', 'I remember when…', 'A good example of this is…'],
+    time: ['Let me think about that for a second.', 'That\'s not something I\'ve thought about before, but…', 'How can I put it…'],
+    end: ['So, overall, I think…', 'That\'s why I believe…', 'All in all, …']
+  },
+
+  criteria: [
+    { k: 'flu', name: 'Fluency & Coherence', th: 'พูดต่อเนื่อง ไม่หยุดนาน เชื่อมความคิดด้วย because / so / however' },
+    { k: 'lex', name: 'Vocabulary', th: 'ใช้คำศัพท์หลากหลาย ไม่ซ้ำคำเดิม มีคำศัพท์ระดับ B2 อย่างน้อย 2–3 คำ' },
+    { k: 'gra', name: 'Grammar', th: 'ใช้ tense ถูก มีประโยคซับซ้อน (if / which / although) อย่างน้อย 1 ประโยค' },
+    { k: 'pro', name: 'Pronunciation', th: 'ออกเสียงท้ายคำ (-s, -ed) ชัด เน้นเสียงคำสำคัญ ฟังเข้าใจง่าย' },
+    { k: 'task', name: 'Answered the question', th: 'ตอบตรงคำถาม ครบทุกประเด็น และให้เหตุผล/ตัวอย่าง' }
+  ]
+};
+
+;
 /* B2 Ready for Teachers — app logic (vanilla JS, no dependencies) */
 (function () {
   'use strict';
@@ -1022,7 +1666,10 @@ B: That's a difficult decision. Maybe you could ask if a shorter programme is av
     gear: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>',
     spk: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5v5h3.5L12 19V5L7.5 9.5z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>',
     play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10.4-6.5a1 1 0 0 0 0-1.8L9.5 4.6A1 1 0 0 0 8 5.5z"/></svg>',
-    stop: '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="6.5" width="11" height="11" rx="2"/></svg>'
+    stop: '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="6.5" width="11" height="11" rx="2"/></svg>',
+    mic: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></svg>',
+    user: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>',
+    trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>'
   };
 
   /* ── storage ── */
@@ -1064,7 +1711,8 @@ B: That's a difficult decision. Maybe you could ask if a shorter programme is av
       if (!stepDone(U[i].id, STEPS[j].k)) return { u: U[i], s: STEPS[j], j: j };
     return null;
   }
-  function allWords() { var a = []; U.forEach(function (u) { u.vocab.forEach(function (v) { a.push(Object.assign({ u: u.no }, v)); }); }); return a; }
+  function allWords() { var a = []; U.forEach(function (u) { u.vocab.forEach(function (v) { a.push(Object.assign({ u: u.no }, v)); }); }); if (window.EXAMS) EXAMS.toeic.vocab.forEach(function (v) { a.push(Object.assign({ u: 'T' }, v)); }); return a; }
+  function deckName(u) { return typeof u === 'number' ? 'Unit ' + u : 'TOEIC Business'; }
   function mastered() { return Object.keys(S.cards).filter(function (w) { return S.cards[w] >= 2; }).length; }
   function level(p) {
     if (p >= 80) return { l: 'B2+', c: 'b2', t: 'ผ่านระดับ B2 อย่างมั่นใจ — มีแนวโน้มไปถึง C1' };
@@ -1090,7 +1738,7 @@ B: That's a difficult decision. Maybe you could ask if a shorter programme is av
       if (b.classList.contains('play')) b.innerHTML = on ? I.stop : I.play;
     },
     stop: function () { if (this.ok) speechSynthesis.cancel(); this.mark(false); this.btn = null; },
-    speak: function (text, btn) {
+    speak: function (text, btn, done) {
       if (!this.ok) { toast('อุปกรณ์นี้ไม่รองรับเสียงอ่าน'); return; }
       if (this.btn === btn && btn) { this.stop(); return; }
       this.stop(); this.load();
@@ -1107,7 +1755,7 @@ B: That's a difficult decision. Maybe you could ask if a shorter programme is av
         u.lang = 'en-US'; u.rate = S.rate || 0.95;
         if (vs.length) { u.voice = vs[Math.min(q.who, vs.length - 1)]; u.lang = u.voice.lang; }
         if (vs.length <= q.who) u.pitch = q.who === 1 ? 0.75 : q.who === 2 ? 1.25 : 1;
-        if (i === queue.length - 1) u.onend = function () { if (self.btn === btn) { self.mark(false); self.btn = null; } };
+        if (i === queue.length - 1) u.onend = function () { if (self.btn === btn) { self.mark(false); self.btn = null; } if (done) done(); };
         speechSynthesis.speak(u);
       });
     }
@@ -1117,9 +1765,11 @@ B: That's a difficult decision. Maybe you could ask if a shorter programme is av
 
   /* ── routing ── */
   var R = { v: 'home' }, timerId = null;
-  var TAB = { home: 'home', units: 'units', unit: 'units', step: 'units', practice: 'practice', mock: 'mock', mockrun: 'mock', info: 'info', settings: 'home' };
+  var TAB = { home: 'home', units: 'units', unit: 'units', step: 'units', practice: 'practice', mock: 'prep', mockrun: 'prep', prep: 'prep', exam: 'prep', xset: 'prep', speak: 'prep', speakrun: 'prep', recs: 'prep', info: 'info', settings: 'home' };
+  var LEAVE = [];
   function go(v, p) { R = Object.assign({ v: v }, p || {}); render(); }
   function render() {
+    LEAVE.splice(0).forEach(function (f) { try { f(); } catch (e) { } });
     TTS.stop(); if (timerId) { clearInterval(timerId); timerId = null; }
     if (!S.profile) R = { v: 'onboard' };
     var view = $('#view'); view.className = 'view'; void view.offsetWidth; view.classList.add('view');
@@ -1139,35 +1789,53 @@ B: That's a difficult decision. Maybe you could ask if a shorter programme is av
     }
   }
 
-  /* ── question set (all at once, check button) ── */
+  /* ── question set (all at once, check button) ──
+     q flags: say (audio), hideQ (hide text until checked), blind (options audio-only), fixed (no shuffle), nolab, type:'gap' (typed answer, q.ans[]) */
+  var LET = 'ABCDEFGH';
+  function norm(s) { return String(s).toLowerCase().replace(/[,]/g, '').replace(/[.!?]+$/, '').replace(/\s+/g, ' ').trim(); }
+  function sayText(q) { return q.blind ? q.q + '\n' + q.o.map(function (o, k) { return '(' + LET[k] + ') ' + o; }).join('\n') : q.q; }
   function qset(el, qs, onDone) {
-    var ords = qs.map(function (q) { return shuffle(q.o.map(function (_, i) { return i; })); });
+    var ords = qs.map(function (q) { var o = (q.o || []).map(function (_, i) { return i; }); return q.fixed || q.blind ? o : shuffle(o); });
     var ans = qs.map(function () { return -1; }), checked = false;
     el.innerHTML = qs.map(function (q, qi) {
-      return '<div class="q" data-qi="' + qi + '"><div class="qt"><i>' + (qi + 1) + '.</i>' + esc(q.q) + '</div><div class="opts">' +
-        ords[qi].map(function (oi, k) { return '<button class="opt" data-oi="' + oi + '"><span class="k">' + 'ABCD'[k] + '</span><span>' + esc(q.o[oi]) + '</span></button>'; }).join('') +
-        '</div><div class="ex-slot"></div></div>';
+      var head = '<div class="qt">' + (q.say ? '<button class="say sm" data-say="' + esc(sayText(q)) + '" aria-label="ฟัง">' + I.spk + '</button>' : '') + '<i>' + (qi + 1) + '.</i><span class="qtx">' + (q.hideQ ? '<span class="muted">กดปุ่มลำโพงเพื่อฟัง</span>' : esc(q.q)) + '</span></div>';
+      var body = q.type === 'gap'
+        ? '<input type="text" class="gap" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="พิมพ์คำตอบ">'
+        : '<div class="opts">' + ords[qi].map(function (oi, k) { return '<button class="opt" data-oi="' + oi + '">' + (q.nolab ? '' : '<span class="k">' + LET[k] + '</span>') + '<span class="ot">' + (q.blind ? '(' + LET[k] + ')' : esc(q.o[oi])) + '</span></button>'; }).join('') + '</div>';
+      return '<div class="q" data-qi="' + qi + '">' + head + body + '<div class="ex-slot"></div></div>';
     }).join('') + '<div class="btns"><button class="btn" id="qs-check" disabled>ตรวจคำตอบ</button></div><div id="qs-res"></div>';
+    function upd() { $('#qs-check', el).disabled = ans.some(function (a) { return a === -1 || a === ''; }); }
     $$('.q', el).forEach(function (qd) {
-      var qi = +qd.dataset.qi;
+      var qi = +qd.dataset.qi, gi = $('.gap', qd);
+      if (gi) gi.oninput = function () { ans[qi] = gi.value.trim(); upd(); };
       $$('.opt', qd).forEach(function (b) {
         b.onclick = function () {
           if (checked) return;
           ans[qi] = +b.dataset.oi;
           $$('.opt', qd).forEach(function (x) { x.classList.toggle('sel', x === b); });
-          $('#qs-check', el).disabled = ans.indexOf(-1) >= 0;
+          upd();
         };
       });
     });
     $('#qs-check', el).onclick = function () {
       checked = true; var ok = 0;
       $$('.q', el).forEach(function (qd) {
-        var qi = +qd.dataset.qi, q = qs[qi], right = ans[qi] === q.a; if (right) ok++;
-        $$('.opt', qd).forEach(function (x) {
-          var oi = +x.dataset.oi; x.disabled = true; x.classList.remove('sel');
-          if (oi === q.a) x.classList.add('right'); else if (oi === ans[qi]) x.classList.add('wrong');
-        });
-        $('.ex-slot', qd).innerHTML = '<div class="explain ' + (right ? '' : 'no') + '"><b>' + (right ? 'ถูกต้อง' : 'ยังไม่ถูก') + '</b> — ' + esc(q.e) + '</div>';
+        var qi = +qd.dataset.qi, q = qs[qi], right;
+        if (q.type === 'gap') {
+          right = q.ans.map(norm).indexOf(norm(ans[qi])) >= 0;
+          var gi = $('.gap', qd); gi.disabled = true; gi.classList.add(right ? 'right' : 'wrong');
+          $('.ex-slot', qd).innerHTML = '<div class="explain ' + (right ? '' : 'no') + '"><b>' + (right ? 'ถูกต้อง' : 'คำตอบ: ' + esc(q.ans[0])) + '</b> — ' + esc(q.e) + '</div>';
+        } else {
+          right = ans[qi] === q.a;
+          $$('.opt', qd).forEach(function (x, k) {
+            var oi = +x.dataset.oi; x.disabled = true; x.classList.remove('sel');
+            if (q.blind) $('.ot', x).textContent = '(' + LET[k] + ') ' + q.o[oi];
+            if (oi === q.a) x.classList.add('right'); else if (oi === ans[qi]) x.classList.add('wrong');
+          });
+          $('.ex-slot', qd).innerHTML = '<div class="explain ' + (right ? '' : 'no') + '"><b>' + (right ? 'ถูกต้อง' : 'ยังไม่ถูก') + '</b> — ' + esc(q.e) + '</div>';
+        }
+        if (q.hideQ) $('.qtx', qd).textContent = q.q;
+        if (right) ok++;
       });
       this.parentNode.remove();
       var pct = Math.round(ok / qs.length * 100);
@@ -1278,6 +1946,8 @@ B: That's a difficult decision. Maybe you could ask if a shorter programme is av
       C.plan.map(function (pl, k) { return '<div class="pl ' + (k === week - 1 ? 'now' : '') + '"><div class="wk">WEEK<small>' + pl.w + '</small></div><div><b>' + esc(pl.t) + '</b><span>' + esc(pl.d) + '</span></div></div>'; }).join('') + '</div></details>' +
       '<div class="sec"><h2>ทางลัด</h2></div><div class="rows">' +
       '<button class="row" data-go="practice"><div class="tx"><b>ทบทวนคำศัพท์ด้วยแฟลชการ์ด</b><span>' + (tw - mastered()) + ' คำที่ยังต้องทบทวน</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
+      '<button class="row" data-go="speak"><div class="tx"><b>ฝึกพูดเสมือนสอบจริง</b><span>สุ่มหัวข้อ · จับเวลา · บันทึกเสียงแล้วเปิดฟัง</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
+      '<button class="row" data-go="prep"><div class="tx"><b>เตรียมสอบตามสนาม</b><span>TOEIC · IELTS · TOEFL · EF SET</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
       '<button class="row" data-go="mock"><div class="tx"><b>ข้อสอบจำลองระดับ B2</b><span>25 ข้อ · 35 นาที · ประเมินระดับ CEFR</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
       '<button class="row" data-go="info"><div class="tx"><b>เกณฑ์ ก.ค.ศ. และข้อสอบที่ใช้ได้</b><span>ว 9/2564 · ว 10/2567 · ตารางเทียบคะแนน</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button></div>';
     var hc = $('#h-cont'); if (hc) hc.onclick = function () { go('step', { id: nx.u.id, k: nx.s.k }); };
@@ -1435,7 +2105,7 @@ B: That's a difficult decision. Maybe you could ask if a shorter programme is av
     var f = R.f || 'due', all = allWords();
     var deck = all.filter(function (v) { return f === 'due' ? (S.cards[v.w] || 0) < 2 : f === 'all' ? true : v.u === f; });
     var q = shuffle(deck), cur = 0, known = 0;
-    var chips = [['due', 'ต้องทบทวน'], ['all', 'ทั้งหมด']].concat(U.map(function (u) { return [u.no, 'Unit ' + u.no]; }));
+    var chips = [['due', 'ต้องทบทวน'], ['all', 'ทั้งหมด']].concat(U.map(function (u) { return [u.no, 'Unit ' + u.no]; }), window.EXAMS ? [['T', 'TOEIC Business']] : []);
     el.innerHTML = '<div class="uhead"><div class="eyebrow">แฟลชการ์ด</div><h1>ทบทวนคำศัพท์</h1><p>จำได้แล้ว ' + mastered() + ' จาก ' + all.length + ' คำ (ตอบ "จำได้" 2 ครั้ง = จำได้แล้ว)</p></div>' +
       '<div class="chips mt">' + chips.map(function (c) { return '<button class="chip ' + (String(c[0]) === String(f) ? 'on' : '') + '" data-f="' + c[0] + '">' + c[1] + '</button>'; }).join('') + '</div><div id="fc"></div>';
     $$('[data-f]', el).forEach(function (b) { b.onclick = function () { var v = b.dataset.f; go('practice', { f: /^\d+$/.test(v) ? +v : v }); }; });
@@ -1448,8 +2118,8 @@ B: That's a difficult decision. Maybe you could ask if a shorter programme is av
       }
       var v = q[cur];
       box.innerHTML = '<div class="small muted" style="text-align:right;margin-top:6px">' + (cur + 1) + ' / ' + q.length + '</div><div class="fc-wrap"><div class="fc" id="card">' +
-        '<div class="face front"><span class="unit-tag">Unit ' + v.u + '</span>' + sayBtn(v.w) + '<div class="w">' + esc(v.w) + '</div><div class="p">' + esc(v.p) + '</div><div class="hint">แตะการ์ดเพื่อดูความหมาย</div></div>' +
-        '<div class="face back"><span class="unit-tag">Unit ' + v.u + '</span>' + sayBtn(v.ex) + '<div class="bw">' + esc(v.w) + '</div><div class="t">' + esc(v.t) + '</div><div class="ex">' + esc(v.ex) + '</div></div></div></div>' +
+        '<div class="face front"><span class="unit-tag">' + deckName(v.u) + '</span>' + sayBtn(v.w) + '<div class="w">' + esc(v.w) + '</div><div class="p">' + esc(v.p) + '</div><div class="hint">แตะการ์ดเพื่อดูความหมาย</div></div>' +
+        '<div class="face back"><span class="unit-tag">' + deckName(v.u) + '</span>' + sayBtn(v.ex) + '<div class="bw">' + esc(v.w) + '</div><div class="t">' + esc(v.t) + '</div><div class="ex">' + esc(v.ex) + '</div></div></div></div>' +
         '<div class="btns two"><button class="btn ghost" id="fc-no">ยังไม่จำ</button><button class="btn" id="fc-ok">จำได้</button></div>';
       var card = $('#card');
       card.onclick = function (e) { if (e.target.closest('.say')) return; card.classList.toggle('flip'); };
@@ -1473,7 +2143,7 @@ B: That's a difficult decision. Maybe you could ask if a shorter programme is av
   }
 
   V.mock = function (el) {
-    top();
+    top({ back: function () { go('prep'); }, title: 'ข้อสอบจำลอง' });
     var n = mockItems().length;
     var hist = S.mocks.slice(-5).reverse();
     el.innerHTML = '<div class="uhead"><div class="eyebrow">Mock Test</div><h1>ข้อสอบจำลองระดับ B2</h1><p>วัดว่าตอนนี้อยู่ระดับไหน ก่อนสมัครสอบจริง</p></div>' +
@@ -1530,7 +2200,7 @@ B: That's a difficult decision. Maybe you could ask if a shorter programme is av
       '<p class="small" style="margin:12px 0 0"><b>ว 10/2567</b> (3 พ.ค. 2567) ยืนยันว่า ผลสอบที่<b>สูงกว่า</b>ระดับที่กำหนด (เช่น ได้ C1) ก็นำมาใช้ลดระยะเวลาได้</p></div>' +
       '<div class="sec"><h2>B2 เทียบกับข้อสอบสากล</h2><span class="small muted">โดยประมาณ</span></div><div class="card"><table class="table"><tr><th>ข้อสอบ</th><th>คะแนนเทียบ B2</th></tr>' +
       '<tr><td>IELTS</td><td><b>5.5 – 6.0</b></td></tr><tr><td>TOEIC (Listening &amp; Reading)</td><td><b>785 – 940</b></td></tr><tr><td>TOEFL iBT</td><td><b>72 – 94</b></td></tr><tr><td>EF SET</td><td><b>51 – 60</b></td></tr></table>' +
-      '<p class="small muted" style="margin:10px 0 0">B2 (Upper-Intermediate) = เข้าใจเนื้อหาซับซ้อนทั้งการฟังและการอ่าน สื่อสารได้คล่องในหลายหัวข้อ และอภิปรายเชิงวิชาชีพ/วิชาการได้</p></div>' +
+      '<button class="btn ghost mt" data-go="prep">ฝึกรูปแบบข้อสอบแต่ละสนาม →</button><p class="small muted" style="margin:10px 0 0">B2 (Upper-Intermediate) = เข้าใจเนื้อหาซับซ้อนทั้งการฟังและการอ่าน สื่อสารได้คล่องในหลายหัวข้อ และอภิปรายเชิงวิชาชีพ/วิชาการได้</p></div>' +
       '<div class="sec"><h2>ขั้นตอนแนะนำ</h2></div><div class="card"><ol class="timeline">' +
       '<li><b>เรียนตามแผน 12 สัปดาห์</b><span class="small muted">วันละ 20–30 นาที ครบ 8 Unit</span></li>' +
       '<li><b>ทำข้อสอบจำลองให้ได้ ≥ 70%</b><span class="small muted">ทำซ้ำได้จนมั่นใจ</span></li>' +
@@ -1538,6 +2208,7 @@ B: That's a difficult decision. Maybe you could ask if a shorter programme is av
       '<li><b>เก็บ "ผลการทดสอบ" (Test Report) ฉบับจริง</b><span class="small muted">วุฒิบัตรผ่านการอบรม ใช้แทนผลสอบไม่ได้</span></li>' +
       '<li><b>แนบผลประกอบคำขอวิทยฐานะ</b><span class="small muted">ตรวจสอบอายุของผลสอบ (ส่วนใหญ่กำหนดไม่เกิน 2 ปีนับถึงวันยื่น)</span></li></ol></div>' +
       '<div class="note">ข้อมูลในหน้านี้สรุปเพื่อการเตรียมตัวเท่านั้น หลักเกณฑ์อาจมีการปรับปรุง โปรดตรวจสอบหนังสือเวียนฉบับล่าสุดจากสำนักงาน ก.ค.ศ. หรือเขตพื้นที่การศึกษาของท่านก่อนยื่นคำขอ<br><a href="https://otepc.go.th/th/content_page/item/4911-10-2567-cefr-b2.html" target="_blank" rel="noopener" style="color:var(--green);font-weight:600">เปิดหนังสือ ว 10/2567 (otepc.go.th) ↗</a></div>';
+    $$('[data-go]', el).forEach(function (b) { b.onclick = function () { go(b.dataset.go); }; });
   };
 
   V.settings = function (el) {
@@ -1580,8 +2251,607 @@ B: That's a difficult decision. Maybe you could ask if a shorter programme is av
   });
   $$('.nav button').forEach(function (b) { b.onclick = function () { go(b.dataset.tab); }; });
   window.addEventListener('scroll', function () { $('#top').classList.toggle('scrolled', window.scrollY > 4); }, { passive: true });
-  render();
+
+  window.APP = {
+    V: V, I: I, $: $, $$: $$, esc: esc, paras: paras, words: words, shuffle: shuffle, toast: toast, TTS: TTS, sayBtn: sayBtn,
+    go: go, top: top, qset: qset, runner: runner, ring: ring, save: save, touch: touch, level: level, ds: ds, pad: pad, leave: LEAVE,
+    get S() { return S; }, get R() { return R; }, start: render
+  };
 })();
+
+;
+/* Exam prep hub: TOEIC / IELTS / TOEFL / EF SET practice sets */
+(function () {
+  'use strict';
+  var A = window.APP, X = window.EXAMS, V = A.V, I = A.I, $ = A.$, $$ = A.$$, esc = A.esc;
+  var ORDER = ['toeic', 'ielts', 'toefl', 'efset'];
+  var SPK = { ielts: ['ielts1', 'ielts2', 'ielts3'], toefl: ['toefl_rep', 'toefl_int'] };
+  function ex() { var S = A.S; return S.exams || (S.exams = {}); }
+  function rec(id) { var e = ex(); return e[id] || (e[id] = {}); }
+  function setDone(id) { var r = ex()[id]; return !!(r && (r.done || r.score != null)); }
+  function chev() { return I.chev.replace('<svg', '<svg class="chev"'); }
+  function fmtById(id) { return window.SPEAK.formats.filter(function (f) { return f.id === id; })[0]; }
+
+  /* ── hub ── */
+  V.prep = function (el) {
+    A.top();
+    el.innerHTML = '<div class="uhead"><div class="eyebrow">Exam Prep</div><h1>เตรียมสอบตามสนาม</h1><p>ฝึกรูปแบบข้อสอบจริงของแต่ละสนาม + ฝึกพูดพร้อมบันทึกเสียง</p></div>' +
+      '<button class="feature mt" id="pp-speak"><div class="ft-tx"><span class="eyebrow" style="color:var(--gold)">ใหม่ · Speaking</span><b>ฝึกพูดเสมือนสอบจริง</b><span>สุ่มหัวข้อ · จับเวลาเตรียม/พูด · บันทึกเสียงแล้วเปิดฟังได้</span></div><div class="ft-mic">' + I.mic + '</div></button>' +
+      '<div class="sec"><h2>เลือกสนามสอบ</h2><span class="small muted">คะแนนเทียบ B2</span></div><div class="xgrid">' +
+      ORDER.map(function (k) {
+        var e = X[k], n = e.sets.length, d = e.sets.filter(function (s) { return setDone(s.id); }).length;
+        return '<button class="xcard" data-x="' + k + '"><div class="xn">' + esc(e.short) + '</div><div class="xs">B2 = ' + esc(e.b2) + '</div><div class="pbar"><i style="width:' + (d / n * 100) + '%"></i></div><div class="small muted">' + d + '/' + n + ' ชุดฝึก</div></button>';
+      }).join('') + '</div>' +
+      '<div class="sec"><h2>วัดระดับรวม</h2></div><div class="rows">' +
+      '<button class="row" data-go="mock"><div class="tx"><b>ข้อสอบจำลองระดับ B2</b><span>25 ข้อ · 35 นาที · อ่าน ฟัง ไวยากรณ์ คำศัพท์</span></div>' + chev() + '</button>' +
+      '<button class="row" data-go="recs"><div class="tx"><b>คลังเสียงของฉัน</b><span>ฟังเสียงที่บันทึกไว้ย้อนหลัง เทียบพัฒนาการ</span></div>' + chev() + '</button></div>';
+    $('#pp-speak').onclick = function () { A.go('speak'); };
+    $$('[data-x]', el).forEach(function (b) { b.onclick = function () { A.go('exam', { x: b.dataset.x }); }; });
+    $$('[data-go]', el).forEach(function (b) { b.onclick = function () { A.go(b.dataset.go); }; });
+  };
+
+  /* ── single exam page ── */
+  V.exam = function (el) {
+    var k = A.R.x, e = X[k];
+    A.top({ back: function () { A.go('prep'); }, title: e.short });
+    var sp = (SPK[k] || []).map(fmtById);
+    el.innerHTML = '<div class="uhead"><div class="eyebrow">' + esc(e.name) + '</div><h1>' + esc(e.short) + ' <span class="b2chip">B2 = ' + esc(e.b2) + '</span></h1><p>' + esc(e.about) + '</p></div>' +
+      '<div class="card mt"><table class="table"><tr><th>ส่วน</th><th>รูปแบบ</th><th></th></tr>' + e.format.map(function (f) { return '<tr><td><b>' + esc(f[0]) + '</b></td><td>' + esc(f[1]) + '</td><td class="small muted">' + esc(f[2]) + '</td></tr>'; }).join('') + '</table></div>' +
+      '<div class="sec"><h2>ชุดฝึกรูปแบบข้อสอบ</h2></div><div class="rows">' +
+      e.sets.map(function (s) {
+        var r = ex()[s.id] || {}, st = r.score != null ? 'ได้ ' + r.score + '%' : r.done ? 'ทำแล้ว' : '';
+        return '<button class="row" data-s="' + s.id + '">' + (setDone(s.id) ? '<span class="dot ok">' + I.check + '</span>' : '<span class="dot">' + kindIcon(s.kind) + '</span>') + '<div class="tx"><b>' + esc(s.title) + '</b><span>' + esc(s.th) + (st ? ' · ' + st : '') + '</span></div>' + chev() + '</button>';
+      }).join('') +
+      (k === 'toeic' ? '<button class="row" id="ex-voc"><span class="dot">Aa</span><div class="tx"><b>คำศัพท์ธุรกิจ TOEIC</b><span>' + e.vocab.length + ' คำ · ฝึกด้วยแฟลชการ์ด</span></div>' + chev() + '</button>' : '') +
+      (k === 'efset' ? '<button class="row" id="ex-mock"><span class="dot">25</span><div class="tx"><b>ข้อสอบจำลองอ่าน + ฟัง</b><span>ใกล้เคียงรูปแบบ EF SET</span></div>' + chev() + '</button>' : '') +
+      '</div>' +
+      (sp.length ? '<div class="sec"><h2>Speaking</h2><span class="small muted">บันทึกเสียงได้</span></div><div class="rows">' + sp.map(function (f) {
+        return '<button class="row" data-f="' + f.id + '"><span class="dot">' + I.mic.replace('<svg', '<svg width="15" height="15"') + '</span><div class="tx"><b>' + esc(f.name) + '</b><span>' + esc(f.th) + '</span></div>' + chev() + '</button>';
+      }).join('') + '</div>' : '') +
+      '<div class="sec"><h2>เทคนิคทำข้อสอบ</h2></div><div class="card"><ul class="tips">' + e.tips.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' +
+      (k === 'efset' ? '<div class="note">สอบ EF SET จริงได้ฟรีที่ <a href="https://www.efset.org/" target="_blank" rel="noopener" style="color:var(--green);font-weight:600">efset.org ↗</a> · ตรวจสอบกับเขตพื้นที่ว่ายอมรับผลสอบนี้สำหรับการยื่น ก.ค.ศ. หรือไม่</div>' : '') +
+      (k === 'toefl' ? '<div class="note">รูปแบบ TOEFL iBT ปรับใหม่ตั้งแต่ 21 ม.ค. 2026 ตรวจรายละเอียดล่าสุดที่ <a href="https://www.ets.org/toefl" target="_blank" rel="noopener" style="color:var(--green);font-weight:600">ets.org ↗</a></div>' : '');
+    $$('[data-s]', el).forEach(function (b) { b.onclick = function () { A.go('xset', { x: k, id: b.dataset.s }); }; });
+    $$('[data-f]', el).forEach(function (b) { b.onclick = function () { A.go('speakrun', { f: b.dataset.f, from: k }); }; });
+    var v = $('#ex-voc'); if (v) v.onclick = function () { A.go('practice', { f: 'T' }); };
+    var m = $('#ex-mock'); if (m) m.onclick = function () { A.go('mock'); };
+  };
+  function kindIcon(kind) { return { mcq: 'Q', write: 'W', cloze: 'C', build: 'B', adaptive: 'A' }[kind] || '•'; }
+
+  /* ── practice set ── */
+  V.xset = function (el) {
+    var k = A.R.x, e = X[k], s = e.sets.filter(function (z) { return z.id === A.R.id; })[0];
+    A.top({ back: function () { A.go('exam', { x: k }); }, title: e.short });
+    var head = '<div class="uhead"><div class="eyebrow">' + esc(e.short) + '</div><h1>' + esc(s.title) + '</h1><p>' + esc(s.th) + '</p></div>';
+    K[s.kind](el, s, head, k);
+  };
+
+  function finishBox(res, s, k, pct, ok, total, extra) {
+    var r = rec(s.id); r.score = Math.max(pct, r.score || 0); A.touch();
+    res.innerHTML = (extra || '') + '<div class="card mt center"><b style="font-family:var(--f-head);font-size:22px">ถูก ' + ok + ' จาก ' + total + ' ข้อ (' + pct + '%)</b><p class="muted small" style="margin:4px 0 0">' + (pct >= 80 ? 'ระดับ B2 ขึ้นไปในรูปแบบนี้ — เยี่ยม!' : pct >= 60 ? 'ใกล้แล้ว ดูคำอธิบายข้อที่ผิดแล้วลองใหม่' : 'แนะนำให้ทวนเทคนิคด้านบนแล้วลองใหม่') + '</p></div>' +
+      '<div class="btns two"><button class="btn ghost" id="xs-retry">ทำอีกครั้ง</button><button class="btn" id="xs-back">ชุดถัดไป</button></div>';
+    $('#xs-retry').onclick = function () { A.go('xset', { x: k, id: s.id }); };
+    $('#xs-back').onclick = function () {
+      var sets = X[k].sets, i = sets.indexOf(s);
+      if (i < sets.length - 1) A.go('xset', { x: k, id: sets[i + 1].id }); else A.go('exam', { x: k });
+    };
+  }
+
+  var K = {};
+
+  K.mcq = function (el, s, head, k) {
+    var player = '';
+    if (s.script) player = '<div class="card"><div class="player"><button class="play" id="xs-play" aria-label="เล่นเสียง">' + I.play + '</button><div class="tx"><b>ฟังเสียง</b><span class="small muted">' + (k === 'ielts' ? 'สอบจริงฟังได้ครั้งเดียว — ลองฝึกฟังไม่เกิน 2 ครั้ง' : 'อ่านคำถามก่อนกดฟัง จะรู้ว่าต้องฟังหาอะไร') + '</span></div></div><div class="script hide" id="xs-script">' + esc(s.script) + '</div></div>';
+    el.innerHTML = head + (s.intro ? '<div class="note" style="margin-top:6px">' + esc(s.intro) + '</div>' : '') +
+      (s.passage ? '<div class="card mt"><div class="passage" style="font-size:16px">' + A.paras(s.passage) + '</div></div>' : '') +
+      (player ? '<div class="mt">' + player + '</div>' : '') +
+      '<div class="sec"><h2>คำถาม</h2><span class="small muted">' + s.qs.length + ' ข้อ</span></div><div class="card" id="xs-qs"></div>';
+    var pb = $('#xs-play'); if (pb) pb.onclick = function () { A.TTS.speak(s.script, pb); };
+    A.qset($('#xs-qs'), s.qs, function (pct, ok, res) {
+      var sc = $('#xs-script'); if (sc) { sc.classList.remove('hide'); sc.insertAdjacentHTML('beforebegin', '<div class="small muted mt">บทพูด (transcript)</div>'); }
+      finishBox(res, s, k, pct, ok, s.qs.length);
+    });
+  };
+
+  function chartSVG(c) {
+    var W = 340, H = 220, L = 34, B = 40, T = 14, max = 50, cw = (W - L - 6) / c.cats.length, bw = Math.min(16, cw / 3);
+    var cols = ['var(--green-2)', 'var(--gold)'], g = '';
+    for (var y = 0; y <= max; y += 10) { var yy = H - B - (y / max) * (H - B - T); g += '<line x1="' + L + '" x2="' + (W - 4) + '" y1="' + yy + '" y2="' + yy + '" stroke="var(--line)"/><text x="' + (L - 6) + '" y="' + (yy + 4) + '" text-anchor="end" font-size="10" fill="var(--muted)">' + y + '</text>'; }
+    c.cats.forEach(function (cat, i) {
+      var x0 = L + i * cw + cw / 2 - bw;
+      c.data.forEach(function (ser, si) {
+        var v = ser[i], h = (v / max) * (H - B - T), x = x0 + si * bw;
+        g += '<rect x="' + x + '" y="' + (H - B - h) + '" width="' + (bw - 2) + '" height="' + h + '" rx="2" fill="' + cols[si] + '"/>';
+        g += '<text x="' + (x + bw / 2 - 1) + '" y="' + (H - B - h - 3) + '" text-anchor="middle" font-size="9" fill="var(--ink)">' + v + '</text>';
+      });
+      g += '<text x="' + (L + i * cw + cw / 2) + '" y="' + (H - B + 14) + '" text-anchor="middle" font-size="10" fill="var(--ink)">' + esc(cat) + '</text>';
+    });
+    var lg = c.series.map(function (sn, si) { return '<rect x="' + (L + si * 70) + '" y="' + (H - 14) + '" width="10" height="10" rx="2" fill="' + cols[si] + '"/><text x="' + (L + 14 + si * 70) + '" y="' + (H - 5) + '" font-size="11" fill="var(--ink)">' + esc(sn) + '</text>'; }).join('');
+    return '<div class="chart"><div class="small" style="font-weight:600;margin-bottom:4px">' + esc(c.title) + '</div><svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(c.title) + '">' + g + lg + '</svg></div>';
+  }
+
+  K.write = function (el, s, head, k) {
+    var r = rec(s.id), left = s.minutes * 60, running = false, tid = null;
+    el.innerHTML = head +
+      '<div class="card mt"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px"><span class="eyebrow">Task</span><button class="chip" id="w-timer">⏱ ' + s.minutes + ':00 · เริ่มจับเวลา</button></div>' +
+      '<p style="font-family:var(--f-read);font-size:16.5px;margin:0">' + esc(s.prompt) + '</p>' + (s.chart ? chartSVG(s.chart) : '') +
+      (s.posts ? '<div class="posts">' + s.posts.map(function (p, i) { return '<div class="post ' + (i === 0 ? 'prof' : '') + '"><b>' + esc(p.who) + '</b><p>' + esc(p.t) + '</p></div>'; }).join('') + '</div>' : '') + '</div>' +
+      '<div class="card"><b>โครงสร้าง / เช็กลิสต์</b><ul class="tips" style="margin-top:6px">' + s.tips.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' +
+      '<div class="small muted mt" style="margin-bottom:6px">สำนวนที่ใช้ได้ (แตะเพื่อแทรก)</div><div class="phr">' + s.phrases.map(function (p) { return '<button class="chip" data-ph="' + esc(p) + '">' + esc(p) + '</button>'; }).join('') + '</div></div>' +
+      '<label class="lb" for="w-txt">คำตอบของคุณ</label><textarea id="w-txt" placeholder="Start writing here…">' + esc(r.draft || '') + '</textarea>' +
+      '<div class="wc"><span id="w-wc"></span><span>ขั้นต่ำ ' + s.min + ' คำ</span></div>' +
+      '<div class="btns"><button class="btn" id="w-save">บันทึกงานเขียน</button><button class="btn ghost" id="w-model">ดูตัวอย่างคำตอบ</button></div>' +
+      '<div class="card mt hide" id="w-m"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><b>Model answer</b>' + A.sayBtn(s.model) + '</div><div class="passage" style="font-size:15.5px">' + A.paras(s.model) + '</div><div class="small muted">' + A.words(s.model) + ' words</div></div>';
+    var ta = $('#w-txt'), wc = $('#w-wc'), dt;
+    function upd() { var n = A.words(ta.value); wc.textContent = n + ' คำ'; wc.style.color = n >= s.min ? 'var(--green)' : ''; }
+    ta.oninput = function () { upd(); clearTimeout(dt); dt = setTimeout(function () { r.draft = ta.value; A.save(); }, 400); };
+    upd();
+    $$('[data-ph]', el).forEach(function (b) {
+      b.onclick = function () {
+        var p = b.dataset.ph.replace(/…/g, ' '), st = ta.selectionStart || ta.value.length;
+        ta.value = ta.value.slice(0, st) + p + ta.value.slice(st); ta.focus(); ta.oninput();
+      };
+    });
+    var tb = $('#w-timer');
+    function fmt() { return A.pad(Math.floor(left / 60)) + ':' + A.pad(left % 60); }
+    tb.onclick = function () {
+      running = !running;
+      if (running) {
+        tid = setInterval(function () {
+          left--; tb.textContent = '⏱ ' + fmt() + ' · หยุด';
+          if (left <= 0) { clearInterval(tid); running = false; tb.textContent = '⏱ หมดเวลา'; tb.classList.add('on'); A.toast('หมดเวลาแล้ว! ลองนับคำดู'); }
+        }, 1000);
+        tb.textContent = '⏱ ' + fmt() + ' · หยุด';
+      } else { clearInterval(tid); tb.textContent = '⏱ ' + fmt() + ' · ต่อ'; }
+    };
+    A.leave.push(function () { clearInterval(tid); });
+    $('#w-save').onclick = function () {
+      r.draft = ta.value; var n = A.words(ta.value);
+      if (n < 20) { A.toast('เขียนเพิ่มอีกหน่อยก่อนนะครับ'); return; }
+      r.done = true; A.touch(); A.toast(n >= s.min ? 'บันทึกแล้ว ✓' : 'บันทึกแล้ว — สอบจริงต้องได้อย่างน้อย ' + s.min + ' คำ');
+      $('#w-m').classList.remove('hide'); $('#w-model').textContent = 'ซ่อนตัวอย่างคำตอบ';
+    };
+    $('#w-model').onclick = function () { var m = $('#w-m'); m.classList.toggle('hide'); this.textContent = m.classList.contains('hide') ? 'ดูตัวอย่างคำตอบ' : 'ซ่อนตัวอย่างคำตอบ'; };
+  };
+
+  K.cloze = function (el, s, head, k) {
+    var answers = [], n = 0;
+    var html = esc(s.text).replace(/([A-Za-z]+)\[([A-Za-z]+)\]/g, function (_, stem, miss) {
+      answers.push(miss); var i = n++;
+      return '<span class="cz">' + stem + '<input class="cz-in" data-i="' + i + '" maxlength="' + miss.length + '" style="width:' + (miss.length * 0.6 + 0.9) + 'em" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="ตัวอักษรที่หายไป ' + miss.length + ' ตัว" placeholder="' + Array(miss.length + 1).join('_') + '"></span>';
+    });
+    el.innerHTML = head + '<div class="note" style="margin-top:6px">' + esc(s.intro) + '</div><div class="card mt"><div class="passage cloze">' + html + '</div></div><div class="btns"><button class="btn" id="cz-check">ตรวจคำตอบ</button></div><div id="cz-res"></div>';
+    $('#cz-check').onclick = function () {
+      var ok = 0;
+      $$('.cz-in', el).forEach(function (inp) {
+        var i = +inp.dataset.i, good = inp.value.trim().toLowerCase() === answers[i].toLowerCase();
+        if (good) ok++;
+        inp.disabled = true; inp.classList.add(good ? 'right' : 'wrong');
+        if (!good) inp.insertAdjacentHTML('afterend', '<sup class="fix">' + answers[i] + '</sup>');
+      });
+      this.parentNode.remove();
+      finishBox($('#cz-res'), s, k, Math.round(ok / answers.length * 100), ok, answers.length);
+    };
+  };
+
+  K.build = function (el, s, head, k) {
+    el.innerHTML = head + '<div class="note" style="margin-top:6px">แตะกลุ่มคำเรียงตามลำดับเพื่อสร้างประโยคตอบกลับ แตะคำในช่องคำตอบเพื่อนำออก</div>' +
+      s.items.map(function (it, i) {
+        var order = A.shuffle(it.parts.map(function (_, j) { return j; }));
+        if (order.join() === it.parts.map(function (_, j) { return j; }).join()) order.reverse();
+        return '<div class="card bd" data-i="' + i + '"><div class="bubble">' + A.sayBtn(it.ctx) + '<span>' + esc(it.ctx) + '</span></div><div class="slot" aria-label="คำตอบ"></div><div class="bank">' +
+          order.map(function (j) { return '<button class="chip tok" data-j="' + j + '">' + esc(it.parts[j]) + '</button>'; }).join('') + '</div><div class="bd-res"></div></div>';
+      }).join('') + '<div class="btns"><button class="btn" id="bd-check">ตรวจคำตอบ</button></div><div id="bd-res"></div>';
+    $$('.bd', el).forEach(function (card) {
+      var slot = $('.slot', card), bank = $('.bank', card);
+      $$('.tok', card).forEach(function (t) { t.onclick = function () { if (card.dataset.locked) return; (t.parentNode === bank ? slot : bank).appendChild(t); }; });
+    });
+    $('#bd-check').onclick = function () {
+      var ok = 0;
+      $$('.bd', el).forEach(function (card) {
+        var it = s.items[+card.dataset.i], got = $$('.slot .tok', card).map(function (t) { return +t.dataset.j; }).join(), good = got === it.parts.map(function (_, j) { return j; }).join();
+        if (good) ok++;
+        card.dataset.locked = 1; card.classList.add(good ? 'ok' : 'no');
+        $('.bd-res', card).innerHTML = '<div class="explain ' + (good ? '' : 'no') + '"><b>' + (good ? 'ถูกต้อง' : 'ยังไม่ถูก') + '</b> — ' + esc(it.parts.join(' ')) + '</div>';
+      });
+      this.parentNode.remove();
+      finishBox($('#bd-res'), s, k, Math.round(ok / s.items.length * 100), ok, s.items.length);
+    };
+  };
+
+  K.adaptive = function (el, s, head, k) {
+    var LV = ['B1', 'B2', 'C1'];
+    el.innerHTML = head + '<div class="card mt"><p style="margin:0">ระบบเริ่มที่ระดับ B2 ถ้าตอบถูกข้อถัดไปจะยากขึ้น ตอบผิดจะง่ายลง — เหมือนข้อสอบ EF SET จริง ' + s.n + ' ข้อ ไม่เห็นเฉลยระหว่างทำ</p></div><div class="btns"><button class="btn" id="ad-go">เริ่ม</button></div>';
+    $('#ad-go').onclick = function () {
+      var lvl = 1, used = { B1: [], B2: [], C1: [] }, hist = [], cur = null, ord = null;
+      function pick() {
+        var tries = [lvl, lvl + 1, lvl - 1, lvl + 2, lvl - 2].filter(function (x) { return x >= 0 && x < 3; });
+        for (var t = 0; t < tries.length; t++) {
+          var L = LV[tries[t]], pool = s.bank[L].map(function (_, i) { return i; }).filter(function (i) { return used[L].indexOf(i) < 0; });
+          if (pool.length) { var i = pool[Math.floor(Math.random() * pool.length)]; used[L].push(i); return { L: L, q: s.bank[L][i] }; }
+        }
+      }
+      function draw() {
+        cur = pick(); ord = A.shuffle(cur.q.o.map(function (_, i) { return i; }));
+        el.innerHTML = '<div class="runner-top"><div class="track"><i style="width:' + ((hist.length + 1) / s.n * 100) + '%"></i></div><span>' + (hist.length + 1) + '/' + s.n + '</span><span class="lvchip">' + cur.L + '</span></div>' +
+          '<div class="qbig">' + esc(cur.q.q) + '</div><div class="opts">' + ord.map(function (oi, j) { return '<button class="opt" data-oi="' + oi + '"><span class="k">' + 'ABCD'[j] + '</span><span>' + esc(cur.q.o[oi]) + '</span></button>'; }).join('') + '</div>';
+        $$('.opt', el).forEach(function (b) {
+          b.onclick = function () {
+            var good = +b.dataset.oi === cur.q.a; hist.push({ L: cur.L, ok: good, q: cur.q, pick: +b.dataset.oi });
+            lvl = Math.max(0, Math.min(2, lvl + (good ? 1 : -1)));
+            if (hist.length >= s.n) done(); else draw();
+          };
+        });
+      }
+      function done() {
+        var st = {}; LV.forEach(function (L) { st[L] = { n: 0, ok: 0 }; });
+        hist.forEach(function (h) { st[h.L].n++; if (h.ok) st[h.L].ok++; });
+        function acc(L, min) { return st[L].n >= min && st[L].ok / st[L].n >= 0.6; }
+        var res = acc('C1', 2) ? 'C1' : acc('B2', 3) || (acc('B2', 2) && st.C1.ok > 0) ? 'B2' : acc('B1', 2) || st.B2.ok >= 2 ? 'B1' : 'A2';
+        var band = { A2: '31–40', B1: '41–50', B2: '51–60', C1: '61–70' }[res];
+        var ok = hist.filter(function (h) { return h.ok; }).length;
+        var r = rec(s.id); r.score = Math.max(Math.round(ok / s.n * 100), r.score || 0); r.level = res; A.touch();
+        el.innerHTML = '<div class="result"><div class="lvl-big">' + res + '</div><p style="margin:0">ระดับโดยประมาณ · EF SET ≈ <b>' + band + '</b></p><p class="small muted">ถูก ' + ok + ' จาก ' + s.n + ' ข้อ</p>' +
+          '<div class="card breakdown">' + LV.map(function (L) { var p = st[L].n ? Math.round(st[L].ok / st[L].n * 100) : 0; return '<div class="ln"><span>ข้อระดับ ' + L + '</span><div class="t"><i style="width:' + p + '%"></i></div><b>' + st[L].ok + '/' + st[L].n + '</b></div>'; }).join('') + '</div></div>' +
+          '<div class="sec"><h2>ทบทวน</h2></div><div class="card">' + hist.map(function (h, i) {
+            return '<div class="q"><div class="qt"><i>' + (i + 1) + '.</i><span class="lvchip">' + h.L + '</span> ' + esc(h.q.q) + '</div><div class="small">' + (h.ok ? '<span style="color:var(--green)">✓ ' + esc(h.q.o[h.q.a]) + '</span>' : '<span style="color:var(--bad)">✗ ' + esc(h.q.o[h.pick]) + '</span> → <b style="color:var(--green)">' + esc(h.q.o[h.q.a]) + '</b>') + '</div><div class="explain">' + esc(h.q.e) + '</div></div>';
+          }).join('') + '</div>' +
+          '<div class="btns two"><button class="btn ghost" id="ad-again">ทำอีกครั้ง</button><button class="btn" id="ad-back">กลับ</button></div>';
+        $('#ad-again').onclick = function () { A.go('xset', { x: k, id: s.id }); };
+        $('#ad-back').onclick = function () { A.go('exam', { x: k }); };
+        window.scrollTo(0, 0);
+      }
+      draw();
+    };
+  };
+})();
+
+;
+/* Speaking simulator: random topics · prep/talk timers · examiner voice · MediaRecorder · IndexedDB library */
+(function () {
+  'use strict';
+  var A = window.APP, SP = window.SPEAK, V = A.V, I = A.I, $ = A.$, $$ = A.$$, esc = A.esc;
+  var ALT_URL = 'https://sleeplessss.github.io/b2-teacher-course/';
+  var IN_GAS = /googleusercontent\.com$|script\.google\.com$/.test(location.hostname);
+  function fmt(id) { return SP.formats.filter(function (f) { return f.id === id; })[0]; }
+  function canRecord() { return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder); }
+  function mmss(s) { s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ':' + A.pad(s % 60); }
+  function pickRand(arr, avoid) { if (arr.length < 2) return 0; var i; do { i = Math.floor(Math.random() * arr.length); } while (i === avoid); return i; }
+
+  /* ── IndexedDB ── */
+  var DB = {
+    db: null,
+    open: function () {
+      var self = this;
+      return new Promise(function (res, rej) {
+        if (self.db) return res(self.db);
+        if (!window.indexedDB) return rej(new Error('no idb'));
+        var r = indexedDB.open('b2course-audio', 1);
+        r.onupgradeneeded = function () { r.result.createObjectStore('rec', { keyPath: 'id' }); };
+        r.onsuccess = function () { self.db = r.result; res(self.db); };
+        r.onerror = function () { rej(r.error); };
+      });
+    },
+    tx: function (mode, fn) {
+      return this.open().then(function (db) {
+        return new Promise(function (res, rej) {
+          var t = db.transaction('rec', mode), st = t.objectStore('rec'), out = fn(st);
+          t.oncomplete = function () { res(out && out.result !== undefined ? out.result : out); };
+          t.onerror = function () { rej(t.error); };
+        });
+      });
+    },
+    put: function (o) { return this.tx('readwrite', function (s) { s.put(o); }); },
+    del: function (id) { return this.tx('readwrite', function (s) { s.delete(id); }); },
+    all: function () { return this.tx('readonly', function (s) { return s.getAll(); }); }
+  };
+
+  /* ── audio helpers ── */
+  var actx = null;
+  function ctx() { if (!actx) { var C = window.AudioContext || window.webkitAudioContext; if (C) actx = new C(); } if (actx && actx.state === 'suspended') actx.resume(); return actx; }
+  function beep(freq, ms) {
+    var c = ctx(); if (!c) return;
+    var o = c.createOscillator(), g = c.createGain();
+    o.frequency.value = freq || 880; o.type = 'sine';
+    g.gain.setValueAtTime(0.0001, c.currentTime); g.gain.exponentialRampToValueAtTime(0.25, c.currentTime + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, c.currentTime + (ms || 220) / 1000);
+    o.connect(g); g.connect(c.destination); o.start(); o.stop(c.currentTime + (ms || 220) / 1000 + 0.05);
+  }
+  function speakP(text, run) {
+    return new Promise(function (res) {
+      if (!run.voice || !A.TTS.ok) return setTimeout(res, 900);
+      var done = false, fin = function () { if (!done) { done = true; res(); } };
+      setTimeout(fin, A.words(text) * 520 + 2500);
+      A.TTS.speak(text, null, fin);
+    });
+  }
+  function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+
+  function Recorder() {
+    var self = this; this.stream = null; this.mr = null; this.chunks = []; this.t0 = 0; this.raf = 0; this.an = null;
+    this.init = function () {
+      return navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true } }).then(function (s) {
+        self.stream = s;
+        try { var c = ctx(), src = c.createMediaStreamSource(s); self.an = c.createAnalyser(); self.an.fftSize = 512; src.connect(self.an); } catch (e) { }
+      });
+    };
+    this.start = function () {
+      try { return this._start(); } catch (e) { this.failed = true; A.toast('เริ่มบันทึกเสียงไม่ได้ — ฝึกต่อแบบจับเวลา'); return false; }
+    };
+    this._start = function () {
+      if (!this.stream) return false;
+      var types = ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4', 'audio/aac', 'audio/ogg;codecs=opus'];
+      var mt = types.filter(function (t) { return MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(t); })[0];
+      this.chunks = [];
+      this.mr = mt ? new MediaRecorder(this.stream, { mimeType: mt }) : new MediaRecorder(this.stream);
+      this.mr.ondataavailable = function (e) { if (e.data && e.data.size) self.chunks.push(e.data); };
+      this.mr.start(500); this.t0 = Date.now();
+      return true;
+    };
+    this.stop = function () {
+      return new Promise(function (res) {
+        var mr = self.mr;
+        if (!mr || mr.state === 'inactive') return res(null);
+        mr.onstop = function () { res({ blob: new Blob(self.chunks, { type: (mr.mimeType || 'audio/webm').split(';')[0] }), dur: (Date.now() - self.t0) / 1000 }); };
+        try { mr.requestData(); } catch (e) { }
+        mr.stop();
+      });
+    };
+    this.meter = function (bar) {
+      cancelAnimationFrame(this.raf);
+      if (!this.an || !bar) return;
+      var buf = new Uint8Array(this.an.fftSize);
+      var loop = function () {
+        self.an.getByteTimeDomainData(buf); var sum = 0;
+        for (var i = 0; i < buf.length; i++) { var v = (buf[i] - 128) / 128; sum += v * v; }
+        var lvl = Math.min(1, Math.sqrt(sum / buf.length) * 4);
+        bar.style.transform = 'scaleX(' + Math.max(0.03, lvl) + ')';
+        self.raf = requestAnimationFrame(loop);
+      };
+      loop();
+    };
+    this.release = function () {
+      cancelAnimationFrame(this.raf);
+      try { if (this.mr && this.mr.state !== 'inactive') this.mr.stop(); } catch (e) { }
+      if (this.stream) this.stream.getTracks().forEach(function (t) { t.stop(); });
+      this.stream = null;
+    };
+  }
+
+  /* ── countdown ring ── */
+  function countdown(box, secs, label, run, opts) {
+    opts = opts || {};
+    return new Promise(function (res) {
+      var r = 54, c = 2 * Math.PI * r, end = Date.now() + secs * 1000, skipped = false, warned = false;
+      box.innerHTML = '<div class="tring ' + (opts.rec ? 'rec' : '') + '"><svg viewBox="0 0 130 130"><circle cx="65" cy="65" r="' + r + '" fill="none" stroke="var(--line)" stroke-width="9"/><circle class="arc" cx="65" cy="65" r="' + r + '" fill="none" stroke-width="9" stroke-linecap="round" stroke-dasharray="' + c + '" stroke-dashoffset="0"/></svg><div class="tv"><b>' + mmss(secs) + '</b><span>' + esc(label) + '</span></div></div>';
+      var arc = $('.arc', box), tv = $('.tv b', box);
+      var tid = setInterval(function () {
+        if (run.dead) { clearInterval(tid); return; }
+        var left = (end - Date.now()) / 1000;
+        arc.style.strokeDashoffset = c * (1 - Math.max(0, left) / secs);
+        tv.textContent = mmss(Math.ceil(left));
+        if (!warned && opts.warn && left <= opts.warn && secs > opts.warn + 5) { warned = true; box.firstChild.classList.add('warn'); }
+        if (left <= 0 || skipped) { clearInterval(tid); res(skipped ? 'skip' : 'time'); }
+      }, 200);
+      run.skip = function () { skipped = true; };
+    });
+  }
+
+  /* ── hub ── */
+  V.speak = function (el) {
+    A.top({ back: function () { A.go('prep'); }, title: 'Speaking' });
+    var groups = {};
+    SP.formats.forEach(function (f) { (groups[f.exam] = groups[f.exam] || []).push(f); });
+    el.innerHTML = '<div class="uhead"><div class="eyebrow">Speaking Simulator</div><h1>ฝึกพูดเสมือนสอบจริง</h1><p>ระบบสุ่มหัวข้อ ผู้คุมสอบอ่านคำถาม จับเวลาเตรียม/พูด และบันทึกเสียงให้เปิดฟังย้อนหลัง</p></div>' +
+      micNote() +
+      Object.keys(groups).map(function (g) {
+        return '<div class="sec"><h2>' + g + '</h2></div><div class="rows">' + groups[g].map(function (f) {
+          return '<button class="row" data-f="' + f.id + '"><span class="dot">' + I.mic.replace('<svg', '<svg width="15" height="15"') + '</span><div class="tx"><b>' + esc(f.name) + '</b><span>' + esc(f.th) + '</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>';
+        }).join('') + '</div>';
+      }).join('') +
+      '<div class="sec"><h2>คลังเสียงของฉัน</h2></div><div class="rows"><button class="row" id="sp-recs"><div class="tx"><b>ฟังเสียงที่บันทึกไว้</b><span id="sp-count">กำลังโหลด…</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button></div>';
+    $$('[data-f]', el).forEach(function (b) { b.onclick = function () { A.go('speakrun', { f: b.dataset.f }); }; });
+    $('#sp-recs').onclick = function () { A.go('recs'); };
+    DB.all().then(function (a) { var c = $('#sp-count'); if (c) c.textContent = a.length + ' ไฟล์'; }, function () { var c = $('#sp-count'); if (c) c.textContent = 'เบราว์เซอร์นี้เก็บไฟล์เสียงไม่ได้'; });
+  };
+  function micNote() {
+    if (IN_GAS) return '<div class="note warnbox"><b>เวอร์ชัน Google Apps Script บันทึกเสียงไม่ได้</b><br>Google ปิดสิทธิ์ไมโครโฟนในเว็บแอป Apps Script — ยังฝึกแบบจับเวลาได้ แต่ถ้าต้องการบันทึกเสียง เปิดเวอร์ชันนี้แทน:<br><a href="' + ALT_URL + '" target="_blank" rel="noopener">' + ALT_URL + ' ↗</a></div>';
+    if (!canRecord()) return '<div class="note warnbox">เบราว์เซอร์นี้ไม่รองรับการบันทึกเสียง แนะนำ Chrome (Android) หรือ Safari (iPhone) เวอร์ชันล่าสุด — ยังฝึกแบบจับเวลาได้</div>';
+    if (location.protocol === 'file:') return '<div class="note">เปิดจากไฟล์ในเครื่อง: เบราว์เซอร์จะขออนุญาตใช้ไมโครโฟนเมื่อเริ่มฝึก</div>';
+    return '';
+  }
+
+  /* ── session ── */
+  V.speakrun = function (el) {
+    var f = fmt(A.R.f), S = A.S, last = S.spLast || (S.spLast = {});
+    var back = function () { A.go(A.R.from ? 'exam' : 'speak', A.R.from ? { x: A.R.from } : null); };
+    A.top({ back: back, title: f.exam + ' · ' + f.name });
+    var run = { dead: false, voice: S.spVoice !== false && A.TTS.ok, rec: null, skip: function () { } };
+    A.leave.push(function () { run.dead = true; if (run.rec) run.rec.release(); if (window.speechSynthesis) speechSynthesis.cancel(); });
+
+    var timing = f.prep || f.talk ? (f.prep ? 'เตรียม ' + mmss(f.prep) + ' นาที · ' : 'ไม่มีเวลาเตรียม · ') + (f.talk ? 'พูด ' + mmss(f.talk) + ' นาที' : 'ตอบข้อละ ' + f.perQ + ' วินาที') : f.id === 'toefl_rep' ? 'ฟัง 1 ครั้ง · พูดตามทันที 7 ประโยค' : 'ตอบข้อละ ' + f.perQ + ' วินาที · ไม่มีเวลาเตรียม';
+    el.innerHTML = '<div class="uhead"><div class="eyebrow">' + esc(f.exam) + ' Speaking</div><h1>' + esc(f.name) + '</h1><p>' + esc(f.desc) + '</p></div>' +
+      '<div class="card mt"><div class="kv"><span>รูปแบบ</span><b>' + esc(f.th) + '</b></div><div class="kv"><span>เวลา</span><b>' + timing + '</b></div><div class="kv"><span>หัวข้อ</span><b>สุ่มเมื่อกดเริ่ม (ไม่เห็นล่วงหน้า)</b></div>' +
+      '<label class="switch"><input type="checkbox" id="sr-voice" ' + (run.voice ? 'checked' : '') + (A.TTS.ok ? '' : ' disabled') + '><span>ผู้คุมสอบอ่านคำถามออกเสียง</span></label></div>' +
+      micNote() +
+      '<div class="note">ใส่หูฟังจะได้ยินชัดและไม่มีเสียงคำถามติดไปในไฟล์บันทึก · หาที่เงียบ · พูดให้เต็มเวลา</div>' +
+      '<div class="btns"><button class="btn" id="sr-go">' + I.mic.replace('<svg', '<svg width="20" height="20"') + ' สุ่มหัวข้อและเริ่มสอบ</button></div>';
+    $('#sr-voice').onchange = function () { run.voice = this.checked; S.spVoice = this.checked; A.save(); };
+    $('#sr-go').onclick = function () { this.disabled = true; start(); };
+
+    function start() {
+      ctx(); // unlock audio on user gesture
+      var content = A.R.same || draw();
+      var ready = canRecord() && !IN_GAS ? (run.rec = new Recorder()).init().then(function () { return true; }, function (e) { run.rec = null; A.toast('ไม่ได้รับสิทธิ์ไมโครโฟน — ฝึกแบบจับเวลาอย่างเดียว'); return false; }) : Promise.resolve(false);
+      ready.then(function (ok) { if (!run.dead) flow(content, ok); });
+    }
+
+    function draw() {
+      var c = { f: f.id };
+      if (f.id === 'ielts1') { var i = pickRand(SP.part1, last.ielts1); last.ielts1 = i; c.title = 'Topic: ' + SP.part1[i].topic; c.qs = SP.part1[i].qs; }
+      else if (f.id === 'ielts2' || f.id === 'ielts3') {
+        var j = A.R.card != null ? A.R.card : pickRand(SP.cards, last.card); last.card = j; c.card = j;
+        var cd = SP.cards[j]; c.title = cd.topic;
+        if (f.id === 'ielts2') { c.points = cd.points; c.model = cd.model; } else { c.qs = cd.p3; c.title = 'Discussion: ' + cd.topic.replace(/^Describe /, '').replace(/\.$/, ''); }
+      }
+      else if (f.id === 'toefl_int') { var k = pickRand(SP.interviews, last.int); last.int = k; c.title = 'Interview: ' + SP.interviews[k].theme; c.qs = SP.interviews[k].qs; }
+      else if (f.id === 'toefl_rep') {
+        var by = function (n, m) { return A.shuffle(SP.repeat.filter(function (r) { return r.n === n; })).slice(0, m); };
+        c.title = 'Listen and Repeat'; c.reps = by(1, 2).concat(by(2, 3), by(3, 2)).map(function (r) { return r.t; });
+      }
+      else if (f.id === 'cefr') { var o = pickRand(SP.opinions, last.op); last.op = o; c.title = SP.opinions[o]; }
+      A.save();
+      return c;
+    }
+
+    function stage(html) { el.innerHTML = html; window.scrollTo(0, 0); }
+    function recBar(on) { return on ? '<div class="recbar"><span class="rdot"></span><span>กำลังบันทึกเสียง</span><div class="meter"><i id="mt"></i></div></div>' : '<div class="recbar off"><span>ไม่ได้บันทึกเสียง (โหมดจับเวลา)</span></div>'; }
+
+    function flow(c, recOK) {
+      var p;
+      if (f.id === 'ielts2' || f.id === 'cefr') p = cueFlow(c, recOK);
+      else if (f.id === 'toefl_rep') p = repeatFlow(c, recOK);
+      else p = qFlow(c, recOK);
+      p.then(function (out) {
+        if (run.dead) return;
+        var r = run.rec ? run.rec.stop() : Promise.resolve(null);
+        r.then(function (audio) { if (run.rec) run.rec.release(); if (!run.dead) review(c, audio); });
+      });
+    }
+
+    function cueFlow(c, recOK) {
+      var isCard = f.id === 'ielts2';
+      var cardHtml = '<div class="cue"><div class="eyebrow">' + (isCard ? 'Candidate task card' : 'Topic') + '</div><h2>' + esc(c.title) + '</h2>' + (c.points ? '<div class="small muted" style="margin:6px 0 2px">You should say:</div><ul>' + c.points.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('') + '</ul>' : '') + '</div>';
+      stage(cardHtml + '<div class="stagebox" id="tb"></div><label class="lb" for="notes">โน้ตคีย์เวิร์ด (ไม่ต้องเขียนเป็นประโยค)</label><textarea id="notes" style="min-height:110px" placeholder="keywords…"></textarea><div class="btns"><button class="btn ghost" id="skip">พร้อมแล้ว เริ่มพูดเลย</button></div>');
+      $('#skip').onclick = function () { run.skip(); };
+      var intro = isCard ? 'I\'m going to give you a topic, and I\'d like you to talk about it for one to two minutes. You have one minute to think about what you are going to say. You can make some notes if you wish.' : 'Here is your topic. You have thirty seconds to prepare.';
+      return speakP(intro, run).then(function () {
+        if (run.dead) return;
+        return countdown($('#tb'), f.prep, 'เวลาเตรียม', run);
+      }).then(function () {
+        if (run.dead) return;
+        var notes = $('#notes') ? $('#notes').value : '';
+        c.notes = notes;
+        stage(cardHtml + (notes ? '<div class="notes-ro">' + esc(notes) + '</div>' : '') + recBar(recOK) + '<div class="stagebox" id="tb"></div><div class="btns"><button class="btn ghost" id="skip">จบการพูด</button></div>');
+        $('#skip').onclick = function () { run.skip(); };
+        return speakP(isCard ? 'All right? Remember, you have one to two minutes for this. Please start speaking now.' : 'Please start speaking now.', run);
+      }).then(function () {
+        if (run.dead) return;
+        beep(880); if (run.rec && run.rec.start()) run.rec.meter($('#mt'));
+        return countdown($('#tb'), f.talk, 'เวลาพูด', run, { rec: recOK, warn: 15 });
+      }).then(function () { if (!run.dead) { beep(520, 300); return speakP('Thank you.', run); } });
+    }
+
+    function qFlow(c, recOK) {
+      var i = 0;
+      function one() {
+        if (run.dead || i >= c.qs.length) return Promise.resolve();
+        var q = c.qs[i];
+        stage('<div class="eyebrow">' + esc(c.title) + '</div><div class="qprog">' + c.qs.map(function (_, k) { return '<i class="' + (k < i ? 'd' : k === i ? 'c' : '') + '"></i>'; }).join('') + '</div>' +
+          '<div class="examiner"><span class="av">' + I.user + '</span><div class="qtext" id="qt">' + (run.voice ? '<span class="muted">ผู้คุมสอบกำลังถาม…</span>' : esc(q)) + '</div></div>' + recBar(recOK) +
+          '<div class="stagebox" id="tb"></div><div class="btns"><button class="btn ghost" id="skip">' + (i < c.qs.length - 1 ? 'ตอบจบแล้ว ข้อต่อไป' : 'ตอบจบแล้ว') + '</button></div>');
+        $('#skip').onclick = function () { run.skip(); };
+        if (run.rec) run.rec.meter($('#mt'));
+        return speakP(q, run).then(function () {
+          if (run.dead) return;
+          if (run.rec && !run.rec.mr && !run.rec.failed) run.rec.start();
+          var qt = $('#qt'); if (qt) qt.textContent = q;
+          beep(880, 150);
+          return countdown($('#tb'), f.perQ, 'เวลาตอบ', run, { rec: recOK, warn: 8 });
+        }).then(function () { i++; return one(); });
+      }
+      var intro = f.id === 'ielts1' ? 'Now, in this first part, I\'d like to ask you some questions about yourself. Let\'s talk about ' + c.title.replace('Topic: ', '').toLowerCase() + '.' : f.id === 'ielts3' ? 'We\'ve been talking about ' + c.title.replace('Discussion: ', '') + '. I\'d like to discuss with you some more general questions related to this.' : 'You will be asked four questions. Answer each question as fully as you can.';
+      stage('<div class="examiner"><span class="av">' + I.user + '</span><div class="qtext">' + esc(intro) + '</div></div>' + recBar(recOK));
+      return speakP(intro, run).then(one).then(function () { if (!run.dead) { beep(520, 300); return speakP('Thank you. That is the end of the speaking test.', run); } });
+    }
+
+    function repeatFlow(c, recOK) {
+      var i = 0;
+      function one() {
+        if (run.dead || i >= c.reps.length) return Promise.resolve();
+        var t = c.reps[i], secs = Math.min(14, Math.max(6, Math.round(3 + A.words(t) * 0.7)));
+        stage('<div class="eyebrow">Listen and Repeat</div><div class="qprog">' + c.reps.map(function (_, k) { return '<i class="' + (k < i ? 'd' : k === i ? 'c' : '') + '"></i>'; }).join('') + '</div>' +
+          '<div class="examiner"><span class="av">' + I.spk + '</span><div class="qtext" id="qt"><span class="muted">ฟังประโยคที่ ' + (i + 1) + '/' + c.reps.length + '…</span></div></div>' + recBar(recOK) + '<div class="stagebox" id="tb"></div><div class="btns"><button class="btn ghost" id="skip">พูดจบแล้ว</button></div>');
+        $('#skip').onclick = function () { run.skip(); };
+        if (run.rec) run.rec.meter($('#mt'));
+        var listen = run.voice ? speakP(t, Object.assign({}, run, { voice: true })) : Promise.resolve($('#qt').textContent = t);
+        return Promise.resolve(listen).then(function () {
+          if (run.dead) return;
+          if (run.rec && !run.rec.mr && !run.rec.failed) run.rec.start();
+          var qt = $('#qt'); if (qt) qt.innerHTML = '<b>พูดตามเลย</b>';
+          beep(880, 150);
+          return countdown($('#tb'), secs, 'พูดตาม', run, { rec: recOK });
+        }).then(function () { i++; return wait(300).then(one); });
+      }
+      stage('<div class="examiner"><span class="av">' + I.user + '</span><div class="qtext">You will hear seven sentences. After each one, repeat it exactly as you heard it.</div></div>');
+      return speakP('You will hear seven sentences. After each one, repeat it exactly as you heard it.', run).then(one);
+    }
+
+    function review(c, audio) {
+      var id = Date.now(), checks = {}, recObj = null;
+      var items = c.qs || c.reps || null;
+      if (audio && audio.blob && audio.blob.size) {
+        recObj = { id: id, ts: id, f: f.id, title: c.title, items: items, points: c.points || null, dur: audio.dur, mime: audio.blob.type, blob: audio.blob, checks: checks };
+        DB.put(recObj).catch(function () { A.toast('บันทึกลงคลังไม่ได้ (พื้นที่เบราว์เซอร์)'); });
+      }
+      var S = A.S; S.spCount = (S.spCount || 0) + 1; A.touch();
+      var url = recObj ? URL.createObjectURL(audio.blob) : null;
+      if (url) A.leave.push(function () { URL.revokeObjectURL(url); });
+      var ext = recObj ? (/mp4|aac/.test(recObj.mime) ? 'm4a' : /ogg/.test(recObj.mime) ? 'ogg' : 'webm') : '';
+      el.innerHTML = '<div class="uhead"><div class="eyebrow">ผลการฝึก · ' + esc(f.exam) + ' ' + esc(f.name) + '</div><h1>ฟังเสียงตัวเอง</h1><p>' + esc(c.title) + '</p></div>' +
+        (url ? '<div class="card mt"><audio controls preload="metadata" src="' + url + '" style="width:100%"></audio><div class="kv" style="margin-top:8px"><span>ความยาว</span><b>' + mmss(audio.dur) + ' นาที</b></div><div class="btns two" style="margin-top:10px"><a class="btn ghost" href="' + url + '" download="speaking-' + f.id + '-' + A.ds(new Date()) + '.' + ext + '">ดาวน์โหลด</a><button class="btn ghost" id="rv-lib">คลังเสียง</button></div><p class="small muted" style="margin:8px 0 0">บันทึกในคลังเสียงของเครื่องนี้แล้ว</p></div>'
+          : '<div class="note warnbox">รอบนี้ไม่ได้บันทึกเสียง (ไม่มีสิทธิ์ไมโครโฟน หรือเปิดจาก Apps Script)' + (IN_GAS ? '<br><a href="' + ALT_URL + '" target="_blank" rel="noopener">เปิดเวอร์ชันที่บันทึกเสียงได้ ↗</a>' : '') + '</div>') +
+        (c.reps ? '<div class="sec"><h2>ประโยคต้นฉบับ</h2><span class="small muted">เทียบกับเสียงของคุณ</span></div><div class="card">' + c.reps.map(function (t, i) { return '<div class="ex-line">' + A.sayBtn(t) + '<span><b>' + (i + 1) + '.</b> ' + esc(t) + '</span></div>'; }).join('') + '</div>' : '') +
+        (c.qs ? '<div class="sec"><h2>คำถามในรอบนี้</h2></div><div class="card">' + c.qs.map(function (q, i) { return '<div class="ex-line">' + A.sayBtn(q) + '<span><b>' + (i + 1) + '.</b> ' + esc(q) + '</span></div>'; }).join('') + '</div>' : '') +
+        (!c.reps ? '<div class="sec"><h2>ประเมินตัวเอง</h2><span class="small muted">ฟังเสียงแล้วติ๊ก</span></div><div class="card checks">' + SP.criteria.map(function (cr) { return '<label class="ck"><input type="checkbox" data-k="' + cr.k + '"><span><b>' + esc(cr.name) + '</b><br><span class="small muted">' + esc(cr.th) + '</span></span></label>'; }).join('') + '<div class="small" id="ck-sum" style="margin-top:8px"></div></div>' : '') +
+        (c.model ? '<details class="card mt"><summary class="link" style="list-style:none;cursor:pointer">ดูตัวอย่างคำตอบระดับ B2+</summary><div style="display:flex;justify-content:flex-end;margin:8px 0">' + A.sayBtn(c.model) + '</div><div class="passage" style="font-size:15.5px">' + A.paras(c.model) + '</div></details>' : '') +
+        '<details class="card mt"><summary class="link" style="list-style:none;cursor:pointer">สำนวนช่วยพูด (useful phrases)</summary><div class="phr-grid">' +
+        [['เริ่มตอบ', 'start'], ['ให้เหตุผล', 'reason'], ['ยกตัวอย่าง', 'example'], ['ซื้อเวลาคิด', 'time'], ['สรุป', 'end']].map(function (g) { return '<div><div class="small muted">' + g[0] + '</div>' + SP.phrases[g[1]].map(function (p) { return '<div class="ph">' + esc(p) + '</div>'; }).join('') + '</div>'; }).join('') + '</div></details>' +
+        '<div class="btns">' + (f.id === 'ielts2' ? '<button class="btn gold" id="rv-p3">ต่อ Part 3 (หัวข้อเดียวกัน)</button>' : '') + '<button class="btn" id="rv-new">สุ่มหัวข้อใหม่</button><button class="btn ghost" id="rv-same">ลองหัวข้อเดิมอีกครั้ง</button></div>';
+      $$('.checks input', el).forEach(function (b) {
+        b.onchange = function () {
+          checks[b.dataset.k] = b.checked;
+          var n = Object.keys(checks).filter(function (k) { return checks[k]; }).length;
+          $('#ck-sum').innerHTML = 'ผ่าน <b>' + n + '/5</b> เกณฑ์ ' + (n >= 4 ? '— พร้อมระดับ B2 แล้ว' : n >= 2 ? '— ใกล้แล้ว ฝึกซ้ำหัวข้อเดิมอีกรอบ' : '— ลองฟังตัวอย่างคำตอบและใช้สำนวนช่วยพูด');
+          if (recObj) { recObj.checks = checks; DB.put(recObj).catch(function () { }); }
+        };
+      });
+      var lib = $('#rv-lib'); if (lib) lib.onclick = function () { A.go('recs'); };
+      var p3 = $('#rv-p3'); if (p3) p3.onclick = function () { A.go('speakrun', { f: 'ielts3', card: c.card, from: A.R.from }); };
+      $('#rv-new').onclick = function () { A.go('speakrun', { f: f.id, from: A.R.from }); };
+      $('#rv-same').onclick = function () {
+        if (c.card != null) A.go('speakrun', { f: f.id, card: c.card, from: A.R.from });
+        else A.go('speakrun', { f: f.id, from: A.R.from, same: { title: c.title, qs: c.qs, reps: c.reps } });
+      };
+    }
+    if (A.R.same) $$('.kv b', el)[2].textContent = 'เดิม: ' + A.R.same.title;
+  };
+
+  /* ── library ── */
+  V.recs = function (el) {
+    A.top({ back: function () { A.go('speak'); }, title: 'คลังเสียงของฉัน' });
+    el.innerHTML = '<div class="uhead"><div class="eyebrow">My recordings</div><h1>คลังเสียงของฉัน</h1><p>ฟังย้อนหลังเพื่อเทียบพัฒนาการ ไฟล์เก็บในเบราว์เซอร์ของเครื่องนี้เท่านั้น</p></div><div id="rl" class="mt"><p class="muted">กำลังโหลด…</p></div>';
+    var urls = []; A.leave.push(function () { urls.forEach(function (u) { URL.revokeObjectURL(u); }); });
+    DB.all().then(function (all) {
+      var box = $('#rl'); if (!box) return;
+      all.sort(function (a, b) { return b.ts - a.ts; });
+      if (!all.length) { box.innerHTML = '<div class="empty"><h2>ยังไม่มีไฟล์เสียง</h2><p class="muted">เริ่มฝึกพูดแล้วเสียงจะถูกเก็บไว้ที่นี่</p><div class="btns"><button class="btn" id="rl-go">ไปฝึกพูด</button></div></div>'; $('#rl-go').onclick = function () { A.go('speak'); }; return; }
+      box.innerHTML = all.map(function (r) {
+        var u = URL.createObjectURL(r.blob); urls.push(u);
+        var f = fmt(r.f) || { exam: '', name: r.f }, n = r.checks ? Object.keys(r.checks).filter(function (k) { return r.checks[k]; }).length : 0;
+        return '<div class="card recitem" data-id="' + r.id + '"><div class="ri-h"><div><div class="eyebrow">' + esc(f.exam + ' · ' + f.name) + '</div><b>' + esc(r.title) + '</b><div class="small muted">' + new Date(r.ts).toLocaleString('th-TH', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) + ' · ' + mmss(r.dur) + (n ? ' · ประเมินตัวเอง ' + n + '/5' : '') + '</div></div><button class="ibtn del" aria-label="ลบ">' + I.trash + '</button></div><audio controls preload="none" src="' + u + '" style="width:100%;margin-top:8px"></audio></div>';
+      }).join('') + '<p class="small muted center">' + all.length + ' ไฟล์</p>';
+      $$('.del', box).forEach(function (b) {
+        var armed = false;
+        b.onclick = function () {
+          if (!armed) { armed = true; b.classList.add('armed'); A.toast('แตะอีกครั้งเพื่อลบ'); setTimeout(function () { armed = false; b.classList.remove('armed'); }, 2500); return; }
+          var card = b.closest('.recitem'); DB.del(+card.dataset.id).then(function () { card.remove(); A.toast('ลบแล้ว'); });
+        };
+      });
+    }, function () { var box = $('#rl'); if (box) box.innerHTML = '<div class="note warnbox">เบราว์เซอร์นี้ไม่อนุญาตให้เก็บไฟล์เสียง (เช่น โหมดไม่ระบุตัวตน)</div>'; });
+  };
+})();
+
+;APP.start();
 
 </script>
 </body>

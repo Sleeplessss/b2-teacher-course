@@ -27,7 +27,10 @@
     gear: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>',
     spk: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5v5h3.5L12 19V5L7.5 9.5z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>',
     play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10.4-6.5a1 1 0 0 0 0-1.8L9.5 4.6A1 1 0 0 0 8 5.5z"/></svg>',
-    stop: '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="6.5" width="11" height="11" rx="2"/></svg>'
+    stop: '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="6.5" width="11" height="11" rx="2"/></svg>',
+    mic: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></svg>',
+    user: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>',
+    trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>'
   };
 
   /* ── storage ── */
@@ -69,7 +72,8 @@
       if (!stepDone(U[i].id, STEPS[j].k)) return { u: U[i], s: STEPS[j], j: j };
     return null;
   }
-  function allWords() { var a = []; U.forEach(function (u) { u.vocab.forEach(function (v) { a.push(Object.assign({ u: u.no }, v)); }); }); return a; }
+  function allWords() { var a = []; U.forEach(function (u) { u.vocab.forEach(function (v) { a.push(Object.assign({ u: u.no }, v)); }); }); if (window.EXAMS) EXAMS.toeic.vocab.forEach(function (v) { a.push(Object.assign({ u: 'T' }, v)); }); return a; }
+  function deckName(u) { return typeof u === 'number' ? 'Unit ' + u : 'TOEIC Business'; }
   function mastered() { return Object.keys(S.cards).filter(function (w) { return S.cards[w] >= 2; }).length; }
   function level(p) {
     if (p >= 80) return { l: 'B2+', c: 'b2', t: 'ผ่านระดับ B2 อย่างมั่นใจ — มีแนวโน้มไปถึง C1' };
@@ -95,7 +99,7 @@
       if (b.classList.contains('play')) b.innerHTML = on ? I.stop : I.play;
     },
     stop: function () { if (this.ok) speechSynthesis.cancel(); this.mark(false); this.btn = null; },
-    speak: function (text, btn) {
+    speak: function (text, btn, done) {
       if (!this.ok) { toast('อุปกรณ์นี้ไม่รองรับเสียงอ่าน'); return; }
       if (this.btn === btn && btn) { this.stop(); return; }
       this.stop(); this.load();
@@ -112,7 +116,7 @@
         u.lang = 'en-US'; u.rate = S.rate || 0.95;
         if (vs.length) { u.voice = vs[Math.min(q.who, vs.length - 1)]; u.lang = u.voice.lang; }
         if (vs.length <= q.who) u.pitch = q.who === 1 ? 0.75 : q.who === 2 ? 1.25 : 1;
-        if (i === queue.length - 1) u.onend = function () { if (self.btn === btn) { self.mark(false); self.btn = null; } };
+        if (i === queue.length - 1) u.onend = function () { if (self.btn === btn) { self.mark(false); self.btn = null; } if (done) done(); };
         speechSynthesis.speak(u);
       });
     }
@@ -122,9 +126,11 @@
 
   /* ── routing ── */
   var R = { v: 'home' }, timerId = null;
-  var TAB = { home: 'home', units: 'units', unit: 'units', step: 'units', practice: 'practice', mock: 'mock', mockrun: 'mock', info: 'info', settings: 'home' };
+  var TAB = { home: 'home', units: 'units', unit: 'units', step: 'units', practice: 'practice', mock: 'prep', mockrun: 'prep', prep: 'prep', exam: 'prep', xset: 'prep', speak: 'prep', speakrun: 'prep', recs: 'prep', info: 'info', settings: 'home' };
+  var LEAVE = [];
   function go(v, p) { R = Object.assign({ v: v }, p || {}); render(); }
   function render() {
+    LEAVE.splice(0).forEach(function (f) { try { f(); } catch (e) { } });
     TTS.stop(); if (timerId) { clearInterval(timerId); timerId = null; }
     if (!S.profile) R = { v: 'onboard' };
     var view = $('#view'); view.className = 'view'; void view.offsetWidth; view.classList.add('view');
@@ -144,35 +150,53 @@
     }
   }
 
-  /* ── question set (all at once, check button) ── */
+  /* ── question set (all at once, check button) ──
+     q flags: say (audio), hideQ (hide text until checked), blind (options audio-only), fixed (no shuffle), nolab, type:'gap' (typed answer, q.ans[]) */
+  var LET = 'ABCDEFGH';
+  function norm(s) { return String(s).toLowerCase().replace(/[,]/g, '').replace(/[.!?]+$/, '').replace(/\s+/g, ' ').trim(); }
+  function sayText(q) { return q.blind ? q.q + '\n' + q.o.map(function (o, k) { return '(' + LET[k] + ') ' + o; }).join('\n') : q.q; }
   function qset(el, qs, onDone) {
-    var ords = qs.map(function (q) { return shuffle(q.o.map(function (_, i) { return i; })); });
+    var ords = qs.map(function (q) { var o = (q.o || []).map(function (_, i) { return i; }); return q.fixed || q.blind ? o : shuffle(o); });
     var ans = qs.map(function () { return -1; }), checked = false;
     el.innerHTML = qs.map(function (q, qi) {
-      return '<div class="q" data-qi="' + qi + '"><div class="qt"><i>' + (qi + 1) + '.</i>' + esc(q.q) + '</div><div class="opts">' +
-        ords[qi].map(function (oi, k) { return '<button class="opt" data-oi="' + oi + '"><span class="k">' + 'ABCD'[k] + '</span><span>' + esc(q.o[oi]) + '</span></button>'; }).join('') +
-        '</div><div class="ex-slot"></div></div>';
+      var head = '<div class="qt">' + (q.say ? '<button class="say sm" data-say="' + esc(sayText(q)) + '" aria-label="ฟัง">' + I.spk + '</button>' : '') + '<i>' + (qi + 1) + '.</i><span class="qtx">' + (q.hideQ ? '<span class="muted">กดปุ่มลำโพงเพื่อฟัง</span>' : esc(q.q)) + '</span></div>';
+      var body = q.type === 'gap'
+        ? '<input type="text" class="gap" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="พิมพ์คำตอบ">'
+        : '<div class="opts">' + ords[qi].map(function (oi, k) { return '<button class="opt" data-oi="' + oi + '">' + (q.nolab ? '' : '<span class="k">' + LET[k] + '</span>') + '<span class="ot">' + (q.blind ? '(' + LET[k] + ')' : esc(q.o[oi])) + '</span></button>'; }).join('') + '</div>';
+      return '<div class="q" data-qi="' + qi + '">' + head + body + '<div class="ex-slot"></div></div>';
     }).join('') + '<div class="btns"><button class="btn" id="qs-check" disabled>ตรวจคำตอบ</button></div><div id="qs-res"></div>';
+    function upd() { $('#qs-check', el).disabled = ans.some(function (a) { return a === -1 || a === ''; }); }
     $$('.q', el).forEach(function (qd) {
-      var qi = +qd.dataset.qi;
+      var qi = +qd.dataset.qi, gi = $('.gap', qd);
+      if (gi) gi.oninput = function () { ans[qi] = gi.value.trim(); upd(); };
       $$('.opt', qd).forEach(function (b) {
         b.onclick = function () {
           if (checked) return;
           ans[qi] = +b.dataset.oi;
           $$('.opt', qd).forEach(function (x) { x.classList.toggle('sel', x === b); });
-          $('#qs-check', el).disabled = ans.indexOf(-1) >= 0;
+          upd();
         };
       });
     });
     $('#qs-check', el).onclick = function () {
       checked = true; var ok = 0;
       $$('.q', el).forEach(function (qd) {
-        var qi = +qd.dataset.qi, q = qs[qi], right = ans[qi] === q.a; if (right) ok++;
-        $$('.opt', qd).forEach(function (x) {
-          var oi = +x.dataset.oi; x.disabled = true; x.classList.remove('sel');
-          if (oi === q.a) x.classList.add('right'); else if (oi === ans[qi]) x.classList.add('wrong');
-        });
-        $('.ex-slot', qd).innerHTML = '<div class="explain ' + (right ? '' : 'no') + '"><b>' + (right ? 'ถูกต้อง' : 'ยังไม่ถูก') + '</b> — ' + esc(q.e) + '</div>';
+        var qi = +qd.dataset.qi, q = qs[qi], right;
+        if (q.type === 'gap') {
+          right = q.ans.map(norm).indexOf(norm(ans[qi])) >= 0;
+          var gi = $('.gap', qd); gi.disabled = true; gi.classList.add(right ? 'right' : 'wrong');
+          $('.ex-slot', qd).innerHTML = '<div class="explain ' + (right ? '' : 'no') + '"><b>' + (right ? 'ถูกต้อง' : 'คำตอบ: ' + esc(q.ans[0])) + '</b> — ' + esc(q.e) + '</div>';
+        } else {
+          right = ans[qi] === q.a;
+          $$('.opt', qd).forEach(function (x, k) {
+            var oi = +x.dataset.oi; x.disabled = true; x.classList.remove('sel');
+            if (q.blind) $('.ot', x).textContent = '(' + LET[k] + ') ' + q.o[oi];
+            if (oi === q.a) x.classList.add('right'); else if (oi === ans[qi]) x.classList.add('wrong');
+          });
+          $('.ex-slot', qd).innerHTML = '<div class="explain ' + (right ? '' : 'no') + '"><b>' + (right ? 'ถูกต้อง' : 'ยังไม่ถูก') + '</b> — ' + esc(q.e) + '</div>';
+        }
+        if (q.hideQ) $('.qtx', qd).textContent = q.q;
+        if (right) ok++;
       });
       this.parentNode.remove();
       var pct = Math.round(ok / qs.length * 100);
@@ -283,6 +307,8 @@
       C.plan.map(function (pl, k) { return '<div class="pl ' + (k === week - 1 ? 'now' : '') + '"><div class="wk">WEEK<small>' + pl.w + '</small></div><div><b>' + esc(pl.t) + '</b><span>' + esc(pl.d) + '</span></div></div>'; }).join('') + '</div></details>' +
       '<div class="sec"><h2>ทางลัด</h2></div><div class="rows">' +
       '<button class="row" data-go="practice"><div class="tx"><b>ทบทวนคำศัพท์ด้วยแฟลชการ์ด</b><span>' + (tw - mastered()) + ' คำที่ยังต้องทบทวน</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
+      '<button class="row" data-go="speak"><div class="tx"><b>ฝึกพูดเสมือนสอบจริง</b><span>สุ่มหัวข้อ · จับเวลา · บันทึกเสียงแล้วเปิดฟัง</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
+      '<button class="row" data-go="prep"><div class="tx"><b>เตรียมสอบตามสนาม</b><span>TOEIC · IELTS · TOEFL · EF SET</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
       '<button class="row" data-go="mock"><div class="tx"><b>ข้อสอบจำลองระดับ B2</b><span>25 ข้อ · 35 นาที · ประเมินระดับ CEFR</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
       '<button class="row" data-go="info"><div class="tx"><b>เกณฑ์ ก.ค.ศ. และข้อสอบที่ใช้ได้</b><span>ว 9/2564 · ว 10/2567 · ตารางเทียบคะแนน</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button></div>';
     var hc = $('#h-cont'); if (hc) hc.onclick = function () { go('step', { id: nx.u.id, k: nx.s.k }); };
@@ -440,7 +466,7 @@
     var f = R.f || 'due', all = allWords();
     var deck = all.filter(function (v) { return f === 'due' ? (S.cards[v.w] || 0) < 2 : f === 'all' ? true : v.u === f; });
     var q = shuffle(deck), cur = 0, known = 0;
-    var chips = [['due', 'ต้องทบทวน'], ['all', 'ทั้งหมด']].concat(U.map(function (u) { return [u.no, 'Unit ' + u.no]; }));
+    var chips = [['due', 'ต้องทบทวน'], ['all', 'ทั้งหมด']].concat(U.map(function (u) { return [u.no, 'Unit ' + u.no]; }), window.EXAMS ? [['T', 'TOEIC Business']] : []);
     el.innerHTML = '<div class="uhead"><div class="eyebrow">แฟลชการ์ด</div><h1>ทบทวนคำศัพท์</h1><p>จำได้แล้ว ' + mastered() + ' จาก ' + all.length + ' คำ (ตอบ "จำได้" 2 ครั้ง = จำได้แล้ว)</p></div>' +
       '<div class="chips mt">' + chips.map(function (c) { return '<button class="chip ' + (String(c[0]) === String(f) ? 'on' : '') + '" data-f="' + c[0] + '">' + c[1] + '</button>'; }).join('') + '</div><div id="fc"></div>';
     $$('[data-f]', el).forEach(function (b) { b.onclick = function () { var v = b.dataset.f; go('practice', { f: /^\d+$/.test(v) ? +v : v }); }; });
@@ -453,8 +479,8 @@
       }
       var v = q[cur];
       box.innerHTML = '<div class="small muted" style="text-align:right;margin-top:6px">' + (cur + 1) + ' / ' + q.length + '</div><div class="fc-wrap"><div class="fc" id="card">' +
-        '<div class="face front"><span class="unit-tag">Unit ' + v.u + '</span>' + sayBtn(v.w) + '<div class="w">' + esc(v.w) + '</div><div class="p">' + esc(v.p) + '</div><div class="hint">แตะการ์ดเพื่อดูความหมาย</div></div>' +
-        '<div class="face back"><span class="unit-tag">Unit ' + v.u + '</span>' + sayBtn(v.ex) + '<div class="bw">' + esc(v.w) + '</div><div class="t">' + esc(v.t) + '</div><div class="ex">' + esc(v.ex) + '</div></div></div></div>' +
+        '<div class="face front"><span class="unit-tag">' + deckName(v.u) + '</span>' + sayBtn(v.w) + '<div class="w">' + esc(v.w) + '</div><div class="p">' + esc(v.p) + '</div><div class="hint">แตะการ์ดเพื่อดูความหมาย</div></div>' +
+        '<div class="face back"><span class="unit-tag">' + deckName(v.u) + '</span>' + sayBtn(v.ex) + '<div class="bw">' + esc(v.w) + '</div><div class="t">' + esc(v.t) + '</div><div class="ex">' + esc(v.ex) + '</div></div></div></div>' +
         '<div class="btns two"><button class="btn ghost" id="fc-no">ยังไม่จำ</button><button class="btn" id="fc-ok">จำได้</button></div>';
       var card = $('#card');
       card.onclick = function (e) { if (e.target.closest('.say')) return; card.classList.toggle('flip'); };
@@ -478,7 +504,7 @@
   }
 
   V.mock = function (el) {
-    top();
+    top({ back: function () { go('prep'); }, title: 'ข้อสอบจำลอง' });
     var n = mockItems().length;
     var hist = S.mocks.slice(-5).reverse();
     el.innerHTML = '<div class="uhead"><div class="eyebrow">Mock Test</div><h1>ข้อสอบจำลองระดับ B2</h1><p>วัดว่าตอนนี้อยู่ระดับไหน ก่อนสมัครสอบจริง</p></div>' +
@@ -535,7 +561,7 @@
       '<p class="small" style="margin:12px 0 0"><b>ว 10/2567</b> (3 พ.ค. 2567) ยืนยันว่า ผลสอบที่<b>สูงกว่า</b>ระดับที่กำหนด (เช่น ได้ C1) ก็นำมาใช้ลดระยะเวลาได้</p></div>' +
       '<div class="sec"><h2>B2 เทียบกับข้อสอบสากล</h2><span class="small muted">โดยประมาณ</span></div><div class="card"><table class="table"><tr><th>ข้อสอบ</th><th>คะแนนเทียบ B2</th></tr>' +
       '<tr><td>IELTS</td><td><b>5.5 – 6.0</b></td></tr><tr><td>TOEIC (Listening &amp; Reading)</td><td><b>785 – 940</b></td></tr><tr><td>TOEFL iBT</td><td><b>72 – 94</b></td></tr><tr><td>EF SET</td><td><b>51 – 60</b></td></tr></table>' +
-      '<p class="small muted" style="margin:10px 0 0">B2 (Upper-Intermediate) = เข้าใจเนื้อหาซับซ้อนทั้งการฟังและการอ่าน สื่อสารได้คล่องในหลายหัวข้อ และอภิปรายเชิงวิชาชีพ/วิชาการได้</p></div>' +
+      '<button class="btn ghost mt" data-go="prep">ฝึกรูปแบบข้อสอบแต่ละสนาม →</button><p class="small muted" style="margin:10px 0 0">B2 (Upper-Intermediate) = เข้าใจเนื้อหาซับซ้อนทั้งการฟังและการอ่าน สื่อสารได้คล่องในหลายหัวข้อ และอภิปรายเชิงวิชาชีพ/วิชาการได้</p></div>' +
       '<div class="sec"><h2>ขั้นตอนแนะนำ</h2></div><div class="card"><ol class="timeline">' +
       '<li><b>เรียนตามแผน 12 สัปดาห์</b><span class="small muted">วันละ 20–30 นาที ครบ 8 Unit</span></li>' +
       '<li><b>ทำข้อสอบจำลองให้ได้ ≥ 70%</b><span class="small muted">ทำซ้ำได้จนมั่นใจ</span></li>' +
@@ -543,6 +569,7 @@
       '<li><b>เก็บ "ผลการทดสอบ" (Test Report) ฉบับจริง</b><span class="small muted">วุฒิบัตรผ่านการอบรม ใช้แทนผลสอบไม่ได้</span></li>' +
       '<li><b>แนบผลประกอบคำขอวิทยฐานะ</b><span class="small muted">ตรวจสอบอายุของผลสอบ (ส่วนใหญ่กำหนดไม่เกิน 2 ปีนับถึงวันยื่น)</span></li></ol></div>' +
       '<div class="note">ข้อมูลในหน้านี้สรุปเพื่อการเตรียมตัวเท่านั้น หลักเกณฑ์อาจมีการปรับปรุง โปรดตรวจสอบหนังสือเวียนฉบับล่าสุดจากสำนักงาน ก.ค.ศ. หรือเขตพื้นที่การศึกษาของท่านก่อนยื่นคำขอ<br><a href="https://otepc.go.th/th/content_page/item/4911-10-2567-cefr-b2.html" target="_blank" rel="noopener" style="color:var(--green);font-weight:600">เปิดหนังสือ ว 10/2567 (otepc.go.th) ↗</a></div>';
+    $$('[data-go]', el).forEach(function (b) { b.onclick = function () { go(b.dataset.go); }; });
   };
 
   V.settings = function (el) {
@@ -585,5 +612,10 @@
   });
   $$('.nav button').forEach(function (b) { b.onclick = function () { go(b.dataset.tab); }; });
   window.addEventListener('scroll', function () { $('#top').classList.toggle('scrolled', window.scrollY > 4); }, { passive: true });
-  render();
+
+  window.APP = {
+    V: V, I: I, $: $, $$: $$, esc: esc, paras: paras, words: words, shuffle: shuffle, toast: toast, TTS: TTS, sayBtn: sayBtn,
+    go: go, top: top, qset: qset, runner: runner, ring: ring, save: save, touch: touch, level: level, ds: ds, pad: pad, leave: LEAVE,
+    get S() { return S; }, get R() { return R; }, start: render
+  };
 })();

@@ -6,9 +6,17 @@
 
 ## เนื้อหา
 - 8 Unit ในบริบทงานครู × 6 ขั้น (คำศัพท์ · ไวยากรณ์ · อ่าน · ฟัง · เขียน · แบบทดสอบ)
-- คำศัพท์ 64 คำ + แฟลชการ์ด · คำถาม 113 ข้อ · เสียงอ่านภาษาอังกฤษ (Text-to-Speech ของเครื่อง)
-- ข้อสอบจำลอง 25 ข้อ จับเวลา 35 นาที พร้อมประเมินระดับ CEFR โดยประมาณ
+- **เตรียมสอบตามสนาม**: TOEIC (Part 2–7 + ศัพท์ธุรกิจ 24 คำ) · IELTS (T/F/NG, Matching Headings, Form completion, Writing Task 1–2) · TOEFL iBT รูปแบบ 2026 (Complete the Words, Build a Sentence, Email, Academic Discussion ฯลฯ) · EF SET (Adaptive Challenge)
+- **ฝึกพูดเสมือนสอบจริง**: สุ่มหัวข้อ · ผู้คุมสอบอ่านคำถาม · จับเวลาเตรียม/พูด · **บันทึกเสียงและเปิดฟังย้อนหลัง** (IELTS Part 1–3, TOEFL Listen & Repeat / Interview, CEFR Opinion Talk) พร้อมเกณฑ์ประเมินตัวเองและตัวอย่างคำตอบ
+- คำศัพท์ 88 คำ + แฟลชการ์ด · ข้อสอบจำลอง 25 ข้อ จับเวลา 35 นาที
 - แผนเรียน 12 สัปดาห์ · สรุปเกณฑ์ ก.ค.ศ. · ความคืบหน้าบันทึกในเครื่อง (ย้ายเครื่องได้ด้วยรหัส)
+
+## ⚠️ เรื่องการบันทึกเสียง
+Google ปิดสิทธิ์ไมโครโฟนในเว็บแอป Apps Script → **เวอร์ชัน Apps Script ฝึกพูดได้แบบจับเวลาอย่างเดียว**
+ถ้าต้องการบันทึกเสียง ใช้เวอร์ชัน **GitHub Pages** (ฟรี ไม่ต้องมีเซิร์ฟเวอร์):
+1. GitHub repo → **Settings → Pages**
+2. Source: **Deploy from a branch** → Branch: `main` · Folder: **`/docs`** → Save
+3. รอ ~1 นาที จะได้ลิงก์ `https://sleeplessss.github.io/b2-teacher-course/` เปิดบนมือถือได้ทันที (บันทึกเสียงได้ทั้ง Android และ iPhone)
 
 ## เปิดผ่าน Google Apps Script (แนะนำ — ได้ลิงก์เปิดบนมือถือ)
 1. ไปที่ https://script.google.com → **New project**
@@ -29,6 +37,6 @@
 ```
 python build.py
 ```
-จะได้ `dist/index.html` และ `apps-script/Index.html` ใหม่
+จะได้ `dist/index.html`, `docs/index.html` (GitHub Pages) และ `apps-script/Index.html` ใหม่
 
 > ข้อมูลเกณฑ์ ก.ค.ศ. เป็นการสรุปเพื่อเตรียมตัว โปรดตรวจสอบหนังสือเวียนฉบับล่าสุดก่อนยื่นคำขอ
