@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<base target="_top">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f5f1e8">
+<title>B2 Ready for Teachers · หลักสูตรเตรียมสอบ B2 สำหรับครู</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Literata:opsz,wght@7..72,400;7..72,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f5f1e8; --card:#fffdf8; --ink:#1b2a23; --muted:#5f6d65; --line:#e4ddcd;
+  --green:#1f5a44; --green-2:#2c7457; --green-soft:#e3eee7;
+  --gold:#d99a2b; --gold-soft:#f7ead0;
+  --bad:#b8452c; --bad-soft:#f8e2db;
+  --r:16px; --r-sm:10px;
+  --shadow:0 1px 0 rgba(27,42,35,.04),0 6px 20px -12px rgba(27,42,35,.25);
+  --f-body:"IBM Plex Sans Thai","Noto Sans Thai",system-ui,sans-serif;
+  --f-head:"Bai Jamjuree","IBM Plex Sans Thai",system-ui,sans-serif;
+  --f-read:"Literata",Georgia,serif;
+  --nav-h:64px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6}
+body{min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+h1,h2,h3{font-family:var(--f-head);line-height:1.25;margin:0;text-wrap:balance}
+p{margin:0 0 .8em;text-wrap:pretty}
+.app{max-width:560px;margin:0 auto;min-height:100vh;padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 24px)}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:8px;padding:12px 16px;background:rgba(245,241,232,.94);backdrop-filter:saturate(1.2) blur(6px);border-bottom:1px solid transparent}
+.top.scrolled{border-bottom-color:var(--line)}
+.top .ttl{flex:1;font-family:var(--f-head);font-weight:600;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand{display:flex;align-items:center;gap:8px;font-family:var(--f-head);font-weight:700;font-size:17px;flex:1}
+.brand b{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--green);color:#fff;font-size:13px;letter-spacing:.02em}
+.ibtn{width:44px;height:44px;display:grid;place-items:center;border:0;background:transparent;border-radius:12px}
+.ibtn:active{background:var(--line)}
+.ibtn svg{width:22px;height:22px}
+
+.view{padding:8px 16px 0;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.view{animation:none}}
+
+/* bottom nav */
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+.nav-in{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);height:var(--nav-h)}
+.nav button{border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11.5px;color:var(--muted);font-weight:500}
+.nav button svg{width:22px;height:22px}
+.nav button.on{color:var(--green)}
+.nav button.on svg{stroke-width:2.2}
+
+/* type helpers */
+.eyebrow{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+.sec{margin:26px 0 10px;display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.sec h2{font-size:19px}
+.sec a,.link{color:var(--green);font-weight:600;font-size:14px;text-decoration:none;background:none;border:0;padding:0}
+
+/* cards */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
+.card + .card{margin-top:12px}
+.stack>*+*{margin-top:12px}
+
+/* hero (home) */
+.hero{background:var(--green);color:#f3f1e9;border-radius:20px;padding:20px 20px 18px;position:relative;overflow:hidden}
+.hero .hi{font-size:15px;opacity:.85}
+.hero h1{font-size:24px;margin:2px 0 14px;color:#fff}
+.hero .goal{display:flex;align-items:flex-end;gap:14px}
+.hero .lvl{font-family:var(--f-head);font-weight:700;font-size:56px;line-height:.9;color:var(--gold);letter-spacing:-.02em}
+.hero .goal p{margin:0;font-size:13.5px;opacity:.9;line-height:1.45}
+.hero .bar{margin-top:16px;height:8px;background:rgba(255,255,255,.16);border-radius:99px;overflow:hidden}
+.hero .bar i{display:block;height:100%;background:var(--gold);border-radius:99px;transition:width .6s ease}
+.hero .meta{display:flex;justify-content:space-between;font-size:13px;margin-top:6px;opacity:.9}
+.hero .grid-lines{position:absolute;right:-30px;top:-30px;width:180px;height:180px;border-radius:50%;border:1px solid rgba(255,255,255,.09);box-shadow:0 0 0 22px rgba(255,255,255,.03),0 0 0 44px rgba(255,255,255,.025)}
+
+.continue{display:flex;align-items:center;gap:14px;margin-top:14px;width:100%;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:var(--r);padding:14px 16px;box-shadow:var(--shadow)}
+.continue .n{font-family:var(--f-head);font-weight:700;font-size:22px;width:46px;height:46px;flex:none;border-radius:12px;display:grid;place-items:center;background:var(--gold-soft);color:#8a5a0c}
+.continue .tx{flex:1;min-width:0}
+.continue .tx b{display:block;font-family:var(--f-head);font-size:16px}
+.continue .tx span{font-size:13.5px;color:var(--muted)}
+.continue svg{width:22px;height:22px;color:var(--green)}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
+.stat b{font-family:var(--f-head);font-size:22px;display:block;line-height:1.1}
+.stat span{font-size:12.5px;color:var(--muted)}
+
+/* list rows */
+.rows{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.row{display:flex;align-items:center;gap:12px;padding:14px 16px;width:100%;border:0;background:none;text-align:left;border-bottom:1px solid var(--line);min-height:60px}
+.row:last-child{border-bottom:0}
+.row:active{background:var(--paper)}
+.row .tx{flex:1;min-width:0}
+.row .tx b{display:block;font-weight:600}
+.row .tx span{display:block;font-size:13.5px;color:var(--muted)}
+.row .chev{width:18px;height:18px;color:var(--muted);flex:none}
+.dot{width:28px;height:28px;flex:none;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--line);font-size:13px;font-weight:600;color:var(--muted)}
+.dot.ok{background:var(--green);border-color:var(--green);color:#fff}
+.dot.ok svg{width:16px;height:16px}
+.dot.part{border-color:var(--gold);color:#8a5a0c;background:var(--gold-soft)}
+
+/* unit cards */
+.unit{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
+.unit + .unit{margin-top:10px}
+.unit .head{display:flex;gap:14px;align-items:flex-start}
+.unit .no{font-family:var(--f-head);font-weight:700;font-size:28px;line-height:1;color:var(--green);width:34px;flex:none}
+.unit h3{font-size:17px}
+.unit .th{font-size:14px;color:var(--muted)}
+.unit .focus{display:inline-block;margin-top:8px;font-size:12.5px;padding:3px 10px;border-radius:99px;background:var(--green-soft);color:var(--green);font-weight:600}
+.unit .pbar{margin-top:12px;height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.unit .pbar i{display:block;height:100%;background:var(--green-2)}
+.unit.done .no{color:var(--gold)}
+
+/* unit page header */
+.uhead{padding:6px 0 4px}
+.uhead .eyebrow{color:var(--green)}
+.uhead h1{font-size:26px;margin:2px 0 2px}
+.uhead p{color:var(--muted);margin:0}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border-radius:12px;border:1px solid transparent;font-weight:600;font-size:15.5px;background:var(--green);color:#fff;width:100%}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:var(--card);color:var(--ink);border-color:var(--line)}
+.btn.gold{background:var(--gold);color:#2b1d03}
+.btn[disabled]{opacity:.45;pointer-events:none}
+.btn svg{width:20px;height:20px}
+.btns{display:grid;gap:10px;margin-top:18px}
+.btns.two{grid-template-columns:1fr 1fr}
+
+.chip{flex:none;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 14px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-size:14px;font-weight:500}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 6px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+
+/* vocab */
+.vocab{display:flex;gap:12px;align-items:flex-start}
+.vocab .tx{flex:1}
+.vocab .w{font-family:var(--f-head);font-weight:600;font-size:19px}
+.vocab .p{font-size:13px;color:var(--muted);margin-left:6px;font-style:italic}
+.vocab .t{display:block;margin:2px 0 6px}
+.vocab .ex{font-family:var(--f-read);font-size:15px;color:#36463e;line-height:1.5}
+.say{width:44px;height:44px;flex:none;display:grid;place-items:center;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--green)}
+.say svg{width:20px;height:20px}
+.say.playing{background:var(--green);color:#fff;border-color:var(--green)}
+
+/* grammar */
+.rule h3{font-size:16.5px;margin-bottom:6px}
+.formula{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:13.5px;background:var(--green-soft);color:var(--green);padding:8px 12px;border-radius:8px;margin:0 0 10px;line-height:1.5}
+.ex-line{display:flex;align-items:center;gap:8px;font-family:var(--f-read);font-size:15.5px;padding:4px 0}
+.ex-line .say{width:34px;height:34px}
+.ex-line .say svg{width:16px;height:16px}
+.tips{margin:0;padding:0;list-style:none}
+.tips li{padding:8px 0 8px 26px;position:relative;font-size:15px;border-bottom:1px dashed var(--line)}
+.tips li:last-child{border-bottom:0}
+.tips li::before{content:"";position:absolute;left:4px;top:16px;width:8px;height:8px;border-radius:50%;background:var(--gold)}
+
+/* reading */
+.passage{font-family:var(--f-read);font-size:17px;line-height:1.75;color:#22322a}
+.passage p{margin:0 0 1em}
+.passage.collapsed{max-height:160px;overflow:hidden;-webkit-mask-image:linear-gradient(#000 60%,transparent)}
+
+/* listening player */
+.player{display:flex;align-items:center;gap:14px}
+.play{width:64px;height:64px;border-radius:50%;border:0;background:var(--green);color:#fff;display:grid;place-items:center;flex:none;box-shadow:0 8px 20px -8px rgba(31,90,68,.6)}
+.play svg{width:28px;height:28px}
+.play.playing{background:var(--gold);color:#2b1d03}
+.player .tx{flex:1}
+.player .tx b{display:block;font-family:var(--f-head)}
+.script{white-space:pre-wrap;font-family:var(--f-read);font-size:15.5px;line-height:1.7;background:var(--paper);border-radius:10px;padding:12px 14px;margin-top:12px}
+
+/* questions */
+.q{padding:4px 0}
+.q + .q{border-top:1px solid var(--line);padding-top:16px;margin-top:12px}
+.q .qt{font-weight:600;margin-bottom:10px}
+.q .qt i{font-style:normal;color:var(--muted);font-weight:500;margin-right:4px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;align-items:center;gap:10px;text-align:left;min-height:48px;padding:10px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);font-size:15.5px;line-height:1.4}
+.opt .k{width:26px;height:26px;flex:none;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:600;background:var(--paper);color:var(--muted)}
+.opt.sel{border-color:var(--ink)}
+.opt.sel .k{background:var(--ink);color:#fff}
+.opt.right{border-color:var(--green-2);background:var(--green-soft)}
+.opt.right .k{background:var(--green-2);color:#fff}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.wrong .k{background:var(--bad);color:#fff}
+.opt[disabled]{cursor:default}
+.explain{margin-top:10px;font-size:14.5px;padding:10px 12px;border-radius:10px;background:var(--paper);color:#38473f}
+.explain b{color:var(--green)}
+#view > .explain{background:var(--card);border:1px solid var(--line)}
+.fc .bw{font-family:var(--f-head);font-weight:600;color:var(--green);margin-bottom:6px}
+.explain.no b{color:var(--bad)}
+
+/* runner */
+.runner-top{display:flex;align-items:center;gap:10px;margin:4px 0 14px}
+.runner-top .track{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.runner-top .track i{display:block;height:100%;background:var(--green);transition:width .3s}
+.runner-top span{font-size:13.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.timer{font-variant-numeric:tabular-nums;font-weight:600;font-size:14px;padding:4px 10px;border-radius:99px;background:var(--card);border:1px solid var(--line)}
+.timer.low{color:var(--bad);border-color:var(--bad)}
+.ctx{margin-bottom:14px}
+.ctx summary{cursor:pointer;font-weight:600;color:var(--green);padding:6px 0;list-style:none}
+.ctx summary::-webkit-details-marker{display:none}
+.qbig{font-family:var(--f-head);font-size:20px;font-weight:600;line-height:1.4;margin:6px 0 16px}
+
+/* result */
+.result{text-align:center;padding:26px 16px}
+.score-ring{width:150px;height:150px;margin:0 auto 12px;position:relative}
+.score-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.score-ring .v{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-head)}
+.score-ring .v b{font-size:38px;line-height:1}
+.score-ring .v span{font-size:13px;color:var(--muted);display:block}
+.badge{display:inline-block;padding:4px 14px;border-radius:99px;font-weight:700;font-family:var(--f-head);font-size:15px}
+.badge.b2{background:var(--green);color:#fff}
+.badge.b1{background:var(--gold-soft);color:#8a5a0c}
+.badge.a2{background:var(--bad-soft);color:var(--bad)}
+.breakdown{display:grid;gap:8px;margin-top:16px;text-align:left}
+.breakdown .ln{display:grid;grid-template-columns:96px 1fr 44px;align-items:center;gap:10px;font-size:14px}
+.breakdown .ln .t{height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.breakdown .ln .t i{display:block;height:100%;background:var(--green-2)}
+
+/* flashcards */
+.fc-wrap{perspective:1200px;margin:6px 0 16px}
+.fc{position:relative;height:300px;transition:transform .5s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d;cursor:pointer}
+.fc.flip{transform:rotateY(180deg)}
+.fc .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:22px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}
+.fc .back{transform:rotateY(180deg);background:#fbf7ee}
+.fc .w{font-family:var(--f-head);font-weight:700;font-size:34px;line-height:1.15}
+.fc .p{color:var(--muted);font-style:italic;margin-top:4px}
+.fc .hint{position:absolute;bottom:14px;font-size:12.5px;color:var(--muted)}
+.fc .t{font-size:21px;font-weight:600;margin-bottom:12px}
+.fc .ex{font-family:var(--f-read);font-size:16px;color:#36463e}
+.fc .unit-tag{position:absolute;top:14px;left:16px;font-size:12px;color:var(--muted)}
+.fc .say{position:absolute;top:10px;right:10px}
+@media (prefers-reduced-motion:reduce){.fc{transition:none}}
+
+/* textarea */
+textarea,input[type=text],input[type=date],select{width:100%;font:inherit;font-size:16px;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--card);color:var(--ink)}
+textarea{min-height:220px;resize:vertical;font-family:var(--f-read);line-height:1.6}
+textarea:focus,input:focus,select:focus{outline:2px solid var(--green-2);outline-offset:1px;border-color:transparent}
+label.lb{display:block;font-weight:600;font-size:14.5px;margin:14px 0 6px}
+.wc{display:flex;justify-content:space-between;font-size:13.5px;color:var(--muted);margin-top:6px}
+
+/* info page */
+.table{width:100%;border-collapse:collapse;font-size:15px}
+.table th,.table td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.table th{white-space:nowrap;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600}
+.table td b{font-family:var(--f-head)}
+.timeline{list-style:none;margin:0;padding:0;counter-reset:s}
+.timeline li{position:relative;padding:0 0 16px 40px;counter-increment:s}
+.timeline li::before{content:counter(s);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700}
+.timeline li::after{content:"";position:absolute;left:13.5px;top:30px;bottom:2px;width:1px;background:var(--line)}
+.timeline li:last-child::after{display:none}
+.timeline b{display:block}
+.note{font-size:13.5px;color:var(--muted);background:var(--paper);border:1px dashed var(--line);border-radius:12px;padding:12px 14px;margin-top:14px}
+.big-compare{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;text-align:center;margin:6px 0 4px}
+.big-compare b{font-family:var(--f-head);font-size:40px;line-height:1;display:block}
+.big-compare .from b{color:var(--muted);text-decoration:line-through;text-decoration-thickness:2px}
+.big-compare .to b{color:var(--green)}
+.big-compare span{font-size:13px;color:var(--muted)}
+.big-compare svg{width:28px;height:28px;color:var(--gold)}
+
+/* plan */
+details.plan summary{list-style:none;cursor:pointer}
+details.plan summary::-webkit-details-marker{display:none}
+.plan-list{margin-top:10px}
+.plan-list .pl{display:grid;grid-template-columns:44px 1fr;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.plan-list .pl .wk{font-family:var(--f-head);font-weight:700;color:var(--green);font-size:13px;line-height:1.2}
+.plan-list .pl .wk small{display:block;font-size:20px}
+.plan-list .pl b{font-size:15px;display:block}
+.plan-list .pl span{font-size:13.5px;color:var(--muted)}
+.plan-list .pl.now{background:var(--gold-soft);margin:0 -16px;padding:10px 16px}
+
+/* onboarding */
+.onb{padding:28px 4px 0}
+.onb h1{font-size:30px;margin:10px 0 8px}
+.onb .lead{font-size:16px;color:var(--muted)}
+.seg{display:grid;gap:8px}
+.seg button{display:flex;gap:12px;align-items:center;text-align:left;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);min-height:56px}
+.seg button.on{border-color:var(--green);background:var(--green-soft)}
+.seg button b{font-family:var(--f-head);font-size:18px;width:36px;color:var(--green)}
+
+.toast{position:fixed;left:50%;bottom:calc(var(--nav-h) + 18px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:10px 18px;border-radius:99px;font-size:14px;opacity:0;transition:.25s;pointer-events:none;z-index:20;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.empty{text-align:center;padding:36px 12px}
+.empty h2{font-size:21px;margin-bottom:6px}
+.center{text-align:center}
+.mt{margin-top:16px}
+.hide{display:none!important}
+
+@media (min-width:600px){
+  .app{padding-top:12px}
+  .view{padding:8px 20px 0}
+}
+
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top" id="top"></header>
+  <main id="view" class="view"></main>
+</div>
+<nav class="nav" aria-label="เมนูหลัก"><div class="nav-in">
+  <button data-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg>หน้าหลัก</button>
+  <button data-tab="units"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H20v15H5.5A1.5 1.5 0 0 0 4 19.5z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20"/><path d="M8 7h8M8 11h6"/></svg>บทเรียน</button>
+  <button data-tab="practice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="15" rx="2"/><path d="M8 3h11a2 2 0 0 1 2 2v13"/></svg>คำศัพท์</button>
+  <button data-tab="mock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="m8 9 1.5 1.5L12 8M8 15l1.5 1.5L12 14M14.5 9.5H17M14.5 15.5H17"/></svg>สอบจำลอง</button>
+  <button data-tab="info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>เกณฑ์ ก.ค.ศ.</button>
+</div></nav>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+/* B2 Ready for Teachers — course content
+   q: question, o: options (o[a] is correct; options are shuffled at runtime), e: Thai explanation */
+window.COURSE = {
+  units: [
+    /* ───────────────────────── UNIT 1 ───────────────────────── */
+    {
+      id: 'u1', no: 1,
+      title: 'Classroom Life', th: 'ชีวิตในห้องเรียน',
+      focus: 'Present Perfect vs Past Simple',
+      vocab: [
+        { w: 'engage', p: 'v.', t: 'ดึงให้มีส่วนร่วม / ดึงความสนใจ', ex: 'Group tasks help engage quieter students.' },
+        { w: 'curriculum', p: 'n.', t: 'หลักสูตร', ex: 'The new curriculum focuses on active learning.' },
+        { w: 'differentiate', p: 'v.', t: 'จัดการเรียนรู้ให้เหมาะกับผู้เรียนแต่ละระดับ', ex: 'Good teachers differentiate tasks for mixed-ability classes.' },
+        { w: 'objective', p: 'n.', t: 'จุดประสงค์การเรียนรู้', ex: 'I always share the lesson objective at the start.' },
+        { w: 'disruptive', p: 'adj.', t: 'ที่ก่อความวุ่นวาย', ex: 'Disruptive behaviour often means that a student is bored.' },
+        { w: 'encourage', p: 'v.', t: 'ส่งเสริม / ให้กำลังใจ', ex: 'We encourage students to ask questions.' },
+        { w: 'attendance', p: 'n.', t: 'การเข้าเรียน', ex: 'Attendance has improved since we started the breakfast club.' },
+        { w: 'routine', p: 'n.', t: 'กิจวัตร / ขั้นตอนที่ทำเป็นประจำ', ex: 'A clear routine saves time at the start of each lesson.' }
+      ],
+      grammar: {
+        title: 'Present Perfect vs Past Simple',
+        intro: 'ระดับ B2 ต้องแยกให้ออกว่าเหตุการณ์ "จบไปแล้วในอดีตที่ระบุเวลา" หรือ "เชื่อมโยงกับปัจจุบัน" ข้อสอบชอบหลอกด้วยคำบอกเวลา',
+        rules: [
+          { h: 'Past Simple — จบแล้ว ระบุเวลาในอดีต', f: 'S + V2  (yesterday, last year, in 2020, ago)', ex: ['I taught at a primary school in 2018.', 'We introduced the new curriculum last semester.'] },
+          { h: 'Present Perfect — มีผลถึงปัจจุบัน / ประสบการณ์', f: 'S + have/has + V3  (since, for, already, yet, ever, never)', ex: ['I have worked here since 2019.', 'Have you ever taken an online course?'] },
+          { h: 'Present Perfect Continuous — เน้นความต่อเนื่อง', f: 'S + have/has been + V-ing', ex: ['The students are tired because they have been studying all morning.'] }
+        ],
+        tips: ['ถ้ามีคำบอกเวลาในอดีตที่ชัดเจน (last week, ago, in 2020) → ใช้ Past Simple เท่านั้น', 'since + จุดเริ่มต้นของเวลา (since 2019) / for + ช่วงเวลา (for five years)', 'ผิดบ่อย: ✗ I have visited Chiang Mai last year. → ✓ I visited Chiang Mai last year.']
+      },
+      reading: {
+        title: 'The Five-Minute Start',
+        text: `Many teachers lose the first ten minutes of a lesson. Students arrive late, bags are unpacked slowly, and the noise level rises before any learning has begun. At Ban Nong Khai School, a group of teachers decided to try a simple solution: a "five-minute start". As soon as students enter the room, they find a short task on the board, such as a vocabulary puzzle or a question about the previous lesson. They work on it silently while the teacher takes attendance.
+
+Since the routine was introduced last year, teachers have noticed fewer disruptive moments at the beginning of lessons. "The students know exactly what to do, so I don't need to raise my voice," explains Ms Pranee, who teaches science. However, she admits that the tasks must be carefully planned. If they are too difficult, weaker students give up; if they are too easy, students finish in a minute and start chatting. The key, she says, is to differentiate: she now prepares two versions of each task.`,
+        qs: [
+          { q: 'What problem were the teachers trying to solve?', o: ['Time being wasted at the start of lessons', 'Students failing their science exams', 'A lack of vocabulary materials', 'Teachers arriving late to class'], a: 0, e: 'ย่อหน้าแรก: "Many teachers lose the first ten minutes of a lesson."' },
+          { q: 'What does the teacher do while students work on the task?', o: ['Takes attendance', 'Writes the next task', 'Talks to weaker students', 'Marks homework'], a: 0, e: '"They work on it silently while the teacher takes attendance."' },
+          { q: 'Why does Ms Pranee prepare two versions of each task?', o: ['To suit students of different abilities', 'To use them in two different classes', 'Because the first version is often wrong', 'To give students homework'], a: 0, e: 'งานยากไปเด็กอ่อนท้อ ง่ายไปเด็กเก่งคุย จึงต้อง differentiate' }
+        ]
+      },
+      listening: {
+        title: 'A Colleague Asks About Your New Class',
+        script: `A: How was your first week with the new class?
+B: Better than I expected, actually. I've already learned all their names, which helps a lot.
+A: That's great. Have you had any problems with behaviour?
+B: Only on Monday. Two boys at the back kept talking, so I moved them to the front. Since then, they've been fine.
+A: Smart move. Are you using the group work activities we discussed?
+B: Not yet. I want to establish the routine first. I'll probably start next week.`,
+        qs: [
+          { q: 'What did speaker B do about the two boys?', o: ['Moved them to the front', 'Sent them to the head teacher', 'Called their parents', 'Put them in a group'], a: 0, e: '"so I moved them to the front"' },
+          { q: 'When will speaker B probably start group work?', o: ['Next week', 'Tomorrow', 'On Monday', 'Next semester'], a: 0, e: '"I\'ll probably start next week."' }
+        ]
+      },
+      writing: {
+        prompt: 'A new colleague is starting at your school next week. Write an email (120–150 words) giving advice about managing a class in the first week.',
+        tips: ['ขึ้นต้น/ลงท้ายอีเมลให้ถูกต้อง (Hi … / Best wishes,)', 'ให้คำแนะนำ 2–3 ข้อ พร้อมเหตุผล', 'ใช้ Present Perfect อย่างน้อย 1 ครั้ง เช่น I have found that…', 'ใช้คำเชื่อม: First of all, Also, Finally'],
+        model: `Hi Nok,
+
+Welcome to the team! I'm sure you'll enjoy working here. Since you asked for advice about your first week, here are a few ideas that have worked for me.
+
+First of all, set up a clear routine from day one. I have found that students behave much better when they know exactly what to do as soon as they enter the room. Also, try to learn their names quickly – it shows you care and makes it easier to manage the class.
+
+If a student is disruptive, stay calm and speak to them privately after the lesson rather than in front of everyone. Finally, don't try to do everything at once. Focus on building good relationships first; group work and projects can wait a week or two.
+
+Let me know if you need anything!
+
+Best wishes,
+Dao`
+      },
+      quiz: [
+        { q: 'I ___ at this school since 2019.', o: ['have worked', 'worked', 'am working', 'work'], a: 0, e: 'since 2019 → Present Perfect' },
+        { q: 'We ___ the new curriculum last semester.', o: ['introduced', 'have introduced', 'introduce', 'have been introducing'], a: 0, e: 'last semester = เวลาในอดีตที่ระบุ → Past Simple' },
+        { q: '___ you ever ___ an online course?', o: ['Have / taken', 'Did / took', 'Do / take', 'Has / took'], a: 0, e: 'ever = ประสบการณ์ → Have you ever + V3' },
+        { q: 'The students look exhausted. They ___ for the exam all morning.', o: ['have been studying', 'studied', 'study', 'are studied'], a: 0, e: 'เน้นความต่อเนื่องที่ส่งผลถึงตอนนี้ → Present Perfect Continuous' },
+        { q: 'A good teacher should ___ tasks for students with different abilities.', o: ['differentiate', 'disrupt', 'attend', 'object'], a: 0, e: 'differentiate = ปรับงานให้เหมาะกับผู้เรียนแต่ละระดับ' },
+        { q: 'Students who are bored may become ___.', o: ['disruptive', 'encouraged', 'attended', 'curriculum'], a: 0, e: 'disruptive (adj.) = ก่อความวุ่นวาย' }
+      ]
+    },
+
+    /* ───────────────────────── UNIT 2 ───────────────────────── */
+    {
+      id: 'u2', no: 2,
+      title: 'Talking to Parents', th: 'การสื่อสารกับผู้ปกครอง',
+      focus: 'Polite language & Modals',
+      vocab: [
+        { w: 'concern', p: 'n.', t: 'ความกังวล / เรื่องที่น่าเป็นห่วง', ex: 'Thank you for raising your concern with me.' },
+        { w: 'appreciate', p: 'v.', t: 'ซาบซึ้ง / ขอบคุณ', ex: 'I would appreciate it if you could sign the form.' },
+        { w: 'progress', p: 'n.', t: 'ความก้าวหน้า', ex: 'Her progress in reading has been impressive.' },
+        { w: 'arrange', p: 'v.', t: 'จัดเตรียม / นัดหมาย', ex: 'Could we arrange a meeting next week?' },
+        { w: 'support', p: 'n./v.', t: 'การสนับสนุน / สนับสนุน', ex: 'We really need your support at home.' },
+        { w: 'behaviour', p: 'n.', t: 'พฤติกรรม', ex: 'His behaviour in class has improved a lot.' },
+        { w: 'regarding', p: 'prep.', t: 'เกี่ยวกับ', ex: 'I am writing regarding the school trip.' },
+        { w: 'inform', p: 'v.', t: 'แจ้งให้ทราบ', ex: 'Please inform us if your child will be absent.' }
+      ],
+      grammar: {
+        title: 'Polite Requests & Modals',
+        intro: 'ภาษาสุภาพเป็นหัวใจของการสื่อสารแบบมืออาชีพ ข้อสอบ B2 มักถามว่า "ประโยคไหนสุภาพที่สุด" หรือให้เติมโครงสร้างที่ถูกต้อง',
+        rules: [
+          { h: 'ขอร้องอย่างสุภาพ', f: 'Could you + V1…? / Would you mind + V-ing…?', ex: ['Could you sign the form, please?', 'Would you mind checking her homework diary?'] },
+          { h: 'สุภาพมากขึ้น (ทางการ)', f: 'I would appreciate it if you could + V1', ex: ['I would appreciate it if you could reply by Friday.'] },
+          { h: 'ให้คำแนะนำ / ความเป็นไปได้', f: 'should / ought to (แนะนำ)  ·  might / could (อาจจะ)', ex: ['You should talk to the school counsellor.', 'He might come to school after lunch.'] }
+        ],
+        tips: ['Would you mind ตามด้วย V-ing เสมอ: ✗ Would you mind to check → ✓ Would you mind checking', 'ตอบ "Would you mind…?" ว่ายินดี = "Not at all." (ไม่รังเกียจเลย)', 'อีเมลทางการ: I am writing regarding / with regard to …']
+      },
+      reading: {
+        title: 'An Email to Parents',
+        text: `Dear Mr and Mrs Somchai,
+
+I am writing regarding Nida's progress in English this term. First of all, I would like to say how much I appreciate the support you have given her at home. Her reading has improved noticeably, and she now takes part in class discussions with much more confidence.
+
+However, I have one small concern. Nida has not handed in three of her last five homework tasks. When I asked her about it, she said that she often forgets because she has extra classes in the evening. I completely understand that her schedule is busy, but homework is an important part of her assessment.
+
+Would you mind checking her homework diary once a week? Alternatively, we could arrange a short meeting to find a solution together. I am available on Tuesday and Thursday afternoons.
+
+Kind regards,
+Ms Kanya Srisuk
+English Department`,
+        qs: [
+          { q: 'What is the main purpose of the email?', o: ['To report progress and raise a concern about homework', 'To complain about Nida\'s behaviour', 'To invite parents to a school event', 'To explain a new assessment policy'], a: 0, e: 'ชมความก้าวหน้า + แจ้งเรื่องการบ้านที่ไม่ส่ง' },
+          { q: 'Why does Nida often miss her homework?', o: ['She forgets because of evening extra classes', 'She finds it too difficult', 'She does not have a homework diary', 'She is often absent from school'], a: 0, e: '"she often forgets because she has extra classes in the evening"' },
+          { q: 'What does the teacher suggest?', o: ['Checking the homework diary or meeting', 'Stopping her extra classes', 'Giving Nida less homework', 'Moving Nida to another class'], a: 0, e: '"Would you mind checking her homework diary… Alternatively, we could arrange a short meeting"' }
+        ]
+      },
+      listening: {
+        title: 'A Phone Call from a Parent',
+        script: `A: Good afternoon, this is Mrs Malee, Ton's mother. I'm calling to inform you that Ton will be absent tomorrow.
+B: Thank you for letting me know. Is he unwell?
+A: No, he has a dental appointment in the morning. He might come to school after lunch, but I'm not sure.
+B: That's fine. Could you ask him to check the class website? I'll upload the worksheet there.
+A: Of course. Thank you so much.`,
+        qs: [
+          { q: 'Why will Ton be absent?', o: ['He has a dental appointment', 'He is unwell', 'He has a family trip', 'He has an exam elsewhere'], a: 0, e: '"he has a dental appointment in the morning"' },
+          { q: 'What does the teacher ask Ton to do?', o: ['Check the class website for the worksheet', 'Come to school after lunch', 'Call the teacher', 'Bring a letter from the dentist'], a: 0, e: '"Could you ask him to check the class website? I\'ll upload the worksheet there."' }
+        ]
+      },
+      writing: {
+        prompt: 'Write a message (120–150 words) to a parent inviting them to a meeting to discuss their child\'s progress. Be polite and suggest two possible times.',
+        tips: ['บอกจุดประสงค์ตั้งแต่ประโยคแรก (I am writing to…)', 'เริ่มด้วยเรื่องบวกก่อนเรื่องที่กังวล', 'ใช้ภาษาสุภาพ: Would you mind…, I would appreciate it if…', 'เสนอวัน/เวลาชัดเจน และปิดท้ายอย่างเป็นมิตร'],
+        model: `Dear Mrs Wongsa,
+
+I am writing to invite you to a short meeting to discuss Krit's progress this term.
+
+First of all, I am pleased to say that Krit has become much more confident when speaking English, and he is always polite and helpful in class. However, I have noticed that his test scores have dropped recently, and I would like to work with you to find out how we can support him.
+
+Would you be available on Wednesday at 3.30 p.m. or Friday at 4.00 p.m.? The meeting should take about twenty minutes. If neither time is convenient, I would appreciate it if you could suggest another day.
+
+Thank you very much for your support. I look forward to meeting you.
+
+Kind regards,
+Mr Anan
+English Teacher, Grade 8`
+      },
+      quiz: [
+        { q: '___ you mind closing the door, please?', o: ['Would', 'Could', 'Should', 'Will'], a: 0, e: 'โครงสร้างตายตัว: Would you mind + V-ing' },
+        { q: 'I would appreciate it if you ___ reply by Friday.', o: ['could', 'can', 'will be', 'are'], a: 0, e: 'I would appreciate it if you could + V1' },
+        { q: 'I\'m writing ___ your son\'s behaviour in class.', o: ['regarding', 'regarded', 'regards', 'regardless'], a: 0, e: 'regarding = เกี่ยวกับ (preposition)' },
+        { q: 'You ___ talk to the school counsellor. She is very helpful.', o: ['should', 'mustn\'t', 'needn\'t', 'couldn\'t'], a: 0, e: 'ให้คำแนะนำ → should' },
+        { q: 'Please ___ us if your child has any allergies.', o: ['inform', 'concern', 'arrange', 'appreciate'], a: 0, e: 'inform somebody = แจ้งให้ทราบ' },
+        { q: 'Which sentence is the MOST polite?', o: ['Could you possibly send me the form by Monday?', 'Send me the form by Monday.', 'You must send me the form by Monday.', 'I want the form on Monday.'], a: 0, e: 'Could you possibly… เป็นการขอร้องที่สุภาพที่สุด' }
+      ]
+    },
+
+    /* ───────────────────────── UNIT 3 ───────────────────────── */
+    {
+      id: 'u3', no: 3,
+      title: 'Technology in Education', th: 'เทคโนโลยีการศึกษา',
+      focus: 'Passive Voice',
+      vocab: [
+        { w: 'device', p: 'n.', t: 'อุปกรณ์', ex: 'Every student will be given a device.' },
+        { w: 'access', p: 'n./v.', t: 'การเข้าถึง / เข้าถึง', ex: 'Students in rural areas often lack internet access.' },
+        { w: 'platform', p: 'n.', t: 'แพลตฟอร์ม / ระบบออนไลน์', ex: 'We upload all assignments to the online platform.' },
+        { w: 'digital literacy', p: 'n.', t: 'ความรู้เท่าทันดิจิทัล', ex: 'Digital literacy is now part of the curriculum.' },
+        { w: 'implement', p: 'v.', t: 'นำไปใช้ / นำไปปฏิบัติ', ex: 'The school will implement the new system next term.' },
+        { w: 'distraction', p: 'n.', t: 'สิ่งที่ทำให้ไขว้เขว', ex: 'Phones can be a major distraction in class.' },
+        { w: 'interactive', p: 'adj.', t: 'ที่โต้ตอบได้', ex: 'Interactive quizzes make revision more fun.' },
+        { w: 'evaluate', p: 'v.', t: 'ประเมิน', ex: 'We need to evaluate the project before we expand it.' }
+      ],
+      grammar: {
+        title: 'Passive Voice',
+        intro: 'Passive ใช้เมื่อ "สิ่งที่ถูกกระทำ" สำคัญกว่าผู้กระทำ พบมากในบทอ่านเชิงวิชาการ รายงาน และประกาศ',
+        rules: [
+          { h: 'โครงสร้างหลัก', f: 'S + be (ผันตาม tense) + V3 (+ by …)', ex: ['The tablets were given to every classroom.', 'The project was funded by a local company.'] },
+          { h: 'Passive ใน tense ต่าง ๆ', f: 'is done · was done · has been done · will be done · is being done', ex: ['The results haven\'t been announced yet.', 'The session will be held in the computer room.'] },
+          { h: 'Passive กับ modal', f: 'modal + be + V3', ex: ['Projects like this should be evaluated carefully.', 'Phones must be switched off during the exam.'] }
+        ],
+        tips: ['ใส่ by … เฉพาะเมื่อผู้กระทำสำคัญ', 'กริยาที่ไม่มีกรรม (arrive, happen) ทำเป็น passive ไม่ได้: ✗ The accident was happened', 'It is said / It is believed that… เป็นสำนวนวิชาการที่เจอบ่อยในข้อสอบอ่าน']
+      },
+      reading: {
+        title: 'Tablets in Every Classroom?',
+        text: `Three years ago, every classroom in a district in northern Thailand was given a set of tablets. The project was funded by a local technology company, and teachers were trained to use an online learning platform. The aim was to make lessons more interactive and to improve students' digital literacy.
+
+The results have been mixed. In some schools, the devices are used every day for research, quizzes and creative projects. Students say lessons are more enjoyable, and test scores in science have risen slightly. In other schools, however, the tablets are rarely taken out of their boxes. Teachers report that the internet connection is too slow and that students are easily distracted by games.
+
+A recent report suggests that technology alone cannot change learning. It concludes that projects like this should be evaluated carefully and that teachers need ongoing support, not just a single training day, if new tools are to be implemented successfully.`,
+        qs: [
+          { q: 'Who paid for the project?', o: ['A local technology company', 'The national government', 'The schools themselves', 'Students\' parents'], a: 0, e: '"The project was funded by a local technology company"' },
+          { q: 'What problems were reported in some schools?', o: ['Slow internet and students being distracted', 'Broken devices and a lack of teachers', 'Too many tests and quizzes', 'Students refusing to use the tablets'], a: 0, e: '"the internet connection is too slow and… students are easily distracted by games"' },
+          { q: 'What is the main conclusion of the report?', o: ['Teachers need ongoing support; technology alone is not enough', 'Tablets should be removed from schools', 'One training day is usually sufficient', 'Science scores improve with any technology'], a: 0, e: '"technology alone cannot change learning… teachers need ongoing support"' }
+        ]
+      },
+      listening: {
+        title: 'Staff Announcement',
+        script: `Good morning, everyone. This is a quick reminder about next week's training session. The session will be held in the computer room on Wednesday at three thirty. You will be shown how to create interactive quizzes on the new platform. Laptops will be provided, but please bring your login details. The session is expected to last about ninety minutes. If you can't attend, a recording will be shared on the staff website.`,
+        qs: [
+          { q: 'What will teachers learn in the session?', o: ['How to create interactive quizzes', 'How to repair laptops', 'How to build a staff website', 'How to record lessons'], a: 0, e: '"You will be shown how to create interactive quizzes"' },
+          { q: 'What should teachers bring?', o: ['Their login details', 'Their own laptops', 'A recording device', 'Printed quizzes'], a: 0, e: '"Laptops will be provided, but please bring your login details."' }
+        ]
+      },
+      writing: {
+        prompt: 'Should students be allowed to use smartphones in class? Write an opinion paragraph (130–160 words) giving reasons and an example.',
+        tips: ['ประโยคแรกบอกจุดยืนชัดเจน (In my opinion, …)', 'ให้เหตุผล 2 ข้อ + ตัวอย่าง', 'แทรก passive อย่างน้อย 1 ครั้ง เช่น phones should be used only…', 'ปิดด้วยประโยคสรุป (Overall, …)'],
+        model: `In my opinion, smartphones should be allowed in class, but only when they are used for a clear learning purpose. Firstly, phones give students instant access to information. For example, in my English lessons, students use online dictionaries to check pronunciation, which is much faster than using a paper dictionary. Secondly, many interactive learning apps can make practice more engaging, especially for students who are shy about speaking in front of others.
+
+However, phones can easily become a distraction. Students may check social media or play games instead of working. For this reason, clear rules must be agreed at the start of the year. Phones should be kept face down on the desk until the teacher asks students to use them, and anyone who breaks the rule should lose the privilege for a week.
+
+Overall, I believe that if phones are managed carefully, the benefits are greater than the risks.`
+      },
+      quiz: [
+        { q: 'The new platform ___ by all teachers next term.', o: ['will be used', 'will use', 'is using', 'used'], a: 0, e: 'อนาคต + passive → will be + V3' },
+        { q: 'These tablets ___ in China.', o: ['were made', 'made', 'were make', 'have make'], a: 0, e: 'แท็บเล็ตถูกผลิต → were made' },
+        { q: 'The exam results ___ yet.', o: ['haven\'t been announced', 'haven\'t announced', 'didn\'t announce', 'aren\'t announce'], a: 0, e: 'yet → Present Perfect passive: have(n\'t) been + V3' },
+        { q: 'Students\' work ___ online every week.', o: ['is checked', 'checks', 'is checking', 'checked by'], a: 0, e: 'ทำเป็นประจำ + ถูกกระทำ → is checked' },
+        { q: 'Social media can be a big ___ for students during homework time.', o: ['distraction', 'platform', 'access', 'device'], a: 0, e: 'distraction = สิ่งที่ทำให้ไขว้เขว' },
+        { q: 'Before buying new software, we should ___ whether it really helps learning.', o: ['evaluate', 'distract', 'access', 'provide'], a: 0, e: 'evaluate = ประเมินว่าได้ผลจริงไหม' }
+      ]
+    },
+
+    /* ───────────────────────── UNIT 4 ───────────────────────── */
+    {
+      id: 'u4', no: 4,
+      title: 'Assessment & Feedback', th: 'การวัดผลและการให้ข้อมูลป้อนกลับ',
+      focus: 'Conditionals (0, 1, 2, 3)',
+      vocab: [
+        { w: 'assessment', p: 'n.', t: 'การประเมิน / การวัดผล', ex: 'Our assessment includes projects as well as tests.' },
+        { w: 'formative', p: 'adj.', t: '(การประเมิน) ระหว่างเรียน', ex: 'Formative assessment helps students improve during the unit.' },
+        { w: 'criteria', p: 'n. (pl.)', t: 'เกณฑ์ (เอกพจน์ = criterion)', ex: 'Students should know the criteria before they start.' },
+        { w: 'feedback', p: 'n.', t: 'ข้อมูลป้อนกลับ / คำติชม', ex: 'Specific feedback is more useful than a grade alone.' },
+        { w: 'rubric', p: 'n.', t: 'เกณฑ์การให้คะแนน (รูบริก)', ex: 'The rubric shows how each essay will be marked.' },
+        { w: 'achieve', p: 'v.', t: 'บรรลุ / ทำได้สำเร็จ', ex: 'Most students achieved the target score.' },
+        { w: 'improve', p: 'v.', t: 'พัฒนา / ปรับปรุง', ex: 'How can I improve my writing?' },
+        { w: 'reliable', p: 'adj.', t: 'น่าเชื่อถือ', ex: 'A single test is not always a reliable measure of ability.' }
+      ],
+      grammar: {
+        title: 'Conditionals',
+        intro: 'If-clause 4 แบบเป็นหัวข้อที่ออกสอบแทบทุกชุดในระดับ B2 โดยเฉพาะแบบที่ 2 และ 3',
+        rules: [
+          { h: 'Zero & First — ความจริง / เป็นไปได้จริง', f: 'If + Present, Present  ·  If + Present, will + V1', ex: ['If students get clear feedback, they improve faster.', 'If I give them a practice test, will you help me mark it?'] },
+          { h: 'Second — สมมติในปัจจุบัน (ไม่จริง)', f: 'If + V2 (were), would + V1', ex: ['If I had more time, I would give individual feedback.', 'If I were you, I\'d look at which questions they got wrong.'] },
+          { h: 'Third — สมมติในอดีต (เสียดาย)', f: 'If + had + V3, would have + V3', ex: ['If we had practised more reading, they would have done better.'] }
+        ],
+        tips: ['ห้ามใช้ will ใน If-clause: ✗ If it will rain → ✓ If it rains', 'unless = if … not  ·  as long as / provided that = ตราบใดที่', 'If I were you… ใช้ were กับทุกประธาน']
+      },
+      reading: {
+        title: 'Feedback That Works',
+        text: `Research consistently shows that feedback is one of the most powerful ways to improve learning, but not all feedback is equally useful. A grade on its own, such as "7/10", tells students how well they did, but not how to do better. If students only receive grades, they tend to compare themselves with classmates rather than focus on their own learning.
+
+Effective feedback, on the other hand, is specific and forward-looking. Instead of writing "Good job", a teacher might write, "Your argument is clear. Next time, support it with an example from the text." Many teachers use a rubric so that students understand the criteria before they start a task.
+
+Formative assessment, which happens during the learning process, gives students a chance to act on feedback. If teachers had more time for this kind of assessment, many experts believe students would achieve much higher results than they do in traditional end-of-term tests.`,
+        qs: [
+          { q: 'What is the problem with giving grades only?', o: ['They do not show students how to improve', 'They are not reliable', 'They take too long to write', 'Students do not understand numbers'], a: 0, e: '"tells students how well they did, but not how to do better"' },
+          { q: 'Why do teachers use a rubric?', o: ['So students understand the criteria in advance', 'To mark work more quickly', 'To compare students with classmates', 'To replace feedback completely'], a: 0, e: '"so that students understand the criteria before they start a task"' },
+          { q: 'According to experts, what would happen if teachers had more time for formative assessment?', o: ['Students would achieve higher results', 'Tests would become easier', 'Teachers would give fewer grades', 'Students would stop comparing themselves'], a: 0, e: 'ประโยคสุดท้าย (Second conditional)' }
+        ]
+      },
+      listening: {
+        title: 'Disappointing Test Results',
+        script: `A: The test results are terrible. Only half the class passed.
+B: Really? If I were you, I'd look at which questions they got wrong.
+A: I did. Most of them failed the reading section.
+B: Then maybe the texts were too long. If we'd practised more reading in class, they would have done better.
+A: You're right. If I give them a practice test next week, will you help me mark it?
+B: Sure, as long as it's not on Friday.`,
+        qs: [
+          { q: 'Which part of the test did most students fail?', o: ['Reading', 'Listening', 'Grammar', 'Writing'], a: 0, e: '"Most of them failed the reading section."' },
+          { q: 'When is speaker B NOT able to help?', o: ['On Friday', 'Next week', 'On Monday', 'After school'], a: 0, e: '"as long as it\'s not on Friday"' }
+        ]
+      },
+      writing: {
+        prompt: 'Your head of department wants to improve homework feedback. Write a short proposal (130–160 words) with two suggestions. Use at least two conditional sentences.',
+        tips: ['หัวข้อ/ประโยคเปิดบอกจุดประสงค์ (The aim of this proposal is…)', 'ข้อเสนอแนะ 2 ข้อ แต่ละข้อมีเหตุผล', 'ใช้ If-clause ≥ 2 ประโยค', 'สรุปด้วยประโยคแนะนำ (I would recommend…)'],
+        model: `Proposal: Improving Homework Feedback
+
+The aim of this proposal is to suggest two simple ways to make our homework feedback more effective.
+
+Firstly, I suggest that we replace scores with short comments for most homework tasks. At the moment, students look at the number and put the work away. If they received one specific comment, such as "Check your past tense verbs", they would know exactly what to focus on.
+
+Secondly, we could give students ten minutes at the start of the next lesson to correct their mistakes. If students act on feedback immediately, they are much more likely to remember it.
+
+Both ideas would require a little extra time at first. However, if we had tried this approach earlier, I believe our students would have made faster progress this year. I would therefore recommend testing these ideas with Grade 9 next term.`
+      },
+      quiz: [
+        { q: 'If students get clear feedback, they ___ faster.', o: ['improve', 'improved', 'would improved', 'had improved'], a: 0, e: 'Zero conditional (ความจริงทั่วไป): If + Present, Present' },
+        { q: 'If I ___ more time, I would give every student individual feedback.', o: ['had', 'have', 'will have', 'would have'], a: 0, e: 'Second conditional: If + V2, would + V1' },
+        { q: 'If she had studied harder, she ___ the exam.', o: ['would have passed', 'will pass', 'would pass', 'passed'], a: 0, e: 'Third conditional: If + had V3, would have V3' },
+        { q: 'You won\'t pass ___ you practise every day.', o: ['unless', 'if', 'although', 'despite'], a: 0, e: 'unless = if … not' },
+        { q: 'A ___ shows students exactly how their work will be graded.', o: ['rubric', 'routine', 'mentor', 'device'], a: 0, e: 'rubric = เกณฑ์การให้คะแนน' },
+        { q: '___ assessment happens during learning, not only at the end.', o: ['Formative', 'Final', 'Reliable', 'Disruptive'], a: 0, e: 'Formative assessment = การประเมินระหว่างเรียน' }
+      ]
+    },
+
+    /* ───────────────────────── UNIT 5 ───────────────────────── */
+    {
+      id: 'u5', no: 5,
+      title: 'Learning Together (PLC)', th: 'ชุมชนการเรียนรู้ทางวิชาชีพ',
+      focus: 'Relative Clauses',
+      vocab: [
+        { w: 'collaborate', p: 'v.', t: 'ร่วมมือกัน', ex: 'Teachers collaborate to plan the unit.' },
+        { w: 'reflect', p: 'v.', t: 'สะท้อนคิด / ทบทวน', ex: 'After each lesson, I reflect on what worked.' },
+        { w: 'colleague', p: 'n.', t: 'เพื่อนร่วมงาน', ex: 'A colleague observed my lesson yesterday.' },
+        { w: 'observe', p: 'v.', t: 'สังเกต (การสอน)', ex: 'We observe each other\'s lessons once a month.' },
+        { w: 'mentor', p: 'n.', t: 'ครูพี่เลี้ยง', ex: 'My mentor helped me during my first year.' },
+        { w: 'expertise', p: 'n.', t: 'ความเชี่ยวชาญ', ex: 'She shared her expertise in project-based learning.' },
+        { w: 'outcome', p: 'n.', t: 'ผลลัพธ์', ex: 'We discussed the outcome of the new approach.' },
+        { w: 'workload', p: 'n.', t: 'ภาระงาน', ex: 'Paperwork adds to teachers\' workload.' }
+      ],
+      grammar: {
+        title: 'Relative Clauses',
+        intro: 'ใช้ขยายคำนามให้ประโยคยาวและเป็นธรรมชาติขึ้น — เป็นทักษะสำคัญทั้งการอ่านและการเขียนระดับ B2',
+        rules: [
+          { h: 'who / which / that', f: 'who = คน · which = สิ่งของ · that = ได้ทั้งคน/สิ่งของ (เฉพาะแบบ defining)', ex: ['The teacher who observed my lesson gave me useful advice.', 'The book that you recommended was very helpful.'] },
+          { h: 'whose / where / when', f: 'whose = ของ… · where = สถานที่ · when = เวลา', ex: ['Mr Chai, whose class won the competition, is a great mentor.', 'This is the school where I did my teaching practice.'] },
+          { h: 'Defining vs Non-defining', f: 'Non-defining มีจุลภาค (,) ให้ข้อมูลเสริม — ห้ามใช้ that', ex: ['A senior teacher, who acted as a mentor, helped the group.'] }
+        ],
+        tips: ['✗ My mentor, that is very kind, … → ✓ My mentor, who is very kind, …', 'ละ who/which/that ได้เมื่อเป็นกรรม: The book (that) you recommended…', 'where ตามด้วยประโยคสมบูรณ์ (ประธาน + กริยา)']
+      },
+      reading: {
+        title: 'Learning Together',
+        text: `A Professional Learning Community, or PLC, is a group of teachers who meet regularly to improve their teaching. Unlike traditional training, where an expert gives a lecture, a PLC is built on collaboration. Teachers share problems, observe each other's lessons and reflect on what works.
+
+At one secondary school in Khon Kaen, the maths teachers, whose students had struggled with fractions for years, formed a PLC. Each week, one teacher taught a lesson while the others observed. Afterwards, they discussed the outcome and planned changes together. A senior teacher, who acted as a mentor, helped the group focus on student learning rather than on judging each other.
+
+The teachers admit that the meetings added to their workload at first. However, they say the experience was worth it. Within a year, the number of students who passed the fractions test had doubled, and several teachers reported feeling more confident and less isolated.`,
+        qs: [
+          { q: 'How is a PLC different from traditional training?', o: ['It is based on collaboration rather than lectures', 'It is led by an outside expert', 'It only happens once a year', 'It focuses on judging teachers'], a: 0, e: '"Unlike traditional training, where an expert gives a lecture, a PLC is built on collaboration."' },
+          { q: 'What was the senior teacher\'s role?', o: ['To mentor the group and keep the focus on learning', 'To judge each teacher\'s lesson', 'To teach all the lessons', 'To write the fractions test'], a: 0, e: '"who acted as a mentor, helped the group focus on student learning"' },
+          { q: 'What happened within a year?', o: ['Twice as many students passed the fractions test', 'The teachers stopped meeting', 'The workload decreased', 'The school hired new maths teachers'], a: 0, e: '"the number of students who passed… had doubled"' }
+        ]
+      },
+      listening: {
+        title: 'After a Lesson Observation',
+        script: `A: Thanks for letting us observe your lesson yesterday, Somsak.
+B: No problem. What did you think?
+A: The part where students explained their answers to each other worked really well.
+C: I agree. The only thing I noticed was that the students who sat at the back didn't speak much.
+B: That's a good point. Maybe I'll mix the groups next time.
+A: Good idea. Let's discuss the outcome at next Monday's meeting.`,
+        qs: [
+          { q: 'Which part of the lesson worked well?', o: ['Students explaining answers to each other', 'The teacher\'s introduction', 'The final test', 'The homework task'], a: 0, e: '"The part where students explained their answers to each other worked really well."' },
+          { q: 'What will Somsak change next time?', o: ['He will mix the groups', 'He will move the desks to the back', 'He will give a longer lecture', 'He will cancel group work'], a: 0, e: '"Maybe I\'ll mix the groups next time."' }
+        ]
+      },
+      writing: {
+        prompt: 'Describe a colleague or mentor who has influenced your teaching (130–160 words). Use at least three relative clauses.',
+        tips: ['แนะนำบุคคลนั้น (ชื่อ ตำแหน่ง ความสัมพันธ์)', 'เล่าสิ่งที่เขาทำ + ผลต่อการสอนของคุณ', 'ใช้ who / which / whose / where ≥ 3 ครั้ง', 'ปิดท้ายด้วยสิ่งที่เรียนรู้'],
+        model: `The person who has influenced my teaching most is Khun Supaporn, a senior English teacher who was my mentor during my first two years at school.
+
+Supaporn, whose lessons were always full of energy, invited me to observe her classes every week. I quickly noticed that she rarely gave long explanations. Instead, she asked questions which made students think for themselves. At first, I found this difficult to copy, but she encouraged me to try one new technique at a time.
+
+She also taught me to reflect after every lesson. We used to meet in the staff room, where we discussed what had gone well and what I could do differently. These short conversations helped me become much more confident.
+
+Today, I am a mentor myself, and I try to support new teachers in the same way that Supaporn supported me.`
+      },
+      quiz: [
+        { q: 'The teacher ___ observed my lesson gave me useful advice.', o: ['who', 'which', 'whose', 'where'], a: 0, e: 'คน + ทำหน้าที่ประธาน → who' },
+        { q: 'This is the school ___ I did my teaching practice.', o: ['where', 'which', 'who', 'whose'], a: 0, e: 'สถานที่ + ประโยคสมบูรณ์ → where' },
+        { q: 'Mr Chai, ___ class won the competition, is a great mentor.', o: ['whose', 'who', 'which', 'that'], a: 0, e: 'ห้องเรียน "ของ" Mr Chai → whose' },
+        { q: 'My mentor, ___ has taught for 20 years, is retiring.', o: ['who', 'that', 'which', 'whose'], a: 0, e: 'Non-defining (มีจุลภาค) ห้ามใช้ that → who' },
+        { q: 'Teachers often ___ on their lessons to find ways to improve.', o: ['reflect', 'observe', 'collaborate', 'mentor'], a: 0, e: 'reflect on = สะท้อนคิด/ทบทวน' },
+        { q: 'Too much paperwork increases teachers\' ___.', o: ['workload', 'outcome', 'expertise', 'colleague'], a: 0, e: 'workload = ภาระงาน' }
+      ]
+    },
+
+    /* ───────────────────────── UNIT 6 ───────────────────────── */
+    {
+      id: 'u6', no: 6,
+      title: 'Student Wellbeing', th: 'สุขภาวะของผู้เรียน',
+      focus: 'Reported Speech',
+      vocab: [
+        { w: 'wellbeing', p: 'n.', t: 'สุขภาวะ (กาย-ใจ)', ex: 'Student wellbeing is a priority at our school.' },
+        { w: 'anxiety', p: 'n.', t: 'ความวิตกกังวล', ex: 'Exam anxiety affects many teenagers.' },
+        { w: 'bullying', p: 'n.', t: 'การกลั่นแกล้ง', ex: 'Online bullying is harder for teachers to notice.' },
+        { w: 'cope', p: 'v.', t: 'รับมือ (cope with)', ex: 'She is learning to cope with stress.' },
+        { w: 'counsellor', p: 'n.', t: 'ครูแนะแนว / ผู้ให้คำปรึกษา', ex: 'The counsellor meets students every afternoon.' },
+        { w: 'confidential', p: 'adj.', t: 'เป็นความลับ', ex: 'Everything you say here is confidential.' },
+        { w: 'resilience', p: 'n.', t: 'ความสามารถในการฟื้นตัวจากปัญหา', ex: 'Sport can help children build resilience.' },
+        { w: 'inclusive', p: 'adj.', t: 'ที่เปิดรับทุกคน / ไม่กีดกัน', ex: 'We want an inclusive classroom where everyone belongs.' }
+      ],
+      grammar: {
+        title: 'Reported Speech',
+        intro: 'การเล่าว่า "ใครพูดอะไร" — จำเป็นมากสำหรับการรายงาน การประชุม และข้อสอบฟัง',
+        rules: [
+          { h: 'ถอย tense หนึ่งขั้น', f: 'am/is → was · do → did · did / have done → had done · will → would · can → could', ex: ['"I am tired." → She said (that) she was tired.', '"I finished it yesterday." → He told me he had finished it the day before.'] },
+          { h: 'คำถาม', f: 'asked + if/whether / wh- + ประธาน + กริยา (ไม่กลับประธาน)', ex: ['"Can you help me?" → He asked if I could help him.', '"Where do you work?" → She asked where I worked.'] },
+          { h: 'คำสั่ง / ขอร้อง', f: 'told / asked + someone + (not) to + V1', ex: ['"Don\'t be late." → The teacher told us not to be late.'] }
+        ],
+        tips: ['say + (that) / tell + คน: ✗ She said me → ✓ She told me / She said to me', 'คำบอกเวลาเปลี่ยน: today → that day · tomorrow → the next day · yesterday → the day before', 'คำถามแบบรายงานไม่มี do/does/did และไม่มีเครื่องหมาย ?']
+      },
+      reading: {
+        title: 'Behind the Smile',
+        text: `Not all students who seem happy are coping well. When one secondary school in Thailand asked its students about their wellbeing, many said they felt anxious about exams most of the time, and several said they had nobody to talk to. Teachers are often the first adults to notice when something is wrong.
+
+School counsellor Khun Wipa explains that small changes can be warning signs. "If a student who usually participates suddenly becomes quiet, or stops handing in work, it is worth having a private conversation," she says. She adds that teachers do not need to solve every problem themselves. Their role is to listen, keep the conversation confidential where it is safe to do so, and refer the student to a counsellor when necessary.
+
+Schools that take wellbeing seriously also try to build resilience. Activities such as mindfulness sessions, peer mentoring and clear anti-bullying policies help create an inclusive environment where every student feels they belong.`,
+        qs: [
+          { q: 'According to Khun Wipa, what could be a warning sign?', o: ['An active student suddenly becoming quiet', 'A student asking many questions', 'A student joining a sports club', 'A student getting high grades'], a: 0, e: '"If a student who usually participates suddenly becomes quiet…"' },
+          { q: 'What is the teacher\'s role, according to the text?', o: ['To listen and refer the student to a counsellor if needed', 'To solve every problem alone', 'To inform all other teachers immediately', 'To contact the police'], a: 0, e: '"Their role is to listen… and refer the student to a counsellor when necessary."' },
+          { q: 'Which activity is mentioned as a way to build resilience?', o: ['Peer mentoring', 'Extra exams', 'Longer school days', 'Online gaming'], a: 0, e: '"mindfulness sessions, peer mentoring and clear anti-bullying policies"' }
+        ]
+      },
+      listening: {
+        title: 'A Worried Student',
+        script: `A: Did you manage to talk to Ploy?
+B: Yes. She told me she had been feeling stressed about the national exam.
+A: Did she say anything about her friends?
+B: She said that some girls in her class were posting unkind comments about her online.
+A: That sounds like bullying. What did you tell her?
+B: I told her she had done the right thing by talking to me, and I asked her if she would agree to see the counsellor. She said she would think about it.`,
+        qs: [
+          { q: 'What has Ploy been stressed about?', o: ['The national exam', 'Her family', 'Her part-time job', 'Moving to a new school'], a: 0, e: '"she had been feeling stressed about the national exam"' },
+          { q: 'What did the teacher ask Ploy?', o: ['Whether she would agree to see the counsellor', 'Whether she wanted to change classes', 'Who had posted the comments', 'If she had told her parents'], a: 0, e: '"I asked her if she would agree to see the counsellor"' }
+        ]
+      },
+      writing: {
+        prompt: 'A student told you they are being bullied online. Write a short report (130–160 words) to the head of department describing the conversation. Use reported speech.',
+        tips: ['บอกวันที่และบริบทของการพูดคุย', 'รายงานคำพูดด้วย told / said / asked + tense ที่ถอยแล้ว', 'บอกสิ่งที่คุณทำไปแล้ว', 'เสนอขั้นตอนต่อไป'],
+        model: `Report: Possible Online Bullying – Grade 10
+
+On Monday 3 March, Arthit from Grade 10/2 asked to speak to me after class. He told me that he had been receiving unkind messages from a group of classmates on social media for about two weeks. He said that the messages had made him feel anxious and that he did not want to come to school.
+
+I asked him whether he had kept copies of the messages, and he said he had taken screenshots. He also told me that he had not informed his parents because he was worried they would be upset.
+
+I told him that he had done the right thing by speaking to me and that the conversation would remain confidential where possible. With his agreement, I have booked an appointment with the school counsellor for tomorrow.
+
+I recommend that we contact his parents and speak to the students involved this week.`
+      },
+      quiz: [
+        { q: 'She said, "I am tired." → She said she ___ tired.', o: ['was', 'is', 'has been', 'will be'], a: 0, e: 'am → was (ถอย tense)' },
+        { q: '"I finished the homework yesterday." → He told me he ___ the homework the day before.', o: ['had finished', 'finishes', 'has finished', 'will finish'], a: 0, e: 'Past Simple → Past Perfect' },
+        { q: '"Can you help me?" → The student asked me ___ help him.', o: ['if I could', 'could I', 'if could I', 'can I'], a: 0, e: 'คำถาม Yes/No → asked if + ประธาน + กริยา' },
+        { q: '"Don\'t be late." → The teacher told us ___ late.', o: ['not to be', 'don\'t be', 'to not being', 'we not be'], a: 0, e: 'คำสั่งปฏิเสธ → told + คน + not to + V1' },
+        { q: 'Everything you tell the counsellor is ___.', o: ['confidential', 'inclusive', 'anxious', 'resilient'], a: 0, e: 'confidential = เป็นความลับ' },
+        { q: 'Students with strong ___ recover quickly from difficulties.', o: ['resilience', 'anxiety', 'bullying', 'counsellor'], a: 0, e: 'resilience = ความสามารถในการฟื้นตัว' }
+      ]
+    },
+
+    /* ───────────────────────── UNIT 7 ───────────────────────── */
+    {
+      id: 'u7', no: 7,
+      title: 'Education Around the World', th: 'การศึกษาทั่วโลก',
+      focus: 'Contrast & Comparison Linkers',
+      vocab: [
+        { w: 'compulsory', p: 'adj.', t: 'ภาคบังคับ', ex: 'Education is compulsory until Grade 9 in Thailand.' },
+        { w: 'funding', p: 'n.', t: 'งบประมาณ / เงินทุน', ex: 'Rural schools often receive less funding.' },
+        { w: 'rural', p: 'adj.', t: 'ชนบท', ex: 'She teaches at a small rural school.' },
+        { w: 'gap', p: 'n.', t: 'ช่องว่าง / ความเหลื่อมล้ำ', ex: 'The gap between urban and rural schools is growing.' },
+        { w: 'policy', p: 'n.', t: 'นโยบาย', ex: 'The new policy reduces the number of exams.' },
+        { w: 'emphasis', p: 'n.', t: 'การเน้น / ให้ความสำคัญ', ex: 'There is a strong emphasis on reading in the early years.' },
+        { w: 'whereas', p: 'conj.', t: 'ในขณะที่ (เปรียบเทียบความต่าง)', ex: 'City schools have large classes, whereas rural schools are small.' },
+        { w: 'outperform', p: 'v.', t: 'ทำได้ดีกว่า', ex: 'Girls outperformed boys in the reading test.' }
+      ],
+      grammar: {
+        title: 'Contrast & Comparison Linkers',
+        intro: 'คำเชื่อมแสดงความขัดแย้งเป็นจุดที่ข้อสอบ B2 ชอบออกมาก เพราะแต่ละคำตามด้วยโครงสร้างต่างกัน',
+        rules: [
+          { h: 'ตามด้วยประโยค (S + V)', f: 'although / even though / whereas / while', ex: ['Although the school is small, it has excellent facilities.', 'Urban schools have more resources, whereas rural schools have fewer teachers.'] },
+          { h: 'ตามด้วยคำนาม / V-ing', f: 'despite / in spite of + noun / V-ing', ex: ['Despite the heavy rain, all the students arrived on time.', 'In spite of having little funding, the school did well.'] },
+          { h: 'เชื่อมระหว่างประโยค', f: 'However, / Nevertheless, / On the other hand, (ขึ้นประโยคใหม่ + จุลภาค)', ex: ['The results improved. However, the gap is still large.'] }
+        ],
+        tips: ['✗ Despite the school is small → ✓ Despite the school being small / Although the school is small', '✗ Although…, but… (ห้ามใช้คู่กัน)', 'เปรียบเทียบ: -er than / more … than / not as … as']
+      },
+      reading: {
+        title: 'Two Systems, Different Paths',
+        text: `Finland and Singapore are often mentioned as examples of successful education systems, yet they follow very different approaches. In Finland, formal schooling does not begin until the age of seven, and there is relatively little emphasis on standardised testing. Teachers have a high degree of freedom to design their own lessons. Singapore, by contrast, has a more centralised system, with a national curriculum and important exams at several stages.
+
+Despite these differences, the two countries share some key features. Both treat teaching as a highly respected profession, and both invest heavily in teacher training. Entry into teacher education programmes is competitive, whereas in many countries it is relatively easy.
+
+Experts warn that one country's policy cannot simply be copied by another. Factors such as culture, funding and the gap between urban and rural schools all influence how well a policy works. Nevertheless, the respect given to teachers seems to matter everywhere.`,
+        qs: [
+          { q: 'What is one difference between Finland and Singapore?', o: ['Finland has less emphasis on standardised testing', 'Singapore starts school at age seven', 'Finland has a centralised national exam system', 'Singapore gives teachers no training'], a: 0, e: 'Finland: little emphasis on standardised testing / Singapore: centralised, many exams' },
+          { q: 'What do the two countries have in common?', o: ['They both respect teachers and invest in training', 'They both start school at seven', 'They both have no exams', 'They both copy other countries\' policies'], a: 0, e: '"Both treat teaching as a highly respected profession, and both invest heavily in teacher training."' },
+          { q: 'Why can\'t a policy simply be copied, according to experts?', o: ['Because culture, funding and local conditions differ', 'Because policies are secret', 'Because teachers refuse to change', 'Because exams are different'], a: 0, e: '"Factors such as culture, funding and the gap… all influence how well a policy works."' }
+        ]
+      },
+      listening: {
+        title: 'Education News',
+        script: `In today's education news, a new report compares student performance in urban and rural schools. Although overall results have improved, students in cities still outperform those in rural areas, especially in English. The report suggests that the gap is mainly caused by differences in funding and teacher shortages. However, it also highlights several rural schools that have achieved excellent results by using online tutoring and partnering with nearby universities.`,
+        qs: [
+          { q: 'In which subject is the gap especially large?', o: ['English', 'Maths', 'Science', 'Thai'], a: 0, e: '"students in cities still outperform those in rural areas, especially in English"' },
+          { q: 'How did some rural schools achieve excellent results?', o: ['Online tutoring and university partnerships', 'Longer school days', 'More exams', 'Moving students to city schools'], a: 0, e: '"by using online tutoring and partnering with nearby universities"' }
+        ]
+      },
+      writing: {
+        prompt: 'Compare education in Thailand with another country you know (140–170 words). Describe one similarity and two differences.',
+        tips: ['ประโยคเปิดบอกว่าเปรียบเทียบอะไรกับอะไร', 'ใช้ whereas / although / despite / however อย่างน้อย 3 แบบ', 'ยกตัวอย่างที่เป็นรูปธรรม', 'สรุปว่าไทยเรียนรู้อะไรได้บ้าง'],
+        model: `Thailand and Japan both value education highly, but their school systems differ in several important ways.
+
+One similarity is that, in both countries, parents expect their children to work hard, and many students attend extra tutoring classes after school.
+
+However, there are also clear differences. Firstly, Japanese students are responsible for cleaning their classrooms every day, whereas in many Thai schools this is done by staff. This helps Japanese children develop a strong sense of responsibility. Secondly, although both countries use national exams, Japanese high school entrance exams are generally more competitive.
+
+Despite these differences, both systems face similar challenges, such as exam stress and the gap between urban and rural schools.
+
+In my opinion, Thailand could learn from Japan's focus on responsibility and routine. Nevertheless, I believe Thai schools are often warmer and more relaxed, which is also an important strength.`
+      },
+      quiz: [
+        { q: '___ the school is small, it has excellent facilities.', o: ['Although', 'Despite', 'However', 'In spite of'], a: 0, e: 'ตามด้วยประโยค (S+V) → Although' },
+        { q: '___ the heavy rain, all the students arrived on time.', o: ['Despite', 'Although', 'However', 'Even though'], a: 0, e: 'ตามด้วยคำนาม → Despite' },
+        { q: 'Urban schools have more resources, ___ rural schools often have fewer teachers.', o: ['whereas', 'despite', 'however', 'because of'], a: 0, e: 'เชื่อม 2 ประโยคที่ตรงข้ามกัน → whereas' },
+        { q: 'Finnish children start school later ___ children in most other countries.', o: ['than', 'that', 'as', 'then'], a: 0, e: 'later than (เปรียบเทียบขั้นกว่า)' },
+        { q: 'Education is ___ in Thailand until Grade 9.', o: ['compulsory', 'rural', 'funding', 'emphasis'], a: 0, e: 'compulsory = ภาคบังคับ' },
+        { q: 'The government announced a new ___ to reduce the number of exams.', o: ['policy', 'gap', 'rural', 'whereas'], a: 0, e: 'policy = นโยบาย' }
+      ]
+    },
+
+    /* ───────────────────────── UNIT 8 ───────────────────────── */
+    {
+      id: 'u8', no: 8,
+      title: 'Career Growth', th: 'ความก้าวหน้าในวิชาชีพ',
+      focus: 'Wish / Regret & Past Modals',
+      vocab: [
+        { w: 'promotion', p: 'n.', t: 'การเลื่อนตำแหน่ง / เลื่อนวิทยฐานะ', ex: 'She is preparing for her promotion next year.' },
+        { w: 'qualification', p: 'n.', t: 'คุณวุฒิ / คุณสมบัติ', ex: 'A master\'s degree is a useful qualification.' },
+        { w: 'requirement', p: 'n.', t: 'ข้อกำหนด / เงื่อนไข', ex: 'Applicants must meet all the requirements.' },
+        { w: 'deadline', p: 'n.', t: 'กำหนดเวลาสิ้นสุด', ex: 'The deadline for registration is 30 June.' },
+        { w: 'portfolio', p: 'n.', t: 'แฟ้มสะสมผลงาน', ex: 'Keep your portfolio organised from day one.' },
+        { w: 'ambitious', p: 'adj.', t: 'มีความทะเยอทะยาน / ตั้งเป้าสูง', ex: 'It is good to be ambitious, but plan carefully.' },
+        { w: 'commitment', p: 'n.', t: 'ความมุ่งมั่น / ความทุ่มเท', ex: 'Passing the test requires real commitment.' },
+        { w: 'achievement', p: 'n.', t: 'ความสำเร็จ / ผลงาน', ex: 'Reaching B2 was a great achievement for her.' }
+      ],
+      grammar: {
+        title: 'Wish / Regret & Past Modals',
+        intro: 'ใช้แสดงความเสียดายและการคาดเดาเหตุการณ์ในอดีต — โครงสร้างระดับ B2 ที่ช่วยให้งานเขียน/พูดดูเป็นธรรมชาติ',
+        rules: [
+          { h: 'wish — ปัจจุบัน', f: 'wish + V2 / were / could + V1', ex: ['I wish I had more time to prepare.', 'I wish I could take the test next month.'] },
+          { h: 'wish — อดีต (เสียดาย)', f: 'wish + had + V3', ex: ['I wish I had started collecting evidence earlier.'] },
+          { h: 'คาดเดาอดีต', f: 'must have V3 (มั่นใจว่าใช่) · can\'t have V3 (มั่นใจว่าไม่ใช่) · might have V3 (อาจจะ) · should have V3 (ควรจะ…แต่ไม่ได้ทำ)', ex: ['She must have gone to the exam centre.', 'She can\'t have forgotten — she\'s been practising for months.', 'I should have applied last year.'] }
+        ],
+        tips: ['✗ I wish I have → ✓ I wish I had', 'must have = มั่นใจ ~90% · might have = ~50% · can\'t have = มั่นใจว่าไม่', 'should have V3 = ตำหนิ/เสียดายสิ่งที่ไม่ได้ทำ']
+      },
+      reading: {
+        title: 'The Road to Promotion',
+        text: `For many teachers, applying for a higher academic standing is a long and demanding process. Applicants must meet a number of requirements, including years of service, evidence of teaching performance and, in some cases, proof of language ability. Preparing a portfolio of evidence can take months, and deadlines are strict.
+
+Khun Arun, a secondary English teacher, describes his experience. "At first I wished I had started collecting evidence earlier. I spent many weekends searching for old lesson plans and student work." He also decided to take an English proficiency test. "I was nervous because I hadn't taken a test for years, so I practised listening every day for two months."
+
+His commitment paid off. His test result met the required level, which allowed him to apply a year earlier than he otherwise could have. His advice to younger colleagues is simple: "Be ambitious, but plan ahead. Keep your evidence organised from day one, and don't leave language preparation until the last minute."`,
+        qs: [
+          { q: 'What did Khun Arun regret?', o: ['Not collecting evidence earlier', 'Taking the English test', 'Becoming a teacher', 'Practising listening too much'], a: 0, e: '"I wished I had started collecting evidence earlier."' },
+          { q: 'How did his test result help him?', o: ['He could apply one year earlier', 'He received a higher salary immediately', 'He no longer needed a portfolio', 'He became a head teacher'], a: 0, e: '"allowed him to apply a year earlier than he otherwise could have"' },
+          { q: 'What is his main advice?', o: ['Plan ahead and prepare early', 'Wait until the last minute', 'Focus only on the portfolio', 'Avoid language tests'], a: 0, e: '"plan ahead… don\'t leave language preparation until the last minute"' }
+        ]
+      },
+      listening: {
+        title: 'Where Is Mali?',
+        script: `A: Have you seen Mali? She wasn't at the meeting.
+B: She must have gone to the exam centre. Her English test was today.
+A: Oh, right! She can't have forgotten about it. She's been practising for months.
+B: Exactly. I wish I'd been that organised when I applied for my promotion.
+A: Me too. I wish I could take the test next month, but the registration deadline has already passed.`,
+        qs: [
+          { q: 'Where is Mali most likely to be?', o: ['At the exam centre', 'At home', 'In another meeting', 'On holiday'], a: 0, e: '"She must have gone to the exam centre."' },
+          { q: 'Why can\'t speaker A take the test next month?', o: ['The registration deadline has passed', 'The test is too expensive', 'A has not practised enough', 'There is no test next month'], a: 0, e: '"the registration deadline has already passed"' }
+        ]
+      },
+      writing: {
+        prompt: 'Write an email to a friend (140–170 words) about your career goals and how you are preparing for the B2 test. Include one regret (wish / should have).',
+        tips: ['ทักทายแบบกึ่งทางการ', 'เล่าเป้าหมาย + เหตุผล', 'เล่าแผนการเตรียมตัว (ใช้ Present Perfect / going to)', 'ใช้ I wish… / I should have… อย่างน้อย 1 ครั้ง'],
+        model: `Hi Fon,
+
+Thanks for your email! It's great to hear that your new school is going well.
+
+I've got some news too. I've decided to apply for a higher academic standing, and I'm hoping to reach B2 in English so that I can apply a year earlier. It's a big challenge, but I think it will be worth it.
+
+I've been studying for about six weeks now. Every day I spend twenty minutes on vocabulary and grammar, and at weekends I do a full practice test. My reading has improved a lot, but listening is still difficult. I wish I had started watching English news earlier – it really helps!
+
+I should have prepared my portfolio at the same time, too. Now I'm trying to organise all my documents before the deadline in June.
+
+Wish me luck! Let's meet for coffee after the test.
+
+Take care,
+Ploy`
+      },
+      quiz: [
+        { q: 'I wish I ___ more time to prepare for the test.', o: ['had', 'have', 'will have', 'would had'], a: 0, e: 'wish (ปัจจุบัน) + V2' },
+        { q: 'I didn\'t apply last year. Now I wish I ___.', o: ['had applied', 'applied', 'have applied', 'would apply'], a: 0, e: 'เสียดายอดีต → wish + had V3' },
+        { q: 'The lights are off. They ___ gone home.', o: ['must have', 'can\'t have', 'should', 'mustn\'t'], a: 0, e: 'คาดเดาอย่างมั่นใจว่าใช่ → must have V3' },
+        { q: 'She ___ failed the speaking test — she\'s an excellent speaker!', o: ['can\'t have', 'must have', 'should have', 'would'], a: 0, e: 'มั่นใจว่าไม่ใช่ → can\'t have V3' },
+        { q: 'You must submit your ___ of evidence before the deadline.', o: ['portfolio', 'ambition', 'commitment', 'achievement'], a: 0, e: 'portfolio = แฟ้มสะสมผลงาน' },
+        { q: 'Passing the B2 test was a great ___ for her.', o: ['achievement', 'requirement', 'deadline', 'workload'], a: 0, e: 'achievement = ความสำเร็จ' }
+      ]
+    }
+  ],
+
+  /* ───────────────────────── MOCK TEST ───────────────────────── */
+  mock: {
+    minutes: 35,
+    sections: [
+      {
+        name: 'Grammar', th: 'ไวยากรณ์',
+        qs: [
+          { q: 'By the time I arrived, the meeting ___.', o: ['had already started', 'already started', 'has already started', 'was already start'], a: 0, e: 'เหตุการณ์ที่เกิดก่อนอีกเหตุการณ์ในอดีต → Past Perfect' },
+          { q: 'She suggested ___ the lesson outdoors.', o: ['having', 'to have', 'have', 'to having'], a: 0, e: 'suggest + V-ing' },
+          { q: 'If the school ___ more funding, it could hire more teachers.', o: ['received', 'receives', 'will receive', 'had received'], a: 0, e: 'Second conditional: If + V2, could + V1' },
+          { q: 'The report ___ by the director tomorrow.', o: ['will be signed', 'will sign', 'is signing', 'signs'], a: 0, e: 'Passive อนาคต: will be + V3' },
+          { q: 'Not only ___ the test, but she also got the highest score.', o: ['did she pass', 'she passed', 'she did pass', 'passed she'], a: 0, e: 'Not only ขึ้นต้นประโยค → กลับประธาน-กริยาช่วย (inversion)' },
+          { q: 'I\'m not used to ___ up so early.', o: ['getting', 'get', 'got', 'be getting'], a: 0, e: 'be used to + V-ing = เคยชินกับ' },
+          { q: 'He asked me where ___.', o: ['I worked', 'did I work', 'do I work', 'I do work'], a: 0, e: 'Reported question: ไม่กลับประธาน ไม่ใช้ do/did' },
+          { q: '___ the lesson was difficult, the students enjoyed it.', o: ['Although', 'Despite', 'Because', 'So'], a: 0, e: 'ตามด้วยประโยค + ความหมายขัดแย้ง → Although' },
+          { q: 'This is the student ___ essay won the prize.', o: ['whose', 'who', 'which', 'whom'], a: 0, e: 'เรียงความ "ของ" นักเรียน → whose' },
+          { q: 'You ___ have told me earlier! I could have helped you.', o: ['should', 'must', 'can', 'need'], a: 0, e: 'should have V3 = ควรจะทำแต่ไม่ได้ทำ' }
+        ]
+      },
+      {
+        name: 'Vocabulary', th: 'คำศัพท์',
+        qs: [
+          { q: 'The school aims to provide an ___ environment where all students feel welcome.', o: ['inclusive', 'exclusive', 'anxious', 'compulsory'], a: 0, e: 'inclusive = เปิดรับทุกคน' },
+          { q: 'Teachers should give ___ feedback, not just a score.', o: ['constructive', 'destructive', 'reluctant', 'temporary'], a: 0, e: 'constructive feedback = คำติชมเชิงสร้างสรรค์' },
+          { q: 'Could you ___ the main points of the article in three sentences?', o: ['summarise', 'postpone', 'assume', 'reject'], a: 0, e: 'summarise = สรุป' },
+          { q: 'Many students find it hard to ___ with exam pressure.', o: ['cope', 'overcome', 'handle', 'solve'], a: 0, e: 'cope with = รับมือกับ (handle/overcome ไม่ตามด้วย with)' },
+          { q: 'She has a lot of ___ in teaching children with special needs.', o: ['expertise', 'expert', 'expertly', 'expertness'], a: 0, e: 'ตำแหน่งนี้ต้องการคำนาม → expertise' },
+          { q: 'The deadline has been ___ until next Friday.', o: ['extended', 'expanded', 'expired', 'exceeded'], a: 0, e: 'extend a deadline = ขยายกำหนดเวลา' },
+          { q: 'The new teacher quickly gained the ___ of her students.', o: ['respect', 'regard', 'honour', 'esteem'], a: 0, e: 'collocation: gain the respect of someone' }
+        ]
+      },
+      {
+        name: 'Reading', th: 'การอ่าน',
+        passage: `Many teachers in Thailand want to improve their English but struggle to find time. Long courses after school are often impractical, especially for teachers with family responsibilities. This is why "microlearning" has become popular. Instead of studying for two hours once a week, learners spend ten to fifteen minutes a day on short, focused activities, such as learning five new words or listening to a short podcast.
+
+Supporters argue that small, regular sessions are easier to fit into a busy schedule and help learners remember more, because the brain has repeated opportunities to recall information. Critics, however, point out that microlearning may not be enough for complex skills such as writing an argument or following a long lecture. They recommend combining daily micro-sessions with occasional longer practice, such as a full mock test once a month.`,
+        qs: [
+          { q: 'Why are long courses often impractical for teachers?', o: ['They have limited time and family responsibilities', 'The courses are too expensive', 'The courses are too easy', 'Teachers prefer to study alone'], a: 0, e: '"impractical, especially for teachers with family responsibilities"' },
+          { q: 'According to supporters, why does microlearning help memory?', o: ['Learners recall information repeatedly', 'Sessions are longer', 'It uses podcasts only', 'It includes monthly tests'], a: 0, e: '"the brain has repeated opportunities to recall information"' },
+          { q: 'What is the critics\' main concern?', o: ['It may not develop complex skills', 'It takes too much time', 'It is boring', 'It is only for young learners'], a: 0, e: '"may not be enough for complex skills"' },
+          { q: 'What do the critics recommend?', o: ['Combining daily sessions with longer practice', 'Studying two hours every day', 'Stopping microlearning', 'Only taking mock tests'], a: 0, e: '"combining daily micro-sessions with occasional longer practice"' }
+        ]
+      },
+      {
+        name: 'Listening', th: 'การฟัง',
+        script: `Attention, please. Due to the heavy rain, this afternoon's sports day has been postponed until next Tuesday. Classes will continue as normal after lunch. Students who have brought sports clothes may leave them in the gym, which will be open until four o'clock.`,
+        qs: [
+          { q: 'Why has the sports day been postponed?', o: ['Because of heavy rain', 'Because the gym is closed', 'Because of an exam', 'Because teachers are busy'], a: 0, e: '"Due to the heavy rain…"' },
+          { q: 'What will happen after lunch?', o: ['Normal classes', 'The sports day', 'A school assembly', 'Students go home'], a: 0, e: '"Classes will continue as normal after lunch."' }
+        ]
+      },
+      {
+        name: 'Listening', th: 'การฟัง',
+        script: `A: I've been offered a place on the teacher exchange programme in Japan.
+B: Congratulations! When does it start?
+A: In April, but I haven't decided whether to accept it yet.
+B: Why not?
+A: My mother is ill, and I'm not sure I should be away for six months.
+B: That's a difficult decision. Maybe you could ask if a shorter programme is available.`,
+        qs: [
+          { q: 'Why is speaker A unsure about accepting?', o: ['Her mother is ill', 'She doesn\'t speak Japanese', 'The programme is too expensive', 'It starts too soon'], a: 0, e: '"My mother is ill…"' },
+          { q: 'What does speaker B suggest?', o: ['Asking about a shorter programme', 'Refusing the offer', 'Taking her mother to Japan', 'Starting in April anyway'], a: 0, e: '"Maybe you could ask if a shorter programme is available."' }
+        ]
+      }
+    ]
+  },
+
+  /* ───────────────────────── 12-WEEK PLAN ───────────────────────── */
+  plan: [
+    { w: '1', t: 'Unit 1 · Classroom Life', d: 'ปูพื้น tense + เริ่มนิสัยเรียนวันละ 20 นาที' },
+    { w: '2', t: 'Unit 2 · Talking to Parents', d: 'ภาษาสุภาพ + modal' },
+    { w: '3', t: 'Unit 3 · Technology in Education', d: 'Passive voice + ฝึกฟังประกาศ' },
+    { w: '4', t: 'Unit 4 · Assessment & Feedback', d: 'Conditionals ทั้ง 4 แบบ' },
+    { w: '5', t: 'สอบจำลองครั้งที่ 1 + ทบทวน', d: 'ดูจุดอ่อน แล้วกลับไปทวน Unit ที่ได้คะแนนต่ำ' },
+    { w: '6', t: 'Unit 5 · Learning Together', d: 'Relative clauses + เขียนบรรยายบุคคล' },
+    { w: '7', t: 'Unit 6 · Student Wellbeing', d: 'Reported speech + ฟังบทสนทนา' },
+    { w: '8', t: 'Unit 7 · Education Around the World', d: 'คำเชื่อม + อ่านบทความเปรียบเทียบ' },
+    { w: '9', t: 'Unit 8 · Career Growth', d: 'wish / past modals + เขียนอีเมล' },
+    { w: '10', t: 'ทบทวนคำศัพท์ทั้งหมด', d: 'แฟลชการ์ดทุกวันจนจำได้ครบ 64 คำ' },
+    { w: '11', t: 'สอบจำลองครั้งที่ 2', d: 'จับเวลาเสมือนจริง ฝึกบริหารเวลา' },
+    { w: '12', t: 'สอบจำลองครั้งสุดท้าย + สมัครสอบจริง', d: 'เป้าหมาย ≥ 70% ก่อนไปสอบจริง' }
+  ]
+};
+
+</script>
+<script>
+/* B2 Ready for Teachers — app logic (vanilla JS, no dependencies) */
+(function () {
+  'use strict';
+  var C = window.COURSE, U = C.units;
+  var KEY = 'b2course.v1';
+  var PASS = 70;
+  var STEPS = [
+    { k: 'vocab', th: 'คำศัพท์', en: 'Vocabulary' },
+    { k: 'grammar', th: 'ไวยากรณ์', en: 'Grammar' },
+    { k: 'reading', th: 'การอ่าน', en: 'Reading' },
+    { k: 'listening', th: 'การฟัง', en: 'Listening' },
+    { k: 'writing', th: 'การเขียน', en: 'Writing' },
+    { k: 'quiz', th: 'แบบทดสอบท้ายบท', en: 'Unit Quiz' }
+  ];
+
+  /* ── icons ── */
+  var I = {
+    home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg>',
+    book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H20v15H5.5A1.5 1.5 0 0 0 4 19.5z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20"/><path d="M8 7h8M8 11h6"/></svg>',
+    cards: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="15" rx="2"/><path d="M8 3h11a2 2 0 0 1 2 2v13"/></svg>',
+    test: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="m8 9 1.5 1.5L12 8M8 15l1.5 1.5L12 14M14.5 9.5H17M14.5 15.5H17"/></svg>',
+    info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>',
+    back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',
+    chev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg>',
+    arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>',
+    gear: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>',
+    spk: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5v5h3.5L12 19V5L7.5 9.5z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>',
+    play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10.4-6.5a1 1 0 0 0 0-1.8L9.5 4.6A1 1 0 0 0 8 5.5z"/></svg>',
+    stop: '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="6.5" width="11" height="11" rx="2"/></svg>'
+  };
+
+  /* ── storage ── */
+  var mem = null;
+  function blank() { return { profile: null, units: {}, cards: {}, days: [], mocks: [], rate: 0.95 }; }
+  function load() {
+    try { var s = JSON.parse(localStorage.getItem(KEY)); return s ? Object.assign(blank(), s) : blank(); }
+    catch (e) { return mem || blank(); }
+  }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { mem = S; } }
+  var S = load();
+
+  /* ── utils ── */
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function ds(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function paras(t) { return t.trim().split(/\n\s*\n/).map(function (p) { return '<p>' + esc(p).replace(/\n/g, '<br>') + '</p>'; }).join(''); }
+  function words(t) { var m = String(t || '').trim().match(/[A-Za-z'’-]+/g); return m ? m.length : 0; }
+  function unit(id) { for (var i = 0; i < U.length; i++) if (U[i].id === id) return U[i]; return null; }
+  function us(id) { return S.units[id] || (S.units[id] = {}); }
+  function touch() { var t = ds(new Date()); if (S.days.indexOf(t) < 0) { S.days.push(t); if (S.days.length > 400) S.days.shift(); } save(); }
+  function streak() {
+    var set = {}; S.days.forEach(function (d) { set[d] = 1; });
+    var d = new Date(); if (!set[ds(d)]) d.setDate(d.getDate() - 1);
+    var n = 0; while (set[ds(d)]) { n++; d.setDate(d.getDate() - 1); } return n;
+  }
+  function stepDone(id, k) {
+    var u = S.units[id] || {};
+    if (k === 'quiz') return (u.quiz || 0) >= PASS;
+    if (k === 'reading' || k === 'listening') return u[k] != null;
+    return !!u[k];
+  }
+  function doneCount(id) { return STEPS.filter(function (s) { return stepDone(id, s.k); }).length; }
+  function nextStep() {
+    for (var i = 0; i < U.length; i++) for (var j = 0; j < STEPS.length; j++)
+      if (!stepDone(U[i].id, STEPS[j].k)) return { u: U[i], s: STEPS[j], j: j };
+    return null;
+  }
+  function allWords() { var a = []; U.forEach(function (u) { u.vocab.forEach(function (v) { a.push(Object.assign({ u: u.no }, v)); }); }); return a; }
+  function mastered() { return Object.keys(S.cards).filter(function (w) { return S.cards[w] >= 2; }).length; }
+  function level(p) {
+    if (p >= 80) return { l: 'B2+', c: 'b2', t: 'ผ่านระดับ B2 อย่างมั่นใจ — มีแนวโน้มไปถึง C1' };
+    if (p >= 60) return { l: 'B2', c: 'b2', t: 'อยู่ในระดับ B2 — พร้อมสมัครสอบจริงได้' };
+    if (p >= 40) return { l: 'B1', c: 'b1', t: 'ระดับ B1 — อีกนิดเดียวถึง B2 ทบทวนจุดอ่อนแล้วลองใหม่' };
+    return { l: 'A2', c: 'a2', t: 'ระดับ A2 — แนะนำให้เรียนตามแผนทีละ Unit ก่อน' };
+  }
+  var toastT;
+  function toast(msg) { var t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove('show'); }, 2200); }
+
+  /* ── text-to-speech ── */
+  var TTS = {
+    ok: 'speechSynthesis' in window && typeof SpeechSynthesisUtterance !== 'undefined',
+    voices: [], btn: null,
+    load: function () {
+      if (!this.ok) return;
+      var sc = function (v) { var s = 0; if (/en[-_]US/i.test(v.lang)) s += 3; if (/en[-_]GB/i.test(v.lang)) s += 2; if (/Google|Natural|Samantha|Daniel|Karen|Online|Aria|Jenny|Guy/i.test(v.name)) s += 4; return s; };
+      this.voices = speechSynthesis.getVoices().filter(function (v) { return /^en([-_]|$)/i.test(v.lang); }).sort(function (a, b) { return sc(b) - sc(a); });
+    },
+    mark: function (on) {
+      var b = this.btn; if (!b) return;
+      b.classList.toggle('playing', on);
+      if (b.classList.contains('play')) b.innerHTML = on ? I.stop : I.play;
+    },
+    stop: function () { if (this.ok) speechSynthesis.cancel(); this.mark(false); this.btn = null; },
+    speak: function (text, btn) {
+      if (!this.ok) { toast('อุปกรณ์นี้ไม่รองรับเสียงอ่าน'); return; }
+      if (this.btn === btn && btn) { this.stop(); return; }
+      this.stop(); this.load();
+      this.btn = btn || null; this.mark(true);
+      var self = this, vs = this.voices, lines = String(text).split('\n').filter(function (l) { return l.trim(); });
+      var spk = { A: 0, B: 1, C: 2 }, queue = [];
+      lines.forEach(function (line) {
+        var m = line.match(/^([ABC]):\s*(.*)$/), who = m ? spk[m[1]] : 0, body = m ? m[2] : line;
+        var parts = body.match(/[^.!?]+[.!?]+["'”’)]*|[^.!?]+$/g) || [body];
+        parts.forEach(function (p) { if (p.trim()) queue.push({ t: p.trim(), who: who }); });
+      });
+      queue.forEach(function (q, i) {
+        var u = new SpeechSynthesisUtterance(q.t);
+        u.lang = 'en-US'; u.rate = S.rate || 0.95;
+        if (vs.length) { u.voice = vs[Math.min(q.who, vs.length - 1)]; u.lang = u.voice.lang; }
+        if (vs.length <= q.who) u.pitch = q.who === 1 ? 0.75 : q.who === 2 ? 1.25 : 1;
+        if (i === queue.length - 1) u.onend = function () { if (self.btn === btn) { self.mark(false); self.btn = null; } };
+        speechSynthesis.speak(u);
+      });
+    }
+  };
+  if (TTS.ok) { TTS.load(); speechSynthesis.onvoiceschanged = function () { TTS.load(); }; }
+  function sayBtn(text, cls) { return '<button class="say ' + (cls || '') + '" data-say="' + esc(text) + '" aria-label="ฟังเสียง">' + I.spk + '</button>'; }
+
+  /* ── routing ── */
+  var R = { v: 'home' }, timerId = null;
+  var TAB = { home: 'home', units: 'units', unit: 'units', step: 'units', practice: 'practice', mock: 'mock', mockrun: 'mock', info: 'info', settings: 'home' };
+  function go(v, p) { R = Object.assign({ v: v }, p || {}); render(); }
+  function render() {
+    TTS.stop(); if (timerId) { clearInterval(timerId); timerId = null; }
+    if (!S.profile) R = { v: 'onboard' };
+    var view = $('#view'); view.className = 'view'; void view.offsetWidth; view.classList.add('view');
+    $('.nav').classList.toggle('hide', R.v === 'onboard');
+    $$('.nav button').forEach(function (b) { b.classList.toggle('on', b.dataset.tab === TAB[R.v]); });
+    (V[R.v] || V.home)(view);
+    window.scrollTo(0, 0);
+  }
+  function top(opts) {
+    var t = $('#top');
+    if (opts && opts.back) {
+      t.innerHTML = '<button class="ibtn" id="tb-back" aria-label="ย้อนกลับ">' + I.back + '</button><div class="ttl">' + esc(opts.title || '') + '</div>' + (opts.right || '');
+      $('#tb-back').onclick = opts.back;
+    } else {
+      t.innerHTML = '<div class="brand"><b>B2</b>B2 Ready for Teachers</div><button class="ibtn" id="tb-set" aria-label="ตั้งค่า">' + I.gear + '</button>';
+      $('#tb-set').onclick = function () { go('settings'); };
+    }
+  }
+
+  /* ── question set (all at once, check button) ── */
+  function qset(el, qs, onDone) {
+    var ords = qs.map(function (q) { return shuffle(q.o.map(function (_, i) { return i; })); });
+    var ans = qs.map(function () { return -1; }), checked = false;
+    el.innerHTML = qs.map(function (q, qi) {
+      return '<div class="q" data-qi="' + qi + '"><div class="qt"><i>' + (qi + 1) + '.</i>' + esc(q.q) + '</div><div class="opts">' +
+        ords[qi].map(function (oi, k) { return '<button class="opt" data-oi="' + oi + '"><span class="k">' + 'ABCD'[k] + '</span><span>' + esc(q.o[oi]) + '</span></button>'; }).join('') +
+        '</div><div class="ex-slot"></div></div>';
+    }).join('') + '<div class="btns"><button class="btn" id="qs-check" disabled>ตรวจคำตอบ</button></div><div id="qs-res"></div>';
+    $$('.q', el).forEach(function (qd) {
+      var qi = +qd.dataset.qi;
+      $$('.opt', qd).forEach(function (b) {
+        b.onclick = function () {
+          if (checked) return;
+          ans[qi] = +b.dataset.oi;
+          $$('.opt', qd).forEach(function (x) { x.classList.toggle('sel', x === b); });
+          $('#qs-check', el).disabled = ans.indexOf(-1) >= 0;
+        };
+      });
+    });
+    $('#qs-check', el).onclick = function () {
+      checked = true; var ok = 0;
+      $$('.q', el).forEach(function (qd) {
+        var qi = +qd.dataset.qi, q = qs[qi], right = ans[qi] === q.a; if (right) ok++;
+        $$('.opt', qd).forEach(function (x) {
+          var oi = +x.dataset.oi; x.disabled = true; x.classList.remove('sel');
+          if (oi === q.a) x.classList.add('right'); else if (oi === ans[qi]) x.classList.add('wrong');
+        });
+        $('.ex-slot', qd).innerHTML = '<div class="explain ' + (right ? '' : 'no') + '"><b>' + (right ? 'ถูกต้อง' : 'ยังไม่ถูก') + '</b> — ' + esc(q.e) + '</div>';
+      });
+      this.parentNode.remove();
+      var pct = Math.round(ok / qs.length * 100);
+      onDone(pct, ok, $('#qs-res', el));
+    };
+  }
+
+  /* ── one-at-a-time runner (unit quiz & mock test) ── */
+  function runner(el, items, opts) {
+    var i = 0, ans = items.map(function () { return -1; });
+    items.forEach(function (it) { it._ord = shuffle(it.o.map(function (_, k) { return k; })); });
+    var endAt = opts.minutes ? Date.now() + opts.minutes * 60000 : 0;
+    function fmt(ms) { var s = Math.max(0, Math.round(ms / 1000)); return pad(Math.floor(s / 60)) + ':' + pad(s % 60); }
+    if (endAt) {
+      timerId = setInterval(function () {
+        var left = endAt - Date.now(), t = $('#timer');
+        if (t) { t.textContent = fmt(left); t.classList.toggle('low', left < 5 * 60000); }
+        if (left <= 0) { clearInterval(timerId); timerId = null; toast('หมดเวลา'); finish(); }
+      }, 1000);
+    }
+    function finish() { TTS.stop(); if (timerId) { clearInterval(timerId); timerId = null; } opts.onFinish(ans); }
+    function draw() {
+      var it = items[i], fb = opts.feedback, picked = ans[i];
+      var ctx = '';
+      if (it.ctx) {
+        if (it.ctx.type === 'passage') ctx = '<details class="ctx card" open><summary>' + esc(it.ctx.title) + '</summary><div class="passage" style="font-size:15.5px">' + paras(it.ctx.text) + '</div></details>';
+        else ctx = '<div class="ctx card"><div class="player"><button class="play" data-say="' + esc(it.ctx.text) + '" aria-label="เล่นเสียง">' + I.play + '</button><div class="tx"><b>' + esc(it.ctx.title) + '</b><span class="small muted">กดฟังได้ไม่จำกัด (สอบจริงมักฟังได้ 1–2 ครั้ง)</span></div></div></div>';
+      }
+      el.innerHTML =
+        '<div class="runner-top"><div class="track"><i style="width:' + ((i + 1) / items.length * 100) + '%"></i></div><span>' + (i + 1) + '/' + items.length + '</span>' + (endAt ? '<span class="timer" id="timer">' + fmt(endAt - Date.now()) + '</span>' : '') + '</div>' +
+        (it.sec ? '<div class="eyebrow">' + esc(it.sec) + '</div>' : '') + ctx +
+        '<div class="qbig">' + esc(it.q) + '</div><div class="opts">' +
+        it._ord.map(function (oi, k) {
+          var cls = '';
+          if (fb && picked >= 0) { if (oi === it.a) cls = 'right'; else if (oi === picked) cls = 'wrong'; }
+          else if (oi === picked) cls = 'sel';
+          return '<button class="opt ' + cls + '" data-oi="' + oi + '"' + (fb && picked >= 0 ? ' disabled' : '') + '><span class="k">' + 'ABCD'[k] + '</span><span>' + esc(it.o[oi]) + '</span></button>';
+        }).join('') + '</div>' +
+        (fb && picked >= 0 ? '<div class="explain ' + (picked === it.a ? '' : 'no') + '"><b>' + (picked === it.a ? 'ถูกต้อง' : 'ยังไม่ถูก') + '</b> — ' + esc(it.e) + '</div>' : '') +
+        '<div class="btns ' + (!fb && i > 0 ? 'two' : '') + '">' +
+        (!fb && i > 0 ? '<button class="btn ghost" id="rn-prev">ข้อก่อนหน้า</button>' : '') +
+        '<button class="btn" id="rn-next" ' + (picked < 0 ? 'disabled' : '') + '>' + (i === items.length - 1 ? 'ดูผลคะแนน' : 'ข้อต่อไป') + '</button></div>';
+      $$('.opt', el).forEach(function (b) {
+        b.onclick = function () {
+          ans[i] = +b.dataset.oi;
+          if (opts.feedback) { draw(); return; }
+          $$('.opt', el).forEach(function (x) { x.classList.toggle('sel', x === b); });
+          $('#rn-next', el).disabled = false;
+        };
+      });
+      $('#rn-next', el).onclick = function () { TTS.stop(); if (i === items.length - 1) finish(); else { i++; draw(); window.scrollTo(0, 0); } };
+      var pv = $('#rn-prev', el); if (pv) pv.onclick = function () { TTS.stop(); i--; draw(); };
+    }
+    draw();
+  }
+
+  function ring(pct) {
+    var r = 64, c = 2 * Math.PI * r, col = pct >= 60 ? 'var(--green-2)' : pct >= 40 ? 'var(--gold)' : 'var(--bad)';
+    return '<div class="score-ring"><svg viewBox="0 0 150 150"><circle cx="75" cy="75" r="' + r + '" fill="none" stroke="var(--line)" stroke-width="12"/><circle cx="75" cy="75" r="' + r + '" fill="none" stroke="' + col + '" stroke-width="12" stroke-linecap="round" stroke-dasharray="' + c + '" stroke-dashoffset="' + (c * (1 - pct / 100)) + '"/></svg><div class="v"><div><b>' + pct + '%</b><span>คะแนน</span></div></div></div>';
+  }
+
+  /* ── views ── */
+  var V = {};
+
+  V.onboard = function (el) {
+    $('#top').innerHTML = '<div class="brand"><b>B2</b>B2 Ready for Teachers</div>';
+    var grp = 'lang';
+    el.innerHTML = '<div class="onb"><div class="eyebrow">หลักสูตรเตรียมสอบภาษาอังกฤษสำหรับครู</div>' +
+      '<h1>พิชิต B2 เพื่อลดเวลาขอมี/เลื่อนวิทยฐานะ</h1>' +
+      '<p class="lead">8 บทเรียนในบริบทงานครู ครบ 4 ทักษะ พร้อมแฟลชการ์ดและข้อสอบจำลอง เรียนวันละ 20 นาทีบนมือถือได้เลย</p>' +
+      '<label class="lb" for="ob-name">ชื่อที่ให้เรียก</label><input type="text" id="ob-name" placeholder="เช่น สมศรี" maxlength="30" autocomplete="given-name">' +
+      '<label class="lb">ตำแหน่ง / กลุ่มสาระ</label><div class="seg" id="ob-grp">' +
+      '<button data-g="lang" class="on"><b>B2</b><span>ครูผู้สอนกลุ่มสาระภาษาต่างประเทศ</span></button>' +
+      '<button data-g="other"><b>B1</b><span>ครูกลุ่มสาระอื่น / ผู้บริหาร / ศึกษานิเทศก์</span></button></div>' +
+      '<label class="lb" for="ob-date">วันสอบจริง (ถ้ามี)</label><input type="date" id="ob-date">' +
+      '<div class="btns"><button class="btn" id="ob-go">เริ่มเรียน</button></div></div>';
+    $$('#ob-grp button').forEach(function (b) { b.onclick = function () { grp = b.dataset.g; $$('#ob-grp button').forEach(function (x) { x.classList.toggle('on', x === b); }); }; });
+    $('#ob-go').onclick = function () {
+      var n = $('#ob-name').value.trim();
+      if (!n) { $('#ob-name').focus(); toast('กรอกชื่อก่อนนะครับ'); return; }
+      S.profile = { name: n, group: grp, exam: $('#ob-date').value || '', start: ds(new Date()) };
+      touch(); go('home');
+    };
+  };
+
+  V.home = function (el) {
+    top();
+    var p = S.profile, total = U.length * STEPS.length, done = 0, unitsDone = 0;
+    U.forEach(function (u) { var c = doneCount(u.id); done += c; if (c === STEPS.length) unitsDone++; });
+    var pct = Math.round(done / total * 100), nx = nextStep(), tw = allWords().length, lm = S.mocks[S.mocks.length - 1];
+    var target = p.group === 'other' ? 'B1' : 'B2';
+    var week = Math.min(12, Math.floor((new Date() - new Date(p.start + 'T00:00:00')) / 6048e5) + 1);
+    var cd = '';
+    if (p.exam) {
+      var left = Math.ceil((new Date(p.exam + 'T00:00:00') - new Date(ds(new Date()) + 'T00:00:00')) / 864e5);
+      cd = left >= 0 ? '<div class="card mt" style="display:flex;align-items:center;gap:14px"><div style="font-family:var(--f-head);font-weight:700;font-size:34px;color:var(--gold);line-height:1">' + left + '</div><div><b>วันก่อนสอบจริง</b><div class="small muted">' + new Date(p.exam + 'T00:00:00').toLocaleDateString('th-TH', { day: 'numeric', month: 'long', year: 'numeric' }) + '</div></div></div>' : '';
+    }
+    el.innerHTML =
+      '<div class="hero"><div class="grid-lines"></div><div class="hi">สวัสดีครับ ครู' + esc(p.name) + '</div><h1>เส้นทางสู่ ' + target + '</h1>' +
+      '<div class="goal"><div class="lvl">' + target + '</div><p>ผ่านเกณฑ์ CEFR ' + target + ' ขึ้นไป<br>ลดเวลาขอมี/เลื่อนวิทยฐานะ<br>จาก 4 ปี เหลือ 3 ปี</p></div>' +
+      '<div class="bar"><i style="width:' + pct + '%"></i></div><div class="meta"><span>เรียนไปแล้ว ' + pct + '%</span><span>' + unitsDone + '/' + U.length + ' Unit</span></div></div>' +
+      (nx ? '<button class="continue" id="h-cont"><div class="n">' + nx.u.no + '</div><div class="tx"><b>' + (done ? 'เรียนต่อ' : 'เริ่มบทแรก') + ': ' + esc(nx.u.title) + '</b><span>ขั้นที่ ' + (nx.j + 1) + ' · ' + nx.s.th + '</span></div>' + I.arrow + '</button>'
+        : '<button class="continue" id="h-mock"><div class="n">✓</div><div class="tx"><b>เรียนครบทุก Unit แล้ว!</b><span>ไปทำข้อสอบจำลองเพื่อวัดระดับ</span></div>' + I.arrow + '</button>') +
+      '<div class="stats"><div class="stat"><b>' + streak() + '</b><span>วันติดต่อกัน</span></div><div class="stat"><b>' + mastered() + '<small class="muted" style="font-size:13px">/' + tw + '</small></b><span>คำที่จำได้</span></div><div class="stat"><b>' + (lm ? lm.pct + '%' : '–') + '</b><span>' + (lm ? 'สอบจำลอง (' + lm.lvl + ')' : 'ยังไม่สอบจำลอง') + '</span></div></div>' +
+      cd +
+      '<div class="sec"><h2>แผนเรียน 12 สัปดาห์</h2><span class="small muted">สัปดาห์ที่ ' + week + '</span></div>' +
+      '<details class="card plan"' + (week <= 12 ? '' : '') + '><summary><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><div><b>สัปดาห์นี้: ' + esc(C.plan[week - 1].t) + '</b><div class="small muted">' + esc(C.plan[week - 1].d) + '</div></div><span class="link">ดูทั้งหมด</span></div></summary><div class="plan-list">' +
+      C.plan.map(function (pl, k) { return '<div class="pl ' + (k === week - 1 ? 'now' : '') + '"><div class="wk">WEEK<small>' + pl.w + '</small></div><div><b>' + esc(pl.t) + '</b><span>' + esc(pl.d) + '</span></div></div>'; }).join('') + '</div></details>' +
+      '<div class="sec"><h2>ทางลัด</h2></div><div class="rows">' +
+      '<button class="row" data-go="practice"><div class="tx"><b>ทบทวนคำศัพท์ด้วยแฟลชการ์ด</b><span>' + (tw - mastered()) + ' คำที่ยังต้องทบทวน</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
+      '<button class="row" data-go="mock"><div class="tx"><b>ข้อสอบจำลองระดับ B2</b><span>25 ข้อ · 35 นาที · ประเมินระดับ CEFR</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
+      '<button class="row" data-go="info"><div class="tx"><b>เกณฑ์ ก.ค.ศ. และข้อสอบที่ใช้ได้</b><span>ว 9/2564 · ว 10/2567 · ตารางเทียบคะแนน</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button></div>';
+    var hc = $('#h-cont'); if (hc) hc.onclick = function () { go('step', { id: nx.u.id, k: nx.s.k }); };
+    var hm = $('#h-mock'); if (hm) hm.onclick = function () { go('mock'); };
+    $$('[data-go]', el).forEach(function (b) { b.onclick = function () { go(b.dataset.go); }; });
+  };
+
+  V.units = function (el) {
+    top();
+    el.innerHTML = '<div class="uhead"><div class="eyebrow">หลักสูตร</div><h1>8 บทเรียนสู่ B2</h1><p>แต่ละบทมี 6 ขั้น: คำศัพท์ · ไวยากรณ์ · อ่าน · ฟัง · เขียน · แบบทดสอบ</p></div><div class="mt">' +
+      U.map(function (u) {
+        var c = doneCount(u.id), full = c === STEPS.length;
+        return '<button class="unit ' + (full ? 'done' : '') + '" data-id="' + u.id + '"><div class="head"><div class="no">' + pad(u.no) + '</div><div style="flex:1"><h3>' + esc(u.title) + '</h3><div class="th">' + esc(u.th) + '</div><span class="focus">' + esc(u.focus) + '</span></div>' +
+          (full ? '<span class="dot ok">' + I.check + '</span>' : '<span class="small muted">' + c + '/6</span>') + '</div><div class="pbar"><i style="width:' + (c / STEPS.length * 100) + '%"></i></div></button>';
+      }).join('') + '</div>';
+    $$('.unit', el).forEach(function (b) { b.onclick = function () { go('unit', { id: b.dataset.id }); }; });
+  };
+
+  V.unit = function (el) {
+    var u = unit(R.id), st = S.units[u.id] || {};
+    top({ back: function () { go('units'); }, title: 'Unit ' + u.no });
+    el.innerHTML = '<div class="uhead"><div class="eyebrow">Unit ' + u.no + ' · ' + esc(u.focus) + '</div><h1>' + esc(u.title) + '</h1><p>' + esc(u.th) + '</p></div><div class="rows mt">' +
+      STEPS.map(function (s, j) {
+        var ok = stepDone(u.id, s.k), sub = s.en;
+        if (s.k === 'reading' || s.k === 'listening') { if (st[s.k] != null) sub += ' · ได้ ' + st[s.k] + '%'; }
+        if (s.k === 'quiz' && st.quiz != null) sub += ' · ดีที่สุด ' + st.quiz + '%' + (ok ? '' : ' (ผ่านที่ ' + PASS + '%)');
+        var dot = ok ? '<span class="dot ok">' + I.check + '</span>' : (s.k === 'quiz' && st.quiz != null) ? '<span class="dot part">' + (j + 1) + '</span>' : '<span class="dot">' + (j + 1) + '</span>';
+        return '<button class="row" data-k="' + s.k + '">' + dot + '<div class="tx"><b>' + s.th + '</b><span>' + sub + '</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>';
+      }).join('') + '</div>' +
+      '<div class="btns"><button class="btn" id="u-go">' + (doneCount(u.id) === 6 ? 'ทบทวนบทนี้อีกครั้ง' : doneCount(u.id) ? 'เรียนต่อ' : 'เริ่มเรียน') + '</button></div>';
+    $$('.row', el).forEach(function (b) { b.onclick = function () { go('step', { id: u.id, k: b.dataset.k }); }; });
+    $('#u-go').onclick = function () {
+      var k = STEPS.filter(function (s) { return !stepDone(u.id, s.k); })[0];
+      go('step', { id: u.id, k: (k || STEPS[0]).k });
+    };
+  };
+
+  function nextBtnHtml(u, k) {
+    var j = STEPS.map(function (s) { return s.k; }).indexOf(k);
+    return j < STEPS.length - 1 ? '<button class="btn ghost" id="st-next">ขั้นถัดไป: ' + STEPS[j + 1].th + '</button>' : '<button class="btn ghost" id="st-next">กลับหน้า Unit</button>';
+  }
+  function bindNext(u, k) {
+    var b = $('#st-next'); if (!b) return;
+    var j = STEPS.map(function (s) { return s.k; }).indexOf(k);
+    b.onclick = function () { if (j < STEPS.length - 1) go('step', { id: u.id, k: STEPS[j + 1].k }); else go('unit', { id: u.id }); };
+  }
+  function markStep(u, k, val) { us(u.id)[k] = val; touch(); }
+
+  V.step = function (el) {
+    var u = unit(R.id), k = R.k, s = STEPS.filter(function (x) { return x.k === k; })[0], j = STEPS.indexOf(s);
+    top({ back: function () { go('unit', { id: u.id }); }, title: 'Unit ' + u.no + ' · ' + s.th });
+    var head = '<div class="uhead"><div class="eyebrow">ขั้นที่ ' + (j + 1) + '/6 · ' + s.en + '</div><h1>' + s.th + '</h1></div>';
+    ST[k](el, u, head);
+  };
+
+  var ST = {};
+  ST.vocab = function (el, u, head) {
+    el.innerHTML = head + '<p class="muted small">แตะปุ่มลำโพงเพื่อฟังการออกเสียง ลองพูดตามทุกคำ</p><div class="stack">' +
+      u.vocab.map(function (v) {
+        return '<div class="card vocab"><div class="tx"><span class="w">' + esc(v.w) + '</span><span class="p">' + esc(v.p) + '</span><span class="t">' + esc(v.t) + '</span><div class="ex">' + esc(v.ex) + '</div></div><div style="display:grid;gap:6px">' + sayBtn(v.w) + sayBtn(v.ex) + '</div></div>';
+      }).join('') + '</div>' +
+      '<div class="btns"><button class="btn" id="v-done">' + (stepDone(u.id, 'vocab') ? 'เรียนแล้ว ✓ ไปขั้นถัดไป' : 'เรียนครบแล้ว ไปขั้นถัดไป') + '</button><button class="btn ghost" id="v-fc">ฝึกคำศัพท์บทนี้ด้วยแฟลชการ์ด</button></div>';
+    $('#v-done').onclick = function () { markStep(u, 'vocab', true); go('step', { id: u.id, k: 'grammar' }); };
+    $('#v-fc').onclick = function () { markStep(u, 'vocab', true); go('practice', { f: u.no }); };
+  };
+
+  ST.grammar = function (el, u, head) {
+    var g = u.grammar;
+    el.innerHTML = head + '<div class="card"><h2 style="font-size:20px;margin-bottom:6px">' + esc(g.title) + '</h2><p style="margin:0">' + esc(g.intro) + '</p></div>' +
+      g.rules.map(function (r) {
+        return '<div class="card rule"><h3>' + esc(r.h) + '</h3><div class="formula">' + esc(r.f) + '</div>' +
+          r.ex.map(function (e) { return '<div class="ex-line">' + sayBtn(e) + '<span>' + esc(e) + '</span></div>'; }).join('') + '</div>';
+      }).join('') +
+      '<div class="sec"><h2>จุดที่ข้อสอบชอบหลอก</h2></div><div class="card"><ul class="tips">' + g.tips.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' +
+      '<div class="btns"><button class="btn" id="g-done">เข้าใจแล้ว ไปฝึกอ่าน</button></div>';
+    $('#g-done').onclick = function () { markStep(u, 'grammar', true); go('step', { id: u.id, k: 'reading' }); };
+  };
+
+  function afterCheck(u, k, pct, ok, total, res) {
+    var prev = us(u.id)[k];
+    markStep(u, k, Math.max(pct, prev || 0));
+    res.innerHTML = '<div class="card mt center"><b style="font-family:var(--f-head);font-size:22px">ถูก ' + ok + ' จาก ' + total + ' ข้อ</b><p class="muted small" style="margin:4px 0 0">' + (pct === 100 ? 'ยอดเยี่ยม!' : 'อ่านคำอธิบายข้อที่ผิดแล้วลองทำซ้ำได้') + '</p></div><div class="btns">' + nextBtnHtml(u, k).replace('btn ghost', 'btn') + '<button class="btn ghost" id="st-retry">ทำอีกครั้ง</button></div>';
+    bindNext(u, k);
+    $('#st-retry').onclick = function () { render(); };
+  }
+
+  ST.reading = function (el, u, head) {
+    var r = u.reading;
+    el.innerHTML = head + '<div class="card"><div class="eyebrow" style="margin-bottom:6px">Reading</div><h2 style="font-size:21px;margin-bottom:12px">' + esc(r.title) + '</h2><div class="passage">' + paras(r.text) + '</div>' +
+      '<button class="chip" id="r-say">' + I.spk.replace('<svg', '<svg width="16" height="16"') + ' ฟังบทความ</button></div>' +
+      '<div class="sec"><h2>คำถาม</h2><span class="small muted">' + r.qs.length + ' ข้อ</span></div><div class="card" id="r-qs"></div>';
+    var sb = $('#r-say'); sb.onclick = function () { TTS.speak(r.text, sb); };
+    qset($('#r-qs'), r.qs, function (pct, ok, res) { afterCheck(u, 'reading', pct, ok, r.qs.length, res); });
+  };
+
+  ST.listening = function (el, u, head) {
+    var l = u.listening;
+    el.innerHTML = head + '<div class="card"><div class="player"><button class="play" id="l-play" aria-label="เล่นเสียง">' + I.play + '</button><div class="tx"><b>' + esc(l.title) + '</b><span class="small muted">ฟังก่อนอย่างน้อย 2 รอบ แล้วตอบคำถาม</span></div></div>' +
+      '<div class="chips mt"><span class="small muted" style="align-self:center">ความเร็ว</span>' + [0.75, 0.95, 1.1].map(function (r) { return '<button class="chip ' + (Math.abs((S.rate || 0.95) - r) < 0.01 ? 'on' : '') + '" data-r="' + r + '">' + (r === 0.75 ? 'ช้า' : r === 0.95 ? 'ปกติ' : 'เร็ว') + '</button>'; }).join('') + '</div>' +
+      (TTS.ok ? '' : '<div class="note">อุปกรณ์/เบราว์เซอร์นี้ไม่รองรับเสียงอ่านภาษาอังกฤษ — กด "แสดงบทพูด" เพื่ออ่านแทน</div>') +
+      '<button class="link mt" id="l-tr" style="display:block">แสดงบทพูด (transcript)</button><div class="script hide" id="l-script">' + esc(l.script) + '</div></div>' +
+      '<div class="sec"><h2>คำถาม</h2><span class="small muted">' + l.qs.length + ' ข้อ</span></div><div class="card" id="l-qs"></div>';
+    var pb = $('#l-play'); pb.onclick = function () { TTS.speak(l.script, pb); };
+    $$('[data-r]', el).forEach(function (b) { b.onclick = function () { S.rate = +b.dataset.r; save(); $$('[data-r]', el).forEach(function (x) { x.classList.toggle('on', x === b); }); }; });
+    $('#l-tr').onclick = function () { var s = $('#l-script'); s.classList.toggle('hide'); this.textContent = s.classList.contains('hide') ? 'แสดงบทพูด (transcript)' : 'ซ่อนบทพูด'; };
+    qset($('#l-qs'), l.qs, function (pct, ok, res) { afterCheck(u, 'listening', pct, ok, l.qs.length, res); });
+  };
+
+  ST.writing = function (el, u, head) {
+    var w = u.writing, st = us(u.id), MIN = 60;
+    var rng = (w.prompt.match(/(\d+)–(\d+) words/) || [0, 120, 160]);
+    el.innerHTML = head + '<div class="card"><div class="eyebrow" style="margin-bottom:6px">Task</div><p style="font-family:var(--f-read);font-size:17px;margin:0">' + esc(w.prompt) + '</p></div>' +
+      '<div class="card"><b>เช็กลิสต์ก่อนส่ง</b><ul class="tips mt" style="margin-top:6px">' + w.tips.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' +
+      '<label class="lb" for="w-txt">งานเขียนของคุณ</label><textarea id="w-txt" placeholder="Start writing here…" spellcheck="true">' + esc(st.draft || '') + '</textarea>' +
+      '<div class="wc"><span id="w-wc">0 คำ</span><span>เป้าหมาย ' + rng[1] + '–' + rng[2] + ' คำ</span></div>' +
+      '<div class="btns"><button class="btn" id="w-save">บันทึกงานเขียน</button><button class="btn ghost" id="w-model">ดูตัวอย่างคำตอบ</button></div>' +
+      '<div class="card mt hide" id="w-m"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><b>Model answer</b>' + sayBtn(w.model) + '</div><div class="passage" style="font-size:15.5px">' + paras(w.model) + '</div><div class="small muted">' + words(w.model) + ' words</div></div>' +
+      '<div class="btns" id="w-nx">' + nextBtnHtml(u, 'writing') + '</div>';
+    var ta = $('#w-txt'), wc = $('#w-wc'), sv = $('#w-save'), dt;
+    function upd() { var n = words(ta.value); wc.textContent = n + ' คำ' + (n < MIN ? ' (อย่างน้อย ' + MIN + ' คำเพื่อบันทึกว่าทำแล้ว)' : ''); sv.disabled = n < MIN; }
+    ta.oninput = function () { upd(); clearTimeout(dt); dt = setTimeout(function () { st.draft = ta.value; save(); }, 400); };
+    upd();
+    sv.onclick = function () { st.draft = ta.value; markStep(u, 'writing', true); toast('บันทึกแล้ว ✓ เทียบกับตัวอย่างคำตอบได้เลย'); $('#w-m').classList.remove('hide'); };
+    $('#w-model').onclick = function () { var m = $('#w-m'); m.classList.toggle('hide'); this.textContent = m.classList.contains('hide') ? 'ดูตัวอย่างคำตอบ' : 'ซ่อนตัวอย่างคำตอบ'; };
+    bindNext(u, 'writing');
+  };
+
+  ST.quiz = function (el, u, head) {
+    var st = us(u.id);
+    el.innerHTML = head + '<div class="card"><p style="margin:0">' + u.quiz.length + ' ข้อ · ไวยากรณ์และคำศัพท์ของ Unit นี้ · ผ่านที่ ' + PASS + '%</p>' + (st.quiz != null ? '<p class="small muted" style="margin:6px 0 0">คะแนนดีที่สุด: ' + st.quiz + '%</p>' : '') + '</div><div class="btns"><button class="btn" id="qz-go">เริ่มทำแบบทดสอบ</button></div>';
+    $('#qz-go').onclick = function () {
+      var items = u.quiz.map(function (q) { return Object.assign({}, q); });
+      el.innerHTML = '<div id="rn"></div>';
+      runner($('#rn'), items, {
+        feedback: true,
+        onFinish: function (ans) {
+          var ok = ans.filter(function (a, i) { return a === items[i].a; }).length, pct = Math.round(ok / items.length * 100);
+          st.quiz = Math.max(pct, st.quiz || 0); touch();
+          var pass = pct >= PASS, nxu = U[U.indexOf(u) + 1];
+          el.innerHTML = '<div class="result">' + ring(pct) + '<h2 style="font-size:22px">' + (pass ? 'ผ่านแล้ว! จบ Unit ' + u.no : 'ยังไม่ผ่าน ลองอีกครั้งนะครับ') + '</h2><p class="muted">ถูก ' + ok + ' จาก ' + items.length + ' ข้อ' + (pass ? '' : ' · ต้องได้ ' + PASS + '% ขึ้นไป') + '</p></div>' +
+            '<div class="btns">' + (pass && nxu ? '<button class="btn" id="qz-n">ไป Unit ' + nxu.no + ': ' + esc(nxu.title) + '</button>' : '') + (pass && !nxu ? '<button class="btn gold" id="qz-m">เรียนครบแล้ว! ทำข้อสอบจำลอง</button>' : '') +
+            '<button class="btn ' + (pass ? 'ghost' : '') + '" id="qz-r">ทำอีกครั้ง</button><button class="btn ghost" id="qz-u">กลับหน้า Unit</button></div>';
+          var n = $('#qz-n'); if (n) n.onclick = function () { go('unit', { id: nxu.id }); };
+          var m = $('#qz-m'); if (m) m.onclick = function () { go('mock'); };
+          $('#qz-r').onclick = function () { render(); };
+          $('#qz-u').onclick = function () { go('unit', { id: u.id }); };
+          window.scrollTo(0, 0);
+        }
+      });
+    };
+  };
+
+  V.practice = function (el) {
+    top();
+    var f = R.f || 'due', all = allWords();
+    var deck = all.filter(function (v) { return f === 'due' ? (S.cards[v.w] || 0) < 2 : f === 'all' ? true : v.u === f; });
+    var q = shuffle(deck), cur = 0, known = 0;
+    var chips = [['due', 'ต้องทบทวน'], ['all', 'ทั้งหมด']].concat(U.map(function (u) { return [u.no, 'Unit ' + u.no]; }));
+    el.innerHTML = '<div class="uhead"><div class="eyebrow">แฟลชการ์ด</div><h1>ทบทวนคำศัพท์</h1><p>จำได้แล้ว ' + mastered() + ' จาก ' + all.length + ' คำ (ตอบ "จำได้" 2 ครั้ง = จำได้แล้ว)</p></div>' +
+      '<div class="chips mt">' + chips.map(function (c) { return '<button class="chip ' + (String(c[0]) === String(f) ? 'on' : '') + '" data-f="' + c[0] + '">' + c[1] + '</button>'; }).join('') + '</div><div id="fc"></div>';
+    $$('[data-f]', el).forEach(function (b) { b.onclick = function () { var v = b.dataset.f; go('practice', { f: /^\d+$/.test(v) ? +v : v }); }; });
+    var box = $('#fc');
+    function draw() {
+      if (cur >= q.length) {
+        box.innerHTML = '<div class="empty"><h2>' + (deck.length ? 'ทบทวนครบชุดแล้ว!' : 'ไม่มีคำที่ต้องทบทวน') + '</h2><p class="muted">' + (deck.length ? 'จำได้ ' + known + ' จาก ' + deck.length + ' คำในรอบนี้' : 'คุณจำคำศัพท์ในชุดนี้ได้ครบแล้ว ลองเลือก "ทั้งหมด" เพื่อทวนซ้ำ') + '</p><div class="btns"><button class="btn" id="fc-again">' + (deck.length ? 'ทบทวนอีกรอบ' : 'ดูทั้งหมด') + '</button></div></div>';
+        $('#fc-again').onclick = function () { go('practice', { f: deck.length ? f : 'all' }); };
+        return;
+      }
+      var v = q[cur];
+      box.innerHTML = '<div class="small muted" style="text-align:right;margin-top:6px">' + (cur + 1) + ' / ' + q.length + '</div><div class="fc-wrap"><div class="fc" id="card">' +
+        '<div class="face front"><span class="unit-tag">Unit ' + v.u + '</span>' + sayBtn(v.w) + '<div class="w">' + esc(v.w) + '</div><div class="p">' + esc(v.p) + '</div><div class="hint">แตะการ์ดเพื่อดูความหมาย</div></div>' +
+        '<div class="face back"><span class="unit-tag">Unit ' + v.u + '</span>' + sayBtn(v.ex) + '<div class="bw">' + esc(v.w) + '</div><div class="t">' + esc(v.t) + '</div><div class="ex">' + esc(v.ex) + '</div></div></div></div>' +
+        '<div class="btns two"><button class="btn ghost" id="fc-no">ยังไม่จำ</button><button class="btn" id="fc-ok">จำได้</button></div>';
+      var card = $('#card');
+      card.onclick = function (e) { if (e.target.closest('.say')) return; card.classList.toggle('flip'); };
+      $('#fc-no').onclick = function () { S.cards[v.w] = 0; save(); q.push(v); cur++; draw(); };
+      $('#fc-ok').onclick = function () { S.cards[v.w] = (S.cards[v.w] || 0) + 1; known++; touch(); cur++; draw(); };
+    }
+    draw();
+  };
+
+  function mockItems() {
+    var items = [];
+    C.mock.sections.forEach(function (s) {
+      s.qs.forEach(function (q, k) {
+        var it = Object.assign({}, q, { sec: s.name + ' · ' + s.th, secName: s.name });
+        if (s.passage) it.ctx = { type: 'passage', title: 'อ่านบทความแล้วตอบคำถาม', text: s.passage };
+        if (s.script) it.ctx = { type: 'script', title: 'ฟังแล้วตอบคำถาม', text: s.script };
+        items.push(it);
+      });
+    });
+    return items;
+  }
+
+  V.mock = function (el) {
+    top();
+    var n = mockItems().length;
+    var hist = S.mocks.slice(-5).reverse();
+    el.innerHTML = '<div class="uhead"><div class="eyebrow">Mock Test</div><h1>ข้อสอบจำลองระดับ B2</h1><p>วัดว่าตอนนี้อยู่ระดับไหน ก่อนสมัครสอบจริง</p></div>' +
+      '<div class="card mt"><table class="table"><tr><th>ส่วน</th><th>จำนวน</th></tr>' +
+      ['Grammar', 'Vocabulary', 'Reading', 'Listening'].map(function (nm) {
+        var c = 0; C.mock.sections.forEach(function (s) { if (s.name === nm) c += s.qs.length; });
+        return '<tr><td>' + nm + '</td><td>' + c + ' ข้อ</td></tr>';
+      }).join('') + '<tr><td><b>รวม</b></td><td><b>' + n + ' ข้อ · ' + C.mock.minutes + ' นาที</b></td></tr></table>' +
+      '<p class="small muted mt" style="margin-bottom:0">ตอบได้ครบแล้วจึงเห็นเฉลย · ส่วน Listening ต้องเปิดเสียง · ผลเป็นการ<b>ประมาณการ</b> ไม่ใช่ผลสอบทางการ</p></div>' +
+      '<div class="btns"><button class="btn" id="mk-go">เริ่มสอบ (จับเวลา ' + C.mock.minutes + ' นาที)</button></div>' +
+      (hist.length ? '<div class="sec"><h2>ประวัติการสอบ</h2></div><div class="rows">' + hist.map(function (h) {
+        var lv = level(h.pct);
+        return '<div class="row"><span class="badge ' + lv.c + '">' + h.lvl + '</span><div class="tx"><b>' + h.pct + '%</b><span>' + new Date(h.date).toLocaleDateString('th-TH', { day: 'numeric', month: 'short', year: '2-digit', hour: '2-digit', minute: '2-digit' }) + '</span></div></div>';
+      }).join('') + '</div>' : '');
+    $('#mk-go').onclick = function () { go('mockrun'); };
+  };
+
+  V.mockrun = function (el) {
+    top({ back: function () { go('mock'); }, title: 'ข้อสอบจำลอง' });
+    var items = mockItems();
+    runner(el, items, {
+      feedback: false, minutes: C.mock.minutes,
+      onFinish: function (ans) {
+        var ok = 0, secs = {};
+        items.forEach(function (it, i) {
+          var s = secs[it.secName] || (secs[it.secName] = { ok: 0, n: 0 }); s.n++;
+          if (ans[i] === it.a) { ok++; s.ok++; }
+        });
+        var pct = Math.round(ok / items.length * 100), lv = level(pct);
+        S.mocks.push({ date: Date.now(), pct: pct, lvl: lv.l }); touch();
+        var wrong = items.map(function (it, i) { return { it: it, a: ans[i] }; }).filter(function (x) { return x.a !== x.it.a; });
+        top({ back: function () { go('mock'); }, title: 'ผลสอบจำลอง' });
+        el.innerHTML = '<div class="result">' + ring(pct) + '<span class="badge ' + lv.c + '">ระดับโดยประมาณ: ' + lv.l + '</span><p class="mt" style="margin-bottom:0">' + lv.t + '</p><p class="small muted">ถูก ' + ok + ' จาก ' + items.length + ' ข้อ</p>' +
+          '<div class="card breakdown">' + Object.keys(secs).map(function (k) { var s = secs[k], p = Math.round(s.ok / s.n * 100); return '<div class="ln"><span>' + k + '</span><div class="t"><i style="width:' + p + '%"></i></div><b>' + s.ok + '/' + s.n + '</b></div>'; }).join('') + '</div></div>' +
+          (wrong.length ? '<div class="sec"><h2>ทบทวนข้อที่ผิด</h2><span class="small muted">' + wrong.length + ' ข้อ</span></div><div class="card">' + wrong.map(function (x) {
+            return '<div class="q"><div class="qt">' + esc(x.it.q) + '</div><div class="small">คำตอบของคุณ: <span style="color:var(--bad)">' + (x.a >= 0 ? esc(x.it.o[x.a]) : '— ไม่ได้ตอบ') + '</span><br>คำตอบที่ถูก: <b style="color:var(--green)">' + esc(x.it.o[x.it.a]) + '</b></div><div class="explain">' + esc(x.it.e) + '</div></div>';
+          }).join('') + '</div>' : '') +
+          '<div class="btns"><button class="btn" id="mk-again">สอบอีกครั้ง</button><button class="btn ghost" id="mk-home">กลับหน้าหลัก</button></div>';
+        $('#mk-again').onclick = function () { go('mockrun'); };
+        $('#mk-home').onclick = function () { go('home'); };
+        window.scrollTo(0, 0);
+      }
+    });
+  };
+
+  V.info = function (el) {
+    top();
+    el.innerHTML = '<div class="uhead"><div class="eyebrow">ระเบียบ ก.ค.ศ.</div><h1>ใช้ผล CEFR ลดเวลาวิทยฐานะ</h1><p>สรุปจากหลักเกณฑ์ ว 9/2564 และแนวปฏิบัติ ว 10/2567</p></div>' +
+      '<div class="card mt"><div class="big-compare"><div class="from"><b>4 ปี</b><span>ระยะเวลาปกติ</span></div>' + I.arrow + '<div class="to"><b>3 ปี</b><span>เมื่อผ่านเกณฑ์ CEFR</span></div></div>' +
+      '<p class="small muted center" style="margin:8px 0 0">ระยะเวลาดำรงตำแหน่ง/วิทยฐานะ ก่อนยื่นขอมีหรือเลื่อนวิทยฐานะ</p></div>' +
+      '<div class="sec"><h2>ระดับที่ต้องผ่าน</h2></div><div class="card"><table class="table"><tr><th>ตำแหน่ง / กลุ่มสาระ</th><th>CEFR ขั้นต่ำ</th></tr>' +
+      '<tr><td>ครูผู้สอนกลุ่มสาระการเรียนรู้ภาษาต่างประเทศ</td><td><b>B2</b> ขึ้นไป</td></tr>' +
+      '<tr><td>ครูกลุ่มสาระอื่น / ผู้บริหารสถานศึกษา / ศึกษานิเทศก์</td><td><b>B1</b> ขึ้นไป</td></tr></table>' +
+      '<p class="small" style="margin:12px 0 0"><b>ว 10/2567</b> (3 พ.ค. 2567) ยืนยันว่า ผลสอบที่<b>สูงกว่า</b>ระดับที่กำหนด (เช่น ได้ C1) ก็นำมาใช้ลดระยะเวลาได้</p></div>' +
+      '<div class="sec"><h2>B2 เทียบกับข้อสอบสากล</h2><span class="small muted">โดยประมาณ</span></div><div class="card"><table class="table"><tr><th>ข้อสอบ</th><th>คะแนนเทียบ B2</th></tr>' +
+      '<tr><td>IELTS</td><td><b>5.5 – 6.0</b></td></tr><tr><td>TOEIC (Listening &amp; Reading)</td><td><b>785 – 940</b></td></tr><tr><td>TOEFL iBT</td><td><b>72 – 94</b></td></tr><tr><td>EF SET</td><td><b>51 – 60</b></td></tr></table>' +
+      '<p class="small muted" style="margin:10px 0 0">B2 (Upper-Intermediate) = เข้าใจเนื้อหาซับซ้อนทั้งการฟังและการอ่าน สื่อสารได้คล่องในหลายหัวข้อ และอภิปรายเชิงวิชาชีพ/วิชาการได้</p></div>' +
+      '<div class="sec"><h2>ขั้นตอนแนะนำ</h2></div><div class="card"><ol class="timeline">' +
+      '<li><b>เรียนตามแผน 12 สัปดาห์</b><span class="small muted">วันละ 20–30 นาที ครบ 8 Unit</span></li>' +
+      '<li><b>ทำข้อสอบจำลองให้ได้ ≥ 70%</b><span class="small muted">ทำซ้ำได้จนมั่นใจ</span></li>' +
+      '<li><b>สมัครสอบกับหน่วยงาน/ศูนย์สอบที่ ก.ค.ศ. ยอมรับ</b><span class="small muted">ตรวจรายชื่อหน่วยทดสอบล่าสุดก่อนสมัคร</span></li>' +
+      '<li><b>เก็บ "ผลการทดสอบ" (Test Report) ฉบับจริง</b><span class="small muted">วุฒิบัตรผ่านการอบรม ใช้แทนผลสอบไม่ได้</span></li>' +
+      '<li><b>แนบผลประกอบคำขอวิทยฐานะ</b><span class="small muted">ตรวจสอบอายุของผลสอบ (ส่วนใหญ่กำหนดไม่เกิน 2 ปีนับถึงวันยื่น)</span></li></ol></div>' +
+      '<div class="note">ข้อมูลในหน้านี้สรุปเพื่อการเตรียมตัวเท่านั้น หลักเกณฑ์อาจมีการปรับปรุง โปรดตรวจสอบหนังสือเวียนฉบับล่าสุดจากสำนักงาน ก.ค.ศ. หรือเขตพื้นที่การศึกษาของท่านก่อนยื่นคำขอ<br><a href="https://otepc.go.th/th/content_page/item/4911-10-2567-cefr-b2.html" target="_blank" rel="noopener" style="color:var(--green);font-weight:600">เปิดหนังสือ ว 10/2567 (otepc.go.th) ↗</a></div>';
+  };
+
+  V.settings = function (el) {
+    var p = S.profile;
+    top({ back: function () { go('home'); }, title: 'ตั้งค่า' });
+    el.innerHTML = '<div class="card"><label class="lb" style="margin-top:0" for="s-name">ชื่อที่ให้เรียก</label><input type="text" id="s-name" value="' + esc(p.name) + '" maxlength="30">' +
+      '<label class="lb">เป้าหมาย</label><div class="seg" id="s-grp"><button data-g="lang" class="' + (p.group !== 'other' ? 'on' : '') + '"><b>B2</b><span>ครูภาษาต่างประเทศ</span></button><button data-g="other" class="' + (p.group === 'other' ? 'on' : '') + '"><b>B1</b><span>ครูกลุ่มสาระอื่น / ผู้บริหาร / ศน.</span></button></div>' +
+      '<label class="lb" for="s-date">วันสอบจริง</label><input type="date" id="s-date" value="' + esc(p.exam || '') + '">' +
+      '<div class="btns"><button class="btn" id="s-save">บันทึก</button></div></div>' +
+      '<div class="sec"><h2>ย้ายข้อมูลไปเครื่องอื่น</h2></div><div class="card"><p class="small muted">ความคืบหน้าถูกเก็บในเบราว์เซอร์ของเครื่องนี้ คัดลอกรหัสด้านล่างไปวางในเครื่องใหม่เพื่อเรียนต่อ</p>' +
+      '<textarea id="s-code" style="min-height:90px;font-family:ui-monospace,Consolas,monospace;font-size:12px" readonly></textarea>' +
+      '<div class="btns two"><button class="btn ghost" id="s-copy">คัดลอกรหัส</button><button class="btn ghost" id="s-imp">นำเข้ารหัส</button></div></div>' +
+      '<div class="sec"><h2>รีเซ็ต</h2></div><div class="card"><p class="small muted">ลบความคืบหน้าทั้งหมดและเริ่มใหม่</p><button class="btn ghost" id="s-reset" style="color:var(--bad)">ลบข้อมูลทั้งหมด</button></div>';
+    var g = p.group;
+    $$('#s-grp button').forEach(function (b) { b.onclick = function () { g = b.dataset.g; $$('#s-grp button').forEach(function (x) { x.classList.toggle('on', x === b); }); }; });
+    $('#s-save').onclick = function () { p.name = $('#s-name').value.trim() || p.name; p.group = g; p.exam = $('#s-date').value; save(); toast('บันทึกแล้ว'); go('home'); };
+    var code = btoa(unescape(encodeURIComponent(JSON.stringify(S))));
+    $('#s-code').value = code;
+    $('#s-copy').onclick = function () {
+      var ta = $('#s-code'); ta.select();
+      try { if (navigator.clipboard) navigator.clipboard.writeText(code).then(function () { toast('คัดลอกแล้ว'); }, function () { document.execCommand('copy'); toast('คัดลอกแล้ว'); }); else { document.execCommand('copy'); toast('คัดลอกแล้ว'); } } catch (e) { toast('กดค้างที่ช่องเพื่อคัดลอก'); }
+    };
+    $('#s-imp').onclick = function () {
+      var ta = $('#s-code');
+      if (ta.readOnly) { ta.readOnly = false; ta.value = ''; ta.placeholder = 'วางรหัสที่นี่ แล้วกด "นำเข้ารหัส" อีกครั้ง'; ta.focus(); return; }
+      try { var d = JSON.parse(decodeURIComponent(escape(atob(ta.value.trim())))); if (!d.profile) throw 0; S = Object.assign(blank(), d); save(); toast('นำเข้าสำเร็จ'); go('home'); }
+      catch (e) { toast('รหัสไม่ถูกต้อง'); }
+    };
+    var armed = false;
+    $('#s-reset').onclick = function () {
+      if (!armed) { armed = true; this.textContent = 'แตะอีกครั้งเพื่อยืนยันการลบ'; return; }
+      S = blank(); save(); go('onboard');
+    };
+  };
+
+  /* ── boot ── */
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-say]');
+    if (b && !b.id) { e.stopPropagation(); TTS.speak(b.getAttribute('data-say'), b); }
+  });
+  $$('.nav button').forEach(function (b) { b.onclick = function () { go(b.dataset.tab); }; });
+  window.addEventListener('scroll', function () { $('#top').classList.toggle('scrolled', window.scrollY > 4); }, { passive: true });
+  render();
+})();
+
+</script>
+</body>
+</html>
