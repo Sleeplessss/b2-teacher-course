@@ -54,7 +54,12 @@
   function words(t) { var m = String(t || '').trim().match(/[A-Za-z'’-]+/g); return m ? m.length : 0; }
   function unit(id) { for (var i = 0; i < U.length; i++) if (U[i].id === id) return U[i]; return null; }
   function us(id) { return S.units[id] || (S.units[id] = {}); }
-  function touch() { var t = ds(new Date()); if (S.days.indexOf(t) < 0) { S.days.push(t); if (S.days.length > 400) S.days.shift(); } save(); }
+  function touch() {
+    var t = ds(new Date());
+    if (S.days.indexOf(t) < 0) { S.days.push(t); if (S.days.length > 400) S.days.shift(); }
+    save();
+    if (window.APP && APP.badge) APP.badge();
+  }
   function streak() {
     var set = {}; S.days.forEach(function (d) { set[d] = 1; });
     var d = new Date(); if (!set[ds(d)]) d.setDate(d.getDate() - 1);
@@ -138,6 +143,7 @@
     $$('.nav button').forEach(function (b) { b.classList.toggle('on', b.dataset.tab === TAB[R.v]); });
     (V[R.v] || V.home)(view);
     window.scrollTo(0, 0);
+    if (window.APP && APP.badge) APP.badge();
   }
   function top(opts) {
     var t = $('#top');
@@ -301,6 +307,7 @@
       (nx ? '<button class="continue" id="h-cont"><div class="n">' + nx.u.no + '</div><div class="tx"><b>' + (done ? 'เรียนต่อ' : 'เริ่มบทแรก') + ': ' + esc(nx.u.title) + '</b><span>ขั้นที่ ' + (nx.j + 1) + ' · ' + nx.s.th + '</span></div>' + I.arrow + '</button>'
         : '<button class="continue" id="h-mock"><div class="n">✓</div><div class="tx"><b>เรียนครบทุก Unit แล้ว!</b><span>ไปทำข้อสอบจำลองเพื่อวัดระดับ</span></div>' + I.arrow + '</button>') +
       '<div class="stats"><div class="stat"><b>' + streak() + '</b><span>วันติดต่อกัน</span></div><div class="stat"><b>' + mastered() + '<small class="muted" style="font-size:13px">/' + tw + '</small></b><span>คำที่จำได้</span></div><div class="stat"><b>' + (lm ? lm.pct + '%' : '–') + '</b><span>' + (lm ? 'สอบจำลอง (' + lm.lvl + ')' : 'ยังไม่สอบจำลอง') + '</span></div></div>' +
+      riskBanner() +
       cd +
       '<div class="sec"><h2>แผนเรียน 12 สัปดาห์</h2><span class="small muted">สัปดาห์ที่ ' + week + '</span></div>' +
       '<details class="card plan"' + (week <= 12 ? '' : '') + '><summary><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><div><b>สัปดาห์นี้: ' + esc(C.plan[week - 1].t) + '</b><div class="small muted">' + esc(C.plan[week - 1].d) + '</div></div><span class="link">ดูทั้งหมด</span></div></summary><div class="plan-list">' +
@@ -312,9 +319,20 @@
       '<button class="row" data-go="mock"><div class="tx"><b>ข้อสอบจำลองระดับ B2</b><span>25 ข้อ · 35 นาที · ประเมินระดับ CEFR</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
       '<button class="row" data-go="info"><div class="tx"><b>เกณฑ์ ก.ค.ศ. และข้อสอบที่ใช้ได้</b><span>ว 9/2564 · ว 10/2567 · ตารางเทียบคะแนน</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button></div>';
     var hc = $('#h-cont'); if (hc) hc.onclick = function () { go('step', { id: nx.u.id, k: nx.s.k }); };
+    var rq = $('#rk-quick'); if (rq) rq.onclick = function () { go('practice'); };
+    var rs = $('#rk-set'); if (rs) rs.onclick = function () { go('settings'); };
     var hm = $('#h-mock'); if (hm) hm.onclick = function () { go('mock'); };
     $$('[data-go]', el).forEach(function (b) { b.onclick = function () { go(b.dataset.go); }; });
   };
+
+  function riskBanner() {
+    var today = ds(new Date()), done = S.days.indexOf(today) >= 0, s = streak();
+    if (done) return '<div class="streak ok"><span class="fl">🔥</span><div><b>วันนี้เรียนแล้ว · ต่อเนื่อง ' + s + ' วัน</b><span>กลับมาพรุ่งนี้เพื่อรักษาสถิติ</span></div></div>';
+    var now = new Date(), mid = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1), h = Math.floor((mid - now) / 36e5), m = Math.floor((mid - now) % 36e5 / 6e4);
+    if (s > 0) return '<div class="streak risk"><span class="fl">🔥</span><div><b>สถิติ ' + s + ' วันจะหายตอนเที่ยงคืน</b><span>เหลือเวลา ' + h + ' ชม. ' + m + ' นาที — ทวนแฟลชการ์ด 5 นาทีก็รักษาสถิติได้</span>' +
+      '<div class="rk-btns"><button class="chip on" id="rk-quick">ทวนคำศัพท์ 5 นาที</button><button class="chip" id="rk-set">ตั้งค่าแจ้งเตือน</button></div></div></div>';
+    return S.days.length ? '<div class="streak"><span class="fl">🌱</span><div><b>เริ่มสถิติใหม่วันนี้</b><span>เรียนอะไรก็ได้ 1 อย่าง เพื่อเริ่มนับวันต่อเนื่อง</span></div></div>' : '';
+  }
 
   V.units = function (el) {
     top();
@@ -584,6 +602,7 @@
       '<label class="lb">เป้าหมาย</label><div class="seg" id="s-grp"><button data-g="lang" class="' + (p.group !== 'other' ? 'on' : '') + '"><b>B2</b><span>ครูภาษาต่างประเทศ</span></button><button data-g="other" class="' + (p.group === 'other' ? 'on' : '') + '"><b>B1</b><span>ครูกลุ่มสาระอื่น / ผู้บริหาร / ศน.</span></button></div>' +
       '<label class="lb" for="s-date">วันสอบจริง</label><input type="date" id="s-date" value="' + esc(p.exam || '') + '">' +
       '<div class="btns"><button class="btn" id="s-save">บันทึก</button></div></div>' +
+      '<div id="remind-box"></div>' +
       '<div class="sec"><h2>ย้ายข้อมูลไปเครื่องอื่น</h2></div><div class="card"><p class="small muted">ความคืบหน้าถูกเก็บในเบราว์เซอร์ของเครื่องนี้ คัดลอกรหัสด้านล่างไปวางในเครื่องใหม่เพื่อเรียนต่อ</p>' +
       '<textarea id="s-code" style="min-height:90px;font-family:ui-monospace,Consolas,monospace;font-size:12px" readonly></textarea>' +
       '<div class="btns two"><button class="btn ghost" id="s-copy">คัดลอกรหัส</button><button class="btn ghost" id="s-imp">นำเข้ารหัส</button></div></div>' +
@@ -591,6 +610,7 @@
     var g = p.group;
     $$('#s-grp button').forEach(function (b) { b.onclick = function () { g = b.dataset.g; $$('#s-grp button').forEach(function (x) { x.classList.toggle('on', x === b); }); }; });
     $('#s-save').onclick = function () { p.name = $('#s-name').value.trim() || p.name; p.group = g; p.exam = $('#s-date').value; save(); toast('บันทึกแล้ว'); go('home'); };
+    if (window.APP && APP.remindUI) APP.remindUI($('#remind-box'));
     var code = btoa(unescape(encodeURIComponent(JSON.stringify(S))));
     $('#s-code').value = code;
     $('#s-copy').onclick = function () {
@@ -621,6 +641,6 @@
   window.APP = {
     V: V, I: I, $: $, $$: $$, esc: esc, paras: paras, words: words, shuffle: shuffle, toast: toast, TTS: TTS, sayBtn: sayBtn,
     go: go, top: top, qset: qset, runner: runner, ring: ring, save: save, touch: touch, level: level, ds: ds, pad: pad, leave: LEAVE,
-    get S() { return S; }, get R() { return R; }, start: render
+    streak: streak, get S() { return S; }, get R() { return R; }, start: render
   };
 })();

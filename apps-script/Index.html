@@ -6,6 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f5f1e8">
 <title>B2 Ready for Teachers · หลักสูตรเตรียมสอบ B2 สำหรับครู</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Literata:opsz,wght@7..72,400;7..72,500&display=swap" rel="stylesheet">
@@ -388,6 +392,21 @@ input.gap.wrong,.cz-in.wrong{border-color:var(--bad);background:var(--bad-soft)}
 .skill4 b{display:block;color:var(--bad);font-family:var(--f-head);font-size:15px}
 .skill4 span{font-size:12px;color:var(--muted)}
 .table td:last-child{white-space:nowrap}
+
+.nav button{position:relative}
+.nbadge{position:absolute;top:8px;left:calc(50% + 6px);width:11px;height:11px;border-radius:50%;background:#e0452c;border:2px solid var(--card);animation:nb 2s ease-in-out infinite}
+@keyframes nb{50%{transform:scale(1.2)}}
+@media (prefers-reduced-motion:reduce){.nbadge{animation:none}}
+
+.streak{display:flex;gap:12px;align-items:flex-start;margin-top:12px;padding:14px 16px;border-radius:var(--r);background:var(--card);border:1px solid var(--line)}
+.streak .fl{font-size:26px;line-height:1}
+.streak b{display:block;font-family:var(--f-head);font-size:16px}
+.streak span{font-size:13.5px;color:var(--muted)}
+.streak.risk{background:#fdeee6;border-color:#f2c9b5}
+.streak.risk b{color:var(--bad)}
+.streak.ok{background:var(--green-soft);border-color:#cfe0d6}
+.rk-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+select{appearance:auto}
 
 </style>
 </head>
@@ -1924,7 +1943,12 @@ window.SPEAK = {
   function words(t) { var m = String(t || '').trim().match(/[A-Za-z'’-]+/g); return m ? m.length : 0; }
   function unit(id) { for (var i = 0; i < U.length; i++) if (U[i].id === id) return U[i]; return null; }
   function us(id) { return S.units[id] || (S.units[id] = {}); }
-  function touch() { var t = ds(new Date()); if (S.days.indexOf(t) < 0) { S.days.push(t); if (S.days.length > 400) S.days.shift(); } save(); }
+  function touch() {
+    var t = ds(new Date());
+    if (S.days.indexOf(t) < 0) { S.days.push(t); if (S.days.length > 400) S.days.shift(); }
+    save();
+    if (window.APP && APP.badge) APP.badge();
+  }
   function streak() {
     var set = {}; S.days.forEach(function (d) { set[d] = 1; });
     var d = new Date(); if (!set[ds(d)]) d.setDate(d.getDate() - 1);
@@ -2008,6 +2032,7 @@ window.SPEAK = {
     $$('.nav button').forEach(function (b) { b.classList.toggle('on', b.dataset.tab === TAB[R.v]); });
     (V[R.v] || V.home)(view);
     window.scrollTo(0, 0);
+    if (window.APP && APP.badge) APP.badge();
   }
   function top(opts) {
     var t = $('#top');
@@ -2171,6 +2196,7 @@ window.SPEAK = {
       (nx ? '<button class="continue" id="h-cont"><div class="n">' + nx.u.no + '</div><div class="tx"><b>' + (done ? 'เรียนต่อ' : 'เริ่มบทแรก') + ': ' + esc(nx.u.title) + '</b><span>ขั้นที่ ' + (nx.j + 1) + ' · ' + nx.s.th + '</span></div>' + I.arrow + '</button>'
         : '<button class="continue" id="h-mock"><div class="n">✓</div><div class="tx"><b>เรียนครบทุก Unit แล้ว!</b><span>ไปทำข้อสอบจำลองเพื่อวัดระดับ</span></div>' + I.arrow + '</button>') +
       '<div class="stats"><div class="stat"><b>' + streak() + '</b><span>วันติดต่อกัน</span></div><div class="stat"><b>' + mastered() + '<small class="muted" style="font-size:13px">/' + tw + '</small></b><span>คำที่จำได้</span></div><div class="stat"><b>' + (lm ? lm.pct + '%' : '–') + '</b><span>' + (lm ? 'สอบจำลอง (' + lm.lvl + ')' : 'ยังไม่สอบจำลอง') + '</span></div></div>' +
+      riskBanner() +
       cd +
       '<div class="sec"><h2>แผนเรียน 12 สัปดาห์</h2><span class="small muted">สัปดาห์ที่ ' + week + '</span></div>' +
       '<details class="card plan"' + (week <= 12 ? '' : '') + '><summary><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><div><b>สัปดาห์นี้: ' + esc(C.plan[week - 1].t) + '</b><div class="small muted">' + esc(C.plan[week - 1].d) + '</div></div><span class="link">ดูทั้งหมด</span></div></summary><div class="plan-list">' +
@@ -2182,9 +2208,20 @@ window.SPEAK = {
       '<button class="row" data-go="mock"><div class="tx"><b>ข้อสอบจำลองระดับ B2</b><span>25 ข้อ · 35 นาที · ประเมินระดับ CEFR</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
       '<button class="row" data-go="info"><div class="tx"><b>เกณฑ์ ก.ค.ศ. และข้อสอบที่ใช้ได้</b><span>ว 9/2564 · ว 10/2567 · ตารางเทียบคะแนน</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button></div>';
     var hc = $('#h-cont'); if (hc) hc.onclick = function () { go('step', { id: nx.u.id, k: nx.s.k }); };
+    var rq = $('#rk-quick'); if (rq) rq.onclick = function () { go('practice'); };
+    var rs = $('#rk-set'); if (rs) rs.onclick = function () { go('settings'); };
     var hm = $('#h-mock'); if (hm) hm.onclick = function () { go('mock'); };
     $$('[data-go]', el).forEach(function (b) { b.onclick = function () { go(b.dataset.go); }; });
   };
+
+  function riskBanner() {
+    var today = ds(new Date()), done = S.days.indexOf(today) >= 0, s = streak();
+    if (done) return '<div class="streak ok"><span class="fl">🔥</span><div><b>วันนี้เรียนแล้ว · ต่อเนื่อง ' + s + ' วัน</b><span>กลับมาพรุ่งนี้เพื่อรักษาสถิติ</span></div></div>';
+    var now = new Date(), mid = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1), h = Math.floor((mid - now) / 36e5), m = Math.floor((mid - now) % 36e5 / 6e4);
+    if (s > 0) return '<div class="streak risk"><span class="fl">🔥</span><div><b>สถิติ ' + s + ' วันจะหายตอนเที่ยงคืน</b><span>เหลือเวลา ' + h + ' ชม. ' + m + ' นาที — ทวนแฟลชการ์ด 5 นาทีก็รักษาสถิติได้</span>' +
+      '<div class="rk-btns"><button class="chip on" id="rk-quick">ทวนคำศัพท์ 5 นาที</button><button class="chip" id="rk-set">ตั้งค่าแจ้งเตือน</button></div></div></div>';
+    return S.days.length ? '<div class="streak"><span class="fl">🌱</span><div><b>เริ่มสถิติใหม่วันนี้</b><span>เรียนอะไรก็ได้ 1 อย่าง เพื่อเริ่มนับวันต่อเนื่อง</span></div></div>' : '';
+  }
 
   V.units = function (el) {
     top();
@@ -2454,6 +2491,7 @@ window.SPEAK = {
       '<label class="lb">เป้าหมาย</label><div class="seg" id="s-grp"><button data-g="lang" class="' + (p.group !== 'other' ? 'on' : '') + '"><b>B2</b><span>ครูภาษาต่างประเทศ</span></button><button data-g="other" class="' + (p.group === 'other' ? 'on' : '') + '"><b>B1</b><span>ครูกลุ่มสาระอื่น / ผู้บริหาร / ศน.</span></button></div>' +
       '<label class="lb" for="s-date">วันสอบจริง</label><input type="date" id="s-date" value="' + esc(p.exam || '') + '">' +
       '<div class="btns"><button class="btn" id="s-save">บันทึก</button></div></div>' +
+      '<div id="remind-box"></div>' +
       '<div class="sec"><h2>ย้ายข้อมูลไปเครื่องอื่น</h2></div><div class="card"><p class="small muted">ความคืบหน้าถูกเก็บในเบราว์เซอร์ของเครื่องนี้ คัดลอกรหัสด้านล่างไปวางในเครื่องใหม่เพื่อเรียนต่อ</p>' +
       '<textarea id="s-code" style="min-height:90px;font-family:ui-monospace,Consolas,monospace;font-size:12px" readonly></textarea>' +
       '<div class="btns two"><button class="btn ghost" id="s-copy">คัดลอกรหัส</button><button class="btn ghost" id="s-imp">นำเข้ารหัส</button></div></div>' +
@@ -2461,6 +2499,7 @@ window.SPEAK = {
     var g = p.group;
     $$('#s-grp button').forEach(function (b) { b.onclick = function () { g = b.dataset.g; $$('#s-grp button').forEach(function (x) { x.classList.toggle('on', x === b); }); }; });
     $('#s-save').onclick = function () { p.name = $('#s-name').value.trim() || p.name; p.group = g; p.exam = $('#s-date').value; save(); toast('บันทึกแล้ว'); go('home'); };
+    if (window.APP && APP.remindUI) APP.remindUI($('#remind-box'));
     var code = btoa(unescape(encodeURIComponent(JSON.stringify(S))));
     $('#s-code').value = code;
     $('#s-copy').onclick = function () {
@@ -2491,7 +2530,7 @@ window.SPEAK = {
   window.APP = {
     V: V, I: I, $: $, $$: $$, esc: esc, paras: paras, words: words, shuffle: shuffle, toast: toast, TTS: TTS, sayBtn: sayBtn,
     go: go, top: top, qset: qset, runner: runner, ring: ring, save: save, touch: touch, level: level, ds: ds, pad: pad, leave: LEAVE,
-    get S() { return S; }, get R() { return R; }, start: render
+    streak: streak, get S() { return S; }, get R() { return R; }, start: render
   };
 })();
 
@@ -3291,6 +3330,105 @@ window.SPEAK = {
       });
     }, function () { var box = $('#rl'); if (box) box.innerHTML = '<div class="note warnbox">เบราว์เซอร์นี้ไม่อนุญาตให้เก็บไฟล์เสียง (เช่น โหมดไม่ระบุตัวตน)</div>'; });
   };
+})();
+
+;
+/* Study reminder as a plain notification badge (no email, no server):
+   - red dot on the Home tab + "(1)" in the tab title + app-icon badge (installed app) while today's study is missing
+   - optional system notification after the chosen hour, if the app is open/in background
+   - optional daily calendar reminder (works even when the app is closed) */
+(function () {
+  'use strict';
+  var A = window.APP, $ = A.$, esc = A.esc;
+  var BASE_TITLE = document.title;
+
+  function st() { var S = A.S; return S.remind || (S.remind = { badge: true, notify: false, hour: 20 }); }
+  function studiedToday() { return A.S.days.indexOf(A.ds(new Date())) >= 0; }
+  function missing() { return !!A.S.profile && !studiedToday(); }
+
+  function setBadge(n) {
+    try { if (n && navigator.setAppBadge) navigator.setAppBadge(n); else if (!n && navigator.clearAppBadge) navigator.clearAppBadge(); } catch (e) { }
+  }
+
+  function notify() {
+    var r = st(), t = A.ds(new Date());
+    if (!r.notify || r.lastNotified === t || !missing()) return;
+    if (!('Notification' in window) || Notification.permission !== 'granted') return;
+    if (new Date().getHours() < r.hour) return;
+    var s = A.streak(), title = s > 0 ? '🔥 สถิติ ' + s + ' วันจะหายตอนเที่ยงคืน' : '📚 วันนี้ยังไม่ได้ฝึกภาษาอังกฤษ';
+    var opts = { body: 'เรียนแค่ 5 นาที (ทวนแฟลชการ์ด 1 รอบ) ก็รักษาสถิติได้', tag: 'b2-daily', icon: 'icon-192.png' };
+    r.lastNotified = t; A.save();
+    if (navigator.serviceWorker && navigator.serviceWorker.getRegistration) {
+      navigator.serviceWorker.getRegistration().then(function (reg) {
+        if (reg && reg.showNotification) reg.showNotification(title, opts); else new Notification(title, opts);
+      }, function () { try { new Notification(title, opts); } catch (e) { } });
+    } else { try { new Notification(title, opts); } catch (e) { } }
+  }
+
+  /* refresh every badge surface */
+  A.badge = function () {
+    var r = st(), on = r.badge !== false && missing();
+    var tab = document.querySelector('.nav button[data-tab="home"]');
+    if (tab) { var d = tab.querySelector('.nbadge'); if (on && !d) { d = document.createElement('i'); d.className = 'nbadge'; d.setAttribute('aria-label', 'วันนี้ยังไม่ได้เรียน'); tab.appendChild(d); } else if (!on && d) d.remove(); }
+    document.title = on ? '(1) ' + BASE_TITLE : BASE_TITLE;
+    setBadge(on ? 1 : 0);
+    notify();
+  };
+
+  A.remindUI = function (box) {
+    var r = st(), perm = 'Notification' in window ? Notification.permission : 'unsupported';
+    var inGas = /googleusercontent\.com$|script\.google\.com$/.test(location.hostname);
+    box.innerHTML = '<div class="sec"><h2>แจ้งเตือนกันสถิติหาย</h2><span class="small muted">🔥 ' + A.streak() + ' วัน</span></div>' +
+      '<div class="card"><label class="switch" style="margin-top:0"><input type="checkbox" id="rm-badge"' + (r.badge !== false ? ' checked' : '') + '><span><b>จุดแดงแจ้งเตือน</b> บนเมนูหน้าหลัก/ชื่อแท็บ/ไอคอนแอป เมื่อวันนี้ยังไม่ได้เรียน</span></label>' +
+      '<label class="switch"><input type="checkbox" id="rm-notify"' + (r.notify ? ' checked' : '') + (perm === 'unsupported' || inGas ? ' disabled' : '') + '><span><b>เด้งแจ้งเตือน</b> หลังเวลาที่ตั้ง ถ้ายังไม่ได้เรียน</span></label>' +
+      '<div id="rm-hr"' + (r.notify ? '' : ' class="hide"') + '><label class="lb" for="rm-hour">เตือนหลังเวลา</label><select id="rm-hour">' + hourOpts(r.hour) + '</select></div>' +
+      '<p class="small muted" style="margin:10px 0 0" id="rm-hint">' + hint(perm, inGas) + '</p></div>' +
+      '<div class="card"><b>เตือนในปฏิทินมือถือ (สำรอง)</b><p class="small muted" style="margin:4px 0 10px">เตือนทุกวันตามเวลาที่เลือก แม้ปิดแอปอยู่ — แต่จะเตือนทุกวันแม้เรียนแล้ว</p>' +
+      '<div class="btns two" style="margin-top:0"><a class="btn ghost" id="rm-ics" download="b2-daily-reminder.ics" target="_blank">📅 iPhone/iCal</a><a class="btn ghost" id="rm-gcal" target="_blank" rel="noopener">📅 Google</a></div></div>';
+    var hs = $('#rm-hour');
+    function links() { var h = hs ? +hs.value : r.hour; $('#rm-ics').href = ics(h); $('#rm-gcal').href = gcal(h); }
+    $('#rm-badge').onchange = function () { r.badge = this.checked; A.save(); A.badge(); };
+    $('#rm-notify').onchange = function () {
+      var cb = this;
+      if (!cb.checked) { r.notify = false; A.save(); $('#rm-hr').classList.add('hide'); return; }
+      if (!('Notification' in window)) { cb.checked = false; A.toast('เบราว์เซอร์นี้ไม่รองรับการแจ้งเตือน'); return; }
+      Promise.resolve(Notification.requestPermission()).then(function (p) {
+        if (p !== 'granted') { cb.checked = false; r.notify = false; A.save(); $('#rm-hint').textContent = hint(p, false); A.toast('ไม่ได้รับอนุญาตแจ้งเตือน'); return; }
+        r.notify = true; A.save(); $('#rm-hr').classList.remove('hide'); $('#rm-hint').textContent = hint(p, false); A.toast('เปิดแจ้งเตือนแล้ว ✓');
+      });
+    };
+    if (hs) hs.onchange = function () { r.hour = +hs.value; r.lastNotified = ''; A.save(); links(); };
+    links();
+  };
+
+  function hint(perm, inGas) {
+    if (inGas) return 'เวอร์ชัน Apps Script เด้งแจ้งเตือนไม่ได้ ใช้จุดแดงบนแท็บแทน — ต้องการเด้งแจ้งเตือน ให้ใช้เวอร์ชัน GitHub Pages';
+    if (perm === 'unsupported') return 'เบราว์เซอร์นี้ไม่รองรับการเด้งแจ้งเตือน (iPhone ต้อง "เพิ่มไปยังหน้าจอโฮม" ก่อน แล้วเปิดจากไอคอน)';
+    if (perm === 'denied') return 'การแจ้งเตือนถูกบล็อก — เปิดได้ที่ ตั้งค่าเบราว์เซอร์ → การแจ้งเตือน';
+    return 'ข้อจำกัด: เว็บส่งแจ้งเตือนตามเวลาตอนปิดแอปสนิทไม่ได้ จะเด้งเมื่อแอปเปิดค้างอยู่หรือเปิดกลับมาหลังเวลาที่ตั้ง · ที่ปิดแอปอยู่ใช้ปฏิทินด้านล่างแทน';
+  }
+  function hourOpts(sel) { var h = []; for (var i = 6; i <= 23; i++) h.push('<option value="' + i + '"' + (i === +sel ? ' selected' : '') + '>' + A.pad(i) + ':00 น.</option>'); return h.join(''); }
+  function appUrl() { return location.protocol.indexOf('http') === 0 && !/googleusercontent|script\.google/.test(location.hostname) ? location.origin + location.pathname : 'https://sleeplessss.github.io/b2-teacher-course/'; }
+  function ics(hour) {
+    var d = new Date(), y = d.getFullYear(), m = A.pad(d.getMonth() + 1), dd = A.pad(d.getDate()), hh = A.pad(hour);
+    var body = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//B2 Ready for Teachers//TH', 'CALSCALE:GREGORIAN', 'BEGIN:VEVENT',
+      'UID:b2-daily@b2ready', 'DTSTAMP:' + y + m + dd + 'T000000Z', 'DTSTART;TZID=Asia/Bangkok:' + y + m + dd + 'T' + hh + '0000', 'DURATION:PT15M', 'RRULE:FREQ=DAILY',
+      'SUMMARY:🔥 ฝึกภาษาอังกฤษ 15 นาที (รักษาสถิติ)', 'DESCRIPTION:เปิดแอป B2 Ready for Teachers: ' + appUrl(), 'URL:' + appUrl(),
+      'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:ถึงเวลาฝึกภาษาอังกฤษแล้ว', 'TRIGGER:PT0M', 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+    return 'data:text/calendar;charset=utf-8,' + encodeURIComponent(body);
+  }
+  function gcal(hour) {
+    var d = new Date(), s = d.getFullYear() + A.pad(d.getMonth() + 1) + A.pad(d.getDate());
+    return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent('🔥 ฝึกภาษาอังกฤษ 15 นาที (รักษาสถิติ)') +
+      '&dates=' + s + 'T' + A.pad(hour) + '0000/' + s + 'T' + A.pad(hour) + '1500&ctz=Asia/Bangkok&recur=' + encodeURIComponent('RRULE:FREQ=DAILY') + '&details=' + encodeURIComponent('เปิดแอป: ' + appUrl());
+  }
+
+  /* keep badges fresh: on load, when returning to the app, every minute (midnight rollover / notify hour) */
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) A.badge(); });
+  setInterval(A.badge, 60000);
+  if ('serviceWorker' in navigator && location.protocol === 'https:' || location.hostname === 'localhost') {
+    try { navigator.serviceWorker.register('sw.js').catch(function () { }); } catch (e) { }
+  }
 })();
 
 ;APP.start();

@@ -8,7 +8,7 @@ from pathlib import Path
 
 root = Path(__file__).parent
 src = root / "src"
-JS = ["data.js", "exams.js", "edusynch.js", "speaking.js", "app.js", "prep.js", "speak.js"]
+JS = ["data.js", "exams.js", "edusynch.js", "speaking.js", "app.js", "prep.js", "speak.js", "remind.js"]
 js = "\n;\n".join((src / f).read_text(encoding="utf-8") for f in JS) + "\n;APP.start();\n"
 assert "</script" not in js.lower(), "a JS file contains </script>"
 out = ((src / "shell.html").read_text(encoding="utf-8")
@@ -20,3 +20,8 @@ for p in (root / "dist" / "index.html", root / "docs" / "index.html", root / "ap
     p.write_text(out, encoding="utf-8")
     print(f"wrote {p.relative_to(root)}  ({len(out.encode('utf-8'))/1024:.1f} KB)")
 (root / "docs" / ".nojekyll").write_text("", encoding="utf-8")
+
+import shutil
+for f in (src / "pwa").iterdir():
+    shutil.copy(f, root / "docs" / f.name)
+    print("copied pwa/" + f.name)
