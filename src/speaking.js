@@ -1,6 +1,7 @@
 /* Speaking simulator content */
 window.SPEAK = {
   formats: [
+    { id: 'edusynch', exam: 'EduSynch', name: 'Speaking (CEFR 4 ทักษะ)', th: '3 คำถาม · เตรียม 15 วิ · พูด 45 วิ', prep: 15, perQ: 45, desc: 'เหมือนสอบจริงที่ศูนย์ HCEC: แสดงความคิดเห็นหรือเล่าประสบการณ์ แต่ละข้อมีเวลาเตรียม 15 วินาที แล้วพูด 45 วินาที' },
     { id: 'ielts1', exam: 'IELTS', name: 'Part 1 · Interview', th: 'ตอบคำถามเรื่องทั่วไป 4 ข้อ', prep: 0, perQ: 30, desc: 'ผู้คุมสอบถามคำถามสั้น ๆ เกี่ยวกับตัวคุณ ตอบข้อละ 20–30 วินาที ขยายความ 2–3 ประโยค' },
     { id: 'ielts2', exam: 'IELTS', name: 'Part 2 · Cue Card', th: 'เตรียม 1 นาที พูดต่อเนื่อง 2 นาที', prep: 60, talk: 120, desc: 'สุ่มบัตรหัวข้อ มีเวลาเตรียม 1 นาที (จดโน้ตได้) แล้วพูดต่อเนื่อง 1–2 นาที' },
     { id: 'ielts3', exam: 'IELTS', name: 'Part 3 · Discussion', th: 'อภิปรายเชิงลึก 3 ข้อ', prep: 0, perQ: 45, desc: 'คำถามเชิงความคิดเห็นที่ต่อยอดจาก Part 2 ตอบข้อละ ~45 วินาที ให้เหตุผลและตัวอย่าง' },
@@ -104,6 +105,31 @@ window.SPEAK = {
     'Should children start learning English in kindergarten?',
     'Is it important for teachers to keep studying after they start working?'
   ],
+
+  edu: {
+    exp: [
+      'Talk about a time when you learned something new outside of school or work.',
+      'Describe a memorable trip you have taken. Why was it special?',
+      'Talk about a time when you had to solve a problem at work.',
+      'Describe a happy moment from your teaching career or your studies.',
+      'Talk about a time when you worked as part of a team. What was your role?',
+      'Describe a time when you had to learn how to use a new technology.',
+      'Talk about a person who helped you when you needed it.',
+      'Describe a time when you had to speak in front of a large group. How did you feel?',
+      'Talk about a goal you have achieved and how you achieved it.'
+    ],
+    op: [
+      'Should students be allowed to use AI tools to help with their homework? Why or why not?',
+      'Some people think homework is unnecessary. What is your opinion?',
+      'Is it better to work in a big city or in the countryside? Explain your answer.',
+      'Should schools spend more time teaching practical skills, such as cooking and managing money?',
+      'Does social media have a positive or a negative effect on young people? Explain.',
+      'Should English only be taught by native speakers? Give your opinion.',
+      'Is it important for teachers to keep learning throughout their careers? Why?',
+      'Are exams a fair way to assess what students have learned?',
+      'Should public transport be free for students? Why or why not?'
+    ]
+  },
 
   phrases: {
     start: ['Well, that\'s an interesting question.', 'To be honest, …', 'I\'d say that…', 'I\'d like to talk about…'],

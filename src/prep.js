@@ -2,8 +2,8 @@
 (function () {
   'use strict';
   var A = window.APP, X = window.EXAMS, V = A.V, I = A.I, $ = A.$, $$ = A.$$, esc = A.esc;
-  var ORDER = ['toeic', 'ielts', 'toefl', 'efset'];
-  var SPK = { ielts: ['ielts1', 'ielts2', 'ielts3'], toefl: ['toefl_rep', 'toefl_int'] };
+  var ORDER = ['edusynch', 'toeic', 'ielts', 'toefl', 'efset'];
+  var SPK = { edusynch: ['edusynch'], ielts: ['ielts1', 'ielts2', 'ielts3'], toefl: ['toefl_rep', 'toefl_int'] };
   function ex() { var S = A.S; return S.exams || (S.exams = {}); }
   function rec(id) { var e = ex(); return e[id] || (e[id] = {}); }
   function setDone(id) { var r = ex()[id]; return !!(r && (r.done || r.score != null)); }
@@ -18,7 +18,7 @@
       '<div class="sec"><h2>เลือกสนามสอบ</h2><span class="small muted">คะแนนเทียบ B2</span></div><div class="xgrid">' +
       ORDER.map(function (k) {
         var e = X[k], n = e.sets.length, d = e.sets.filter(function (s) { return setDone(s.id); }).length;
-        return '<button class="xcard" data-x="' + k + '"><div class="xn">' + esc(e.short) + '</div><div class="xs">B2 = ' + esc(e.b2) + '</div><div class="pbar"><i style="width:' + (d / n * 100) + '%"></i></div><div class="small muted">' + d + '/' + n + ' ชุดฝึก</div></button>';
+        return '<button class="xcard' + (k === 'edusynch' ? ' wide' : '') + '" data-x="' + k + '">' + (k === 'edusynch' ? '<span class="lvchip" style="float:right">ครูนิยมสอบ · ศูนย์ HCEC</span>' : '') + '<div class="xn">' + esc(e.short) + '</div><div class="xs">B2 = ' + esc(e.b2) + '</div><div class="pbar"><i style="width:' + (d / n * 100) + '%"></i></div><div class="small muted">' + d + '/' + n + ' ชุดฝึก</div></button>';
       }).join('') + '</div>' +
       '<div class="sec"><h2>วัดระดับรวม</h2></div><div class="rows">' +
       '<button class="row" data-go="mock"><div class="tx"><b>ข้อสอบจำลองระดับ B2</b><span>25 ข้อ · 35 นาที · อ่าน ฟัง ไวยากรณ์ คำศัพท์</span></div>' + chev() + '</button>' +
@@ -54,7 +54,7 @@
     var v = $('#ex-voc'); if (v) v.onclick = function () { A.go('practice', { f: 'T' }); };
     var m = $('#ex-mock'); if (m) m.onclick = function () { A.go('mock'); };
   };
-  function kindIcon(kind) { return { mcq: 'Q', write: 'W', cloze: 'C', build: 'B', adaptive: 'A' }[kind] || '•'; }
+  function kindIcon(kind) { return { mcq: 'Q', write: 'W', cloze: 'C', build: 'B', adaptive: 'A', full4: '4' }[kind] || '•'; }
 
   /* ── practice set ── */
   V.xset = function (el) {
@@ -195,6 +195,165 @@
       this.parentNode.remove();
       finishBox($('#bd-res'), s, k, Math.round(ok / s.items.length * 100), ok, s.items.length);
     };
+  };
+
+  /* ── EduSynch full 4-skill mock ── */
+  var LVN = function (v) { return v == null ? '–' : v < 1.75 ? 'A2' : v < 2.5 ? 'B1' : v < 3.25 ? 'B2' : v < 3.75 ? 'B2+' : 'C1'; };
+  function pctLv(p) { return p >= 80 ? 4 : p >= 60 ? 3 : p >= 40 ? 2 : 1; }
+  function chkLv(n, max) { var r = n / max; return r <= 0.25 ? 1 : r <= 0.5 ? 2 : r < 1 ? 3 : 3.5; }
+
+  K.full4 = function (el, s, head, k) {
+    var S = A.S, cur = S.m4cur, hist = (S.m4hist || []).slice(-5).reverse();
+    el.innerHTML = head +
+      '<div class="card mt"><table class="table"><tr><th>ลำดับ</th><th>ส่วน</th><th>เวลา</th></tr>' +
+      '<tr><td>1</td><td><b>Reading</b> · 3 บทความ 12 ข้อ</td><td>20 นาที</td></tr><tr><td>2</td><td><b>Listening</b> · 3 คลิป 8 ข้อ (ฟังได้คลิปละ 2 ครั้ง)</td><td>10 นาที</td></tr>' +
+      '<tr><td>3</td><td><b>Speaking</b> · 3 คำถาม บันทึกเสียง</td><td>~5 นาที</td></tr><tr><td>4</td><td><b>Writing</b> · เรียงความ ≥150 คำ</td><td>20 นาที</td></tr></table>' +
+      '<p class="small muted" style="margin:10px 0 0">จำลองตามโครงสร้างทางการของ EduSynch · Reading/Listening ตรวจอัตโนมัติ · Speaking/Writing ประเมินด้วยเกณฑ์ของผู้ตรวจ (ติ๊กประเมินตนเอง) · ระดับรวม = ค่าเฉลี่ย 4 ทักษะ</p></div>' +
+      '<div class="note">เตรียม: หูฟัง · ที่เงียบ · เวลาว่างต่อเนื่อง ~1 ชั่วโมง · อนุญาตไมโครโฟนเมื่อถึงส่วน Speaking</div>' +
+      '<div class="btns">' + (cur && cur.stage !== 'done' ? '<button class="btn gold" id="m4-resume">ทำต่อจากส่วน ' + { reading: 'Reading', listening: 'Listening', speaking: 'Speaking', writing: 'Writing', wcheck: 'Writing', result: 'ผลสอบ' }[cur.stage] + '</button>' : '') +
+      '<button class="btn" id="m4-go">' + (cur && cur.stage !== 'done' ? 'เริ่มชุดใหม่' : 'เริ่มสอบ') + '</button></div>' +
+      (hist.length ? '<div class="sec"><h2>ประวัติ</h2></div><div class="rows">' + hist.map(function (h) {
+        return '<div class="row"><span class="badge b2" style="min-width:52px;text-align:center">' + h.overall + '</span><div class="tx"><b>R ' + h.R + ' · L ' + h.L + ' · S ' + h.S + ' · W ' + h.W + '</b><span>' + new Date(h.date).toLocaleDateString('th-TH', { day: 'numeric', month: 'short', year: '2-digit' }) + '</span></div></div>';
+      }).join('') + '</div>' : '');
+    var r = $('#m4-resume'); if (r) r.onclick = function () { A.go('m4'); };
+    $('#m4-go').onclick = function () {
+      S.m4cur = { t0: Date.now(), stage: 'reading', wi: Math.floor(Math.random() * X.edusynch.mock.writing.length) };
+      A.save(); A.go('m4');
+    };
+  };
+
+  function section(el, title, minutes, groups, kind, onSubmit) {
+    var ans = [], flat = [], plays = {};
+    groups.forEach(function (g, gi) { g.qs.forEach(function (q, qi) { flat.push({ g: gi, q: q }); ans.push(-1); }); });
+    var end = Date.now() + minutes * 60000, tid, armed = false, n = 0;
+    el.innerHTML = '<div class="runner-top"><span class="eyebrow" style="flex:1">' + esc(title) + '</span><span class="timer" id="timer"></span></div>' +
+      groups.map(function (g, gi) {
+        var ctx = kind === 'reading'
+          ? '<div class="eyebrow" style="margin-bottom:6px">Text ' + (gi + 1) + '</div><h3 style="font-size:18px;margin-bottom:8px">' + esc(g.title) + '</h3><div class="passage" style="font-size:15.5px">' + A.paras(g.passage) + '</div>'
+          : '<div class="player"><button class="play" data-clip="' + gi + '" aria-label="เล่นเสียง">' + I.play + '</button><div class="tx"><b>' + esc(g.title) + '</b><span class="small muted" id="pl' + gi + '">ฟังได้ 2 ครั้ง</span></div></div>';
+        return '<div class="card">' + ctx + '</div><div class="card">' + g.qs.map(function (q) {
+          var idx = n++, ord = A.shuffle(q.o.map(function (_, i) { return i; }));
+          return '<div class="q" data-i="' + idx + '"><div class="qt"><i>' + (idx + 1) + '.</i><span><span class="lvchip">' + esc(q.t) + '</span> ' + esc(q.q) + '</span></div><div class="opts">' +
+            ord.map(function (oi, j) { return '<button class="opt" data-oi="' + oi + '"><span class="k">' + 'ABCD'[j] + '</span><span>' + esc(q.o[oi]) + '</span></button>'; }).join('') + '</div></div>';
+        }).join('') + '</div>';
+      }).join('') + '<div class="btns"><button class="btn" id="sec-sub">ส่งคำตอบส่วนนี้</button></div>';
+    function tick() {
+      var left = Math.max(0, end - Date.now()), t = $('#timer'), s = Math.round(left / 1000);
+      if (t) { t.textContent = A.pad(Math.floor(s / 60)) + ':' + A.pad(s % 60); t.classList.toggle('low', left < 120000); }
+      if (left <= 0) { clearInterval(tid); A.toast('หมดเวลา ส่งคำตอบอัตโนมัติ'); submit(); }
+    }
+    tid = setInterval(tick, 1000); tick();
+    A.leave.push(function () { clearInterval(tid); });
+    $$('.q', el).forEach(function (qd) {
+      var i = +qd.dataset.i;
+      $$('.opt', qd).forEach(function (b) { b.onclick = function () { ans[i] = +b.dataset.oi; $$('.opt', qd).forEach(function (x) { x.classList.toggle('sel', x === b); }); }; });
+    });
+    $$('[data-clip]', el).forEach(function (b) {
+      var gi = +b.dataset.clip; plays[gi] = 0;
+      b.onclick = function () {
+        if (A.TTS.btn === b) { A.TTS.stop(); return; }
+        if (plays[gi] >= 2) { A.toast('ฟังครบ 2 ครั้งแล้ว'); return; }
+        plays[gi]++; $('#pl' + gi).textContent = plays[gi] >= 2 ? 'ฟังครบ 2 ครั้งแล้ว' : 'ฟังได้อีก 1 ครั้ง';
+        A.TTS.speak(groups[gi].script, b);
+      };
+    });
+    var done = false;
+    function submit() {
+      if (done) return; done = true; clearInterval(tid); A.TTS.stop();
+      var ok = 0, rev = [];
+      flat.forEach(function (f, i) { if (ans[i] === f.q.a) ok++; else rev.push({ q: f.q.q, pick: ans[i] >= 0 ? f.q.o[ans[i]] : null, right: f.q.o[f.q.a], e: f.q.e }); });
+      onSubmit({ ok: ok, n: flat.length, pct: Math.round(ok / flat.length * 100), rev: rev });
+    }
+    $('#sec-sub').onclick = function () {
+      var miss = ans.filter(function (a) { return a < 0; }).length;
+      if (miss && !armed) { armed = true; A.toast('ยังไม่ได้ตอบ ' + miss + ' ข้อ — แตะอีกครั้งเพื่อส่ง'); return; }
+      submit();
+    };
+  }
+
+  V.m4 = function (el) {
+    var S = A.S, cur = S.m4cur, E = X.edusynch, M = E.mock;
+    if (!cur) { A.go('exam', { x: 'edusynch' }); return; }
+    var steps = ['reading', 'listening', 'speaking', 'writing'];
+    var si = Math.min(3, steps.indexOf(cur.stage === 'wcheck' ? 'writing' : cur.stage));
+    A.top({ back: function () { A.go('xset', { x: 'edusynch', id: 'edu-full' }); }, title: 'CEFR 4 ทักษะ · ' + (cur.stage === 'result' || cur.stage === 'done' ? 'ผลสอบ' : 'ส่วนที่ ' + (si + 1) + '/4') });
+    var bar = '<div class="qprog" style="margin:0 0 10px">' + steps.map(function (s2, i) { return '<i class="' + (i < si || cur.stage === 'result' || cur.stage === 'done' ? 'd' : i === si ? 'c' : '') + '"></i>'; }).join('') + '</div>';
+    if (cur.stage === 'reading' || cur.stage === 'listening') {
+      var isR = cur.stage === 'reading';
+      el.innerHTML = bar + '<div id="secbox"></div>';
+      section($('#secbox'), isR ? 'Part 1 · Reading' : 'Part 2 · Listening', isR ? 20 : 10, isR ? M.reading : M.listening, cur.stage, function (res) {
+        cur[isR ? 'r' : 'l'] = res; cur.stage = isR ? 'listening' : 'speaking'; A.touch();
+        if (isR) { A.toast('ส่ง Reading แล้ว → Listening'); A.go('m4'); }
+        else {
+          el.innerHTML = '<div class="qprog" style="margin:0 0 10px"><i class="d"></i><i class="d"></i><i class="c"></i><i></i></div><div class="card mt center"><h2 style="font-size:21px">ต่อไป: Part 3 · Speaking</h2><p class="muted">3 คำถาม · เตรียม 15 วินาที · พูด 45 วินาที ระบบจะขออนุญาตใช้ไมโครโฟน</p></div><div class="btns"><button class="btn" id="go-s">ไปส่วน Speaking</button></div>';
+          $('#go-s').onclick = function () { A.go('speakrun', { f: 'edusynch', m4: 1 }); };
+        }
+      });
+      return;
+    }
+    if (cur.stage === 'speaking') { A.go('speakrun', { f: 'edusynch', m4: 1 }); return; }
+    if (cur.stage === 'writing') {
+      var w = M.writing[cur.wi], left = 20 * 60, tid;
+      el.innerHTML = bar + '<div class="runner-top"><span class="eyebrow" style="flex:1">Part 4 · Writing</span><span class="timer" id="timer">20:00</span></div>' +
+        '<div class="cue"><div class="eyebrow">' + esc(w.type) + ' · at least 150 words</div><h2 style="font-size:18px">' + esc(w.prompt) + '</h2></div>' +
+        '<textarea id="m4w" class="mt" style="min-height:300px" placeholder="Write your essay here…">' + esc(cur.wtext || '') + '</textarea><div class="wc"><span id="m4wc"></span><span>ขั้นต่ำ 150 คำ</span></div>' +
+        '<div class="btns"><button class="btn" id="m4ws">ส่งเรียงความ</button></div>';
+      var ta = $('#m4w'), wc = $('#m4wc'), dt, armed = false;
+      function upd() { var n = A.words(ta.value); wc.textContent = n + ' คำ'; wc.style.color = n >= 150 ? 'var(--green)' : ''; }
+      ta.oninput = function () { upd(); clearTimeout(dt); dt = setTimeout(function () { cur.wtext = ta.value; A.save(); }, 400); }; upd();
+      function fin() { clearInterval(tid); cur.wtext = ta.value; cur.w = { words: A.words(ta.value), checks: {} }; cur.stage = 'wcheck'; A.touch(); A.go('m4'); }
+      tid = setInterval(function () {
+        left--; var t = $('#timer'); if (t) { t.textContent = A.pad(Math.floor(left / 60)) + ':' + A.pad(left % 60); t.classList.toggle('low', left < 120); }
+        if (left <= 0) { A.toast('หมดเวลา ส่งเรียงความอัตโนมัติ'); fin(); }
+      }, 1000);
+      A.leave.push(function () { clearInterval(tid); });
+      $('#m4ws').onclick = function () {
+        if (A.words(ta.value) < 150 && !armed) { armed = true; A.toast('ยังไม่ถึง 150 คำ — แตะอีกครั้งเพื่อส่ง'); return; }
+        fin();
+      };
+      return;
+    }
+    if (cur.stage === 'wcheck') {
+      var w2 = M.writing[cur.wi];
+      el.innerHTML = bar + '<div class="uhead"><div class="eyebrow">Part 4 · Writing</div><h1>ตรวจเรียงความของคุณ</h1><p>' + cur.w.words + ' คำ' + (cur.w.words < 150 ? ' — ต่ำกว่า 150 คำ (สอบจริงจะถูกจำกัดคะแนน)' : '') + '</p></div>' +
+        '<div class="card mt"><div class="passage" style="font-size:15px">' + A.paras(cur.wtext || '(ว่าง)') + '</div></div>' +
+        '<details class="card mt"><summary class="link" style="list-style:none;cursor:pointer">เทียบกับตัวอย่างคำตอบระดับ B2+</summary><div class="passage mt" style="font-size:15px">' + A.paras(w2.model) + '</div></details>' +
+        '<div class="sec"><h2>ประเมินตามเกณฑ์ผู้ตรวจ</h2><span class="small muted">ติ๊กข้อที่ทำได้</span></div><div class="card checks">' +
+        E.wcrit.map(function (c) { return '<label class="ck"><input type="checkbox" data-k="' + c.k + '"><span><b>' + esc(c.name) + '</b><br><span class="small muted">' + esc(c.th) + '</span></span></label>'; }).join('') + '</div>' +
+        '<div class="btns"><button class="btn gold" id="m4res">ดูผลสอบ 4 ทักษะ</button></div>';
+      $$('.checks input', el).forEach(function (b) { b.onchange = function () { cur.w.checks[b.dataset.k] = b.checked; A.save(); }; });
+      $('#m4res').onclick = function () { cur.stage = 'result'; A.save(); A.go('m4'); };
+      return;
+    }
+    /* result */
+    var cnt = function (o) { return o ? Object.keys(o).filter(function (k) { return o[k]; }).length : 0; };
+    var lv = {
+      R: cur.r ? pctLv(cur.r.pct) : null,
+      L: cur.l ? pctLv(cur.l.pct) : null,
+      S: cur.s && cur.s.done ? chkLv(cnt(cur.s.checks), 5) : null,
+      W: cur.w ? Math.min(chkLv(cnt(cur.w.checks), 4), cur.w.words < 150 ? 2 : 9) : null
+    };
+    var vals = ['R', 'L', 'S', 'W'].map(function (k) { return lv[k]; }).filter(function (v) { return v != null; });
+    var avg = vals.length ? vals.reduce(function (a, b) { return a + b; }, 0) / vals.length : null, overall = LVN(avg);
+    if (cur.stage !== 'done') {
+      cur.stage = 'done';
+      (S.m4hist = S.m4hist || []).push({ date: Date.now(), overall: overall, R: LVN(lv.R), L: LVN(lv.L), S: LVN(lv.S), W: LVN(lv.W) });
+      var rr = ex()['edu-full'] || (ex()['edu-full'] = {}); rr.done = true; A.touch();
+    }
+    var names = { R: ['Reading', cur.r ? cur.r.ok + '/' + cur.r.n + ' ข้อ' : ''], L: ['Listening', cur.l ? cur.l.ok + '/' + cur.l.n + ' ข้อ' : ''], S: ['Speaking', 'ประเมินตนเอง ' + cnt(cur.s && cur.s.checks) + '/5'], W: ['Writing', cur.w ? cur.w.words + ' คำ · ' + cnt(cur.w.checks) + '/4' : ''] };
+    var pass = avg != null && avg >= 3;
+    el.innerHTML = bar + '<div class="result"><div class="lvl-big">' + overall + '</div><p style="margin:0"><b>ระดับรวมโดยประมาณ</b> (เฉลี่ย 4 ทักษะ)</p><p class="small muted">' + (pass ? 'ผ่านเกณฑ์ B2 — พร้อมสมัครสอบจริงที่ศูนย์ HCEC' : 'ยังไม่ถึง B2 — ดูทักษะที่ต่ำที่สุดแล้วฝึกเพิ่ม') + '</p>' +
+      '<div class="card breakdown">' + ['R', 'L', 'S', 'W'].map(function (k) {
+        var v = lv[k], p = v == null ? 0 : Math.min(100, v / 4 * 100);
+        return '<div class="ln" style="grid-template-columns:84px 1fr 44px"><span>' + names[k][0] + '<br><small class="muted">' + names[k][1] + '</small></span><div class="t"><i style="width:' + p + '%;background:' + (v >= 3 ? 'var(--green-2)' : v >= 2 ? 'var(--gold)' : 'var(--bad)') + '"></i></div><b>' + LVN(v) + '</b></div>';
+      }).join('') + '</div></div>' +
+      '<div class="note">Reading/Listening ตรวจอัตโนมัติ · Speaking/Writing มาจากการประเมินตนเองตามเกณฑ์ผู้ตรวจ — ลองให้เพื่อนครูภาษาอังกฤษช่วยฟัง/อ่านเพื่อความแม่นยำ ผลจริงของ EduSynch ใช้สเกลละเอียดกว่านี้</div>' +
+      ((cur.r && cur.r.rev.length) || (cur.l && cur.l.rev.length) ? '<div class="sec"><h2>ทบทวนข้อที่ผิด</h2></div><div class="card">' + [].concat(cur.r ? cur.r.rev : [], cur.l ? cur.l.rev : []).map(function (x) {
+        return '<div class="q"><div class="qt">' + esc(x.q) + '</div><div class="small">ตอบ: <span style="color:var(--bad)">' + (x.pick ? esc(x.pick) : '— ไม่ได้ตอบ') + '</span><br>ที่ถูก: <b style="color:var(--green)">' + esc(x.right) + '</b></div><div class="explain">' + esc(x.e) + '</div></div>';
+      }).join('') + '</div>' : '') +
+      '<div class="btns two"><button class="btn ghost" id="m4-recs">ฟังเสียง Speaking</button><button class="btn" id="m4-back">เสร็จสิ้น</button></div>';
+    $('#m4-recs').onclick = function () { A.go('recs'); };
+    $('#m4-back').onclick = function () { A.go('exam', { x: 'edusynch' }); };
   };
 
   K.adaptive = function (el, s, head, k) {

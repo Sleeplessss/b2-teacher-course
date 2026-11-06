@@ -75,14 +75,17 @@
       this.chunks = [];
       this.mr = mt ? new MediaRecorder(this.stream, { mimeType: mt }) : new MediaRecorder(this.stream);
       this.mr.ondataavailable = function (e) { if (e.data && e.data.size) self.chunks.push(e.data); };
-      this.mr.start(500); this.t0 = Date.now();
+      this.mr.start(500); this.t0 = Date.now(); this.acc = 0; this.t1 = Date.now();
       return true;
     };
+    this.pause = function () { var m = this.mr; if (m && m.state === 'recording' && m.pause) { m.pause(); this.acc += Date.now() - this.t1; } };
+    this.resume = function () { var m = this.mr; if (!m) return this.start(); if (m.state === 'paused') { m.resume(); this.t1 = Date.now(); } return true; };
     this.stop = function () {
       return new Promise(function (res) {
         var mr = self.mr;
         if (!mr || mr.state === 'inactive') return res(null);
-        mr.onstop = function () { res({ blob: new Blob(self.chunks, { type: (mr.mimeType || 'audio/webm').split(';')[0] }), dur: (Date.now() - self.t0) / 1000 }); };
+        var active = self.acc + (mr.state === 'recording' ? Date.now() - self.t1 : 0);
+        mr.onstop = function () { res({ blob: new Blob(self.chunks, { type: (mr.mimeType || 'audio/webm').split(';')[0] }), dur: active / 1000 }); };
         try { mr.requestData(); } catch (e) { }
         mr.stop();
       });
@@ -154,7 +157,8 @@
   /* ── session ── */
   V.speakrun = function (el) {
     var f = fmt(A.R.f), S = A.S, last = S.spLast || (S.spLast = {});
-    var back = function () { A.go(A.R.from ? 'exam' : 'speak', A.R.from ? { x: A.R.from } : null); };
+    var M4 = A.R.m4;
+    var back = function () { if (M4) A.go('xset', { x: 'edusynch', id: 'edu-full' }); else A.go(A.R.from ? 'exam' : 'speak', A.R.from ? { x: A.R.from } : null); };
     A.top({ back: back, title: f.exam + ' · ' + f.name });
     var run = { dead: false, voice: S.spVoice !== false && A.TTS.ok, rec: null, skip: function () { } };
     A.leave.push(function () { run.dead = true; if (run.rec) run.rec.release(); if (window.speechSynthesis) speechSynthesis.cancel(); });
@@ -189,6 +193,10 @@
         var by = function (n, m) { return A.shuffle(SP.repeat.filter(function (r) { return r.n === n; })).slice(0, m); };
         c.title = 'Listen and Repeat'; c.reps = by(1, 2).concat(by(2, 3), by(3, 2)).map(function (r) { return r.t; });
       }
+      else if (f.id === 'edusynch') {
+        var ex = A.shuffle(SP.edu.exp)[0], ops = A.shuffle(SP.edu.op).slice(0, 2);
+        c.title = 'EduSynch Speaking · 3 questions'; c.qs = [ex].concat(ops);
+      }
       else if (f.id === 'cefr') { var o = pickRand(SP.opinions, last.op); last.op = o; c.title = SP.opinions[o]; }
       A.save();
       return c;
@@ -201,6 +209,7 @@
       var p;
       if (f.id === 'ielts2' || f.id === 'cefr') p = cueFlow(c, recOK);
       else if (f.id === 'toefl_rep') p = repeatFlow(c, recOK);
+      else if (f.id === 'edusynch') p = eduFlow(c, recOK);
       else p = qFlow(c, recOK);
       p.then(function (out) {
         if (run.dead) return;
@@ -255,6 +264,38 @@
       return speakP(intro, run).then(one).then(function () { if (!run.dead) { beep(520, 300); return speakP('Thank you. That is the end of the speaking test.', run); } });
     }
 
+    function eduFlow(c, recOK) {
+      var i = 0, n = c.qs.length;
+      function one() {
+        if (run.dead || i >= n) return Promise.resolve();
+        var q = c.qs[i];
+        stage('<div class="eyebrow">Question ' + (i + 1) + ' of ' + n + '</div><div class="qprog">' + c.qs.map(function (_, k) { return '<i class="' + (k < i ? 'd' : k === i ? 'c' : '') + '"></i>'; }).join('') + '</div>' +
+          '<div class="cue"><div class="eyebrow">' + (i === 0 ? 'Personal experience' : 'Opinion') + '</div><h2>' + esc(q) + '</h2></div>' +
+          '<div id="rb"><div class="recbar off"><span>เตรียมตัว — คิดโครง: จุดยืน/เหตุการณ์ → เหตุผล → ตัวอย่าง</span></div></div>' +
+          '<div class="stagebox" id="tb"></div><div class="btns"><button class="btn ghost" id="skip">พร้อมแล้ว เริ่มพูด</button></div>');
+        $('#skip').onclick = function () { run.skip(); };
+        return speakP(q, run).then(function () {
+          if (run.dead) return;
+          return countdown($('#tb'), f.prep, 'เวลาเตรียม', run);
+        }).then(function () {
+          if (run.dead) return;
+          beep(880, 150);
+          var ok = run.rec && !run.rec.failed && run.rec.resume();
+          $('#rb').innerHTML = recBar(!!ok);
+          if (ok) run.rec.meter($('#mt'));
+          var sk = $('#skip'); sk.textContent = i < n - 1 ? 'พูดจบแล้ว ข้อต่อไป' : 'พูดจบแล้ว';
+          return countdown($('#tb'), f.perQ, 'เวลาพูด', run, { rec: !!ok, warn: 10 });
+        }).then(function () {
+          if (run.rec) run.rec.pause();
+          beep(520, 200); i++;
+          return wait(400).then(one);
+        });
+      }
+      var intro = 'In this section, you will answer three questions. For each question, you will have fifteen seconds to prepare and forty-five seconds to speak.';
+      stage('<div class="examiner"><span class="av">' + I.user + '</span><div class="qtext">' + esc(intro) + '</div></div>');
+      return speakP(intro, run).then(one);
+    }
+
     function repeatFlow(c, recOK) {
       var i = 0;
       function one() {
@@ -284,7 +325,9 @@
         recObj = { id: id, ts: id, f: f.id, title: c.title, items: items, points: c.points || null, dur: audio.dur, mime: audio.blob.type, blob: audio.blob, checks: checks };
         DB.put(recObj).catch(function () { A.toast('บันทึกลงคลังไม่ได้ (พื้นที่เบราว์เซอร์)'); });
       }
-      var S = A.S; S.spCount = (S.spCount || 0) + 1; A.touch();
+      var S = A.S; S.spCount = (S.spCount || 0) + 1;
+      if (M4 && S.m4cur) { S.m4cur.s = { id: recObj ? recObj.id : null, checks: checks, done: true }; S.m4cur.stage = 'writing'; }
+      A.touch();
       var url = recObj ? URL.createObjectURL(audio.blob) : null;
       if (url) A.leave.push(function () { URL.revokeObjectURL(url); });
       var ext = recObj ? (/mp4|aac/.test(recObj.mime) ? 'm4a' : /ogg/.test(recObj.mime) ? 'ogg' : 'webm') : '';
@@ -293,21 +336,25 @@
           : '<div class="note warnbox">รอบนี้ไม่ได้บันทึกเสียง (ไม่มีสิทธิ์ไมโครโฟน หรือเปิดจาก Apps Script)' + (IN_GAS ? '<br><a href="' + ALT_URL + '" target="_blank" rel="noopener">เปิดเวอร์ชันที่บันทึกเสียงได้ ↗</a>' : '') + '</div>') +
         (c.reps ? '<div class="sec"><h2>ประโยคต้นฉบับ</h2><span class="small muted">เทียบกับเสียงของคุณ</span></div><div class="card">' + c.reps.map(function (t, i) { return '<div class="ex-line">' + A.sayBtn(t) + '<span><b>' + (i + 1) + '.</b> ' + esc(t) + '</span></div>'; }).join('') + '</div>' : '') +
         (c.qs ? '<div class="sec"><h2>คำถามในรอบนี้</h2></div><div class="card">' + c.qs.map(function (q, i) { return '<div class="ex-line">' + A.sayBtn(q) + '<span><b>' + (i + 1) + '.</b> ' + esc(q) + '</span></div>'; }).join('') + '</div>' : '') +
+        (M4 ? '<div class="note">ข้อสอบจำลอง 4 ทักษะ · ส่วนที่ 3/4 เสร็จแล้ว — ฟังเสียงตัวเอง แล้วติ๊กเกณฑ์ที่ทำได้ ผลจะนำไปคำนวณระดับ Speaking</div>' : '') +
         (!c.reps ? '<div class="sec"><h2>ประเมินตัวเอง</h2><span class="small muted">ฟังเสียงแล้วติ๊ก</span></div><div class="card checks">' + SP.criteria.map(function (cr) { return '<label class="ck"><input type="checkbox" data-k="' + cr.k + '"><span><b>' + esc(cr.name) + '</b><br><span class="small muted">' + esc(cr.th) + '</span></span></label>'; }).join('') + '<div class="small" id="ck-sum" style="margin-top:8px"></div></div>' : '') +
         (c.model ? '<details class="card mt"><summary class="link" style="list-style:none;cursor:pointer">ดูตัวอย่างคำตอบระดับ B2+</summary><div style="display:flex;justify-content:flex-end;margin:8px 0">' + A.sayBtn(c.model) + '</div><div class="passage" style="font-size:15.5px">' + A.paras(c.model) + '</div></details>' : '') +
         '<details class="card mt"><summary class="link" style="list-style:none;cursor:pointer">สำนวนช่วยพูด (useful phrases)</summary><div class="phr-grid">' +
         [['เริ่มตอบ', 'start'], ['ให้เหตุผล', 'reason'], ['ยกตัวอย่าง', 'example'], ['ซื้อเวลาคิด', 'time'], ['สรุป', 'end']].map(function (g) { return '<div><div class="small muted">' + g[0] + '</div>' + SP.phrases[g[1]].map(function (p) { return '<div class="ph">' + esc(p) + '</div>'; }).join('') + '</div>'; }).join('') + '</div></details>' +
-        '<div class="btns">' + (f.id === 'ielts2' ? '<button class="btn gold" id="rv-p3">ต่อ Part 3 (หัวข้อเดียวกัน)</button>' : '') + '<button class="btn" id="rv-new">สุ่มหัวข้อใหม่</button><button class="btn ghost" id="rv-same">ลองหัวข้อเดิมอีกครั้ง</button></div>';
+        (M4 ? '<div class="btns"><button class="btn gold" id="rv-m4">ไปส่วนสุดท้าย: Writing →</button></div>' :
+        '<div class="btns">' + (f.id === 'ielts2' ? '<button class="btn gold" id="rv-p3">ต่อ Part 3 (หัวข้อเดียวกัน)</button>' : '') + '<button class="btn" id="rv-new">สุ่มหัวข้อใหม่</button><button class="btn ghost" id="rv-same">ลองหัวข้อเดิมอีกครั้ง</button></div>');
       $$('.checks input', el).forEach(function (b) {
         b.onchange = function () {
           checks[b.dataset.k] = b.checked;
           var n = Object.keys(checks).filter(function (k) { return checks[k]; }).length;
           $('#ck-sum').innerHTML = 'ผ่าน <b>' + n + '/5</b> เกณฑ์ ' + (n >= 4 ? '— พร้อมระดับ B2 แล้ว' : n >= 2 ? '— ใกล้แล้ว ฝึกซ้ำหัวข้อเดิมอีกรอบ' : '— ลองฟังตัวอย่างคำตอบและใช้สำนวนช่วยพูด');
           if (recObj) { recObj.checks = checks; DB.put(recObj).catch(function () { }); }
+          if (M4 && A.S.m4cur) { A.S.m4cur.s.checks = checks; A.save(); }
         };
       });
       var lib = $('#rv-lib'); if (lib) lib.onclick = function () { A.go('recs'); };
       var p3 = $('#rv-p3'); if (p3) p3.onclick = function () { A.go('speakrun', { f: 'ielts3', card: c.card, from: A.R.from }); };
+      var m4b = $('#rv-m4'); if (m4b) { m4b.onclick = function () { A.S.m4cur.stage = 'writing'; A.save(); A.go('m4'); }; return; }
       $('#rv-new').onclick = function () { A.go('speakrun', { f: f.id, from: A.R.from }); };
       $('#rv-same').onclick = function () {
         if (c.card != null) A.go('speakrun', { f: f.id, card: c.card, from: A.R.from });

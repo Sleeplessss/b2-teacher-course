@@ -126,7 +126,7 @@
 
   /* ── routing ── */
   var R = { v: 'home' }, timerId = null;
-  var TAB = { home: 'home', units: 'units', unit: 'units', step: 'units', practice: 'practice', mock: 'prep', mockrun: 'prep', prep: 'prep', exam: 'prep', xset: 'prep', speak: 'prep', speakrun: 'prep', recs: 'prep', info: 'info', settings: 'home' };
+  var TAB = { home: 'home', units: 'units', unit: 'units', step: 'units', practice: 'practice', mock: 'prep', mockrun: 'prep', prep: 'prep', exam: 'prep', xset: 'prep', speak: 'prep', speakrun: 'prep', recs: 'prep', m4: 'prep', info: 'info', settings: 'home' };
   var LEAVE = [];
   function go(v, p) { R = Object.assign({ v: v }, p || {}); render(); }
   function render() {
@@ -308,7 +308,7 @@
       '<div class="sec"><h2>ทางลัด</h2></div><div class="rows">' +
       '<button class="row" data-go="practice"><div class="tx"><b>ทบทวนคำศัพท์ด้วยแฟลชการ์ด</b><span>' + (tw - mastered()) + ' คำที่ยังต้องทบทวน</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
       '<button class="row" data-go="speak"><div class="tx"><b>ฝึกพูดเสมือนสอบจริง</b><span>สุ่มหัวข้อ · จับเวลา · บันทึกเสียงแล้วเปิดฟัง</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
-      '<button class="row" data-go="prep"><div class="tx"><b>เตรียมสอบตามสนาม</b><span>TOEIC · IELTS · TOEFL · EF SET</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
+      '<button class="row" data-go="prep"><div class="tx"><b>เตรียมสอบตามสนาม</b><span>CEFR 4 ทักษะ (EduSynch/HCEC) · TOEIC · IELTS · TOEFL · EF SET</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
       '<button class="row" data-go="mock"><div class="tx"><b>ข้อสอบจำลองระดับ B2</b><span>25 ข้อ · 35 นาที · ประเมินระดับ CEFR</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
       '<button class="row" data-go="info"><div class="tx"><b>เกณฑ์ ก.ค.ศ. และข้อสอบที่ใช้ได้</b><span>ว 9/2564 · ว 10/2567 · ตารางเทียบคะแนน</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button></div>';
     var hc = $('#h-cont'); if (hc) hc.onclick = function () { go('step', { id: nx.u.id, k: nx.s.k }); };
@@ -559,17 +559,22 @@
       '<tr><td>ครูผู้สอนกลุ่มสาระการเรียนรู้ภาษาต่างประเทศ</td><td><b>B2</b> ขึ้นไป</td></tr>' +
       '<tr><td>ครูกลุ่มสาระอื่น / ผู้บริหารสถานศึกษา / ศึกษานิเทศก์</td><td><b>B1</b> ขึ้นไป</td></tr></table>' +
       '<p class="small" style="margin:12px 0 0"><b>ว 10/2567</b> (3 พ.ค. 2567) ยืนยันว่า ผลสอบที่<b>สูงกว่า</b>ระดับที่กำหนด (เช่น ได้ C1) ก็นำมาใช้ลดระยะเวลาได้</p></div>' +
+      '<div class="sec"><h2>ข้อสอบที่ครูนิยม</h2></div><div class="card"><b style="font-family:var(--f-head);font-size:17px">EduSynch – CEFR Level Test (ศูนย์ HCEC)</b>' +
+      '<div class="skill4"><div><b>อ่าน</b><span>20–30 นาที</span></div><div><b>ฟัง</b><span>20–25 นาที</span></div><div><b>เขียน</b><span>20–30 นาที</span></div><div><b>พูด</b><span>15–25 นาที</span></div></div>' +
+      '<p class="small muted" style="margin:0">สอบบนคอมพิวเตอร์ครบ 4 ทักษะ · ค่าสมัครประมาณ 2,675 บาท (รวม VAT) · ผลใช้ลดเวลาได้ไม่เกิน 2 ปี</p>' +
+      '<button class="btn mt" data-go-x="edusynch">ฝึก + ข้อสอบจำลอง 4 ทักษะ →</button></div>' +
       '<div class="sec"><h2>B2 เทียบกับข้อสอบสากล</h2><span class="small muted">โดยประมาณ</span></div><div class="card"><table class="table"><tr><th>ข้อสอบ</th><th>คะแนนเทียบ B2</th></tr>' +
       '<tr><td>IELTS</td><td><b>5.5 – 6.0</b></td></tr><tr><td>TOEIC (Listening &amp; Reading)</td><td><b>785 – 940</b></td></tr><tr><td>TOEFL iBT</td><td><b>72 – 94</b></td></tr><tr><td>EF SET</td><td><b>51 – 60</b></td></tr></table>' +
       '<button class="btn ghost mt" data-go="prep">ฝึกรูปแบบข้อสอบแต่ละสนาม →</button><p class="small muted" style="margin:10px 0 0">B2 (Upper-Intermediate) = เข้าใจเนื้อหาซับซ้อนทั้งการฟังและการอ่าน สื่อสารได้คล่องในหลายหัวข้อ และอภิปรายเชิงวิชาชีพ/วิชาการได้</p></div>' +
       '<div class="sec"><h2>ขั้นตอนแนะนำ</h2></div><div class="card"><ol class="timeline">' +
       '<li><b>เรียนตามแผน 12 สัปดาห์</b><span class="small muted">วันละ 20–30 นาที ครบ 8 Unit</span></li>' +
       '<li><b>ทำข้อสอบจำลองให้ได้ ≥ 70%</b><span class="small muted">ทำซ้ำได้จนมั่นใจ</span></li>' +
-      '<li><b>สมัครสอบกับหน่วยงาน/ศูนย์สอบที่ ก.ค.ศ. ยอมรับ</b><span class="small muted">ตรวจรายชื่อหน่วยทดสอบล่าสุดก่อนสมัคร</span></li>' +
+      '<li><b>สมัครสอบกับหน่วยงาน/ศูนย์สอบที่ ก.ค.ศ. ยอมรับ</b><span class="small muted">เช่น EduSynch – CEFR Level Test ที่ศูนย์ HCEC · ตรวจรายชื่อหน่วยทดสอบล่าสุดก่อนสมัคร</span></li>' +
       '<li><b>เก็บ "ผลการทดสอบ" (Test Report) ฉบับจริง</b><span class="small muted">วุฒิบัตรผ่านการอบรม ใช้แทนผลสอบไม่ได้</span></li>' +
       '<li><b>แนบผลประกอบคำขอวิทยฐานะ</b><span class="small muted">ตรวจสอบอายุของผลสอบ (ส่วนใหญ่กำหนดไม่เกิน 2 ปีนับถึงวันยื่น)</span></li></ol></div>' +
       '<div class="note">ข้อมูลในหน้านี้สรุปเพื่อการเตรียมตัวเท่านั้น หลักเกณฑ์อาจมีการปรับปรุง โปรดตรวจสอบหนังสือเวียนฉบับล่าสุดจากสำนักงาน ก.ค.ศ. หรือเขตพื้นที่การศึกษาของท่านก่อนยื่นคำขอ<br><a href="https://otepc.go.th/th/content_page/item/4911-10-2567-cefr-b2.html" target="_blank" rel="noopener" style="color:var(--green);font-weight:600">เปิดหนังสือ ว 10/2567 (otepc.go.th) ↗</a></div>';
     $$('[data-go]', el).forEach(function (b) { b.onclick = function () { go(b.dataset.go); }; });
+    $$('[data-go-x]', el).forEach(function (b) { b.onclick = function () { go('exam', { x: b.dataset.goX }); }; });
   };
 
   V.settings = function (el) {

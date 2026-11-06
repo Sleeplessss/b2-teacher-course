@@ -8,7 +8,7 @@ from pathlib import Path
 
 root = Path(__file__).parent
 src = root / "src"
-JS = ["data.js", "exams.js", "speaking.js", "app.js", "prep.js", "speak.js"]
+JS = ["data.js", "exams.js", "edusynch.js", "speaking.js", "app.js", "prep.js", "speak.js"]
 js = "\n;\n".join((src / f).read_text(encoding="utf-8") for f in JS) + "\n;APP.start();\n"
 assert "</script" not in js.lower(), "a JS file contains </script>"
 out = ((src / "shell.html").read_text(encoding="utf-8")

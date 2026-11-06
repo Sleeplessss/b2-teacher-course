@@ -6,6 +6,7 @@
 
 ## เนื้อหา
 - 8 Unit ในบริบทงานครู × 6 ขั้น (คำศัพท์ · ไวยากรณ์ · อ่าน · ฟัง · เขียน · แบบทดสอบ)
+- **CEFR 4 ทักษะ (EduSynch – CEFR Level Test ที่ศูนย์ HCEC)**: ข้อสอบจำลองเต็มรูปแบบตามลำดับจริง Reading 20 นาที → Listening 10 นาที → Speaking 3 ข้อ (เตรียม 15 วิ/พูด 45 วิ บันทึกเสียง) → Writing ≥150 คำ 20 นาที แล้วสรุประดับรายทักษะ + ระดับเฉลี่ย พร้อมชุดฝึกแยกทักษะ
 - **เตรียมสอบตามสนาม**: TOEIC (Part 2–7 + ศัพท์ธุรกิจ 24 คำ) · IELTS (T/F/NG, Matching Headings, Form completion, Writing Task 1–2) · TOEFL iBT รูปแบบ 2026 (Complete the Words, Build a Sentence, Email, Academic Discussion ฯลฯ) · EF SET (Adaptive Challenge)
 - **ฝึกพูดเสมือนสอบจริง**: สุ่มหัวข้อ · ผู้คุมสอบอ่านคำถาม · จับเวลาเตรียม/พูด · **บันทึกเสียงและเปิดฟังย้อนหลัง** (IELTS Part 1–3, TOEFL Listen & Repeat / Interview, CEFR Opinion Talk) พร้อมเกณฑ์ประเมินตัวเองและตัวอย่างคำตอบ
 - คำศัพท์ 88 คำ + แฟลชการ์ด · ข้อสอบจำลอง 25 ข้อ จับเวลา 35 นาที

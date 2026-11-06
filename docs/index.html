@@ -382,6 +382,13 @@ input.gap.wrong,.cz-in.wrong{border-color:var(--bad);background:var(--bad-soft)}
 .del{color:var(--muted)}.del.armed{color:#fff;background:var(--bad)}
 .nav-in{grid-template-columns:repeat(5,1fr)}
 
+.xcard.wide{grid-column:span 2;background:var(--green-soft);border-color:#cfe0d6}
+.skill4{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:12px 0}
+.skill4 div{background:var(--paper);border-radius:12px;padding:10px 4px;text-align:center}
+.skill4 b{display:block;color:var(--bad);font-family:var(--f-head);font-size:15px}
+.skill4 span{font-size:12px;color:var(--muted)}
+.table td:last-child{white-space:nowrap}
+
 </style>
 </head>
 <body>
@@ -1512,9 +1519,208 @@ From my own experience as a teacher, online lessons worked well for delivering i
 };
 
 ;
+/* EduSynch – CEFR Level Test (HCEC centres): 4 skills */
+window.EXAMS.edusynch = {
+  name: 'EduSynch – CEFR Level Test (ศูนย์ HCEC)', short: 'CEFR 4 ทักษะ', b2: 'เฉลี่ย 4 ทักษะ',
+  about: 'ข้อสอบที่ครูนิยมใช้ยื่นลดเวลาวิทยฐานะ สอบที่ศูนย์ HCEC ด้วยคอมพิวเตอร์ ครบ 4 ทักษะ เรียงลำดับ Reading → Listening → Speaking → Writing ผลออกเป็นระดับ CEFR (สเกลละเอียด 15 ระดับ A0–C2) แยกรายทักษะ และระดับรวมเป็นค่าเฉลี่ย 4 ทักษะ',
+  format: [
+    ['Reading', '12–15 ข้อ · ศัพท์ในบริบท ความเข้าใจ การอนุมาน สรุปใจความ', '20–30 นาที'],
+    ['Listening', '8–12 ข้อ · บทสนทนา + บรรยายสั้น', '20–25 นาที'],
+    ['Speaking', '3 คำถาม · เตรียม 15 วิ + พูด 45 วิ ต่อข้อ', '15–25 นาที'],
+    ['Writing', 'เรียงความ 1 เรื่อง อย่างน้อย 150 คำ', '20–30 นาที']
+  ],
+  tips: [
+    'ระดับรวม = ค่าเฉลี่ย 4 ทักษะ — ทักษะที่อ่อนที่สุดจะดึงผลรวมลง ฝึก Speaking/Writing ให้สม่ำเสมอ',
+    'Reading: ข้อ vocabulary in context ให้อ่านประโยครอบ ๆ คำนั้น อย่าเดาจากความหมายที่จำมา',
+    'Speaking: ใช้ 15 วินาทีวางโครง "จุดยืน → เหตุผล → ตัวอย่าง" แล้วพูดให้เต็ม 45 วินาที',
+    'Writing: ต้องได้อย่างน้อย 150 คำ แบ่ง 4 ย่อหน้า (บทนำ · เหตุผล 1 · เหตุผล 2 · สรุป) และเหลือเวลา 2 นาทีตรวจทาน',
+    'ค่าสมัครประมาณ 2,675 บาท (รวม VAT) ผลสอบใช้ยื่นได้ไม่เกิน 2 ปี — ตรวจตารางสอบและเงื่อนไขล่าสุดกับศูนย์ HCEC'
+  ],
+  wcrit: [
+    { k: 'ta', name: 'Task Achievement', th: 'ตอบตรงโจทย์ ครบทุกประเด็น ยาวอย่างน้อย 150 คำ' },
+    { k: 'cc', name: 'Coherence & Cohesion', th: 'แบ่งย่อหน้าชัดเจน เรียงความคิดเป็นลำดับ ใช้คำเชื่อมหลากหลาย' },
+    { k: 'lr', name: 'Lexical Resource', th: 'คำศัพท์หลากหลาย ไม่ซ้ำคำเดิม มีคำระดับ B2 หลายคำ' },
+    { k: 'gr', name: 'Grammatical Range & Accuracy', th: 'มีประโยคซับซ้อน (if / which / although) และผิดไวยากรณ์น้อย' }
+  ],
+
+  /* full mock content */
+  mock: {
+    reading: [
+      {
+        title: 'Learning Outside the Classroom',
+        passage: `Outdoor learning is becoming increasingly popular in schools around the world. Supporters argue that lessons taught in natural environments, such as parks, gardens or forests, can improve both students' concentration and their physical health. A study conducted in several primary schools found that children who had regular outdoor lessons were more engaged when they returned to the classroom, and teachers reported fewer behaviour problems.
+
+However, outdoor learning is not without its challenges. Teachers need to plan carefully to make sure that activities have clear learning objectives, rather than simply being an excuse to leave the classroom. Safety is another concern, particularly for younger children, and bad weather can disrupt even the best-prepared lessons. In addition, many schools in cities have limited access to green spaces.
+
+Despite these difficulties, a growing number of teachers believe the benefits outweigh the drawbacks. Some schools have found creative solutions, such as turning a small car park into a vegetable garden or using the school roof for science experiments. As one teacher put it, "You don't need a forest to learn outside – you just need a little imagination."`,
+        qs: [
+          { t: 'Vocabulary in context', q: 'The word "disrupt" in paragraph 2 is closest in meaning to', o: ['interrupt', 'improve', 'organise', 'predict'], a: 0, e: 'bad weather can disrupt lessons = ทำให้บทเรียนหยุดชะงัก' },
+          { t: 'Detail', q: 'According to the study, what happened when children returned to the classroom?', o: ['They were more engaged', 'They were more tired', 'They forgot what they had learned', 'They wanted to stay outside'], a: 0, e: '"were more engaged when they returned to the classroom"' },
+          { t: 'Inference', q: 'What can be inferred about schools in cities?', o: ['They may find it harder to organise outdoor lessons', 'They do not allow outdoor lessons', 'Their students have more behaviour problems', 'They have more money for gardens'], a: 0, e: '"many schools in cities have limited access to green spaces" → จัดได้ยากกว่า' },
+          { t: 'Summary', q: 'Which sentence best summarises the passage?', o: ['Outdoor learning has clear benefits and some challenges, which creative schools can overcome.', 'Outdoor learning is dangerous and should be avoided.', 'Only schools near forests can offer outdoor learning.', 'Students learn better indoors than outdoors.'], a: 0, e: 'ย่อหน้า 1 ข้อดี · ย่อหน้า 2 ความท้าทาย · ย่อหน้า 3 ทางแก้' }
+        ]
+      },
+      {
+        title: 'Email: New Mentoring Programme',
+        passage: `Dear colleagues,
+
+I am delighted to announce that our school will be launching a mentoring programme for newly qualified teachers from the start of next term. Each new teacher will be paired with an experienced colleague, who will meet with them at least twice a month to discuss lesson planning, classroom management and professional development.
+
+We are now looking for volunteers to act as mentors. Ideally, mentors should have at least five years of teaching experience, although we will also consider colleagues with fewer years who have relevant training. Mentors will receive a reduction of two teaching hours per week, as well as a certificate that can be included in their professional portfolio.
+
+If you are interested, please complete the short online form by Friday 12 May. A one-day training workshop for all mentors will take place on Saturday 20 May. Attendance at this workshop is compulsory.
+
+Best regards,
+Napat Siriwan, Deputy Director`,
+        qs: [
+          { t: 'Main purpose', q: 'What is the main purpose of the email?', o: ['To invite teachers to volunteer as mentors', 'To announce a new deputy director', 'To cancel a training workshop', 'To ask new teachers to complete a form'], a: 0, e: '"We are now looking for volunteers to act as mentors."' },
+          { t: 'Detail', q: 'What will mentors receive?', o: ['Fewer teaching hours and a certificate', 'Extra pay and a holiday', 'A new classroom', 'Free university courses'], a: 0, e: '"a reduction of two teaching hours per week, as well as a certificate"' },
+          { t: 'Inference', q: 'Which teacher would probably NOT be accepted as a mentor?', o: ['A teacher with two years\' experience and no relevant training', 'A teacher with eight years\' experience', 'A teacher with three years\' experience and mentor training', 'A teacher with six years\' experience who teaches maths'], a: 0, e: 'ต้องมีประสบการณ์ 5 ปี หรือน้อยกว่าแต่มีการอบรมที่เกี่ยวข้อง' },
+          { t: 'Vocabulary in context', q: 'The word "compulsory" in the email is closest in meaning to', o: ['required', 'optional', 'expensive', 'enjoyable'], a: 0, e: 'compulsory = ต้องเข้าร่วม (บังคับ)' }
+        ]
+      },
+      {
+        title: 'The Value of Mistakes',
+        passage: `For many students, making a mistake in class is a source of embarrassment. They may stay silent rather than risk giving a wrong answer in front of their classmates. Yet research in educational psychology suggests that errors, when handled well, can actually strengthen learning.
+
+When learners make a mistake and then receive corrective feedback, they often remember the correct information better than if they had simply been told the answer from the start. This is especially true when the learner was fairly confident in the wrong answer – a phenomenon sometimes called the "hypercorrection effect". The surprise of being wrong appears to make the correction more memorable.
+
+The key, however, lies in the classroom culture. In classrooms where mistakes are punished or mocked, students tend to avoid challenging tasks altogether. Teachers can create a safer environment by sharing their own mistakes, praising effort rather than only correct answers, and treating errors as useful information. In such classrooms, students are more willing to take risks, and taking risks is an essential part of learning a language.`,
+        qs: [
+          { t: 'Detail', q: 'Why do some students stay silent in class?', o: ['They are afraid of being embarrassed by a wrong answer', 'They do not understand the questions', 'They prefer to write their answers', 'Their teachers do not ask questions'], a: 0, e: '"a source of embarrassment… rather than risk giving a wrong answer"' },
+          { t: 'Vocabulary in context', q: 'The word "mocked" in paragraph 3 is closest in meaning to', o: ['laughed at', 'corrected', 'ignored', 'recorded'], a: 0, e: 'mock = ล้อเลียน' },
+          { t: 'Detail', q: 'According to the passage, the "hypercorrection effect" happens when', o: ['a learner was confident in a wrong answer and is then corrected', 'a teacher corrects too many mistakes', 'students correct each other\'s work', 'a learner avoids difficult tasks'], a: 0, e: '"especially true when the learner was fairly confident in the wrong answer"' },
+          { t: 'Inference', q: 'The writer would most likely agree that teachers should', o: ['make students feel safe to make mistakes', 'avoid giving students feedback', 'only praise correct answers', 'give students easier tasks'], a: 0, e: 'ย่อหน้าสุดท้ายเสนอให้สร้างบรรยากาศที่ผิดได้' }
+        ]
+      }
+    ],
+    listening: [
+      {
+        title: 'Conversation 1',
+        script: `A: Hi Joe. Are you going to the parents' evening on Thursday?
+B: I'm supposed to, but I've got a problem. My car's at the garage, and they said it won't be ready until Friday.
+A: Oh no. How will you get to school?
+B: I was thinking of taking the bus, but the last one leaves at six, and the meeting doesn't finish until seven thirty.
+A: Well, I live near you. Why don't I give you a lift? I'm leaving at five fifteen.
+B: Really? That would be fantastic. I'll buy you a coffee to say thanks.`,
+        qs: [
+          { t: 'Detail', q: 'Why does Joe have a problem?', o: ['His car is being repaired', 'He has to work late', 'He lost his bus pass', 'The meeting has been moved'], a: 0, e: '"My car\'s at the garage"' },
+          { t: 'Inference', q: 'Why can\'t Joe take the bus home?', o: ['The last bus leaves before the meeting ends', 'The bus is too expensive', 'There is no bus near his house', 'The bus driver is on strike'], a: 0, e: 'รถเมล์คันสุดท้าย 6 โมง แต่ประชุมจบ 1 ทุ่มครึ่ง' },
+          { t: 'Detail', q: 'What does the woman offer to do?', o: ['Drive him to school', 'Lend him her car', 'Speak to the parents for him', 'Buy him a coffee'], a: 0, e: '"Why don\'t I give you a lift?"' }
+        ]
+      },
+      {
+        title: 'Conversation 2',
+        script: `A: Have you had a chance to look at Mint's science project?
+B: Yes, I read it last night. The research is excellent, but her conclusion doesn't really match her results.
+A: I noticed that too. I think she ran out of time.
+B: Probably. She told me she'd been ill for most of last week.
+A: In that case, shall we give her a few more days to revise it?
+B: I think that's fair. As long as she submits it before the end of the month, it shouldn't affect her grade.`,
+        qs: [
+          { t: 'Detail', q: 'What is the problem with Mint\'s project?', o: ['Her conclusion does not match her results', 'Her research is too short', 'She copied another student\'s work', 'She chose the wrong topic'], a: 0, e: '"her conclusion doesn\'t really match her results"' },
+          { t: 'Inference', q: 'Why might Mint have had difficulties?', o: ['She was ill', 'She had too much homework', 'She did not understand the task', 'She was on holiday'], a: 0, e: '"she\'d been ill for most of last week"' },
+          { t: 'Detail', q: 'What do the teachers decide?', o: ['To give her more time to revise it', 'To give her a lower grade', 'To ask her parents to help', 'To make her start again'], a: 0, e: '"give her a few more days to revise it"' }
+        ]
+      },
+      {
+        title: 'Short talk',
+        script: `Good afternoon. Today's talk is about sleep and learning. Many teenagers go to bed late and wake up early for school, which means they regularly get less than the eight to ten hours of sleep that experts recommend for their age. This matters because sleep plays a key role in memory. During deep sleep, the brain processes and stores information learned during the day. Students who stay up late revising may actually remember less than those who study for a shorter time and then get a good night's sleep. For this reason, some schools have experimented with later start times, and several have reported improvements in attendance and concentration.`,
+        qs: [
+          { t: 'Detail', q: 'According to the speaker, what happens during deep sleep?', o: ['The brain processes and stores information', 'The brain forgets unimportant information', 'Students dream about their lessons', 'The body recovers from exercise'], a: 0, e: '"During deep sleep, the brain processes and stores information"' },
+          { t: 'Detail', q: 'What have some schools done?', o: ['Started the school day later', 'Given students more homework', 'Banned phones at night', 'Shortened the school holidays'], a: 0, e: '"some schools have experimented with later start times"' }
+        ]
+      }
+    ],
+    writing: [
+      { type: 'Opinion', prompt: 'Some people think that all teachers should be required to pass an English proficiency test, whatever subject they teach. Do you agree or disagree? Give reasons and examples to support your opinion.',
+        model: `In recent years, English has become increasingly important in Thai education, and some people believe that every teacher should have to pass an English proficiency test. Although I understand this view, I only partly agree with it.
+
+On the one hand, English skills can benefit teachers of all subjects. For example, science and maths teachers can access a huge range of online resources, research and training courses that are only available in English. Teachers with good English can also act as role models, showing students that English is a useful tool rather than just a school subject.
+
+On the other hand, making a test compulsory for everyone could put unfair pressure on teachers whose main strength is their subject knowledge. An excellent Thai literature teacher, for instance, should not be judged mainly on their English ability.
+
+In conclusion, I believe that schools should strongly encourage all teachers to improve their English and provide free training, but a test should only be required for English teachers.` },
+      { type: 'Personal experience', prompt: 'Describe a challenge you have faced in your work or studies. Explain how you dealt with it and what you learned from the experience.',
+        model: `One of the biggest challenges I have faced in my career happened during my second year of teaching, when I was given a Grade 9 class with serious behaviour problems.
+
+At first, I tried to control the class by being very strict. I raised my voice, gave punishments and sent students to the head of department. However, the situation became worse, and I started to dread going to that classroom. I realised that I needed to change my approach.
+
+I asked an experienced colleague to observe one of my lessons. She suggested that I focus on building relationships first. I started greeting students at the door, learning about their interests and giving them more responsibility, such as leading short activities. Slowly, the atmosphere improved, and by the end of the term the class had become one of my favourites.
+
+This experience taught me that behaviour problems often have deeper causes, and that asking for help is a sign of professionalism, not weakness.` },
+      { type: 'Opinion', prompt: 'Is it better for students to learn at home through online courses or at school with a teacher? Explain your opinion with reasons and examples.',
+        model: `Online learning has grown rapidly in recent years, and many people now question whether traditional schools are still necessary. In my opinion, learning at school with a teacher is still the better option for most students, although online courses can be a useful addition.
+
+The main reason is that school provides much more than academic knowledge. In a classroom, students learn to work in teams, communicate face to face and solve problems together. These social skills are extremely difficult to develop through a screen. In addition, teachers can notice immediately when a student is confused or upset and offer support.
+
+That said, online courses have clear advantages. They allow students to learn at their own pace and to study subjects that their school may not offer. For example, a student in a small rural school could take an online coding course that would otherwise be unavailable.
+
+Overall, I believe the ideal approach is to combine both: school-based learning as the foundation, with online courses to extend students' opportunities.` },
+      { type: 'Personal experience', prompt: 'Write about a person who has had an important influence on your life. Explain who they are, what they did, and why they are important to you.',
+        model: `The person who has had the greatest influence on my life is my grandmother, who raised me while my parents worked in Bangkok.
+
+My grandmother never had the opportunity to finish primary school, yet she was one of the wisest people I have ever known. Every evening, she would sit with me while I did my homework, even though she could not help with most of the subjects. She always said that education was the one thing nobody could take away from me.
+
+She also taught me the value of patience and kindness. When I was frustrated or failed a test, she never criticised me. Instead, she reminded me that every mistake was a chance to learn something new.
+
+Today, as a teacher, I often think of her when I work with students who are struggling. I try to show them the same patience and belief that she showed me. Without her encouragement, I am certain I would not be the person I am today.` }
+    ]
+  },
+
+  sets: [
+    { id: 'edu-full', title: 'ข้อสอบจำลองเต็มรูปแบบ 4 ทักษะ', th: 'R 12 ข้อ · L 8 ข้อ · S 3 ข้อ (บันทึกเสียง) · W 150 คำ · ~55 นาที', kind: 'full4' },
+    {
+      id: 'edu-read', title: 'Reading Practice · Screen or Paper?', th: 'ฝึกครบ 4 ประเภทคำถาม', kind: 'mcq',
+      intro: 'คำถาม EduSynch Reading มี 4 แบบ: Vocabulary in context · Detail · Inference · Summary/Main idea',
+      passage: `Screen or Paper?
+
+As more schools introduce tablets and e-books, researchers have begun to ask whether reading on a screen is as effective as reading on paper. A number of studies suggest that, for short and simple texts, there is little difference. For longer and more complex texts, however, readers tend to understand more when reading on paper.
+
+One explanation is that people read faster on screens, often skimming rather than reading carefully. Many readers are also overconfident: they believe they have understood a digital text well, but their test results show otherwise. In addition, physical books give readers a sense of where information is located – near the beginning, in the middle or at the end – which may help them remember it.
+
+This does not mean that schools should abandon digital materials. Instead, experts recommend teaching students to slow down when reading on screens and to use strategies such as taking notes and summarising each section.`,
+      qs: [
+        { q: '[Vocabulary] The word "skimming" in paragraph 2 means', o: ['reading quickly to get the general idea', 'reading every word slowly', 'reading aloud to others', 'reading the same text twice'], a: 0, e: 'skim = อ่านผ่าน ๆ เร็ว ๆ ตรงข้ามกับ "reading carefully" ในประโยคเดียวกัน' },
+        { q: '[Detail] When does reading on paper seem to have an advantage?', o: ['With longer, more complex texts', 'With short, simple texts', 'With all types of texts', 'Only for young children'], a: 0, e: '"For longer and more complex texts, however, readers tend to understand more when reading on paper."' },
+        { q: '[Inference] What does the writer suggest about many digital readers?', o: ['They think they understand more than they really do', 'They read more carefully than paper readers', 'They prefer printed books', 'They take more notes'], a: 0, e: 'overconfident: เชื่อว่าเข้าใจดี แต่ผลสอบไม่ใช่' },
+        { q: '[Main idea] What is the writer\'s main recommendation?', o: ['Teach students strategies for reading on screens', 'Stop using digital materials in schools', 'Only use paper books for exams', 'Give every student a tablet'], a: 0, e: '"This does not mean that schools should abandon digital materials. Instead, experts recommend…"' }
+      ]
+    },
+    {
+      id: 'edu-listen', title: 'Listening Practice · Radio Interview', th: 'สัมภาษณ์ทางวิทยุ 3 ข้อ', kind: 'mcq',
+      script: `A: Welcome back to Teacher Talk. With me today is Dr Somsak, who runs a free English camp for teachers every summer. Dr Somsak, why did you start the camp?
+B: Well, I kept meeting teachers who could read English quite well but felt very nervous about speaking. So, we created a camp where the only rule is that everyone speaks English all day, at meals, during activities, everywhere.
+A: That sounds challenging!
+B: It is, especially on the first day. But by the third day, most people are much more relaxed. Many tell us it's the first time they've used English for real communication rather than for a test.
+A: And how can teachers apply?
+B: Applications open in March on our website. Places are limited to sixty, so I'd recommend applying early.`,
+      qs: [
+        { q: 'Why did Dr Somsak start the camp?', o: ['Many teachers lacked confidence in speaking', 'Teachers wanted to improve their reading', 'He wanted to train English examiners', 'Schools asked him to run a summer course'], a: 0, e: '"could read English quite well but felt very nervous about speaking"' },
+        { q: 'What is the main rule of the camp?', o: ['Everyone must speak English all the time', 'Everyone must take a test each day', 'Teachers must bring their students', 'Phones are not allowed'], a: 0, e: '"the only rule is that everyone speaks English all day"' },
+        { q: 'What does Dr Somsak advise listeners to do?', o: ['Apply early because places are limited', 'Wait until the camp is advertised', 'Practise speaking before applying', 'Call him for more information'], a: 0, e: '"Places are limited to sixty, so I\'d recommend applying early."' }
+      ]
+    },
+    { id: 'edu-w-op', title: 'Writing Practice · Opinion Essay', th: 'เรียงความแสดงความคิดเห็น ≥150 คำ (20 นาที)', kind: 'write', wref: 0 },
+    { id: 'edu-w-exp', title: 'Writing Practice · Personal Experience', th: 'เล่าประสบการณ์ ≥150 คำ (20 นาที)', kind: 'write', wref: 1 }
+  ]
+};
+(function () {
+  var E = window.EXAMS.edusynch, base = {
+    min: 150, minutes: 20,
+    tips: ['ย่อหน้า 1: ตอบโจทย์ / บอกจุดยืนหรือเกริ่นเรื่อง', 'ย่อหน้า 2–3: เหตุผลหรือเหตุการณ์ + ตัวอย่างที่เป็นรูปธรรม', 'ย่อหน้า 4: สรุป / สิ่งที่ได้เรียนรู้', 'เหลือเวลา 2 นาทีตรวจ tense, -s/-ed, คำสะกด'],
+    phrases: ['In my opinion, …', 'Although I understand…, I believe…', 'For example, …', 'On the other hand, …', 'This experience taught me that…', 'In conclusion, …']
+  };
+  E.sets.forEach(function (s) {
+    if (s.kind === 'write') { var w = E.mock.writing[s.wref]; Object.assign(s, base, { prompt: w.prompt, model: w.model }); }
+  });
+})();
+
+;
 /* Speaking simulator content */
 window.SPEAK = {
   formats: [
+    { id: 'edusynch', exam: 'EduSynch', name: 'Speaking (CEFR 4 ทักษะ)', th: '3 คำถาม · เตรียม 15 วิ · พูด 45 วิ', prep: 15, perQ: 45, desc: 'เหมือนสอบจริงที่ศูนย์ HCEC: แสดงความคิดเห็นหรือเล่าประสบการณ์ แต่ละข้อมีเวลาเตรียม 15 วินาที แล้วพูด 45 วินาที' },
     { id: 'ielts1', exam: 'IELTS', name: 'Part 1 · Interview', th: 'ตอบคำถามเรื่องทั่วไป 4 ข้อ', prep: 0, perQ: 30, desc: 'ผู้คุมสอบถามคำถามสั้น ๆ เกี่ยวกับตัวคุณ ตอบข้อละ 20–30 วินาที ขยายความ 2–3 ประโยค' },
     { id: 'ielts2', exam: 'IELTS', name: 'Part 2 · Cue Card', th: 'เตรียม 1 นาที พูดต่อเนื่อง 2 นาที', prep: 60, talk: 120, desc: 'สุ่มบัตรหัวข้อ มีเวลาเตรียม 1 นาที (จดโน้ตได้) แล้วพูดต่อเนื่อง 1–2 นาที' },
     { id: 'ielts3', exam: 'IELTS', name: 'Part 3 · Discussion', th: 'อภิปรายเชิงลึก 3 ข้อ', prep: 0, perQ: 45, desc: 'คำถามเชิงความคิดเห็นที่ต่อยอดจาก Part 2 ตอบข้อละ ~45 วินาที ให้เหตุผลและตัวอย่าง' },
@@ -1618,6 +1824,31 @@ window.SPEAK = {
     'Should children start learning English in kindergarten?',
     'Is it important for teachers to keep studying after they start working?'
   ],
+
+  edu: {
+    exp: [
+      'Talk about a time when you learned something new outside of school or work.',
+      'Describe a memorable trip you have taken. Why was it special?',
+      'Talk about a time when you had to solve a problem at work.',
+      'Describe a happy moment from your teaching career or your studies.',
+      'Talk about a time when you worked as part of a team. What was your role?',
+      'Describe a time when you had to learn how to use a new technology.',
+      'Talk about a person who helped you when you needed it.',
+      'Describe a time when you had to speak in front of a large group. How did you feel?',
+      'Talk about a goal you have achieved and how you achieved it.'
+    ],
+    op: [
+      'Should students be allowed to use AI tools to help with their homework? Why or why not?',
+      'Some people think homework is unnecessary. What is your opinion?',
+      'Is it better to work in a big city or in the countryside? Explain your answer.',
+      'Should schools spend more time teaching practical skills, such as cooking and managing money?',
+      'Does social media have a positive or a negative effect on young people? Explain.',
+      'Should English only be taught by native speakers? Give your opinion.',
+      'Is it important for teachers to keep learning throughout their careers? Why?',
+      'Are exams a fair way to assess what students have learned?',
+      'Should public transport be free for students? Why or why not?'
+    ]
+  },
 
   phrases: {
     start: ['Well, that\'s an interesting question.', 'To be honest, …', 'I\'d say that…', 'I\'d like to talk about…'],
@@ -1765,7 +1996,7 @@ window.SPEAK = {
 
   /* ── routing ── */
   var R = { v: 'home' }, timerId = null;
-  var TAB = { home: 'home', units: 'units', unit: 'units', step: 'units', practice: 'practice', mock: 'prep', mockrun: 'prep', prep: 'prep', exam: 'prep', xset: 'prep', speak: 'prep', speakrun: 'prep', recs: 'prep', info: 'info', settings: 'home' };
+  var TAB = { home: 'home', units: 'units', unit: 'units', step: 'units', practice: 'practice', mock: 'prep', mockrun: 'prep', prep: 'prep', exam: 'prep', xset: 'prep', speak: 'prep', speakrun: 'prep', recs: 'prep', m4: 'prep', info: 'info', settings: 'home' };
   var LEAVE = [];
   function go(v, p) { R = Object.assign({ v: v }, p || {}); render(); }
   function render() {
@@ -1947,7 +2178,7 @@ window.SPEAK = {
       '<div class="sec"><h2>ทางลัด</h2></div><div class="rows">' +
       '<button class="row" data-go="practice"><div class="tx"><b>ทบทวนคำศัพท์ด้วยแฟลชการ์ด</b><span>' + (tw - mastered()) + ' คำที่ยังต้องทบทวน</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
       '<button class="row" data-go="speak"><div class="tx"><b>ฝึกพูดเสมือนสอบจริง</b><span>สุ่มหัวข้อ · จับเวลา · บันทึกเสียงแล้วเปิดฟัง</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
-      '<button class="row" data-go="prep"><div class="tx"><b>เตรียมสอบตามสนาม</b><span>TOEIC · IELTS · TOEFL · EF SET</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
+      '<button class="row" data-go="prep"><div class="tx"><b>เตรียมสอบตามสนาม</b><span>CEFR 4 ทักษะ (EduSynch/HCEC) · TOEIC · IELTS · TOEFL · EF SET</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
       '<button class="row" data-go="mock"><div class="tx"><b>ข้อสอบจำลองระดับ B2</b><span>25 ข้อ · 35 นาที · ประเมินระดับ CEFR</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button>' +
       '<button class="row" data-go="info"><div class="tx"><b>เกณฑ์ ก.ค.ศ. และข้อสอบที่ใช้ได้</b><span>ว 9/2564 · ว 10/2567 · ตารางเทียบคะแนน</span></div>' + I.chev.replace('<svg', '<svg class="chev"') + '</button></div>';
     var hc = $('#h-cont'); if (hc) hc.onclick = function () { go('step', { id: nx.u.id, k: nx.s.k }); };
@@ -2198,17 +2429,22 @@ window.SPEAK = {
       '<tr><td>ครูผู้สอนกลุ่มสาระการเรียนรู้ภาษาต่างประเทศ</td><td><b>B2</b> ขึ้นไป</td></tr>' +
       '<tr><td>ครูกลุ่มสาระอื่น / ผู้บริหารสถานศึกษา / ศึกษานิเทศก์</td><td><b>B1</b> ขึ้นไป</td></tr></table>' +
       '<p class="small" style="margin:12px 0 0"><b>ว 10/2567</b> (3 พ.ค. 2567) ยืนยันว่า ผลสอบที่<b>สูงกว่า</b>ระดับที่กำหนด (เช่น ได้ C1) ก็นำมาใช้ลดระยะเวลาได้</p></div>' +
+      '<div class="sec"><h2>ข้อสอบที่ครูนิยม</h2></div><div class="card"><b style="font-family:var(--f-head);font-size:17px">EduSynch – CEFR Level Test (ศูนย์ HCEC)</b>' +
+      '<div class="skill4"><div><b>อ่าน</b><span>20–30 นาที</span></div><div><b>ฟัง</b><span>20–25 นาที</span></div><div><b>เขียน</b><span>20–30 นาที</span></div><div><b>พูด</b><span>15–25 นาที</span></div></div>' +
+      '<p class="small muted" style="margin:0">สอบบนคอมพิวเตอร์ครบ 4 ทักษะ · ค่าสมัครประมาณ 2,675 บาท (รวม VAT) · ผลใช้ลดเวลาได้ไม่เกิน 2 ปี</p>' +
+      '<button class="btn mt" data-go-x="edusynch">ฝึก + ข้อสอบจำลอง 4 ทักษะ →</button></div>' +
       '<div class="sec"><h2>B2 เทียบกับข้อสอบสากล</h2><span class="small muted">โดยประมาณ</span></div><div class="card"><table class="table"><tr><th>ข้อสอบ</th><th>คะแนนเทียบ B2</th></tr>' +
       '<tr><td>IELTS</td><td><b>5.5 – 6.0</b></td></tr><tr><td>TOEIC (Listening &amp; Reading)</td><td><b>785 – 940</b></td></tr><tr><td>TOEFL iBT</td><td><b>72 – 94</b></td></tr><tr><td>EF SET</td><td><b>51 – 60</b></td></tr></table>' +
       '<button class="btn ghost mt" data-go="prep">ฝึกรูปแบบข้อสอบแต่ละสนาม →</button><p class="small muted" style="margin:10px 0 0">B2 (Upper-Intermediate) = เข้าใจเนื้อหาซับซ้อนทั้งการฟังและการอ่าน สื่อสารได้คล่องในหลายหัวข้อ และอภิปรายเชิงวิชาชีพ/วิชาการได้</p></div>' +
       '<div class="sec"><h2>ขั้นตอนแนะนำ</h2></div><div class="card"><ol class="timeline">' +
       '<li><b>เรียนตามแผน 12 สัปดาห์</b><span class="small muted">วันละ 20–30 นาที ครบ 8 Unit</span></li>' +
       '<li><b>ทำข้อสอบจำลองให้ได้ ≥ 70%</b><span class="small muted">ทำซ้ำได้จนมั่นใจ</span></li>' +
-      '<li><b>สมัครสอบกับหน่วยงาน/ศูนย์สอบที่ ก.ค.ศ. ยอมรับ</b><span class="small muted">ตรวจรายชื่อหน่วยทดสอบล่าสุดก่อนสมัคร</span></li>' +
+      '<li><b>สมัครสอบกับหน่วยงาน/ศูนย์สอบที่ ก.ค.ศ. ยอมรับ</b><span class="small muted">เช่น EduSynch – CEFR Level Test ที่ศูนย์ HCEC · ตรวจรายชื่อหน่วยทดสอบล่าสุดก่อนสมัคร</span></li>' +
       '<li><b>เก็บ "ผลการทดสอบ" (Test Report) ฉบับจริง</b><span class="small muted">วุฒิบัตรผ่านการอบรม ใช้แทนผลสอบไม่ได้</span></li>' +
       '<li><b>แนบผลประกอบคำขอวิทยฐานะ</b><span class="small muted">ตรวจสอบอายุของผลสอบ (ส่วนใหญ่กำหนดไม่เกิน 2 ปีนับถึงวันยื่น)</span></li></ol></div>' +
       '<div class="note">ข้อมูลในหน้านี้สรุปเพื่อการเตรียมตัวเท่านั้น หลักเกณฑ์อาจมีการปรับปรุง โปรดตรวจสอบหนังสือเวียนฉบับล่าสุดจากสำนักงาน ก.ค.ศ. หรือเขตพื้นที่การศึกษาของท่านก่อนยื่นคำขอ<br><a href="https://otepc.go.th/th/content_page/item/4911-10-2567-cefr-b2.html" target="_blank" rel="noopener" style="color:var(--green);font-weight:600">เปิดหนังสือ ว 10/2567 (otepc.go.th) ↗</a></div>';
     $$('[data-go]', el).forEach(function (b) { b.onclick = function () { go(b.dataset.go); }; });
+    $$('[data-go-x]', el).forEach(function (b) { b.onclick = function () { go('exam', { x: b.dataset.goX }); }; });
   };
 
   V.settings = function (el) {
@@ -2264,8 +2500,8 @@ window.SPEAK = {
 (function () {
   'use strict';
   var A = window.APP, X = window.EXAMS, V = A.V, I = A.I, $ = A.$, $$ = A.$$, esc = A.esc;
-  var ORDER = ['toeic', 'ielts', 'toefl', 'efset'];
-  var SPK = { ielts: ['ielts1', 'ielts2', 'ielts3'], toefl: ['toefl_rep', 'toefl_int'] };
+  var ORDER = ['edusynch', 'toeic', 'ielts', 'toefl', 'efset'];
+  var SPK = { edusynch: ['edusynch'], ielts: ['ielts1', 'ielts2', 'ielts3'], toefl: ['toefl_rep', 'toefl_int'] };
   function ex() { var S = A.S; return S.exams || (S.exams = {}); }
   function rec(id) { var e = ex(); return e[id] || (e[id] = {}); }
   function setDone(id) { var r = ex()[id]; return !!(r && (r.done || r.score != null)); }
@@ -2280,7 +2516,7 @@ window.SPEAK = {
       '<div class="sec"><h2>เลือกสนามสอบ</h2><span class="small muted">คะแนนเทียบ B2</span></div><div class="xgrid">' +
       ORDER.map(function (k) {
         var e = X[k], n = e.sets.length, d = e.sets.filter(function (s) { return setDone(s.id); }).length;
-        return '<button class="xcard" data-x="' + k + '"><div class="xn">' + esc(e.short) + '</div><div class="xs">B2 = ' + esc(e.b2) + '</div><div class="pbar"><i style="width:' + (d / n * 100) + '%"></i></div><div class="small muted">' + d + '/' + n + ' ชุดฝึก</div></button>';
+        return '<button class="xcard' + (k === 'edusynch' ? ' wide' : '') + '" data-x="' + k + '">' + (k === 'edusynch' ? '<span class="lvchip" style="float:right">ครูนิยมสอบ · ศูนย์ HCEC</span>' : '') + '<div class="xn">' + esc(e.short) + '</div><div class="xs">B2 = ' + esc(e.b2) + '</div><div class="pbar"><i style="width:' + (d / n * 100) + '%"></i></div><div class="small muted">' + d + '/' + n + ' ชุดฝึก</div></button>';
       }).join('') + '</div>' +
       '<div class="sec"><h2>วัดระดับรวม</h2></div><div class="rows">' +
       '<button class="row" data-go="mock"><div class="tx"><b>ข้อสอบจำลองระดับ B2</b><span>25 ข้อ · 35 นาที · อ่าน ฟัง ไวยากรณ์ คำศัพท์</span></div>' + chev() + '</button>' +
@@ -2316,7 +2552,7 @@ window.SPEAK = {
     var v = $('#ex-voc'); if (v) v.onclick = function () { A.go('practice', { f: 'T' }); };
     var m = $('#ex-mock'); if (m) m.onclick = function () { A.go('mock'); };
   };
-  function kindIcon(kind) { return { mcq: 'Q', write: 'W', cloze: 'C', build: 'B', adaptive: 'A' }[kind] || '•'; }
+  function kindIcon(kind) { return { mcq: 'Q', write: 'W', cloze: 'C', build: 'B', adaptive: 'A', full4: '4' }[kind] || '•'; }
 
   /* ── practice set ── */
   V.xset = function (el) {
@@ -2459,6 +2695,165 @@ window.SPEAK = {
     };
   };
 
+  /* ── EduSynch full 4-skill mock ── */
+  var LVN = function (v) { return v == null ? '–' : v < 1.75 ? 'A2' : v < 2.5 ? 'B1' : v < 3.25 ? 'B2' : v < 3.75 ? 'B2+' : 'C1'; };
+  function pctLv(p) { return p >= 80 ? 4 : p >= 60 ? 3 : p >= 40 ? 2 : 1; }
+  function chkLv(n, max) { var r = n / max; return r <= 0.25 ? 1 : r <= 0.5 ? 2 : r < 1 ? 3 : 3.5; }
+
+  K.full4 = function (el, s, head, k) {
+    var S = A.S, cur = S.m4cur, hist = (S.m4hist || []).slice(-5).reverse();
+    el.innerHTML = head +
+      '<div class="card mt"><table class="table"><tr><th>ลำดับ</th><th>ส่วน</th><th>เวลา</th></tr>' +
+      '<tr><td>1</td><td><b>Reading</b> · 3 บทความ 12 ข้อ</td><td>20 นาที</td></tr><tr><td>2</td><td><b>Listening</b> · 3 คลิป 8 ข้อ (ฟังได้คลิปละ 2 ครั้ง)</td><td>10 นาที</td></tr>' +
+      '<tr><td>3</td><td><b>Speaking</b> · 3 คำถาม บันทึกเสียง</td><td>~5 นาที</td></tr><tr><td>4</td><td><b>Writing</b> · เรียงความ ≥150 คำ</td><td>20 นาที</td></tr></table>' +
+      '<p class="small muted" style="margin:10px 0 0">จำลองตามโครงสร้างทางการของ EduSynch · Reading/Listening ตรวจอัตโนมัติ · Speaking/Writing ประเมินด้วยเกณฑ์ของผู้ตรวจ (ติ๊กประเมินตนเอง) · ระดับรวม = ค่าเฉลี่ย 4 ทักษะ</p></div>' +
+      '<div class="note">เตรียม: หูฟัง · ที่เงียบ · เวลาว่างต่อเนื่อง ~1 ชั่วโมง · อนุญาตไมโครโฟนเมื่อถึงส่วน Speaking</div>' +
+      '<div class="btns">' + (cur && cur.stage !== 'done' ? '<button class="btn gold" id="m4-resume">ทำต่อจากส่วน ' + { reading: 'Reading', listening: 'Listening', speaking: 'Speaking', writing: 'Writing', wcheck: 'Writing', result: 'ผลสอบ' }[cur.stage] + '</button>' : '') +
+      '<button class="btn" id="m4-go">' + (cur && cur.stage !== 'done' ? 'เริ่มชุดใหม่' : 'เริ่มสอบ') + '</button></div>' +
+      (hist.length ? '<div class="sec"><h2>ประวัติ</h2></div><div class="rows">' + hist.map(function (h) {
+        return '<div class="row"><span class="badge b2" style="min-width:52px;text-align:center">' + h.overall + '</span><div class="tx"><b>R ' + h.R + ' · L ' + h.L + ' · S ' + h.S + ' · W ' + h.W + '</b><span>' + new Date(h.date).toLocaleDateString('th-TH', { day: 'numeric', month: 'short', year: '2-digit' }) + '</span></div></div>';
+      }).join('') + '</div>' : '');
+    var r = $('#m4-resume'); if (r) r.onclick = function () { A.go('m4'); };
+    $('#m4-go').onclick = function () {
+      S.m4cur = { t0: Date.now(), stage: 'reading', wi: Math.floor(Math.random() * X.edusynch.mock.writing.length) };
+      A.save(); A.go('m4');
+    };
+  };
+
+  function section(el, title, minutes, groups, kind, onSubmit) {
+    var ans = [], flat = [], plays = {};
+    groups.forEach(function (g, gi) { g.qs.forEach(function (q, qi) { flat.push({ g: gi, q: q }); ans.push(-1); }); });
+    var end = Date.now() + minutes * 60000, tid, armed = false, n = 0;
+    el.innerHTML = '<div class="runner-top"><span class="eyebrow" style="flex:1">' + esc(title) + '</span><span class="timer" id="timer"></span></div>' +
+      groups.map(function (g, gi) {
+        var ctx = kind === 'reading'
+          ? '<div class="eyebrow" style="margin-bottom:6px">Text ' + (gi + 1) + '</div><h3 style="font-size:18px;margin-bottom:8px">' + esc(g.title) + '</h3><div class="passage" style="font-size:15.5px">' + A.paras(g.passage) + '</div>'
+          : '<div class="player"><button class="play" data-clip="' + gi + '" aria-label="เล่นเสียง">' + I.play + '</button><div class="tx"><b>' + esc(g.title) + '</b><span class="small muted" id="pl' + gi + '">ฟังได้ 2 ครั้ง</span></div></div>';
+        return '<div class="card">' + ctx + '</div><div class="card">' + g.qs.map(function (q) {
+          var idx = n++, ord = A.shuffle(q.o.map(function (_, i) { return i; }));
+          return '<div class="q" data-i="' + idx + '"><div class="qt"><i>' + (idx + 1) + '.</i><span><span class="lvchip">' + esc(q.t) + '</span> ' + esc(q.q) + '</span></div><div class="opts">' +
+            ord.map(function (oi, j) { return '<button class="opt" data-oi="' + oi + '"><span class="k">' + 'ABCD'[j] + '</span><span>' + esc(q.o[oi]) + '</span></button>'; }).join('') + '</div></div>';
+        }).join('') + '</div>';
+      }).join('') + '<div class="btns"><button class="btn" id="sec-sub">ส่งคำตอบส่วนนี้</button></div>';
+    function tick() {
+      var left = Math.max(0, end - Date.now()), t = $('#timer'), s = Math.round(left / 1000);
+      if (t) { t.textContent = A.pad(Math.floor(s / 60)) + ':' + A.pad(s % 60); t.classList.toggle('low', left < 120000); }
+      if (left <= 0) { clearInterval(tid); A.toast('หมดเวลา ส่งคำตอบอัตโนมัติ'); submit(); }
+    }
+    tid = setInterval(tick, 1000); tick();
+    A.leave.push(function () { clearInterval(tid); });
+    $$('.q', el).forEach(function (qd) {
+      var i = +qd.dataset.i;
+      $$('.opt', qd).forEach(function (b) { b.onclick = function () { ans[i] = +b.dataset.oi; $$('.opt', qd).forEach(function (x) { x.classList.toggle('sel', x === b); }); }; });
+    });
+    $$('[data-clip]', el).forEach(function (b) {
+      var gi = +b.dataset.clip; plays[gi] = 0;
+      b.onclick = function () {
+        if (A.TTS.btn === b) { A.TTS.stop(); return; }
+        if (plays[gi] >= 2) { A.toast('ฟังครบ 2 ครั้งแล้ว'); return; }
+        plays[gi]++; $('#pl' + gi).textContent = plays[gi] >= 2 ? 'ฟังครบ 2 ครั้งแล้ว' : 'ฟังได้อีก 1 ครั้ง';
+        A.TTS.speak(groups[gi].script, b);
+      };
+    });
+    var done = false;
+    function submit() {
+      if (done) return; done = true; clearInterval(tid); A.TTS.stop();
+      var ok = 0, rev = [];
+      flat.forEach(function (f, i) { if (ans[i] === f.q.a) ok++; else rev.push({ q: f.q.q, pick: ans[i] >= 0 ? f.q.o[ans[i]] : null, right: f.q.o[f.q.a], e: f.q.e }); });
+      onSubmit({ ok: ok, n: flat.length, pct: Math.round(ok / flat.length * 100), rev: rev });
+    }
+    $('#sec-sub').onclick = function () {
+      var miss = ans.filter(function (a) { return a < 0; }).length;
+      if (miss && !armed) { armed = true; A.toast('ยังไม่ได้ตอบ ' + miss + ' ข้อ — แตะอีกครั้งเพื่อส่ง'); return; }
+      submit();
+    };
+  }
+
+  V.m4 = function (el) {
+    var S = A.S, cur = S.m4cur, E = X.edusynch, M = E.mock;
+    if (!cur) { A.go('exam', { x: 'edusynch' }); return; }
+    var steps = ['reading', 'listening', 'speaking', 'writing'];
+    var si = Math.min(3, steps.indexOf(cur.stage === 'wcheck' ? 'writing' : cur.stage));
+    A.top({ back: function () { A.go('xset', { x: 'edusynch', id: 'edu-full' }); }, title: 'CEFR 4 ทักษะ · ' + (cur.stage === 'result' || cur.stage === 'done' ? 'ผลสอบ' : 'ส่วนที่ ' + (si + 1) + '/4') });
+    var bar = '<div class="qprog" style="margin:0 0 10px">' + steps.map(function (s2, i) { return '<i class="' + (i < si || cur.stage === 'result' || cur.stage === 'done' ? 'd' : i === si ? 'c' : '') + '"></i>'; }).join('') + '</div>';
+    if (cur.stage === 'reading' || cur.stage === 'listening') {
+      var isR = cur.stage === 'reading';
+      el.innerHTML = bar + '<div id="secbox"></div>';
+      section($('#secbox'), isR ? 'Part 1 · Reading' : 'Part 2 · Listening', isR ? 20 : 10, isR ? M.reading : M.listening, cur.stage, function (res) {
+        cur[isR ? 'r' : 'l'] = res; cur.stage = isR ? 'listening' : 'speaking'; A.touch();
+        if (isR) { A.toast('ส่ง Reading แล้ว → Listening'); A.go('m4'); }
+        else {
+          el.innerHTML = '<div class="qprog" style="margin:0 0 10px"><i class="d"></i><i class="d"></i><i class="c"></i><i></i></div><div class="card mt center"><h2 style="font-size:21px">ต่อไป: Part 3 · Speaking</h2><p class="muted">3 คำถาม · เตรียม 15 วินาที · พูด 45 วินาที ระบบจะขออนุญาตใช้ไมโครโฟน</p></div><div class="btns"><button class="btn" id="go-s">ไปส่วน Speaking</button></div>';
+          $('#go-s').onclick = function () { A.go('speakrun', { f: 'edusynch', m4: 1 }); };
+        }
+      });
+      return;
+    }
+    if (cur.stage === 'speaking') { A.go('speakrun', { f: 'edusynch', m4: 1 }); return; }
+    if (cur.stage === 'writing') {
+      var w = M.writing[cur.wi], left = 20 * 60, tid;
+      el.innerHTML = bar + '<div class="runner-top"><span class="eyebrow" style="flex:1">Part 4 · Writing</span><span class="timer" id="timer">20:00</span></div>' +
+        '<div class="cue"><div class="eyebrow">' + esc(w.type) + ' · at least 150 words</div><h2 style="font-size:18px">' + esc(w.prompt) + '</h2></div>' +
+        '<textarea id="m4w" class="mt" style="min-height:300px" placeholder="Write your essay here…">' + esc(cur.wtext || '') + '</textarea><div class="wc"><span id="m4wc"></span><span>ขั้นต่ำ 150 คำ</span></div>' +
+        '<div class="btns"><button class="btn" id="m4ws">ส่งเรียงความ</button></div>';
+      var ta = $('#m4w'), wc = $('#m4wc'), dt, armed = false;
+      function upd() { var n = A.words(ta.value); wc.textContent = n + ' คำ'; wc.style.color = n >= 150 ? 'var(--green)' : ''; }
+      ta.oninput = function () { upd(); clearTimeout(dt); dt = setTimeout(function () { cur.wtext = ta.value; A.save(); }, 400); }; upd();
+      function fin() { clearInterval(tid); cur.wtext = ta.value; cur.w = { words: A.words(ta.value), checks: {} }; cur.stage = 'wcheck'; A.touch(); A.go('m4'); }
+      tid = setInterval(function () {
+        left--; var t = $('#timer'); if (t) { t.textContent = A.pad(Math.floor(left / 60)) + ':' + A.pad(left % 60); t.classList.toggle('low', left < 120); }
+        if (left <= 0) { A.toast('หมดเวลา ส่งเรียงความอัตโนมัติ'); fin(); }
+      }, 1000);
+      A.leave.push(function () { clearInterval(tid); });
+      $('#m4ws').onclick = function () {
+        if (A.words(ta.value) < 150 && !armed) { armed = true; A.toast('ยังไม่ถึง 150 คำ — แตะอีกครั้งเพื่อส่ง'); return; }
+        fin();
+      };
+      return;
+    }
+    if (cur.stage === 'wcheck') {
+      var w2 = M.writing[cur.wi];
+      el.innerHTML = bar + '<div class="uhead"><div class="eyebrow">Part 4 · Writing</div><h1>ตรวจเรียงความของคุณ</h1><p>' + cur.w.words + ' คำ' + (cur.w.words < 150 ? ' — ต่ำกว่า 150 คำ (สอบจริงจะถูกจำกัดคะแนน)' : '') + '</p></div>' +
+        '<div class="card mt"><div class="passage" style="font-size:15px">' + A.paras(cur.wtext || '(ว่าง)') + '</div></div>' +
+        '<details class="card mt"><summary class="link" style="list-style:none;cursor:pointer">เทียบกับตัวอย่างคำตอบระดับ B2+</summary><div class="passage mt" style="font-size:15px">' + A.paras(w2.model) + '</div></details>' +
+        '<div class="sec"><h2>ประเมินตามเกณฑ์ผู้ตรวจ</h2><span class="small muted">ติ๊กข้อที่ทำได้</span></div><div class="card checks">' +
+        E.wcrit.map(function (c) { return '<label class="ck"><input type="checkbox" data-k="' + c.k + '"><span><b>' + esc(c.name) + '</b><br><span class="small muted">' + esc(c.th) + '</span></span></label>'; }).join('') + '</div>' +
+        '<div class="btns"><button class="btn gold" id="m4res">ดูผลสอบ 4 ทักษะ</button></div>';
+      $$('.checks input', el).forEach(function (b) { b.onchange = function () { cur.w.checks[b.dataset.k] = b.checked; A.save(); }; });
+      $('#m4res').onclick = function () { cur.stage = 'result'; A.save(); A.go('m4'); };
+      return;
+    }
+    /* result */
+    var cnt = function (o) { return o ? Object.keys(o).filter(function (k) { return o[k]; }).length : 0; };
+    var lv = {
+      R: cur.r ? pctLv(cur.r.pct) : null,
+      L: cur.l ? pctLv(cur.l.pct) : null,
+      S: cur.s && cur.s.done ? chkLv(cnt(cur.s.checks), 5) : null,
+      W: cur.w ? Math.min(chkLv(cnt(cur.w.checks), 4), cur.w.words < 150 ? 2 : 9) : null
+    };
+    var vals = ['R', 'L', 'S', 'W'].map(function (k) { return lv[k]; }).filter(function (v) { return v != null; });
+    var avg = vals.length ? vals.reduce(function (a, b) { return a + b; }, 0) / vals.length : null, overall = LVN(avg);
+    if (cur.stage !== 'done') {
+      cur.stage = 'done';
+      (S.m4hist = S.m4hist || []).push({ date: Date.now(), overall: overall, R: LVN(lv.R), L: LVN(lv.L), S: LVN(lv.S), W: LVN(lv.W) });
+      var rr = ex()['edu-full'] || (ex()['edu-full'] = {}); rr.done = true; A.touch();
+    }
+    var names = { R: ['Reading', cur.r ? cur.r.ok + '/' + cur.r.n + ' ข้อ' : ''], L: ['Listening', cur.l ? cur.l.ok + '/' + cur.l.n + ' ข้อ' : ''], S: ['Speaking', 'ประเมินตนเอง ' + cnt(cur.s && cur.s.checks) + '/5'], W: ['Writing', cur.w ? cur.w.words + ' คำ · ' + cnt(cur.w.checks) + '/4' : ''] };
+    var pass = avg != null && avg >= 3;
+    el.innerHTML = bar + '<div class="result"><div class="lvl-big">' + overall + '</div><p style="margin:0"><b>ระดับรวมโดยประมาณ</b> (เฉลี่ย 4 ทักษะ)</p><p class="small muted">' + (pass ? 'ผ่านเกณฑ์ B2 — พร้อมสมัครสอบจริงที่ศูนย์ HCEC' : 'ยังไม่ถึง B2 — ดูทักษะที่ต่ำที่สุดแล้วฝึกเพิ่ม') + '</p>' +
+      '<div class="card breakdown">' + ['R', 'L', 'S', 'W'].map(function (k) {
+        var v = lv[k], p = v == null ? 0 : Math.min(100, v / 4 * 100);
+        return '<div class="ln" style="grid-template-columns:84px 1fr 44px"><span>' + names[k][0] + '<br><small class="muted">' + names[k][1] + '</small></span><div class="t"><i style="width:' + p + '%;background:' + (v >= 3 ? 'var(--green-2)' : v >= 2 ? 'var(--gold)' : 'var(--bad)') + '"></i></div><b>' + LVN(v) + '</b></div>';
+      }).join('') + '</div></div>' +
+      '<div class="note">Reading/Listening ตรวจอัตโนมัติ · Speaking/Writing มาจากการประเมินตนเองตามเกณฑ์ผู้ตรวจ — ลองให้เพื่อนครูภาษาอังกฤษช่วยฟัง/อ่านเพื่อความแม่นยำ ผลจริงของ EduSynch ใช้สเกลละเอียดกว่านี้</div>' +
+      ((cur.r && cur.r.rev.length) || (cur.l && cur.l.rev.length) ? '<div class="sec"><h2>ทบทวนข้อที่ผิด</h2></div><div class="card">' + [].concat(cur.r ? cur.r.rev : [], cur.l ? cur.l.rev : []).map(function (x) {
+        return '<div class="q"><div class="qt">' + esc(x.q) + '</div><div class="small">ตอบ: <span style="color:var(--bad)">' + (x.pick ? esc(x.pick) : '— ไม่ได้ตอบ') + '</span><br>ที่ถูก: <b style="color:var(--green)">' + esc(x.right) + '</b></div><div class="explain">' + esc(x.e) + '</div></div>';
+      }).join('') + '</div>' : '') +
+      '<div class="btns two"><button class="btn ghost" id="m4-recs">ฟังเสียง Speaking</button><button class="btn" id="m4-back">เสร็จสิ้น</button></div>';
+    $('#m4-recs').onclick = function () { A.go('recs'); };
+    $('#m4-back').onclick = function () { A.go('exam', { x: 'edusynch' }); };
+  };
+
   K.adaptive = function (el, s, head, k) {
     var LV = ['B1', 'B2', 'C1'];
     el.innerHTML = head + '<div class="card mt"><p style="margin:0">ระบบเริ่มที่ระดับ B2 ถ้าตอบถูกข้อถัดไปจะยากขึ้น ตอบผิดจะง่ายลง — เหมือนข้อสอบ EF SET จริง ' + s.n + ' ข้อ ไม่เห็นเฉลยระหว่างทำ</p></div><div class="btns"><button class="btn" id="ad-go">เริ่ม</button></div>';
@@ -2584,14 +2979,17 @@ window.SPEAK = {
       this.chunks = [];
       this.mr = mt ? new MediaRecorder(this.stream, { mimeType: mt }) : new MediaRecorder(this.stream);
       this.mr.ondataavailable = function (e) { if (e.data && e.data.size) self.chunks.push(e.data); };
-      this.mr.start(500); this.t0 = Date.now();
+      this.mr.start(500); this.t0 = Date.now(); this.acc = 0; this.t1 = Date.now();
       return true;
     };
+    this.pause = function () { var m = this.mr; if (m && m.state === 'recording' && m.pause) { m.pause(); this.acc += Date.now() - this.t1; } };
+    this.resume = function () { var m = this.mr; if (!m) return this.start(); if (m.state === 'paused') { m.resume(); this.t1 = Date.now(); } return true; };
     this.stop = function () {
       return new Promise(function (res) {
         var mr = self.mr;
         if (!mr || mr.state === 'inactive') return res(null);
-        mr.onstop = function () { res({ blob: new Blob(self.chunks, { type: (mr.mimeType || 'audio/webm').split(';')[0] }), dur: (Date.now() - self.t0) / 1000 }); };
+        var active = self.acc + (mr.state === 'recording' ? Date.now() - self.t1 : 0);
+        mr.onstop = function () { res({ blob: new Blob(self.chunks, { type: (mr.mimeType || 'audio/webm').split(';')[0] }), dur: active / 1000 }); };
         try { mr.requestData(); } catch (e) { }
         mr.stop();
       });
@@ -2663,7 +3061,8 @@ window.SPEAK = {
   /* ── session ── */
   V.speakrun = function (el) {
     var f = fmt(A.R.f), S = A.S, last = S.spLast || (S.spLast = {});
-    var back = function () { A.go(A.R.from ? 'exam' : 'speak', A.R.from ? { x: A.R.from } : null); };
+    var M4 = A.R.m4;
+    var back = function () { if (M4) A.go('xset', { x: 'edusynch', id: 'edu-full' }); else A.go(A.R.from ? 'exam' : 'speak', A.R.from ? { x: A.R.from } : null); };
     A.top({ back: back, title: f.exam + ' · ' + f.name });
     var run = { dead: false, voice: S.spVoice !== false && A.TTS.ok, rec: null, skip: function () { } };
     A.leave.push(function () { run.dead = true; if (run.rec) run.rec.release(); if (window.speechSynthesis) speechSynthesis.cancel(); });
@@ -2698,6 +3097,10 @@ window.SPEAK = {
         var by = function (n, m) { return A.shuffle(SP.repeat.filter(function (r) { return r.n === n; })).slice(0, m); };
         c.title = 'Listen and Repeat'; c.reps = by(1, 2).concat(by(2, 3), by(3, 2)).map(function (r) { return r.t; });
       }
+      else if (f.id === 'edusynch') {
+        var ex = A.shuffle(SP.edu.exp)[0], ops = A.shuffle(SP.edu.op).slice(0, 2);
+        c.title = 'EduSynch Speaking · 3 questions'; c.qs = [ex].concat(ops);
+      }
       else if (f.id === 'cefr') { var o = pickRand(SP.opinions, last.op); last.op = o; c.title = SP.opinions[o]; }
       A.save();
       return c;
@@ -2710,6 +3113,7 @@ window.SPEAK = {
       var p;
       if (f.id === 'ielts2' || f.id === 'cefr') p = cueFlow(c, recOK);
       else if (f.id === 'toefl_rep') p = repeatFlow(c, recOK);
+      else if (f.id === 'edusynch') p = eduFlow(c, recOK);
       else p = qFlow(c, recOK);
       p.then(function (out) {
         if (run.dead) return;
@@ -2764,6 +3168,38 @@ window.SPEAK = {
       return speakP(intro, run).then(one).then(function () { if (!run.dead) { beep(520, 300); return speakP('Thank you. That is the end of the speaking test.', run); } });
     }
 
+    function eduFlow(c, recOK) {
+      var i = 0, n = c.qs.length;
+      function one() {
+        if (run.dead || i >= n) return Promise.resolve();
+        var q = c.qs[i];
+        stage('<div class="eyebrow">Question ' + (i + 1) + ' of ' + n + '</div><div class="qprog">' + c.qs.map(function (_, k) { return '<i class="' + (k < i ? 'd' : k === i ? 'c' : '') + '"></i>'; }).join('') + '</div>' +
+          '<div class="cue"><div class="eyebrow">' + (i === 0 ? 'Personal experience' : 'Opinion') + '</div><h2>' + esc(q) + '</h2></div>' +
+          '<div id="rb"><div class="recbar off"><span>เตรียมตัว — คิดโครง: จุดยืน/เหตุการณ์ → เหตุผล → ตัวอย่าง</span></div></div>' +
+          '<div class="stagebox" id="tb"></div><div class="btns"><button class="btn ghost" id="skip">พร้อมแล้ว เริ่มพูด</button></div>');
+        $('#skip').onclick = function () { run.skip(); };
+        return speakP(q, run).then(function () {
+          if (run.dead) return;
+          return countdown($('#tb'), f.prep, 'เวลาเตรียม', run);
+        }).then(function () {
+          if (run.dead) return;
+          beep(880, 150);
+          var ok = run.rec && !run.rec.failed && run.rec.resume();
+          $('#rb').innerHTML = recBar(!!ok);
+          if (ok) run.rec.meter($('#mt'));
+          var sk = $('#skip'); sk.textContent = i < n - 1 ? 'พูดจบแล้ว ข้อต่อไป' : 'พูดจบแล้ว';
+          return countdown($('#tb'), f.perQ, 'เวลาพูด', run, { rec: !!ok, warn: 10 });
+        }).then(function () {
+          if (run.rec) run.rec.pause();
+          beep(520, 200); i++;
+          return wait(400).then(one);
+        });
+      }
+      var intro = 'In this section, you will answer three questions. For each question, you will have fifteen seconds to prepare and forty-five seconds to speak.';
+      stage('<div class="examiner"><span class="av">' + I.user + '</span><div class="qtext">' + esc(intro) + '</div></div>');
+      return speakP(intro, run).then(one);
+    }
+
     function repeatFlow(c, recOK) {
       var i = 0;
       function one() {
@@ -2793,7 +3229,9 @@ window.SPEAK = {
         recObj = { id: id, ts: id, f: f.id, title: c.title, items: items, points: c.points || null, dur: audio.dur, mime: audio.blob.type, blob: audio.blob, checks: checks };
         DB.put(recObj).catch(function () { A.toast('บันทึกลงคลังไม่ได้ (พื้นที่เบราว์เซอร์)'); });
       }
-      var S = A.S; S.spCount = (S.spCount || 0) + 1; A.touch();
+      var S = A.S; S.spCount = (S.spCount || 0) + 1;
+      if (M4 && S.m4cur) { S.m4cur.s = { id: recObj ? recObj.id : null, checks: checks, done: true }; S.m4cur.stage = 'writing'; }
+      A.touch();
       var url = recObj ? URL.createObjectURL(audio.blob) : null;
       if (url) A.leave.push(function () { URL.revokeObjectURL(url); });
       var ext = recObj ? (/mp4|aac/.test(recObj.mime) ? 'm4a' : /ogg/.test(recObj.mime) ? 'ogg' : 'webm') : '';
@@ -2802,21 +3240,25 @@ window.SPEAK = {
           : '<div class="note warnbox">รอบนี้ไม่ได้บันทึกเสียง (ไม่มีสิทธิ์ไมโครโฟน หรือเปิดจาก Apps Script)' + (IN_GAS ? '<br><a href="' + ALT_URL + '" target="_blank" rel="noopener">เปิดเวอร์ชันที่บันทึกเสียงได้ ↗</a>' : '') + '</div>') +
         (c.reps ? '<div class="sec"><h2>ประโยคต้นฉบับ</h2><span class="small muted">เทียบกับเสียงของคุณ</span></div><div class="card">' + c.reps.map(function (t, i) { return '<div class="ex-line">' + A.sayBtn(t) + '<span><b>' + (i + 1) + '.</b> ' + esc(t) + '</span></div>'; }).join('') + '</div>' : '') +
         (c.qs ? '<div class="sec"><h2>คำถามในรอบนี้</h2></div><div class="card">' + c.qs.map(function (q, i) { return '<div class="ex-line">' + A.sayBtn(q) + '<span><b>' + (i + 1) + '.</b> ' + esc(q) + '</span></div>'; }).join('') + '</div>' : '') +
+        (M4 ? '<div class="note">ข้อสอบจำลอง 4 ทักษะ · ส่วนที่ 3/4 เสร็จแล้ว — ฟังเสียงตัวเอง แล้วติ๊กเกณฑ์ที่ทำได้ ผลจะนำไปคำนวณระดับ Speaking</div>' : '') +
         (!c.reps ? '<div class="sec"><h2>ประเมินตัวเอง</h2><span class="small muted">ฟังเสียงแล้วติ๊ก</span></div><div class="card checks">' + SP.criteria.map(function (cr) { return '<label class="ck"><input type="checkbox" data-k="' + cr.k + '"><span><b>' + esc(cr.name) + '</b><br><span class="small muted">' + esc(cr.th) + '</span></span></label>'; }).join('') + '<div class="small" id="ck-sum" style="margin-top:8px"></div></div>' : '') +
         (c.model ? '<details class="card mt"><summary class="link" style="list-style:none;cursor:pointer">ดูตัวอย่างคำตอบระดับ B2+</summary><div style="display:flex;justify-content:flex-end;margin:8px 0">' + A.sayBtn(c.model) + '</div><div class="passage" style="font-size:15.5px">' + A.paras(c.model) + '</div></details>' : '') +
         '<details class="card mt"><summary class="link" style="list-style:none;cursor:pointer">สำนวนช่วยพูด (useful phrases)</summary><div class="phr-grid">' +
         [['เริ่มตอบ', 'start'], ['ให้เหตุผล', 'reason'], ['ยกตัวอย่าง', 'example'], ['ซื้อเวลาคิด', 'time'], ['สรุป', 'end']].map(function (g) { return '<div><div class="small muted">' + g[0] + '</div>' + SP.phrases[g[1]].map(function (p) { return '<div class="ph">' + esc(p) + '</div>'; }).join('') + '</div>'; }).join('') + '</div></details>' +
-        '<div class="btns">' + (f.id === 'ielts2' ? '<button class="btn gold" id="rv-p3">ต่อ Part 3 (หัวข้อเดียวกัน)</button>' : '') + '<button class="btn" id="rv-new">สุ่มหัวข้อใหม่</button><button class="btn ghost" id="rv-same">ลองหัวข้อเดิมอีกครั้ง</button></div>';
+        (M4 ? '<div class="btns"><button class="btn gold" id="rv-m4">ไปส่วนสุดท้าย: Writing →</button></div>' :
+        '<div class="btns">' + (f.id === 'ielts2' ? '<button class="btn gold" id="rv-p3">ต่อ Part 3 (หัวข้อเดียวกัน)</button>' : '') + '<button class="btn" id="rv-new">สุ่มหัวข้อใหม่</button><button class="btn ghost" id="rv-same">ลองหัวข้อเดิมอีกครั้ง</button></div>');
       $$('.checks input', el).forEach(function (b) {
         b.onchange = function () {
           checks[b.dataset.k] = b.checked;
           var n = Object.keys(checks).filter(function (k) { return checks[k]; }).length;
           $('#ck-sum').innerHTML = 'ผ่าน <b>' + n + '/5</b> เกณฑ์ ' + (n >= 4 ? '— พร้อมระดับ B2 แล้ว' : n >= 2 ? '— ใกล้แล้ว ฝึกซ้ำหัวข้อเดิมอีกรอบ' : '— ลองฟังตัวอย่างคำตอบและใช้สำนวนช่วยพูด');
           if (recObj) { recObj.checks = checks; DB.put(recObj).catch(function () { }); }
+          if (M4 && A.S.m4cur) { A.S.m4cur.s.checks = checks; A.save(); }
         };
       });
       var lib = $('#rv-lib'); if (lib) lib.onclick = function () { A.go('recs'); };
       var p3 = $('#rv-p3'); if (p3) p3.onclick = function () { A.go('speakrun', { f: 'ielts3', card: c.card, from: A.R.from }); };
+      var m4b = $('#rv-m4'); if (m4b) { m4b.onclick = function () { A.S.m4cur.stage = 'writing'; A.save(); A.go('m4'); }; return; }
       $('#rv-new').onclick = function () { A.go('speakrun', { f: f.id, from: A.R.from }); };
       $('#rv-same').onclick = function () {
         if (c.card != null) A.go('speakrun', { f: f.id, card: c.card, from: A.R.from });

@@ -369,3 +369,10 @@ input.gap.wrong,.cz-in.wrong{border-color:var(--bad);background:var(--bad-soft)}
 .recitem b{display:block;font-family:var(--f-read);font-weight:500;line-height:1.35;margin:2px 0}
 .del{color:var(--muted)}.del.armed{color:#fff;background:var(--bad)}
 .nav-in{grid-template-columns:repeat(5,1fr)}
+
+.xcard.wide{grid-column:span 2;background:var(--green-soft);border-color:#cfe0d6}
+.skill4{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:12px 0}
+.skill4 div{background:var(--paper);border-radius:12px;padding:10px 4px;text-align:center}
+.skill4 b{display:block;color:var(--bad);font-family:var(--f-head);font-size:15px}
+.skill4 span{font-size:12px;color:var(--muted)}
+.table td:last-child{white-space:nowrap}
